@@ -59,5 +59,6 @@ AAPropSetFuncImplementation(AADataLabels, NSNumber *, y);
 AAPropSetFuncImplementation(AADataLabels, NSString *, align);
 AAPropSetFuncImplementation(AADataLabels, NSString *, verticalAlign);
 
+AAPropSetFuncImplementation(AADataLabels, NSString *, color)
 
 @end

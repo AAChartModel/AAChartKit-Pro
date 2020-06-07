@@ -57,6 +57,8 @@
 #import "AAMarker.h"
 #import "AAOptions3d.h"
 
+#import "AAColorAxis.h"
+
 @interface AAOptions : NSObject
 
 AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AAChart       *, chart);
@@ -71,6 +73,9 @@ AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AALegend      *, legen
 AAPropStatementAndPropSetFuncStatement(strong, AAOptions, NSArray       *, colors);
 AAPropStatementAndPropSetFuncStatement(assign, AAOptions, BOOL,            gradientColorEnabled);
 AAPropStatementAndPropSetFuncStatement(copy,   AAOptions, NSString      *, zoomResetButtonText); //String to display in 'zoom reset button"
+
+
+AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AAColorAxis      *, colorAxis);
 
 @end
 

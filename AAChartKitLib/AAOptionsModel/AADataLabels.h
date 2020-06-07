@@ -104,6 +104,8 @@ AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, NSNumber *, x);
 AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, NSNumber *, y);
 AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, align);
 AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, verticalAlign);
+AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, color)
+
 
 
 

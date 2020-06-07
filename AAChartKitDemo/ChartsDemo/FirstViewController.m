@@ -138,7 +138,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     switch (indexPath.section) {
-        case 0: {
+        case 0 : {
+            /*通过AAOptions实例对象来绘制图形*/
+            DrawChartWithAAOptionsVC *vc = [[DrawChartWithAAOptionsVC alloc]init];
+            vc.selectedIndex = indexPath.row;
+            vc.navigationItemTitle = self.chartTypeNameArr[indexPath.section][indexPath.row];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 1: {
             /*基础类型图表*/
             SecondViewController *vc = [[SecondViewController alloc]init];
             vc.chartType = indexPath.row;
@@ -146,14 +154,14 @@
         }
             break;
             
-        case 1: {
+        case 2: {
             /*特殊类型图表*/
             SpecialChartVC *vc = [[SpecialChartVC alloc]init];
             vc.chartType = indexPath.row;
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case 2: {
+        case 3: {
             /*图表数据动态刷新*/
             MixedChartVC *vc = [[MixedChartVC alloc]init];
             vc.chartTypeIndex = indexPath.row;
@@ -162,27 +170,18 @@
             break;
             
             
-        case 3: {
+        case 4: {
             /*图表数据动态刷新*/
             OnlyRefreshChartDataVC *vc = [[OnlyRefreshChartDataVC alloc]init];
             vc.chartType = indexPath.row;
             [self.navigationController  pushViewController:vc animated:YES];
         }
             break;
-        
-        case 4: {
+
+        case 5: {
             /*JQuery动画样式类型演示*/
             ChartAnimationTypeVC *vc = [[ChartAnimationTypeVC alloc]init];
             vc.chartType = indexPath.row;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-            break;
-        
-        case 5: {
-            /*通过AAOptions实例对象来绘制图形*/
-            DrawChartWithAAOptionsVC *vc = [[DrawChartWithAAOptionsVC alloc]init];
-            vc.selectedIndex = indexPath.row;
-            vc.navigationItemTitle = self.chartTypeNameArr[indexPath.section][indexPath.row];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
@@ -249,111 +248,116 @@
 - (NSArray *)chartTypeNameArr {
     if (!_chartTypeNameArr) {
         _chartTypeNameArr = @[
-                             /*基础类型图表*/
-                             @[@"Column Chart---柱形图",
-                               @"Bar Chart---条形图",
-                               @"Area Chart---折线填充图",
-                               @"Areaspline Chart---曲线填充图",
-                               @"Line Chart---折线图",
-                               @"Spline Chart---曲线图",
-                               @"Step Line Chart--直方折线图",
-                               @"Step Area Chart--直方折线填充图",
-                               @"Scatter Chart---散点图"
-                               ],
-                             /*特殊类型图表*/
-                             @[@"Colorful Column Chart---多彩柱形图",
-                               @"Gradient Color Bar---颜色渐变条形图",
-                               @"Mixed Line Chart---虚实线混合折线图",
-                               @"With Dividing Line---带有阈值分割线区域图",
-                               @"Area Chart with minus--带有负数的区域填充图",
-                               @"Pie Chart---扇形图",
-                               @"Bubble Chart---气泡图",
-                               @"Scatter Chart--散点图",
-                               @"Arearange Chart--区域面积图",
-                               @"Area Spline range Chart--曲线区域面积图",
-                               @"Column Range Chart--柱形范围图",
-                               @"Step Line Chart--直方折线图",
-                               @"Step Area Chart--直方折线填充图",
-                               @"Nightingale Rose Chart---南丁格尔玫瑰图",
-                               @"Box Plot Chart---箱线图",
-                               @"Water Fall---瀑布图",
-                               @"Pyramid Chart---金字塔图",
-                               @"Funnel Chart---漏斗图",],
-                             /*混合类型图表*/
-                             @[@"Arearange Mixed Line---面积范围均线图",
-                               @"Columnrange Mixed Line---柱形范围图混合折线图",
-                               @"Stacking Column Mixed Line---堆积柱形图混合折线图",
-                               @"Dash Style Types Mixed---多种类型曲线混合图",
-                               @"Negative Color Mixed---基准线以下异色混合图",
-                               @"scatterMixedLine---散点图混合折线图(待完成)",
-                               @"Negative Color Mixed bubble---基准线以下异色气泡图",
-                               @"Polygon Mixed Scatter---多边形混合散点图",
-                               @"Polar Chart Mixed---极地混合图"
-                               
-                               ],
-                             /*图表数据动态刷新*/
-                             @[@"Column Chart---柱形图",
-                               @"Bar Chart---条形图",
-                               @"Area Chart---折线填充图",
-                               @"Areaspline Chart---曲线填充图",
-                               @"Line Chart---折线图",
-                               @"Spline Chart---曲线图",
-                               @"Step Line Chart--直方折线图",
-                               @"Step Area Chart--直方折线填充图",
-                               @"Scatter Chart---散点图"
-                               ],
-                             /*JQuery动画样式类型演示*/
-                             @[@"Column Chart---柱形图",
-                               @"Bar Chart---条形图",
-                               @"Area Chart---折线填充图",
-                               @"Areaspline Chart---曲线填充图",
-                               @"Line Chart---折线图",
-                               @"Spline Chart---曲线图",
-                               @"Step Line Chart--直方折线图",
-                               @"Step Area Chart--直方折线填充图",
-                               @"Scatter Chart --散点图",
-                               @"Pie Chart --扇形图"
-                               ],
-                             /*通过AAOptions实例对象来绘制图形*/
-                             @[@"绘制legend居顶部的区域填充图",
-                               @"绘制带有中心标题的环形图",
-                               @"调整扇形图的标题和DataLabel字体样式",
-                               @"绘制嵌套的柱状图",
-                               @"多边形线框的雷达图",
-                               @"缝隙很小的柱状图",
-                               @"Custom style tooltip--自定义浮动提示框",
-                               @"调整图表的左右边距",
-                               @"设置图表绘图区的背景图片",
-                               @"Double Y Axises Chart---双Y轴混合图",
-                               @"Adjust Data Accuracy---调整数据精度",
-                               @"Adjust Group Padding---调整group间距",
-                               @"Custom Style Stacked Column---自定义堆积柱状图",
-                               @"时间不连续的直方折线填充图连接图",
-                               @"Disable Animation ---禁用动画效果",
-                               @"Custom Legend Item Style---自定义图例样式"
-                               ],
-                             /*同时显示多个 AAChartView*/
-                              @[@"同时显示多个 AAChartView",
-                                @"UITableView上显示多个 AAChartView"
-                                ],
-                             /*可向下钻取类型图表*/
-                             @[@"Drilldown column chart--向下钻取的柱状图"
-                               ],
-                             ];
+            /*通过AAOptions实例对象来绘制图形*/
+            @[@"sankeyChart---桑基图",
+              @"variablepieChart---可变宽度的饼图",
+              @"treemapChart---树形图",
+              @"variwideChart---可变宽度的柱形图",
+              @"sunburstChart---旭日图",
+              @"dependencywheelChart---和弦图",
+              @"heatmapChart---热力图",
+              @"",
+              @"",
+              @"",
+              @"",
+              @"",
+              @"",
+              @"",
+              @"",
+              @"",
+              @"",
+              @"",
+              @"",
+            ],
+            /*基础类型图表*/
+            @[@"Column Chart---柱形图",
+              @"Bar Chart---条形图",
+              @"Area Chart---折线填充图",
+              @"Areaspline Chart---曲线填充图",
+              @"Line Chart---折线图",
+              @"Spline Chart---曲线图",
+              @"Step Line Chart--直方折线图",
+              @"Step Area Chart--直方折线填充图",
+              @"Scatter Chart---散点图"
+            ],
+            /*特殊类型图表*/
+            @[@"Colorful Column Chart---多彩柱形图",
+              @"Gradient Color Bar---颜色渐变条形图",
+              @"Mixed Line Chart---虚实线混合折线图",
+              @"With Dividing Line---带有阈值分割线区域图",
+              @"Area Chart with minus--带有负数的区域填充图",
+              @"Pie Chart---扇形图",
+              @"Bubble Chart---气泡图",
+              @"Scatter Chart--散点图",
+              @"Arearange Chart--区域面积图",
+              @"Area Spline range Chart--曲线区域面积图",
+              @"Column Range Chart--柱形范围图",
+              @"Step Line Chart--直方折线图",
+              @"Step Area Chart--直方折线填充图",
+              @"Nightingale Rose Chart---南丁格尔玫瑰图",
+              @"Box Plot Chart---箱线图",
+              @"Water Fall---瀑布图",
+              @"Pyramid Chart---金字塔图",
+              @"Funnel Chart---漏斗图",],
+            /*混合类型图表*/
+            @[@"Arearange Mixed Line---面积范围均线图",
+              @"Columnrange Mixed Line---柱形范围图混合折线图",
+              @"Stacking Column Mixed Line---堆积柱形图混合折线图",
+              @"Dash Style Types Mixed---多种类型曲线混合图",
+              @"Negative Color Mixed---基准线以下异色混合图",
+              @"scatterMixedLine---散点图混合折线图(待完成)",
+              @"Negative Color Mixed bubble---基准线以下异色气泡图",
+              @"Polygon Mixed Scatter---多边形混合散点图",
+              @"Polar Chart Mixed---极地混合图"
+              
+            ],
+            /*图表数据动态刷新*/
+            @[@"Column Chart---柱形图",
+              @"Bar Chart---条形图",
+              @"Area Chart---折线填充图",
+              @"Areaspline Chart---曲线填充图",
+              @"Line Chart---折线图",
+              @"Spline Chart---曲线图",
+              @"Step Line Chart--直方折线图",
+              @"Step Area Chart--直方折线填充图",
+              @"Scatter Chart---散点图"
+            ],
+            /*JQuery动画样式类型演示*/
+            @[@"Column Chart---柱形图",
+              @"Bar Chart---条形图",
+              @"Area Chart---折线填充图",
+              @"Areaspline Chart---曲线填充图",
+              @"Line Chart---折线图",
+              @"Spline Chart---曲线图",
+              @"Step Line Chart--直方折线图",
+              @"Step Area Chart--直方折线填充图",
+              @"Scatter Chart --散点图",
+              @"Pie Chart --扇形图"
+            ],
+            
+            /*同时显示多个 AAChartView*/
+            @[@"同时显示多个 AAChartView",
+              @"UITableView上显示多个 AAChartView"
+            ],
+            /*可向下钻取类型图表*/
+            @[@"Drilldown column chart--向下钻取的柱状图"
+            ],
+        ];
     }
     return _chartTypeNameArr;
 }
 
 - (NSArray *)sectionTypeArr {
     if (!_sectionTypeArr) {
-        _sectionTypeArr = @[@"Basic Type---基础类型",
-                            @"Special Type---特别类型",
-                            @"Mixed Type Chart---混合图表",
-                            @"Real-time Refresh---即时刷新",
-                            @"Animation Type---渲染动画",
-                            @"AAOptions---Use AAOptions",
-                            @"同时显示多个 AAChartView",
-                            @"Drilldown chart---钻取图表(暂时废弃)",];
+        _sectionTypeArr = @[
+            @"AAOptions---Use AAOptions",
+            @"Basic Type---基础类型",
+            @"Special Type---特别类型",
+            @"Mixed Type Chart---混合图表",
+            @"Real-time Refresh---即时刷新",
+            @"Animation Type---渲染动画",
+            @"同时显示多个 AAChartView",
+            @"Drilldown chart---钻取图表(暂时废弃)",];
     }
     return _sectionTypeArr;
 }

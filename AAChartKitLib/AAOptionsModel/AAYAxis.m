@@ -57,6 +57,7 @@ AAPropSetFuncImplementation(AAYAxis, NSNumber *, tickInterval);
 AAPropSetFuncImplementation(AAYAxis, AACrosshair*, crosshair); //准星线样式设置
 AAPropSetFuncImplementation(AAYAxis, AALabels *, stackLabels);
 
+AAPropSetFuncImplementation(AAYAxis, NSArray  *, categories)
 
 
 @end

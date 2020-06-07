@@ -63,5 +63,6 @@ AAPropStatementAndPropSetFuncStatement(strong, AAYAxis, NSNumber *, tickInterval
 AAPropStatementAndPropSetFuncStatement(strong, AAYAxis, AACrosshair*, crosshair); //准星线样式设置
 AAPropStatementAndPropSetFuncStatement(strong, AAYAxis, AALabels *, stackLabels);
 
+AAPropStatementAndPropSetFuncStatement(strong, AAYAxis, NSArray  *, categories)
 
 @end
