@@ -10,6 +10,58 @@
 
 @implementation AAOptionsData
 
++ (NSArray *)sankeyChartData {
+    return @[
+        @[@"Brazil", @"Portugal", @5],
+        @[@"Brazil", @"France", @1],
+        @[@"Brazil", @"Spain", @1],
+        @[@"Brazil", @"England", @1],
+        @[@"Canada", @"Portugal", @1],
+        @[@"Canada", @"France", @5],
+        @[@"Canada", @"England", @1],
+        @[@"Mexico", @"Portugal", @1],
+        @[@"Mexico", @"France", @1],
+        @[@"Mexico", @"Spain", @5],
+        @[@"Mexico", @"England", @1],
+        @[@"USA", @"Portugal", @1],
+        @[@"USA", @"France", @1],
+        @[@"USA", @"Spain", @1],
+        @[@"USA", @"England", @5],
+        @[@"Portugal", @"Angola", @2],
+        @[@"Portugal", @"Senegal", @1],
+        @[@"Portugal", @"Morocco", @1],
+        @[@"Portugal", @"South Africa", @3],
+        @[@"France", @"Angola", @1],
+        @[@"France", @"Senegal", @3],
+        @[@"France", @"Mali", @3],
+        @[@"France", @"Morocco", @3],
+        @[@"France", @"South Africa", @1],
+        @[@"Spain", @"Senegal", @1],
+        @[@"Spain", @"Morocco", @3],
+        @[@"Spain", @"South Africa", @1],
+        @[@"England", @"Angola", @1],
+        @[@"England", @"Senegal", @1],
+        @[@"England", @"Morocco", @2],
+        @[@"England", @"South Africa", @7],
+        @[@"South Africa", @"China", @5],
+        @[@"South Africa", @"India", @1],
+        @[@"South Africa", @"Japan", @3],
+        @[@"Angola", @"China", @5],
+        @[@"Angola", @"India", @1],
+        @[@"Angola", @"Japan", @3],
+        @[@"Senegal", @"China", @5],
+        @[@"Senegal", @"India", @1],
+        @[@"Senegal", @"Japan", @3],
+        @[@"Mali", @"China", @5],
+        @[@"Mali", @"India", @1],
+        @[@"Mali", @"Japan", @3],
+        @[@"Morocco", @"China", @5],
+        @[@"Morocco", @"India", @1],
+        @[@"Morocco", @"Japan", @3],
+        @[@"Japan", @"Brazil", @1]
+    ];
+}
+
 + (NSArray *)sunburstChartData {
     return @[@{
             @"id": @"0.0",
@@ -1387,6 +1439,186 @@
             @"name": @"Tokelau",
             @"value": @1300
             }];
+}
+
++ (NSArray *)dumbbellChartData {
+    return @[@{
+        @"name": @"Austria",
+        @"low": @69,
+        @"high": @82
+    }, @{
+        @"name": @"Belgium",
+        @"low": @70,
+        @"high": @81
+    }, @{
+        @"name": @"Bulgaria",
+        @"low": @69,
+        @"high": @75
+    }, @{
+        @"name": @"Croatia",
+        @"low": @65,
+        @"high": @78
+    }, @{
+        @"name": @"Cyprus",
+        @"low": @70,
+        @"high": @81
+    }, @{
+        @"name": @"Czech Republic",
+        @"low": @70,
+        @"high": @79
+    }, @{
+        @"name": @"Denmark",
+        @"low": @72,
+        @"high": @81
+    }, @{
+        @"name": @"Estonia",
+        @"low": @68,
+        @"high": @78
+    }, @{
+        @"name": @"Finland",
+        @"low": @69,
+        @"high": @81
+    }, @{
+        @"name": @"France",
+        @"low": @70,
+        @"high": @83
+    }, @{
+        @"name": @"Greece",
+        @"low": @68,
+        @"high": @81
+    }, @{
+        @"name": @"Spain",
+        @"low": @69,
+        @"high": @83
+    }, @{
+        @"name": @"Netherlands",
+        @"low": @73,
+        @"high": @82
+    }, @{
+        @"name": @"Ireland",
+        @"low": @70,
+        @"high": @82
+    }, @{
+        @"name": @"Lithuania",
+        @"low": @70,
+        @"high": @75
+    }, @{
+        @"name": @"Luxembourg",
+        @"low": @68,
+        @"high": @83
+    }, @{
+        @"name": @"Latvia",
+        @"low": @70,
+        @"high": @75
+    }, @{
+        @"name": @"Malta",
+        @"low": @69,
+        @"high": @82
+    }, @{
+        @"name": @"Germany",
+        @"low": @69,
+        @"high": @81
+    }, @{
+        @"name": @"Poland",
+        @"low": @68,
+        @"high": @78
+    }, @{
+        @"name": @"Portugal",
+        @"low": @63,
+        @"high": @81
+    }, @{
+        @"name": @"Romania",
+        @"low": @66,
+        @"high": @75
+    }, @{
+        @"name": @"Slovakia",
+        @"low": @70,
+        @"high": @77
+    }, @{
+        @"name": @"Slovenia",
+        @"low": @69,
+        @"high": @81
+    }, @{
+        @"name": @"Sweden",
+        @"low": @73,
+        @"high": @82
+    }, @{
+        @"name": @"Hungary",
+        @"low": @68,
+        @"high": @76
+    }, @{
+        @"name": @"Italy",
+        @"low": @69,
+        @"high": @83
+    }, @{
+        @"name": @"UK",
+        @"low": @71,
+        @"high": @81
+    }];
+}
+
+
++ (NSArray *)vennChartData {
+    return @[@{
+        @"sets": @[@"Good"],
+        @"value": @2
+    }, @{
+        @"sets": @[@"Fast"],
+        @"value": @2
+    }, @{
+        @"sets": @[@"Cheap"],
+        @"value": @2
+    }, @{
+        @"sets": @[@"Good", @"Fast"],
+        @"value": @1,
+        @"name": @"More expensive"
+    }, @{
+        @"sets": @[@"Good", @"Cheap"],
+        @"value": @1,
+        @"name": @"Will take time to deliver"
+    }, @{
+        @"sets": @[@"Fast", @"Cheap"],
+        @"value": @1,
+        @"name": @"Not the best quality"
+    }, @{
+        @"sets": @[@"Fast", @"Cheap", @"Good"],
+        @"value": @1,
+        @"name": @"They are dreaming"
+    }];
+}
+
++ (NSArray *)lollipopChartData {
+    return @[@{
+        @"name": @"China",
+        @"low": @1427647786
+    }, @{
+        @"name": @"India",
+        @"low": @1352642280
+    }, @{
+        @"name": @"United States",
+        @"low": @327096265
+    }, @{
+        @"name": @"Indonesia",
+        @"low": @267670543
+    }, @{
+        @"name": @"Pakistan",
+        @"low": @212228286
+    }, @{
+        @"name": @"Brazil",
+        @"low": @209469323
+    }, @{
+        @"name": @"Nigeria",
+        @"low": @195874683
+    }, @{
+        @"name": @"Bangladesh",
+        @"low": @161376708
+    }, @{
+        @"name": @"Russia",
+        @"low": @145734038
+    }, @{
+        @"name": @"Mexico",
+        @"low": @126190788
+    }];
 }
 
 @end

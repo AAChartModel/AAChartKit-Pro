@@ -8,6 +8,9 @@
 <!--//***...................................................***-->
 <!--//*************** ...... SOURCE CODE ...... ***************-->
 
+
+<!--更多功能模块连接 https://code.highcharts.com.cn/index.html-->
+
 <!--/*-->
 <!---->
 <!--* --------------------------------------------------------------------------------->
@@ -26,6 +29,8 @@
 <!--* --------------------------------------------------------------------------------->
 <!---->
 <!--*/-->
+
+
 
 <html>
     <head>
@@ -52,7 +57,21 @@
          <script src="https://code.highcharts.com.cn/highcharts/modules/sunburst.js">
              </script>
          <script src="https://code.highcharts.com.cn/highcharts/modules/heatmap.js">
-                    </script>
+            </script>
+         <script src="https://code.highcharts.com.cn/highcharts/modules/streamgraph.js">
+         </script>
+         <script src="https://code.highcharts.com.cn/highcharts/modules/venn.js">
+         </script>
+         <script src="https://code.highcharts.com.cn/highcharts/modules/tilemap.js">
+         </script>
+         <script src="https://code.highcharts.com.cn/highcharts/modules/bullet.js">
+                 </script>
+         <script src="https://code.highcharts.com.cn/highcharts/modules/dumbbell.js">
+                         </script>
+         <script src="https://code.highcharts.com.cn/highcharts/modules/lollipop.js">
+                                 </script>
+         
+         
          
         <style>
             *{ -webkit-user-select: none; 
@@ -98,13 +117,13 @@
                 aaOptions.credits = {
                     enabled: false
                 }; //去掉表格右下角版权信息
-                if (aaOptions.plotOptions) {
-                    var animation = aaOptions.plotOptions.series.animation;
-                    if (animation) {
-                        var animationEasingType = animation.easing;
-<!--                        aaOptions.plotOptions.series.animation.easing = configureTheChartAnimationEasingType(animationEasingType);-->
-                    }
-                }
+<!--                if (aaOptions.plotOptions) {-->
+<!--                    var animation = aaOptions.plotOptions.series.animation;-->
+<!--                    if (animation) {-->
+<!--                        var animationEasingType = animation.easing;-->
+<!--<!--                        aaOptions.plotOptions.series.animation.easing = configureTheChartAnimationEasingType(animationEasingType);-->-->
+<!--                    }-->
+<!--                }-->
                 
                 globalChart = Highcharts.chart('container', aaOptions);
             }

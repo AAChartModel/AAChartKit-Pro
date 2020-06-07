@@ -35,7 +35,7 @@
 #import "AAChartKit.h"
 
 #import "AADateUTCTool.h"
-
+#import "AAOptionsSeries.h"
 #define AAJSFunc(x) #x
 
 @interface DrawChartWithAAOptionsVC ()
@@ -48,8 +48,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = self.navigationItemTitle;
-    
-    
     
     AAChartView *aaChartView =[[AAChartView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     aaChartView.contentHeight = aaChartView.frame.size.height-80;
@@ -70,13 +68,13 @@
         case 4: return [self sunburstChart];
         case 5: return [self dependencywheelChart];
         case 6: return [self heatmapChart];
-//        case 7: return [self adjustChartLeftAndRightMargin];
-//        case 8: return [self configureChartWithBackgroundImage];
-//        case 9: return [self configureDoubleYAxisChartOptions];
-//        case 10: return [self adjustChartSeriesDataAccuracy];
-//        case 11: return [self adjustGroupPaddingForPolarChart];
-//        case 12: return [self customStyleStackedColumnChart];
-//        case 13: return [self specialStyleStepLineChart];
+        case 7: return [self packedbubbleChart];
+        case 8: return [self packedbubbleSplitChart];
+        case 9: return [self vennChart];
+        case 10: return [self dumbbellChart];
+        case 11: return [self lollipopChart];
+        case 12: return [self streamgraphChart];
+        case 13: return [self columnpyramidChart];
 //        case 14: return [self disableChartAnimation];//禁用图表的渲染动画效果
 //        case 15: return [self customChartLengendItemStyle];//自定义图表的 legend 图例样式
 
@@ -92,56 +90,8 @@
     .seriesSet(@[
         AASeriesElement.new
         .typeSet(@"sankey")
-        .nameSet(@"语言热度值")
         .keysSet(@[@"from", @"to", @"weight"])
-        .dataSet(@[
-            @[@"巴西", @"葡萄牙", @5 ],
-            @[@"巴西", @"法国", @1 ],
-            @[@"巴西", @"西班牙", @1 ],
-            @[@"巴西", @"英国", @1 ],
-            @[@"加拿大", @"葡萄牙", @1 ],
-            @[@"加拿大", @"法国", @5 ],
-            @[@"加拿大", @"英国", @1 ],
-            @[@"墨西哥", @"葡萄牙", @1 ],
-            @[@"墨西哥", @"法国", @1 ],
-            @[@"墨西哥", @"西班牙", @5 ],
-            @[@"墨西哥", @"英国", @1 ],
-            @[@"美国", @"葡萄牙", @1 ],
-            @[@"美国", @"法国", @1 ],
-            @[@"美国", @"西班牙", @1 ],
-            @[@"美国", @"英国", @5 ],
-            @[@"葡萄牙", @"安哥拉", @2 ],
-            @[@"葡萄牙", @"塞内加尔", @1 ],
-            @[@"葡萄牙", @"摩洛哥", @1 ],
-            @[@"葡萄牙", @"南非", @3 ],
-            @[@"法国", @"安哥拉", @1 ],
-            @[@"法国", @"塞内加尔", @3 ],
-            @[@"法国", @"马里", @3 ],
-            @[@"法国", @"摩洛哥", @3 ],
-            @[@"法国", @"南非", @1 ],
-            @[@"西班牙", @"塞内加尔", @1 ],
-            @[@"西班牙", @"摩洛哥", @3 ],
-            @[@"西班牙", @"南非", @1 ],
-            @[@"英国", @"安哥拉", @1 ],
-            @[@"英国", @"塞内加尔", @1 ],
-            @[@"英国", @"摩洛哥", @2 ],
-            @[@"英国", @"南非", @7 ],
-            @[@"南非", @"中国", @5 ],
-            @[@"南非", @"印度", @1 ],
-            @[@"南非", @"日本", @3 ],
-            @[@"安哥拉", @"中国", @5 ],
-            @[@"安哥拉", @"印度", @1 ],
-            @[@"安哥拉", @"日本", @3 ],
-            @[@"塞内加尔", @"中国", @5 ],
-            @[@"塞内加尔", @"印度", @1 ],
-            @[@"塞内加尔", @"日本", @3 ],
-            @[@"马里", @"中国", @5 ],
-            @[@"马里", @"印度", @1 ],
-            @[@"马里", @"日本", @3 ],
-            @[@"摩洛哥", @"中国", @5 ],
-            @[@"摩洛哥", @"印度", @1 ],
-            @[@"摩洛哥", @"日本", @3 ]
-                 ]),
+        .dataSet(AAOptionsData.sankeyChartData),
                ])
     ;
 }
@@ -353,8 +303,6 @@
 }
 
 - (AAOptions *)sunburstChart {
-    NSArray *dataArr = [AAOptionsData sunburstChartData] ;
-    
     AAChart *aaChart = AAChart.new
     .typeSet(@"variwide");
     
@@ -397,7 +345,7 @@
                         @"to": @0.5
                 }
             }])
-        .dataSet(dataArr)
+        .dataSet(AAOptionsData.sunburstChartData)
     ];
     
     AAOptions *aaOptions = AAOptions.new
@@ -413,6 +361,9 @@
 
 - (AAOptions *)dependencywheelChart {
    return AAOptions.new
+    .chartSet(AAChart.new
+              .marginLeftSet(@20)
+              .marginRightSet(@20))
     .titleSet(AATitle.new
               .textSet(@"AAChartKit-Pro 和弦图"))
     .seriesSet(@[
@@ -420,55 +371,7 @@
         .typeSet(@"dependencywheel")
         .nameSet(@"Dependency wheel series")
         .keysSet(@[@"from",@"to",@"weight"])
-        .dataSet(@[
-            @[@"Brazil", @"Portugal", @5],
-            @[@"Brazil", @"France", @1],
-            @[@"Brazil", @"Spain", @1],
-            @[@"Brazil", @"England", @1],
-            @[@"Canada", @"Portugal", @1],
-            @[@"Canada", @"France", @5],
-            @[@"Canada", @"England", @1],
-            @[@"Mexico", @"Portugal", @1],
-            @[@"Mexico", @"France", @1],
-            @[@"Mexico", @"Spain", @5],
-            @[@"Mexico", @"England", @1],
-            @[@"USA", @"Portugal", @1],
-            @[@"USA", @"France", @1],
-            @[@"USA", @"Spain", @1],
-            @[@"USA", @"England", @5],
-            @[@"Portugal", @"Angola", @2],
-            @[@"Portugal", @"Senegal", @1],
-            @[@"Portugal", @"Morocco", @1],
-            @[@"Portugal", @"South Africa", @3],
-            @[@"France", @"Angola", @1],
-            @[@"France", @"Senegal", @3],
-            @[@"France", @"Mali", @3],
-            @[@"France", @"Morocco", @3],
-            @[@"France", @"South Africa", @1],
-            @[@"Spain", @"Senegal", @1],
-            @[@"Spain", @"Morocco", @3],
-            @[@"Spain", @"South Africa", @1],
-            @[@"England", @"Angola", @1],
-            @[@"England", @"Senegal", @1],
-            @[@"England", @"Morocco", @2],
-            @[@"England", @"South Africa", @7],
-            @[@"South Africa", @"China", @5],
-            @[@"South Africa", @"India", @1],
-            @[@"South Africa", @"Japan", @3],
-            @[@"Angola", @"China", @5],
-            @[@"Angola", @"India", @1],
-            @[@"Angola", @"Japan", @3],
-            @[@"Senegal", @"China", @5],
-            @[@"Senegal", @"India", @1],
-            @[@"Senegal", @"Japan", @3],
-            @[@"Mali", @"China", @5],
-            @[@"Mali", @"India", @1],
-            @[@"Mali", @"Japan", @3],
-            @[@"Morocco", @"China", @5],
-            @[@"Morocco", @"India", @1],
-            @[@"Morocco", @"Japan", @3],
-            @[@"Japan", @"Brazil", @1]
-        ])
+        .dataSet(AAOptionsData.sankeyChartData)
         .dataLabelsSet((id)@{
                     @"color": @"#333",
                     @"textPath": @{
@@ -538,5 +441,262 @@
     ;
 }
 
+
+// https://www.highcharts.com.cn/demo/highcharts/packed-bubble
+- (AAOptions *)packedbubbleChart {
+    return AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(@"packedbubble"))
+    .titleSet(AATitle.new
+              .textSet(@"2014 年世界各地碳排放量"))
+    .tooltipSet(AATooltip.new
+                .enabledSet(true)
+                .useHTMLSet(true)
+                .pointFormatSet(@"<b>{point.name}:</b> {point.y}m CO<sub>2</sub>"))
+    .plotOptionsSet((id)@{
+        @"packedbubble": @{
+            @"minSize": @"30%",
+            @"maxSize": @"120%",
+            @"zMin": @0,
+            @"zMax": @1000,
+            @"layoutAlgorithm": @{
+                @"splitSeries": @false,
+                @"gravitationalConstant": @0.02
+            },
+            @"dataLabels": @{
+                @"enabled": @true,
+                @"format": @"{point.name}",
+                @"filter": @{
+                    @"property": @"y",
+                    @"operator": @">",
+                    @"value": @250
+                },
+                @"style": @{
+                    @"color": @"black",
+                    @"textOutline": @"none",
+                    @"fontWeight": @"normal"
+                }
+            }
+        }
+    })
+    .seriesSet(AAOptionsSeries.packedbubbleChartSeries)
+
+    ;
+}
+
+// https://www.highcharts.com.cn/demo/highcharts/packed-bubble-split
+- (AAOptions *)packedbubbleSplitChart {
+    return AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(@"packedbubble"))
+    .titleSet(AATitle.new
+              .textSet(@"2014 年世界各地碳排放量"))
+    .tooltipSet(AATooltip.new
+                .enabledSet(true)
+                .useHTMLSet(true)
+                .pointFormatSet(@"<b>{point.name}:</b> {point.y}m CO<sub>2</sub>"))
+    .plotOptionsSet((id)@{
+        @"packedbubble": @{
+            @"minSize": @"30%",
+            @"maxSize": @"120%",
+            @"zMin": @0,
+            @"zMax": @1000,
+            @"layoutAlgorithm": @{ //只有layoutAlgorithm这一段不一样
+               @"gravitationalConstant": @0.05,
+                @"splitSeries": @true,
+                @"seriesInteraction": @false,
+                @"dragBetweenSeries": @true,
+                @"parentNodeLimit": @true
+            },
+            @"dataLabels": @{
+                @"enabled": @true,
+                @"format": @"{point.name}",
+                @"filter": @{
+                    @"property": @"y",
+                    @"operator": @">",
+                    @"value": @250
+                },
+                @"style": @{
+                    @"color": @"black",
+                    @"textOutline": @"none",
+                    @"fontWeight": @"normal"
+                }
+            }
+        }
+    })
+    .seriesSet(AAOptionsSeries.packedbubbleChartSeries)
+    ;
+}
+
+
+- (AAOptions *)vennChart {
+    return AAOptions.new
+    .titleSet(AATitle.new
+              .textSet(@"The Unattainable Triangle"))
+    .seriesSet(@[
+        AASeriesElement.new
+        .typeSet(@"venn")
+        .dataSet(AAOptionsData.vennChartData)])
+    ;
+}
+
+- (AAOptions *)dumbbellChart {
+    AAChart *aaChart = AAChart.new
+    .typeSet(@"dumbbell")
+    .invertedSet(true);
+    
+    AATitle *aaTitle = AATitle.new
+    .textSet(@"各国预期寿命变化");
+    
+    AASubtitle *aaSubtitle = AASubtitle.new
+    .textSet(@"1960 vs 2018");
+
+    AAXAxis *aaXAxis = AAXAxis.new
+    .visibleSet(true)
+    .typeSet(@"category")
+    ;
+    
+    AAYAxis *aaYAxis = AAYAxis.new
+    .visibleSet(true)
+    .titleSet(AATitle.new
+              .textSet(@"Life Expectancy (years)"))
+    ;
+    
+    AATooltip *aaTooltip = AATooltip.new
+    .enabledSet(true)
+    ;
+    
+    AALegend *aaLegend = AALegend.new
+    .enabledSet(false);
+    
+    NSArray *seriesElementArr = @[
+        AASeriesElement.new
+        .nameSet(@"各国预期寿命变化")
+        .dataSet(AAOptionsData.dumbbellChartData)
+    ];
+    
+    AAOptions *aaOptionsQ = AAOptions.new
+    .chartSet(aaChart)
+    .titleSet(aaTitle)
+    .subtitleSet(aaSubtitle)
+    .xAxisSet(aaXAxis)
+    .yAxisSet(aaYAxis)
+    .tooltipSet(aaTooltip)
+    .legendSet(aaLegend)
+    .seriesSet(seriesElementArr);
+    
+    return aaOptionsQ;
+}
+
+- (AAOptions *)lollipopChart {
+    AAChart *aaChart = AAChart.new
+    .typeSet(@"lollipop");
+    
+    AATitle *aaTitle = AATitle.new
+    .textSet(@"世界十大人口国家");
+    
+    AASubtitle *aaSubtitle = AASubtitle.new
+    .textSet(@"2018");
+
+    AAXAxis *aaXAxis = AAXAxis.new
+    .visibleSet(true)
+    .typeSet(@"category")
+    ;
+    
+    AAYAxis *aaYAxis = AAYAxis.new
+    .visibleSet(true)
+    .titleSet(AATitle.new
+              .textSet(@"人口"))
+    ;
+    
+    AATooltip *aaTooltip = AATooltip.new
+    .enabledSet(true)
+    ;
+    
+    AALegend *aaLegend = AALegend.new
+    .enabledSet(false);
+    
+    NSArray *seriesElementArr = @[
+        AASeriesElement.new
+        .nameSet(@"Population")
+        .dataSet(AAOptionsData.lollipopChartData)
+    ];
+    
+    AAOptions *aaOptionsQ = AAOptions.new
+    .chartSet(aaChart)
+    .titleSet(aaTitle)
+    .subtitleSet(aaSubtitle)
+    .xAxisSet(aaXAxis)
+    .yAxisSet(aaYAxis)
+    .tooltipSet(aaTooltip)
+    .legendSet(aaLegend)
+    .seriesSet(seriesElementArr);
+    
+    return aaOptionsQ;
+}
+
+- (AAOptions *)streamgraphChart {
+    return AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(@"streamgraph"))
+    .colorsSet(@[
+        @"#7cb5ec",@"#434348",@"#90ed7d",@"#f7a35c",@"#8085e9",
+        @"rgb(255,143,179)",@"rgb(255,117,153)",
+        @"#f15c80",@"#e4d354",@"#2b908f",@"#f45b5b",@"#91e8e1",@"#7cb5ec",@"#434348",@"#f7a35c",
+        @"rgb(119,212,100)",@"rgb(93,186,74)",@"rgb(68,161,49)"
+               ])
+    .titleSet(AATitle.new
+              .textSet(@"冬季奥运会奖牌分布"))
+    .subtitleSet(AASubtitle.new
+                 .textSet(@"1924-2014"))
+    .xAxisSet(AAXAxis.new
+              .visibleSet(true)
+              .typeSet(@"category")
+              .categoriesSet(@[
+                  @"", @"1924", @"1928", @"1932", @"1936", @"1940", @"1944", @"1948", @"1952", @"1956", @"1960",
+                  @"1964", @"1968", @"1972", @"1976", @"1980", @"1984", @"1988", @"1992", @"1994", @"1998",
+                  @"2002", @"2006", @"2010", @"2014"
+                             ]))
+    .yAxisSet(AAYAxis.new
+              .visibleSet(false))
+    .tooltipSet(AATooltip.new
+                .enabledSet(true))
+    .legendSet(AALegend.new
+               .enabledSet(false))
+    .seriesSet(AAOptionsSeries.streamgraphChartSeries);
+}
+
+- (AAOptions *)columnpyramidChart {
+    return AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(@"columnpyramid"))
+    .titleSet(AATitle.new
+              .textSet(@"世界 5 大金字塔"))
+    .xAxisSet(AAXAxis.new
+              .visibleSet(true)
+              .typeSet(@"category")
+              )
+    .yAxisSet(AAYAxis.new
+              .visibleSet(true)
+              .titleSet(AATitle.new
+                        .textSet(@"高度 (m)")))
+    .tooltipSet(AATooltip.new
+                .enabledSet(true)
+                .valueSuffixSet(@" m")
+                )
+    .seriesSet(@[
+        AASeriesElement.new
+        .nameSet(@"Height")
+        .colorByPointSet(@true)
+        .dataSet(@[
+            @[@"Pyramid of Khufu", @138.8],
+            @[@"Pyramid of Khafre", @136.4],
+            @[@"Red Pyramid", @104],
+            @[@"Bent Pyramid", @101.1],
+            @[@"Pyramid of the Sun", @75]
+                 ])
+               ])
+    ;
+}
 
 @end
