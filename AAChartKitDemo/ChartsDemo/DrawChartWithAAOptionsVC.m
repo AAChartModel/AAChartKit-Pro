@@ -112,37 +112,36 @@
     .pointFormatSet(@"<span style=""color:{point.color}"">\u25CF</span> <b> {point.name}</b><br/>""面积 (平方千米): <b>{point.y}</b><br/>""人口密度 (每平方千米人数): <b>{point.z}</b><br/>""");
     
     NSArray *seriesElementArr = @[
-        @{  @"minPointSize": @10,
-            @"innerSize": @"20%",
-            @"zMin": @0,
-            @"name": @"countries",
-            @"data": @[
-                    AASeriesDataElement.new
-                    .nameSet(@"西班牙")
-                    .ySet(@505370)
-                    .zSet(@92.9),
-                    AASeriesDataElement.new
-                    .nameSet(@"波兰")
-                    .ySet(@312685)
-                    .zSet(@124.6),
-                    AASeriesDataElement.new
-                    .nameSet(@"捷克共和国")
-                    .ySet(@78867)
-                    .zSet(@137.5),
-                    AASeriesDataElement.new
-                    .nameSet(@"意大利")
-                    .ySet(@301340)
-                    .zSet(@201.8),
-                    AASeriesDataElement.new
-                    .nameSet(@"瑞士")
-                    .ySet(@41277)
-                    .zSet(@214.5),
-                    AASeriesDataElement.new
-                    .nameSet(@"德国")
-                    .ySet(@357022)
-                    .zSet(@235.6),
-            ]
-        }];
+        AASeriesElement.new
+        .nameSet(@"countries")
+        .innerSizeSet(@"20%")
+        .dataSet(@[
+            AASeriesDataElement.new
+            .nameSet(@"西班牙")
+            .ySet(@505370)
+            .zSet(@92.9),
+            AASeriesDataElement.new
+            .nameSet(@"波兰")
+            .ySet(@312685)
+            .zSet(@124.6),
+            AASeriesDataElement.new
+            .nameSet(@"捷克共和国")
+            .ySet(@78867)
+            .zSet(@137.5),
+            AASeriesDataElement.new
+            .nameSet(@"意大利")
+            .ySet(@301340)
+            .zSet(@201.8),
+            AASeriesDataElement.new
+            .nameSet(@"瑞士")
+            .ySet(@41277)
+            .zSet(@214.5),
+            AASeriesDataElement.new
+            .nameSet(@"德国")
+            .ySet(@357022)
+            .zSet(@235.6),
+                 ])
+    ];
     
     AAOptions *aaOptionsQ = AAOptions.new
     .chartSet(aaChart)
@@ -212,28 +211,27 @@
         .colorSet(@"#9EDE00"),
     ];
     
-    NSArray *seriesElementArr = @[
-        AASeriesElement.new
-        .typeSet(@"treemap")
-        .levelsSet(@[
-            @{@"level":@1,
-              @"layoutAlgorithm":@"sliceAndDice",
-              @"dataLabels": AADataLabels.new
-              .enabledSet(true)
-              .alignSet(AALegendAlignTypeLeft)
-              .verticalAlignSet(AALegendVerticalAlignTypeTop)
-              .styleSet(AAStyle.new
-                        .fontSizeSet(@"15 px")
-                        .fontWeightSet(AAChartFontWeightTypeBold)),
-            }])
-        .dataSet(seriesDataArr)];
-    
     AAOptions *aaOptions = AAOptions.new
     .titleSet(AATitle.new
               .textSet(@"Fruit Consumption Situation"))
     .legendSet(AALegend.new
                .enabledSet(false))
-    .seriesSet(seriesElementArr);
+    .seriesSet(@[
+    AASeriesElement.new
+    .typeSet(@"treemap")
+    .levelsSet(@[
+        AALevels.new
+        .levelSet(@1)
+        .layoutAlgorithmSet(@"sliceAndDice")
+        .dataLabelsSet(AADataLabels.new
+                       .enabledSet(true)
+                       .alignSet(AALegendAlignTypeLeft)
+                       .verticalAlignSet(AALegendVerticalAlignTypeTop)
+                       .styleSet(AAStyle.new
+                                 .fontSizeSet(@"15 px")
+                                 .fontWeightSet(AAChartFontWeightTypeBold)))
+               ])
+    .dataSet(seriesDataArr)]);
     
     return aaOptions;
 }
@@ -325,26 +323,25 @@
         .typeSet(@"sunburst")
         .allowDrillToNodeSet(true)
         .levelsSet(@[
-            @{  @"level":@2,
-                @"colorByPoint":(id)@(true),
-                @"layoutAlgorithm":@"sliceAndDice",
-                @"dataLabels": @{
-                        @"rotationMode": @"parallel"
-                }
-            },
-            @{
-                @"level": @3,
-                @"colorVariation": @{
-                        @"key": @"brightness",
-                        @"to": @-0.5
-                }},
-            @{
-                @"level": @4,
-                @"colorVariation": @{
-                        @"key": @"brightness",
-                        @"to": @0.5
-                }
-            }])
+            AALevels.new
+            .levelSet(@2)
+            .colorByPointSet(@true)
+            .layoutAlgorithmSet(@"sliceAndDice")
+            .dataLabelsSet((id)@{
+                    @"rotationMode": @"parallel"
+            }),
+            AALevels.new
+            .levelSet(@3)
+            .colorVariationSet(AAColorVariation.new
+                               .keySet(@"brightness")
+                               .toSet(@-0.5)),
+            AALevels.new
+            .levelSet(@4)
+            .colorVariationSet(AAColorVariation.new
+                               .keySet(@"brightness")
+                               .toSet(@0.5))
+            
+        ])
         .dataSet(AAOptionsData.sunburstChartData)
     ];
     
@@ -372,17 +369,18 @@
         .nameSet(@"Dependency wheel series")
         .keysSet(@[@"from",@"to",@"weight"])
         .dataSet(AAOptionsData.dependencywheelChartData)
-        .dataLabelsSet((id)@{
-                    @"color": @"#333",
-                    @"textPath": @{
-                        @"enabled": @true,
-                        @"attributes": @{
-                            @"dy": @5
-                        }
-                    },
-                    @"distance": @10
-                })
+        .dataLabelsSet(AADataLabels.new
+           .colorSet(@"#333")
+           .textPathSet(@{
+               @"enabled": @true,
+               @"attributes": @{
+                   @"dy": @5
+               }
+           })
+           .distanceSet(@10))
                ]);
+    
+   
 }
 
 // https://jshare.com.cn/demos/hhhhiz
@@ -480,7 +478,6 @@
         }
     })
     .seriesSet(AAOptionsSeries.packedbubbleChartSeries)
-
     ;
 }
 
