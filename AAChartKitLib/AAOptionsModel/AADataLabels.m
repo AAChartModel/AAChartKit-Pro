@@ -60,5 +60,7 @@ AAPropSetFuncImplementation(AADataLabels, NSString *, align);
 AAPropSetFuncImplementation(AADataLabels, NSString *, verticalAlign);
 
 AAPropSetFuncImplementation(AADataLabels, NSString *, color)
+AAPropSetFuncImplementation(AADataLabels, NSDictionary *, textPath);
+
 
 @end
