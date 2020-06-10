@@ -451,34 +451,29 @@
                 .enabledSet(true)
                 .useHTMLSet(true)
                 .pointFormatSet(@"<b>{point.name}:</b> {point.y}m CO<sub>2</sub>"))
-    .plotOptionsSet((id)@{
-        @"packedbubble": @{
-            @"minSize": @"30%",
-            @"maxSize": @"120%",
-            @"zMin": @0,
-            @"zMax": @1000,
-            @"layoutAlgorithm": @{
-                @"splitSeries": @false,
-                @"gravitationalConstant": @0.02
-            },
-            @"dataLabels": @{
-                @"enabled": @true,
-                @"format": @"{point.name}",
-                @"filter": @{
-                    @"property": @"y",
-                    @"operator": @">",
-                    @"value": @250
-                },
-                @"style": @{
-                    @"color": @"black",
-                    @"textOutline": @"none",
-                    @"fontWeight": @"normal"
-                }
-            }
-        }
-    })
+    .plotOptionsSet(AAPlotOptions.new
+                    .packedbubbleSet(AAPackedbubble.new
+                                     .minSizeSet(@"30%")
+                                     .maxSizeSet(@"120%")
+                                     .zMinSet(@0)
+                                     .zMaxSet(@1000)
+                                     .layoutAlgorithmSet(AALayoutAlgorithm.new //只有layoutAlgorithm这一段不一样
+                                                         .gravitationalConstantSet(@0.02)
+                                                         .splitSeriesSet(@false)
+                                                         )
+                                     .dataLabelsSet(AADataLabels.new
+                                                    .enabledSet(true)
+                                                    .formatSet(@"{point.name}")
+                                                    .filterSet(@{
+                                                        @"property": @"y",
+                                                        @"operator": @">",
+                                                        @"value": @250
+                                                               })
+                                                    )))
     .seriesSet(AAOptionsSeries.packedbubbleChartSeries)
     ;
+    
+    
 }
 
 // https://www.highcharts.com.cn/demo/highcharts/packed-bubble-split
@@ -492,37 +487,31 @@
                 .enabledSet(true)
                 .useHTMLSet(true)
                 .pointFormatSet(@"<b>{point.name}:</b> {point.y}m CO<sub>2</sub>"))
-    .plotOptionsSet((id)@{
-        @"packedbubble": @{
-            @"minSize": @"30%",
-            @"maxSize": @"120%",
-            @"zMin": @0,
-            @"zMax": @1000,
-            @"layoutAlgorithm": @{ //只有layoutAlgorithm这一段不一样
-               @"gravitationalConstant": @0.05,
-                @"splitSeries": @true,
-                @"seriesInteraction": @false,
-                @"dragBetweenSeries": @true,
-                @"parentNodeLimit": @true
-            },
-            @"dataLabels": @{
-                @"enabled": @true,
-                @"format": @"{point.name}",
-                @"filter": @{
-                    @"property": @"y",
-                    @"operator": @">",
-                    @"value": @250
-                },
-                @"style": @{
-                    @"color": @"black",
-                    @"textOutline": @"none",
-                    @"fontWeight": @"normal"
-                }
-            }
-        }
-    })
+    .plotOptionsSet(AAPlotOptions.new
+                    .packedbubbleSet(AAPackedbubble.new
+                                     .minSizeSet(@"30%")
+                                     .maxSizeSet(@"120%")
+                                     .zMinSet(@0)
+                                     .zMaxSet(@1000)
+                                     .layoutAlgorithmSet(AALayoutAlgorithm.new //只有layoutAlgorithm这一段不一样
+                                                         .gravitationalConstantSet(@0.05)
+                                                         .splitSeriesSet(@true)
+                                                         .seriesInteractionSet(@false)
+                                                         .dragBetweenSeriesSet(@true)
+                                                         .parentNodeLimitSet(@true))
+                                     .dataLabelsSet(AADataLabels.new
+                                                    .enabledSet(true)
+                                                    .formatSet(@"{point.name}")
+                                                    .filterSet(@{
+                                                        @"property": @"y",
+                                                        @"operator": @">",
+                                                        @"value": @250
+                                                               })
+                                                    )))
     .seriesSet(AAOptionsSeries.packedbubbleChartSeries)
     ;
+    
+
 }
 
 
