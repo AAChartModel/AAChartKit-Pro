@@ -44,6 +44,7 @@
 		27EB89DB248BD71A007E6A6B /* AAOptionsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB89DA248BD71A007E6A6B /* AAOptionsData.m */; };
 		27EB89DF248BE1C9007E6A6B /* AAColorAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB89DE248BE1C9007E6A6B /* AAColorAxis.m */; };
 		27EB89E2248C8F87007E6A6B /* AAOptionsSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB89E1248C8F87007E6A6B /* AAOptionsSeries.m */; };
+		27EB89E5249113B6007E6A6B /* AALevels.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB89E4249113B6007E6A6B /* AALevels.m */; };
 		27F0CA7921018998004BD904 /* AADateUTCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F0CA7821018998004BD904 /* AADateUTCTool.m */; };
 		27F5AD9C20A740910086CD33 /* MixedChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F5AD9B20A740910086CD33 /* MixedChartVC.m */; };
 		27F5E2DF213AFD47007EE8D4 /* AASeriesDataElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F5E2DE213AFD47007EE8D4 /* AASeriesDataElement.m */; };
@@ -155,6 +156,8 @@
 		27EB89DE248BE1C9007E6A6B /* AAColorAxis.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAColorAxis.m; sourceTree = "<group>"; };
 		27EB89E0248C8F87007E6A6B /* AAOptionsSeries.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAOptionsSeries.h; sourceTree = "<group>"; };
 		27EB89E1248C8F87007E6A6B /* AAOptionsSeries.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAOptionsSeries.m; sourceTree = "<group>"; };
+		27EB89E3249113B6007E6A6B /* AALevels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AALevels.h; sourceTree = "<group>"; };
+		27EB89E4249113B6007E6A6B /* AALevels.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AALevels.m; sourceTree = "<group>"; };
 		27F0CA7721018998004BD904 /* AADateUTCTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AADateUTCTool.h; sourceTree = "<group>"; };
 		27F0CA7821018998004BD904 /* AADateUTCTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AADateUTCTool.m; sourceTree = "<group>"; };
 		27F5AD9A20A740910086CD33 /* MixedChartVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixedChartVC.h; sourceTree = "<group>"; };
@@ -231,8 +234,6 @@
 			children = (
 				1E66D1D4210AF4EC007EAB8C /* AAChart.h */,
 				1E66D1EF210AF4EC007EAB8C /* AAChart.m */,
-				1E66D1C6210AF4EC007EAB8C /* AAOptions3d.h */,
-				1E66D1D8210AF4EC007EAB8C /* AAOptions3d.m */,
 				1E66D1E2210AF4EC007EAB8C /* AATooltip.h */,
 				1E66D1CC210AF4EC007EAB8C /* AATooltip.m */,
 				1E66D1C0210AF4EC007EAB8C /* AATitle.h */,
@@ -305,8 +306,12 @@
 		27EB89DC248BE1AC007E6A6B /* AAOptionsProModel */ = {
 			isa = PBXGroup;
 			children = (
+				1E66D1C6210AF4EC007EAB8C /* AAOptions3d.h */,
+				1E66D1D8210AF4EC007EAB8C /* AAOptions3d.m */,
 				27EB89DD248BE1C9007E6A6B /* AAColorAxis.h */,
 				27EB89DE248BE1C9007E6A6B /* AAColorAxis.m */,
+				27EB89E3249113B6007E6A6B /* AALevels.h */,
+				27EB89E4249113B6007E6A6B /* AALevels.m */,
 			);
 			path = AAOptionsProModel;
 			sourceTree = "<group>";
@@ -603,6 +608,7 @@
 				27E38C651F0E47BA00FB52E1 /* ChartAnimationTypeVC.m in Sources */,
 				1E66D20B210AF4ED007EAB8C /* AABar.m in Sources */,
 				1E66D1FD210AF4ED007EAB8C /* AALabels.m in Sources */,
+				27EB89E5249113B6007E6A6B /* AALevels.m in Sources */,
 				7172A3D81E763EA6000D5B99 /* main.m in Sources */,
 				27F5E2DF213AFD47007EE8D4 /* AASeriesDataElement.m in Sources */,
 				1E66D1FE210AF4ED007EAB8C /* AASeries.m in Sources */,
