@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AAOptionsData : NSObject
 
 + (NSArray *)sankeyChartData;
++ (NSArray *)dependencywheelChartData;
 + (NSArray *)sunburstChartData;
 + (NSArray *)dumbbellChartData;
 + (NSArray *)vennChartData;

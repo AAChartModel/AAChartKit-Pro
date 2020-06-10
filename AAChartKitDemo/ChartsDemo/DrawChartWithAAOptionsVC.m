@@ -371,7 +371,7 @@
         .typeSet(@"dependencywheel")
         .nameSet(@"Dependency wheel series")
         .keysSet(@[@"from",@"to",@"weight"])
-        .dataSet(AAOptionsData.sankeyChartData)
+        .dataSet(AAOptionsData.dependencywheelChartData)
         .dataLabelsSet((id)@{
                     @"color": @"#333",
                     @"textPath": @{
