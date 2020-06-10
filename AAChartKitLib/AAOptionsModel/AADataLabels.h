@@ -106,8 +106,7 @@ AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, align);
 AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, verticalAlign);
 AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, color)
 AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, NSDictionary *, textPath);
-
-
-
+AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, NSDictionary *, filter);
 
 @end
+
