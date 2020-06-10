@@ -58,6 +58,8 @@
 #import "AAOptions3d.h"
 
 #import "AAColorAxis.h"
+#import "AAPackedbubble.h"
+#import "AALayoutAlgorithm.h"
 
 @interface AAOptions : NSObject
 

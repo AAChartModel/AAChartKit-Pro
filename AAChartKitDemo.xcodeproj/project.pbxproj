@@ -45,6 +45,8 @@
 		27EB89DF248BE1C9007E6A6B /* AAColorAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB89DE248BE1C9007E6A6B /* AAColorAxis.m */; };
 		27EB89E2248C8F87007E6A6B /* AAOptionsSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB89E1248C8F87007E6A6B /* AAOptionsSeries.m */; };
 		27EB89E5249113B6007E6A6B /* AALevels.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB89E4249113B6007E6A6B /* AALevels.m */; };
+		27EB89E82491246E007E6A6B /* AAPackedbubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB89E72491246E007E6A6B /* AAPackedbubble.m */; };
+		27EB89EB24912A2F007E6A6B /* AALayoutAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB89EA24912A2F007E6A6B /* AALayoutAlgorithm.m */; };
 		27F0CA7921018998004BD904 /* AADateUTCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F0CA7821018998004BD904 /* AADateUTCTool.m */; };
 		27F5AD9C20A740910086CD33 /* MixedChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F5AD9B20A740910086CD33 /* MixedChartVC.m */; };
 		27F5E2DF213AFD47007EE8D4 /* AASeriesDataElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F5E2DE213AFD47007EE8D4 /* AASeriesDataElement.m */; };
@@ -158,6 +160,10 @@
 		27EB89E1248C8F87007E6A6B /* AAOptionsSeries.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAOptionsSeries.m; sourceTree = "<group>"; };
 		27EB89E3249113B6007E6A6B /* AALevels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AALevels.h; sourceTree = "<group>"; };
 		27EB89E4249113B6007E6A6B /* AALevels.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AALevels.m; sourceTree = "<group>"; };
+		27EB89E62491246E007E6A6B /* AAPackedbubble.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAPackedbubble.h; sourceTree = "<group>"; };
+		27EB89E72491246E007E6A6B /* AAPackedbubble.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAPackedbubble.m; sourceTree = "<group>"; };
+		27EB89E924912A2F007E6A6B /* AALayoutAlgorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AALayoutAlgorithm.h; sourceTree = "<group>"; };
+		27EB89EA24912A2F007E6A6B /* AALayoutAlgorithm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AALayoutAlgorithm.m; sourceTree = "<group>"; };
 		27F0CA7721018998004BD904 /* AADateUTCTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AADateUTCTool.h; sourceTree = "<group>"; };
 		27F0CA7821018998004BD904 /* AADateUTCTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AADateUTCTool.m; sourceTree = "<group>"; };
 		27F5AD9A20A740910086CD33 /* MixedChartVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixedChartVC.h; sourceTree = "<group>"; };
@@ -312,6 +318,10 @@
 				27EB89DE248BE1C9007E6A6B /* AAColorAxis.m */,
 				27EB89E3249113B6007E6A6B /* AALevels.h */,
 				27EB89E4249113B6007E6A6B /* AALevels.m */,
+				27EB89E62491246E007E6A6B /* AAPackedbubble.h */,
+				27EB89E72491246E007E6A6B /* AAPackedbubble.m */,
+				27EB89E924912A2F007E6A6B /* AALayoutAlgorithm.h */,
+				27EB89EA24912A2F007E6A6B /* AALayoutAlgorithm.m */,
 			);
 			path = AAOptionsProModel;
 			sourceTree = "<group>";
@@ -574,6 +584,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27EB89E82491246E007E6A6B /* AAPackedbubble.m in Sources */,
 				27EB89DF248BE1C9007E6A6B /* AAColorAxis.m in Sources */,
 				1E66D213210AF4ED007EAB8C /* AAPie.m in Sources */,
 				1E66D204210AF4ED007EAB8C /* AASubtitle.m in Sources */,
@@ -602,6 +613,7 @@
 				1E66D1FF210AF4ED007EAB8C /* AAXAxis.m in Sources */,
 				1E66D216210AF4ED007EAB8C /* AAChartModel.m in Sources */,
 				1E66D207210AF4ED007EAB8C /* AAColumn.m in Sources */,
+				27EB89EB24912A2F007E6A6B /* AALayoutAlgorithm.m in Sources */,
 				1E66D208210AF4ED007EAB8C /* AAPlotLinesElement.m in Sources */,
 				64AF87601F0A981400A801C4 /* OnlyRefreshChartDataVC.m in Sources */,
 				7172A3DB1E763EA6000D5B99 /* AppDelegate.m in Sources */,
