@@ -434,6 +434,8 @@
         dic = [self getObjectData:optionsObject];
     }
     NSString *str = [self convertDictionaryIntoJson:dic];
+    AADetailLog(@"----------- console log AAOptions JSON information of AAChartView -----------:\n%@",str);
+
     return [self wipeOffTheLineBreakAndBlankCharacter:str];
 }
 
