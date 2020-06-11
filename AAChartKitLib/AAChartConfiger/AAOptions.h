@@ -60,6 +60,7 @@
 #import "AAColorAxis.h"
 #import "AAPackedbubble.h"
 #import "AALayoutAlgorithm.h"
+#import "AAChartTypePro.h"
 
 @interface AAOptions : NSObject
 

@@ -89,7 +89,7 @@
               .textSet(@"AAChartKit-Pro 桑基图"))
     .seriesSet(@[
         AASeriesElement.new
-        .typeSet(@"sankey")
+        .typeSet(AAChartTypeSankey)
         .keysSet(@[@"from", @"to", @"weight"])
         .dataSet(AAOptionsData.sankeyChartData),
                ])
@@ -98,7 +98,7 @@
 
 - (AAOptions *)variablepieChart {
     AAChart *aaChart = AAChart.new
-    .typeSet(@"variablepie");
+    .typeSet(AAChartTypeVariablepie);
     
     AATitle *aaTitle = AATitle.new
     .textSet(@"不同国家人口密度及面积对比");
@@ -218,7 +218,7 @@
                .enabledSet(false))
     .seriesSet(@[
     AASeriesElement.new
-    .typeSet(@"treemap")
+    .typeSet(AAChartTypeTreemap)
     .levelsSet(@[
         AALevels.new
         .levelSet(@1)
@@ -238,7 +238,7 @@
 
 - (AAOptions *)variwideChart {
     AAChart *aaChart = AAChart.new
-    .typeSet(@"variwide");
+    .typeSet(AAChartTypeVariwide);
     
     AATitle *aaTitle = AATitle.new
     .textSet(@"2016 年欧洲各国人工成本");
@@ -320,7 +320,7 @@
     
     NSArray *seriesElementArr = @[
         AASeriesElement.new
-        .typeSet(@"sunburst")
+        .typeSet(AAChartTypeSunburst)
         .allowDrillToNodeSet(true)
         .levelsSet(@[
             AALevels.new
@@ -365,29 +365,28 @@
               .textSet(@"AAChartKit-Pro 和弦图"))
     .seriesSet(@[
         AASeriesElement.new
-        .typeSet(@"dependencywheel")
+        .typeSet(AAChartTypeDependencywheel)
         .nameSet(@"Dependency wheel series")
         .keysSet(@[@"from",@"to",@"weight"])
         .dataSet(AAOptionsData.dependencywheelChartData)
         .dataLabelsSet(AADataLabels.new
-           .colorSet(@"#333")
-           .textPathSet(@{
-               @"enabled": @true,
-               @"attributes": @{
-                   @"dy": @5
-               }
-           })
-           .distanceSet(@10))
+                       .enabledSet(true)
+                       .colorSet(@"#333")
+                       .textPathSet(@{
+                           @"enabled": @true,
+                           @"attributes": @{
+                                   @"dy": @5
+                           }
+                                    })
+                       .distanceSet(@10))
                ]);
-    
-   
 }
 
 // https://jshare.com.cn/demos/hhhhiz
 - (AAOptions *)heatmapChart {
     return AAOptions.new
     .chartSet(AAChart.new
-              .typeSet(@"heatmap"))
+              .typeSet(AAChartTypeHeatmap))
     .titleSet(AATitle.new
               .textSet(@"Sales per employee per weekday"))
     .xAxisSet(AAXAxis.new
@@ -444,7 +443,7 @@
 - (AAOptions *)packedbubbleChart {
     return AAOptions.new
     .chartSet(AAChart.new
-              .typeSet(@"packedbubble"))
+              .typeSet(AAChartTypePackedbubble))
     .titleSet(AATitle.new
               .textSet(@"2014 年世界各地碳排放量"))
     .tooltipSet(AATooltip.new
@@ -480,7 +479,7 @@
 - (AAOptions *)packedbubbleSplitChart {
     return AAOptions.new
     .chartSet(AAChart.new
-              .typeSet(@"packedbubble"))
+              .typeSet(AAChartTypePackedbubble))
     .titleSet(AATitle.new
               .textSet(@"2014 年世界各地碳排放量"))
     .tooltipSet(AATooltip.new
@@ -510,8 +509,6 @@
                                                     )))
     .seriesSet(AAOptionsSeries.packedbubbleChartSeries)
     ;
-    
-
 }
 
 
@@ -521,14 +518,14 @@
               .textSet(@"The Unattainable Triangle"))
     .seriesSet(@[
         AASeriesElement.new
-        .typeSet(@"venn")
+        .typeSet(AAChartTypeVenn)
         .dataSet(AAOptionsData.vennChartData)])
     ;
 }
 
 - (AAOptions *)dumbbellChart {
     AAChart *aaChart = AAChart.new
-    .typeSet(@"dumbbell")
+    .typeSet(AAChartTypeDumbbell)
     .invertedSet(true);
     
     AATitle *aaTitle = AATitle.new
@@ -576,7 +573,7 @@
 
 - (AAOptions *)lollipopChart {
     AAChart *aaChart = AAChart.new
-    .typeSet(@"lollipop");
+    .typeSet(AAChartTypeLollipop);
     
     AATitle *aaTitle = AATitle.new
     .textSet(@"世界十大人口国家");
@@ -624,7 +621,7 @@
 - (AAOptions *)streamgraphChart {
     return AAOptions.new
     .chartSet(AAChart.new
-              .typeSet(@"streamgraph"))
+              .typeSet(AAChartTypeStreamgraph))
     .colorsSet(@[
         @"#7cb5ec",@"#434348",@"#90ed7d",@"#f7a35c",@"#8085e9",
         @"rgb(255,143,179)",@"rgb(255,117,153)",
@@ -655,7 +652,7 @@
 - (AAOptions *)columnpyramidChart {
     return AAOptions.new
     .chartSet(AAChart.new
-              .typeSet(@"columnpyramid"))
+              .typeSet(AAChartTypeColumnpyramid))
     .titleSet(AATitle.new
               .textSet(@"世界 5 大金字塔"))
     .xAxisSet(AAXAxis.new
