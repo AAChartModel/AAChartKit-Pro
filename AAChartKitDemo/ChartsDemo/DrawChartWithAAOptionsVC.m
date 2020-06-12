@@ -75,6 +75,9 @@
         case 11: return [self lollipopChart];
         case 12: return [self streamgraphChart];
         case 13: return [self columnpyramidChart];
+        case 14: return [self tilemapChart];
+            case 15: return [self simpleTreemapChart];
+            case 16: return [self drilldownTreemapChart];
 //        case 14: return [self disableChartAnimation];//禁用图表的渲染动画效果
 //        case 15: return [self customChartLengendItemStyle];//自定义图表的 legend 图例样式
 
@@ -678,6 +681,133 @@
             @[@"Bent Pyramid", @101.1],
             @[@"Pyramid of the Sun", @75]
                  ])
+               ])
+    ;
+}
+
+- (AAOptions *)tilemapChart {
+    return AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(@"tilemap"))
+    .titleSet(AATitle.new
+              .textSet(@"U.S. states by population in 2016"))
+    .xAxisSet(AAXAxis.new
+              .visibleSet(false))
+    .yAxisSet(AAYAxis.new
+              .visibleSet(false))
+    .colorAxisSet(AAColorAxis.new
+                  .dataClassesSet(@[
+                      AADataClasses.new
+                      .fromSet(@0)
+                      .toSet(@1000000)
+                      .colorSet(@"#F9EDB3")
+                      .nameSet(@"< 1M"),
+                      AADataClasses.new
+                      .fromSet(@1000000)
+                      .toSet(@5000000)
+                      .colorSet(@"#FFC428")
+                      .nameSet(@"1M - 5M"),
+                      AADataClasses.new
+                      .fromSet(@5000000)
+                      .toSet(@20000000)
+                      .colorSet(@"#F9EDB3")
+                      .nameSet(@"5M - 20M"),
+                      AADataClasses.new
+                      .fromSet(@20000000)
+                      .colorSet(@"#FF2371")
+                      .nameSet(@"> 20M"),
+                                  ]))
+    .tooltipSet(AATooltip.new
+                .enabledSet(true)
+                .headerFormatSet(@"")
+                .valueSuffixSet(@"The population of <b> {point.name}</b> is <b>{point.value}</b>"))
+    .plotOptionsSet(AAPlotOptions.new
+                    .seriesSet(AASeries.new
+                               .dataLabelsSet(AADataLabels.new
+                                              .enabledSet(true)
+                                              .formatSet(@"{point.hc-a2}")
+                                              .colorSet(@"#ffffff")
+                                              .styleSet(AAStyle.new
+                                                        .textOutlineSet(@"none"))
+                                              )))
+    .seriesSet(@[
+        AASeriesElement.new
+        .nameSet(@"Height")
+        .colorByPointSet(@true)
+        .dataSet(AAOptionsData.tilemapChartData)
+               ])
+    ;
+}
+
+- (AAOptions *)simpleTreemapChart {
+    return AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(AAChartTypeTreemap))
+    .titleSet(AATitle.new
+              .textSet(@"矩形树图"))
+    .colorAxisSet(AAColorAxis.new
+                  .minColorSet(@"#FFFFFF")
+                  .maxColorSet(@"#FF0000")
+                  )
+    .seriesSet(@[
+        AASeriesElement.new
+        .dataSet(@[
+            @{
+                @"name": @"A",
+                @"value": @6,
+                @"colorValue": @1
+            }, @{
+                @"name": @"B",
+                @"value": @6,
+                @"colorValue": @2
+            }, @{
+                @"name": @"C",
+                @"value": @4,
+                @"colorValue": @3
+            }, @{
+                @"name": @"D",
+                @"value": @3,
+                @"colorValue": @4
+            }, @{
+                @"name": @"E",
+                @"value": @2,
+                @"colorValue": @5
+            }, @{
+                @"name": @"F",
+                @"value": @2,
+                @"colorValue": @6
+            }, @{
+                @"name": @"G",
+                @"value": @1,
+                @"colorValue": @7
+            }
+                 ])
+               ])
+    ;
+}
+
+- (AAOptions *)drilldownTreemapChart {
+    return AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(AAChartTypeTreemap))
+    .titleSet(AATitle.new
+              .textSet(@"2012年，全球每10w人口死亡率"))
+    .subtitleSet(AASubtitle.new
+                 .textSet(@"点击下钻"))
+    .plotOptionsSet(AAPlotOptions.new
+                    .treemapSet(AATreemap.new
+                                .allowTraversingTreeSet(true)
+                                .layoutAlgorithmSet(@"squarified")))
+    .seriesSet(@[
+        AASeriesElement.new
+        .typeSet(AAChartTypeTreemap)
+        .levelsSet(@[
+            AALevels.new
+            .levelSet(@1)
+            .dataLabelsSet(AADataLabels.new
+                           .enabledSet(true))
+            .borderWidthSet(@3)])
+        .dataSet(AAOptionsData.drilldownTreemapChartData)
                ])
     ;
 }

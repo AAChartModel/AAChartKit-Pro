@@ -248,15 +248,6 @@
 - (NSArray *)chartTypeNameArr {
     if (!_chartTypeNameArr) {
         _chartTypeNameArr = @[
-            
-//            case 7: return [self packedbubbleChart];
-//            case 8: return [self packedbubbleSplitChart];
-//            case 9: return [self vennChart];
-//            case 10: return [self dumbbellChart];
-//            case 11: return [self lollipopChart];
-//            case 12: return [self streamgraphChart];
-//            case 13: return [self columnpyramidChart];
-            
             /*通过AAOptions实例对象来绘制图形*/
             @[@"sankeyChart---桑基图",
               @"variablepieChart---可变宽度的饼图",
@@ -272,11 +263,14 @@
               @"lollipopChart---棒棒糖🍭图",
               @"streamgraphChart---流图",
               @"columnpyramidChart---角锥柱形图",
+              @"tilemapChart---砖块图🧱||蜂巢图🐝",
+              @"simpleTreemapChart---简单矩形树🌲图",
+              @"drilldownTreemapChart---可下钻的矩形树🌲图",
               @"",
               @"",
-              @"",
-              @"",
-              @"",
+//              var dataJson = JSON.stringify(points);
+//
+//              console.log(dataJson);
             ],
             /*基础类型图表*/
             @[@"Column Chart---柱形图",

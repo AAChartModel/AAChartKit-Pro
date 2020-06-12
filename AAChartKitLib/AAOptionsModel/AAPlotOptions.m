@@ -45,5 +45,6 @@ AAPropSetFuncImplementation(AAPlotOptions, AAAreaspline *, areaspline);
 AAPropSetFuncImplementation(AAPlotOptions, NSObject     *, columnrange);
 AAPropSetFuncImplementation(AAPlotOptions, NSObject     *, arearange);
 AAPropSetFuncImplementation(AAPlotOptions, AAPackedbubble     *, packedbubble);
+AAPropSetFuncImplementation(AAPlotOptions, AATreemap     *, treemap);
 
 @end

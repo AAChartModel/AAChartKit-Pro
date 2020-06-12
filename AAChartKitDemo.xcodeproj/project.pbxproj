@@ -48,6 +48,9 @@
 		27EB89E82491246E007E6A6B /* AAPackedbubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB89E72491246E007E6A6B /* AAPackedbubble.m */; };
 		27EB89EB24912A2F007E6A6B /* AALayoutAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB89EA24912A2F007E6A6B /* AALayoutAlgorithm.m */; };
 		27EB89EF2491C3A0007E6A6B /* AAChartTypePro.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB89EE2491C39F007E6A6B /* AAChartTypePro.m */; };
+		27EB8A1B249276CD007E6A6B /* drilldownTreemapData.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A1A249276CD007E6A6B /* drilldownTreemapData.json */; };
+		27EB8A1F24927BE8007E6A6B /* AATreemap.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB8A1E24927BE8007E6A6B /* AATreemap.m */; };
+		27EB8A212492821B007E6A6B /* bigHeatmapData.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A202492821B007E6A6B /* bigHeatmapData.json */; };
 		27F0CA7921018998004BD904 /* AADateUTCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F0CA7821018998004BD904 /* AADateUTCTool.m */; };
 		27F5AD9C20A740910086CD33 /* MixedChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F5AD9B20A740910086CD33 /* MixedChartVC.m */; };
 		27F5E2DF213AFD47007EE8D4 /* AASeriesDataElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F5E2DE213AFD47007EE8D4 /* AASeriesDataElement.m */; };
@@ -167,6 +170,10 @@
 		27EB89EA24912A2F007E6A6B /* AALayoutAlgorithm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AALayoutAlgorithm.m; sourceTree = "<group>"; };
 		27EB89ED2491C39F007E6A6B /* AAChartTypePro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAChartTypePro.h; sourceTree = "<group>"; };
 		27EB89EE2491C39F007E6A6B /* AAChartTypePro.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAChartTypePro.m; sourceTree = "<group>"; };
+		27EB8A1A249276CD007E6A6B /* drilldownTreemapData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = drilldownTreemapData.json; sourceTree = "<group>"; };
+		27EB8A1D24927BE8007E6A6B /* AATreemap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AATreemap.h; sourceTree = "<group>"; };
+		27EB8A1E24927BE8007E6A6B /* AATreemap.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AATreemap.m; sourceTree = "<group>"; };
+		27EB8A202492821B007E6A6B /* bigHeatmapData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bigHeatmapData.json; sourceTree = "<group>"; };
 		27F0CA7721018998004BD904 /* AADateUTCTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AADateUTCTool.h; sourceTree = "<group>"; };
 		27F0CA7821018998004BD904 /* AADateUTCTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AADateUTCTool.m; sourceTree = "<group>"; };
 		27F5AD9A20A740910086CD33 /* MixedChartVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixedChartVC.h; sourceTree = "<group>"; };
@@ -323,12 +330,23 @@
 				27EB89E4249113B6007E6A6B /* AALevels.m */,
 				27EB89E62491246E007E6A6B /* AAPackedbubble.h */,
 				27EB89E72491246E007E6A6B /* AAPackedbubble.m */,
+				27EB8A1D24927BE8007E6A6B /* AATreemap.h */,
+				27EB8A1E24927BE8007E6A6B /* AATreemap.m */,
 				27EB89E924912A2F007E6A6B /* AALayoutAlgorithm.h */,
 				27EB89EA24912A2F007E6A6B /* AALayoutAlgorithm.m */,
 				27EB89ED2491C39F007E6A6B /* AAChartTypePro.h */,
 				27EB89EE2491C39F007E6A6B /* AAChartTypePro.m */,
 			);
 			path = AAOptionsProModel;
+			sourceTree = "<group>";
+		};
+		27EB8A1C249276DF007E6A6B /* DataJsonFiles */ = {
+			isa = PBXGroup;
+			children = (
+				27EB8A1A249276CD007E6A6B /* drilldownTreemapData.json */,
+				27EB8A202492821B007E6A6B /* bigHeatmapData.json */,
+			);
+			path = DataJsonFiles;
 			sourceTree = "<group>";
 		};
 		27F0CA7A21018C86004BD904 /* AATools */ = {
@@ -385,6 +403,7 @@
 			children = (
 				27F0CA7B21018CC7004BD904 /* MainContent */,
 				27F5AD9D20A8159E0086CD33 /* AdditionalContent */,
+				27EB8A1C249276DF007E6A6B /* DataJsonFiles */,
 				27F0CA7A21018C86004BD904 /* AATools */,
 			);
 			path = ChartsDemo;
@@ -562,8 +581,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E66D1FB210AF4ED007EAB8C /* AAJSFiles.bundle in Resources */,
+				27EB8A212492821B007E6A6B /* bigHeatmapData.json in Resources */,
 				7172A3E61E763EA6000D5B99 /* LaunchScreen.storyboard in Resources */,
 				7172A3E31E763EA6000D5B99 /* Assets.xcassets in Resources */,
+				27EB8A1B249276CD007E6A6B /* drilldownTreemapData.json in Resources */,
 				7172A3E11E763EA6000D5B99 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -619,6 +640,7 @@
 				1E66D216210AF4ED007EAB8C /* AAChartModel.m in Sources */,
 				1E66D207210AF4ED007EAB8C /* AAColumn.m in Sources */,
 				27EB89EB24912A2F007E6A6B /* AALayoutAlgorithm.m in Sources */,
+				27EB8A1F24927BE8007E6A6B /* AATreemap.m in Sources */,
 				1E66D208210AF4ED007EAB8C /* AAPlotLinesElement.m in Sources */,
 				64AF87601F0A981400A801C4 /* OnlyRefreshChartDataVC.m in Sources */,
 				7172A3DB1E763EA6000D5B99 /* AppDelegate.m in Sources */,
