@@ -76,11 +76,11 @@
         case 12: return [self streamgraphChart];
         case 13: return [self columnpyramidChart];
         case 14: return [self tilemapChart];
-            case 15: return [self simpleTreemapChart];
-            case 16: return [self drilldownTreemapChart];
-//        case 14: return [self disableChartAnimation];//禁用图表的渲染动画效果
-//        case 15: return [self customChartLengendItemStyle];//自定义图表的 legend 图例样式
-
+        case 15: return [self simpleTreemapChart];
+        case 16: return [self drilldownTreemapChart];
+        case 17: return [self xrangeChart];
+            //        case 15: return [self customChartLengendItemStyle];//自定义图表的 legend 图例样式
+            
     }
     return nil;
 }
@@ -809,6 +809,36 @@
             .borderWidthSet(@3)])
         .dataSet(AAOptionsData.drilldownTreemapChartData)
                ])
+    ;
+}
+
+- (AAOptions *)xrangeChart {
+    return AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(@"xrange"))
+    .colorsSet(@[
+        @"#7cb5ec",@"#434348",@"#90ed7d",@"#f7a35c",@"#8085e9",
+        @"rgb(255,143,179)",@"rgb(255,117,153)",
+        @"#f15c80",@"#e4d354",@"#2b908f",@"#f45b5b",@"#91e8e1",@"#7cb5ec",@"#434348",@"#f7a35c",
+        @"rgb(119,212,100)",@"rgb(93,186,74)",@"rgb(68,161,49)"
+               ])
+    .titleSet(AATitle.new
+              .textSet(@""))
+    .yAxisSet(AAYAxis.new
+              .visibleSet(true)
+              
+              .titleSet(AATitle.new
+                        .textSet(@""))
+              .reversedSet(true)
+              .categoriesSet(@[@"原型",@"开发",@"测试",@"上线"]))
+    .legendSet(AALegend.new
+               .enabledSet(false))
+    .seriesSet(@[@{
+                     @"borderRadius":@2,
+            @"pointPadding": @0,
+            @"groupPadding": @0,
+            @"data": AAOptionsData.xrangeChartdata
+        }])
     ;
 }
 

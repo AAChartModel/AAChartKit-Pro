@@ -2040,6 +2040,37 @@
     return drilldownTreemapJsonDataArr;
 }
 
++ (NSArray *)xrangeChartdata {
+    NSMutableArray *dataArr = [NSMutableArray array];
+    
+    for (int y = 0; y < 20; y++) {
+      NSArray *data =  [self getSingleGroupCategoryDataElementArrayWithY:y];
+        for (NSDictionary *dataElement in data) {
+            [dataArr addObject:dataElement];
+        }
+    }
+    
+    return dataArr;
+}
+
++ (NSArray *)getSingleGroupCategoryDataElementArrayWithY:(int )y {
+    NSMutableArray *dataArr = [NSMutableArray array];
+    
+    int x = 0;
+    int x2 = x + arc4random() % 10;
+    for (int i = 0; i < 50; i++) {
+        NSMutableDictionary *dataElementDic = [NSMutableDictionary dictionary];
+        dataElementDic[@"x"] = @(x);
+        dataElementDic[@"x2"] = @(x2);
+        dataElementDic[@"y"] = @(y);
+        [dataArr addObject:dataElementDic];
+        
+        x = x2 + arc4random() % 1000;
+        x2 = x + arc4random() % 2000;
+    }
+    return dataArr;
+}
+
 + (id)getJsonDataWithJsonFileName:(NSString *)jsonFileName
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:jsonFileName ofType:@"json"];

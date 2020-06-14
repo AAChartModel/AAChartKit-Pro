@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)lollipopChartData;
 + (NSArray *)tilemapChartData;
 + (NSArray *)drilldownTreemapChartData;
++ (NSArray *)xrangeChartdata;
 
 @end
 

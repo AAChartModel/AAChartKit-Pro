@@ -266,7 +266,7 @@
               @"tilemapChart---砖块图🧱||蜂巢图🐝",
               @"simpleTreemapChart---简单矩形树🌲图",
               @"drilldownTreemapChart---可下钻的矩形树🌲图",
-              @"",
+              @"xrangeChart---X轴范围图||甘特图||条码图",
               @"",
 //              var dataJson = JSON.stringify(points);
 //
