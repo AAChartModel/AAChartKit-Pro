@@ -815,7 +815,7 @@
 - (AAOptions *)xrangeChart {
     return AAOptions.new
     .chartSet(AAChart.new
-              .typeSet(@"xrange"))
+              .typeSet(AAChartTypeXrange))
     .colorsSet(@[
         @"#7cb5ec",@"#434348",@"#90ed7d",@"#f7a35c",@"#8085e9",
         @"rgb(255,143,179)",@"rgb(255,117,153)",

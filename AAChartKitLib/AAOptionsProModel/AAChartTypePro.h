@@ -26,6 +26,7 @@ AACHARTKIT_EXTERN AAChartType const AAChartTypeDumbbell;
 AACHARTKIT_EXTERN AAChartType const AAChartTypeLollipop;
 AACHARTKIT_EXTERN AAChartType const AAChartTypeStreamgraph;
 AACHARTKIT_EXTERN AAChartType const AAChartTypeColumnpyramid;
+AACHARTKIT_EXTERN AAChartType const AAChartTypeXrange;
 
 @end
 

@@ -23,5 +23,6 @@ AAChartType const AAChartTypeDumbbell        =  @"dumbbell";
 AAChartType const AAChartTypeLollipop        =  @"lollipop";
 AAChartType const AAChartTypeStreamgraph     =  @"streamgraph";
 AAChartType const AAChartTypeColumnpyramid   =  @"columnpyramid";
+AAChartType const AAChartTypeXrange          =  @"xrange";
 
 @end
