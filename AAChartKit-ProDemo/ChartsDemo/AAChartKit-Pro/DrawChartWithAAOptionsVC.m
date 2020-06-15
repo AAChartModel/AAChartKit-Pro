@@ -364,7 +364,7 @@
                                                         @"value": @250
                                                                })
                                                     )))
-    .seriesSet(AAOptionsSeries.packedbubbleChartSeries)
+    .seriesSet(AAOptionsSeries.packedbubbleSeries)
     ;
     
     
@@ -402,7 +402,7 @@
                                                         @"value": @250
                                                                })
                                                     )))
-    .seriesSet(AAOptionsSeries.packedbubbleChartSeries)
+    .seriesSet(AAOptionsSeries.packedbubbleSeries)
     ;
 }
 
@@ -541,7 +541,7 @@
                 .enabledSet(true))
     .legendSet(AALegend.new
                .enabledSet(false))
-    .seriesSet(AAOptionsSeries.streamgraphChartSeries);
+    .seriesSet(AAOptionsSeries.streamgraphSeries);
 }
 
 - (AAOptions *)columnpyramidChart {

@@ -65,6 +65,8 @@
 		27EB8A7E2497C007007E6A6B /* bigHeatmapData.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A6E2497C007007E6A6B /* bigHeatmapData.json */; };
 		27EB8A832497C03A007E6A6B /* AAOptionsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB8A802497C03A007E6A6B /* AAOptionsData.m */; };
 		27EB8A842497C03A007E6A6B /* DrawChartWithAAOptionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB8A822497C03A007E6A6B /* DrawChartWithAAOptionsVC.m */; };
+		27EB8A872497C352007E6A6B /* streamgraphSeries.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A862497C352007E6A6B /* streamgraphSeries.json */; };
+		27EB8A892497C37D007E6A6B /* packedbubbleSeries.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A882497C37D007E6A6B /* packedbubbleSeries.json */; };
 		27F0CA7921018998004BD904 /* AADateUTCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F0CA7821018998004BD904 /* AADateUTCTool.m */; };
 		27F5AD9C20A740910086CD33 /* MixedChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F5AD9B20A740910086CD33 /* MixedChartVC.m */; };
 		27F5E2DF213AFD47007EE8D4 /* AASeriesDataElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F5E2DE213AFD47007EE8D4 /* AASeriesDataElement.m */; };
@@ -202,6 +204,8 @@
 		27EB8A802497C03A007E6A6B /* AAOptionsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAOptionsData.m; sourceTree = "<group>"; };
 		27EB8A812497C03A007E6A6B /* AAOptionsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAOptionsData.h; sourceTree = "<group>"; };
 		27EB8A822497C03A007E6A6B /* DrawChartWithAAOptionsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawChartWithAAOptionsVC.m; sourceTree = "<group>"; };
+		27EB8A862497C352007E6A6B /* streamgraphSeries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = streamgraphSeries.json; sourceTree = "<group>"; };
+		27EB8A882497C37D007E6A6B /* packedbubbleSeries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = packedbubbleSeries.json; sourceTree = "<group>"; };
 		27F0CA7721018998004BD904 /* AADateUTCTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AADateUTCTool.h; sourceTree = "<group>"; };
 		27F0CA7821018998004BD904 /* AADateUTCTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AADateUTCTool.m; sourceTree = "<group>"; };
 		27F5AD9A20A740910086CD33 /* MixedChartVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixedChartVC.h; sourceTree = "<group>"; };
@@ -394,17 +398,27 @@
 		27EB8A222495C1F2007E6A6B /* AAChartKit-Pro */ = {
 			isa = PBXGroup;
 			children = (
+				27EB8A8A2497C4E7007E6A6B /* SeriesJsonFiles */,
 				27EB8A1C249276DF007E6A6B /* DataJsonFiles */,
 				713F54371E7B71C000D506C7 /* FirstViewController.h */,
 				713F54381E7B71C000D506C7 /* FirstViewController.m */,
-				27EB8A812497C03A007E6A6B /* AAOptionsData.h */,
-				27EB8A802497C03A007E6A6B /* AAOptionsData.m */,
 				27EB8A7F2497C03A007E6A6B /* DrawChartWithAAOptionsVC.h */,
 				27EB8A822497C03A007E6A6B /* DrawChartWithAAOptionsVC.m */,
+				27EB8A812497C03A007E6A6B /* AAOptionsData.h */,
+				27EB8A802497C03A007E6A6B /* AAOptionsData.m */,
 				27EB89E0248C8F87007E6A6B /* AAOptionsSeries.h */,
 				27EB89E1248C8F87007E6A6B /* AAOptionsSeries.m */,
 			);
 			path = "AAChartKit-Pro";
+			sourceTree = "<group>";
+		};
+		27EB8A8A2497C4E7007E6A6B /* SeriesJsonFiles */ = {
+			isa = PBXGroup;
+			children = (
+				27EB8A862497C352007E6A6B /* streamgraphSeries.json */,
+				27EB8A882497C37D007E6A6B /* packedbubbleSeries.json */,
+			);
+			path = SeriesJsonFiles;
 			sourceTree = "<group>";
 		};
 		27F0CA7A21018C86004BD904 /* AATools */ = {
@@ -636,12 +650,14 @@
 				27EB8A722497C007007E6A6B /* treemapWithLevelsData.json in Resources */,
 				27EB8A782497C007007E6A6B /* vectorData.json in Resources */,
 				27EB8A732497C007007E6A6B /* variablepieData.json in Resources */,
+				27EB8A892497C37D007E6A6B /* packedbubbleSeries.json in Resources */,
 				27EB8A6F2497C007007E6A6B /* dependencywheelData.json in Resources */,
 				27EB8A752497C007007E6A6B /* treemapWithColorAxisData.json in Resources */,
 				27EB8A7D2497C007007E6A6B /* lollipopData.json in Resources */,
 				27EB8A762497C007007E6A6B /* sunburstData.json in Resources */,
 				27EB8A742497C007007E6A6B /* heatmapData.json in Resources */,
 				27EB8A772497C007007E6A6B /* dumbbellData.json in Resources */,
+				27EB8A872497C352007E6A6B /* streamgraphSeries.json in Resources */,
 				27EB8A7B2497C007007E6A6B /* tilemapData.json in Resources */,
 				1E66D1FB210AF4ED007EAB8C /* AAJSFiles.bundle in Resources */,
 				27EB8A702497C007007E6A6B /* columnpyramidData.json in Resources */,
