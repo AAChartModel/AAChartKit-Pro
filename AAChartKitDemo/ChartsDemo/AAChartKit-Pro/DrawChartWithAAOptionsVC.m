@@ -59,6 +59,7 @@
     [aaChartView aa_drawChartWithOptions:aaOptions];
 }
 
+// https://www.highcharts.com/demo
 - (AAOptions *)configureChartOptions {
     switch (self.selectedIndex) {
         case 0: return [self sankeyChart];
