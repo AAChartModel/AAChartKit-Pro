@@ -120,7 +120,12 @@
     .titleSet(aaTitle)
     .subtitleSet(aaSubtitle)
     .tooltipSet(aaTooltip)
-    .seriesSet(AAOptionsData.variablepieData);
+    .seriesSet(@[
+        AASeriesElement.new
+        .nameSet(@"countries")
+        .innerSizeSet(@"20%")
+        .dataSet(AAOptionsData.variablepieData)
+    ]);
     
     return aaOptionsQ;
   
