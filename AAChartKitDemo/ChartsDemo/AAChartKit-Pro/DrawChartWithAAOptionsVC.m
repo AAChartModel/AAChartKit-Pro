@@ -79,7 +79,7 @@
         case 15: return [self simpleTreemapChart];
         case 16: return [self drilldownTreemapChart];
         case 17: return [self xrangeChart];
-            //        case 15: return [self customChartLengendItemStyle];//自定义图表的 legend 图例样式
+        case 18: return [self vectorChart];
             
     }
     return nil;
@@ -839,6 +839,21 @@
             @"groupPadding": @0,
             @"data": AAOptionsData.xrangeChartdata
         }])
+    ;
+}
+
+- (AAOptions *)vectorChart {
+    return AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(@"vector"))
+    .colorsSet(@[@"red"])
+    .titleSet(AATitle.new
+              .textSet(@"AAChartKit-Pro Vector plot"))
+    .seriesSet(@[
+        AASeriesElement.new
+        .nameSet(@"Sample vector field")
+        .dataSet(AAOptionsData.vectorChartdata)
+               ])
     ;
 }
 

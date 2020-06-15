@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)tilemapChartData;
 + (NSArray *)drilldownTreemapChartData;
 + (NSArray *)xrangeChartdata;
++ (NSArray *)vectorChartdata;
 
 @end
 

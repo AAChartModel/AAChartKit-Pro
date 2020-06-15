@@ -2053,6 +2053,11 @@
     return dataArr;
 }
 
++ (NSArray *)vectorChartdata {
+    NSArray *vectorDataArr = [self getJsonDataWithJsonFileName:@"vectorData"];
+    return vectorDataArr;
+}
+
 + (NSArray *)getSingleGroupCategoryDataElementArrayWithY:(int )y {
     NSMutableArray *dataArr = [NSMutableArray array];
     

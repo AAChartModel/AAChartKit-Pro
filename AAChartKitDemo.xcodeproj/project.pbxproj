@@ -51,6 +51,7 @@
 		27EB8A1B249276CD007E6A6B /* drilldownTreemapData.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A1A249276CD007E6A6B /* drilldownTreemapData.json */; };
 		27EB8A1F24927BE8007E6A6B /* AATreemap.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB8A1E24927BE8007E6A6B /* AATreemap.m */; };
 		27EB8A212492821B007E6A6B /* bigHeatmapData.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A202492821B007E6A6B /* bigHeatmapData.json */; };
+		27EB8A242495C8AF007E6A6B /* vectorData.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A232495C8AF007E6A6B /* vectorData.json */; };
 		27F0CA7921018998004BD904 /* AADateUTCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F0CA7821018998004BD904 /* AADateUTCTool.m */; };
 		27F5AD9C20A740910086CD33 /* MixedChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F5AD9B20A740910086CD33 /* MixedChartVC.m */; };
 		27F5E2DF213AFD47007EE8D4 /* AASeriesDataElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F5E2DE213AFD47007EE8D4 /* AASeriesDataElement.m */; };
@@ -174,6 +175,7 @@
 		27EB8A1D24927BE8007E6A6B /* AATreemap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AATreemap.h; sourceTree = "<group>"; };
 		27EB8A1E24927BE8007E6A6B /* AATreemap.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AATreemap.m; sourceTree = "<group>"; };
 		27EB8A202492821B007E6A6B /* bigHeatmapData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bigHeatmapData.json; sourceTree = "<group>"; };
+		27EB8A232495C8AF007E6A6B /* vectorData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = vectorData.json; sourceTree = "<group>"; };
 		27F0CA7721018998004BD904 /* AADateUTCTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AADateUTCTool.h; sourceTree = "<group>"; };
 		27F0CA7821018998004BD904 /* AADateUTCTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AADateUTCTool.m; sourceTree = "<group>"; };
 		27F5AD9A20A740910086CD33 /* MixedChartVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixedChartVC.h; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 			children = (
 				27EB8A1A249276CD007E6A6B /* drilldownTreemapData.json */,
 				27EB8A202492821B007E6A6B /* bigHeatmapData.json */,
+				27EB8A232495C8AF007E6A6B /* vectorData.json */,
 			);
 			path = DataJsonFiles;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 			files = (
 				1E66D1FB210AF4ED007EAB8C /* AAJSFiles.bundle in Resources */,
 				27EB8A212492821B007E6A6B /* bigHeatmapData.json in Resources */,
+				27EB8A242495C8AF007E6A6B /* vectorData.json in Resources */,
 				7172A3E61E763EA6000D5B99 /* LaunchScreen.storyboard in Resources */,
 				7172A3E31E763EA6000D5B99 /* Assets.xcassets in Resources */,
 				27EB8A1B249276CD007E6A6B /* drilldownTreemapData.json in Resources */,
