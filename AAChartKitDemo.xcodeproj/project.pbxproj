@@ -58,6 +58,10 @@
 		27EB8A2C24972445007E6A6B /* variwideData.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A2B24972445007E6A6B /* variwideData.json */; };
 		27EB8A2E249724A5007E6A6B /* heatmapData.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A2D249724A5007E6A6B /* heatmapData.json */; };
 		27EB8A302497251C007E6A6B /* columnpyramidData.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A2F2497251C007E6A6B /* columnpyramidData.json */; };
+		27EB8A32249727B1007E6A6B /* sankeyData.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A31249727B1007E6A6B /* sankeyData.json */; };
+		27EB8A34249727D9007E6A6B /* dependencywheelData.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A33249727D9007E6A6B /* dependencywheelData.json */; };
+		27EB8A3624972800007E6A6B /* sunburstData.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A3524972800007E6A6B /* sunburstData.json */; };
+		27EB8A382497281E007E6A6B /* dumbbellData.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A372497281E007E6A6B /* dumbbellData.json */; };
 		27F0CA7921018998004BD904 /* AADateUTCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F0CA7821018998004BD904 /* AADateUTCTool.m */; };
 		27F5AD9C20A740910086CD33 /* MixedChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F5AD9B20A740910086CD33 /* MixedChartVC.m */; };
 		27F5E2DF213AFD47007EE8D4 /* AASeriesDataElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F5E2DE213AFD47007EE8D4 /* AASeriesDataElement.m */; };
@@ -188,6 +192,10 @@
 		27EB8A2B24972445007E6A6B /* variwideData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = variwideData.json; sourceTree = "<group>"; };
 		27EB8A2D249724A5007E6A6B /* heatmapData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = heatmapData.json; sourceTree = "<group>"; };
 		27EB8A2F2497251C007E6A6B /* columnpyramidData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = columnpyramidData.json; sourceTree = "<group>"; };
+		27EB8A31249727B1007E6A6B /* sankeyData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sankeyData.json; sourceTree = "<group>"; };
+		27EB8A33249727D9007E6A6B /* dependencywheelData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = dependencywheelData.json; sourceTree = "<group>"; };
+		27EB8A3524972800007E6A6B /* sunburstData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sunburstData.json; sourceTree = "<group>"; };
+		27EB8A372497281E007E6A6B /* dumbbellData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = dumbbellData.json; sourceTree = "<group>"; };
 		27F0CA7721018998004BD904 /* AADateUTCTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AADateUTCTool.h; sourceTree = "<group>"; };
 		27F0CA7821018998004BD904 /* AADateUTCTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AADateUTCTool.m; sourceTree = "<group>"; };
 		27F5AD9A20A740910086CD33 /* MixedChartVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixedChartVC.h; sourceTree = "<group>"; };
@@ -366,6 +374,10 @@
 				27EB8A2B24972445007E6A6B /* variwideData.json */,
 				27EB8A2D249724A5007E6A6B /* heatmapData.json */,
 				27EB8A2F2497251C007E6A6B /* columnpyramidData.json */,
+				27EB8A31249727B1007E6A6B /* sankeyData.json */,
+				27EB8A33249727D9007E6A6B /* dependencywheelData.json */,
+				27EB8A3524972800007E6A6B /* sunburstData.json */,
+				27EB8A372497281E007E6A6B /* dumbbellData.json */,
 			);
 			path = DataJsonFiles;
 			sourceTree = "<group>";
@@ -609,6 +621,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27EB8A34249727D9007E6A6B /* dependencywheelData.json in Resources */,
 				1E66D1FB210AF4ED007EAB8C /* AAJSFiles.bundle in Resources */,
 				27EB8A212492821B007E6A6B /* bigHeatmapData.json in Resources */,
 				27EB8A26249721D4007E6A6B /* variablepieData.json in Resources */,
@@ -617,10 +630,13 @@
 				27EB8A242495C8AF007E6A6B /* vectorData.json in Resources */,
 				27EB8A2824972354007E6A6B /* treemapWithLevelsData.json in Resources */,
 				7172A3E61E763EA6000D5B99 /* LaunchScreen.storyboard in Resources */,
+				27EB8A3624972800007E6A6B /* sunburstData.json in Resources */,
+				27EB8A32249727B1007E6A6B /* sankeyData.json in Resources */,
 				7172A3E31E763EA6000D5B99 /* Assets.xcassets in Resources */,
 				27EB8A2C24972445007E6A6B /* variwideData.json in Resources */,
 				27EB8A1B249276CD007E6A6B /* drilldownTreemapData.json in Resources */,
 				27EB8A2E249724A5007E6A6B /* heatmapData.json in Resources */,
+				27EB8A382497281E007E6A6B /* dumbbellData.json in Resources */,
 				7172A3E11E763EA6000D5B99 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
