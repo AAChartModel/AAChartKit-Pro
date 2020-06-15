@@ -1,6 +1,6 @@
 //
 //  MonitorViewController.m
-//  AAChartKitDemo
+//  AAChartKit-ProDemo
 //
 //  Created by 魏唯隆 on 2017/12/11.
 //  Copyright © 2017年 Danny boy. All rights reserved.

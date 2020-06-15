@@ -1,6 +1,6 @@
 //
 //  MixedChartVC.m
-//  AAChartKitDemo
+//  AAChartKit-ProDemo
 //
 //  Created by AnAn on 2018/5/12.
 //  Copyright © 2018年 Danny boy. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  AATreemap.m
-//  AAChartKitDemo
+//  AAChartKit-ProDemo
 //
 //  Created by AnAn on 2020/6/11.
 //  Copyright © 2020 Danny boy. All rights reserved.

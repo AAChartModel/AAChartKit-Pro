@@ -212,7 +212,7 @@
 		713F54381E7B71C000D506C7 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		713F54391E7B71C000D506C7 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		713F543A1E7B71C000D506C7 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		7172A3D31E763EA6000D5B99 /* AAChartKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AAChartKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7172A3D31E763EA6000D5B99 /* AAChartKit-ProDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AAChartKit-ProDemo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7172A3D71E763EA6000D5B99 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7172A3D91E763EA6000D5B99 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7172A3DA1E763EA6000D5B99 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -220,10 +220,10 @@
 		7172A3E21E763EA6000D5B99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7172A3E51E763EA6000D5B99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7172A3E71E763EA6000D5B99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7172A3EC1E763EA6000D5B99 /* AAChartKitDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AAChartKitDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7172A3EC1E763EA6000D5B99 /* AAChartKit-ProDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AAChartKit-ProDemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7172A3F01E763EA6000D5B99 /* AAChartKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAChartKitTests.m; sourceTree = "<group>"; };
 		7172A3F21E763EA6000D5B99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7172A3F71E763EA6000D5B99 /* AAChartKitDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AAChartKitDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7172A3F71E763EA6000D5B99 /* AAChartKit-ProDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AAChartKit-ProDemoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7172A3FB1E763EA6000D5B99 /* AAChartKitUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAChartKitUITests.m; sourceTree = "<group>"; };
 		7172A3FD1E763EA6000D5B99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7172A4581E763FDB000D5B99 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -464,9 +464,9 @@
 		7172A3D41E763EA6000D5B99 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7172A3D31E763EA6000D5B99 /* AAChartKitDemo.app */,
-				7172A3EC1E763EA6000D5B99 /* AAChartKitDemoTests.xctest */,
-				7172A3F71E763EA6000D5B99 /* AAChartKitDemoUITests.xctest */,
+				7172A3D31E763EA6000D5B99 /* AAChartKit-ProDemo.app */,
+				7172A3EC1E763EA6000D5B99 /* AAChartKit-ProDemoTests.xctest */,
+				7172A3F71E763EA6000D5B99 /* AAChartKit-ProDemoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -516,9 +516,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7172A3D21E763EA6000D5B99 /* AAChartKitDemo */ = {
+		7172A3D21E763EA6000D5B99 /* AAChartKit-ProDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7172A4001E763EA6000D5B99 /* Build configuration list for PBXNativeTarget "AAChartKitDemo" */;
+			buildConfigurationList = 7172A4001E763EA6000D5B99 /* Build configuration list for PBXNativeTarget "AAChartKit-ProDemo" */;
 			buildPhases = (
 				7172A3CF1E763EA6000D5B99 /* Sources */,
 				7172A3D01E763EA6000D5B99 /* Frameworks */,
@@ -528,14 +528,14 @@
 			);
 			dependencies = (
 			);
-			name = AAChartKitDemo;
+			name = "AAChartKit-ProDemo";
 			productName = AAChartKit;
-			productReference = 7172A3D31E763EA6000D5B99 /* AAChartKitDemo.app */;
+			productReference = 7172A3D31E763EA6000D5B99 /* AAChartKit-ProDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7172A3EB1E763EA6000D5B99 /* AAChartKitDemoTests */ = {
+		7172A3EB1E763EA6000D5B99 /* AAChartKit-ProDemoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7172A4031E763EA6000D5B99 /* Build configuration list for PBXNativeTarget "AAChartKitDemoTests" */;
+			buildConfigurationList = 7172A4031E763EA6000D5B99 /* Build configuration list for PBXNativeTarget "AAChartKit-ProDemoTests" */;
 			buildPhases = (
 				7172A3E81E763EA6000D5B99 /* Sources */,
 				7172A3E91E763EA6000D5B99 /* Frameworks */,
@@ -546,14 +546,14 @@
 			dependencies = (
 				7172A3EE1E763EA6000D5B99 /* PBXTargetDependency */,
 			);
-			name = AAChartKitDemoTests;
+			name = "AAChartKit-ProDemoTests";
 			productName = AAChartKitTests;
-			productReference = 7172A3EC1E763EA6000D5B99 /* AAChartKitDemoTests.xctest */;
+			productReference = 7172A3EC1E763EA6000D5B99 /* AAChartKit-ProDemoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		7172A3F61E763EA6000D5B99 /* AAChartKitDemoUITests */ = {
+		7172A3F61E763EA6000D5B99 /* AAChartKit-ProDemoUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7172A4061E763EA6000D5B99 /* Build configuration list for PBXNativeTarget "AAChartKitDemoUITests" */;
+			buildConfigurationList = 7172A4061E763EA6000D5B99 /* Build configuration list for PBXNativeTarget "AAChartKit-ProDemoUITests" */;
 			buildPhases = (
 				7172A3F31E763EA6000D5B99 /* Sources */,
 				7172A3F41E763EA6000D5B99 /* Frameworks */,
@@ -564,9 +564,9 @@
 			dependencies = (
 				7172A3F91E763EA6000D5B99 /* PBXTargetDependency */,
 			);
-			name = AAChartKitDemoUITests;
+			name = "AAChartKit-ProDemoUITests";
 			productName = AAChartKitUITests;
-			productReference = 7172A3F71E763EA6000D5B99 /* AAChartKitDemoUITests.xctest */;
+			productReference = 7172A3F71E763EA6000D5B99 /* AAChartKit-ProDemoUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -595,7 +595,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7172A3CE1E763EA6000D5B99 /* Build configuration list for PBXProject "AAChartKitDemo" */;
+			buildConfigurationList = 7172A3CE1E763EA6000D5B99 /* Build configuration list for PBXProject "AAChartKit-ProDemo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -609,9 +609,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7172A3D21E763EA6000D5B99 /* AAChartKitDemo */,
-				7172A3EB1E763EA6000D5B99 /* AAChartKitDemoTests */,
-				7172A3F61E763EA6000D5B99 /* AAChartKitDemoUITests */,
+				7172A3D21E763EA6000D5B99 /* AAChartKit-ProDemo */,
+				7172A3EB1E763EA6000D5B99 /* AAChartKit-ProDemoTests */,
+				7172A3F61E763EA6000D5B99 /* AAChartKit-ProDemoUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -738,12 +738,12 @@
 /* Begin PBXTargetDependency section */
 		7172A3EE1E763EA6000D5B99 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7172A3D21E763EA6000D5B99 /* AAChartKitDemo */;
+			target = 7172A3D21E763EA6000D5B99 /* AAChartKit-ProDemo */;
 			targetProxy = 7172A3ED1E763EA6000D5B99 /* PBXContainerItemProxy */;
 		};
 		7172A3F91E763EA6000D5B99 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7172A3D21E763EA6000D5B99 /* AAChartKitDemo */;
+			target = 7172A3D21E763EA6000D5B99 /* AAChartKit-ProDemo */;
 			targetProxy = 7172A3F81E763EA6000D5B99 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -865,7 +865,7 @@
 				DEVELOPMENT_TEAM = BPAYP34L8N;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AAChartKit-ProDemo/PrefixHeader.pch";
-				INFOPLIST_FILE = AAChartKitDemo/Info.plist;
+				INFOPLIST_FILE = "AAChartKit-ProDemo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AAChartKith;
@@ -880,7 +880,7 @@
 				DEVELOPMENT_TEAM = BPAYP34L8N;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AAChartKit-ProDemo/PrefixHeader.pch";
-				INFOPLIST_FILE = AAChartKitDemo/Info.plist;
+				INFOPLIST_FILE = "AAChartKit-ProDemo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AAChartKith;
@@ -896,7 +896,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Hobbies.AAChartKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AAChartKitDemo.app/AAChartKitDemo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AAChartKit-ProDemo.app/AAChartKit-ProDemo";
 			};
 			name = Debug;
 		};
@@ -908,7 +908,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Hobbies.AAChartKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AAChartKitDemo.app/AAChartKitDemo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AAChartKit-ProDemo.app/AAChartKit-ProDemo";
 			};
 			name = Release;
 		};
@@ -937,7 +937,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7172A3CE1E763EA6000D5B99 /* Build configuration list for PBXProject "AAChartKitDemo" */ = {
+		7172A3CE1E763EA6000D5B99 /* Build configuration list for PBXProject "AAChartKit-ProDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7172A3FE1E763EA6000D5B99 /* Debug */,
@@ -946,7 +946,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7172A4001E763EA6000D5B99 /* Build configuration list for PBXNativeTarget "AAChartKitDemo" */ = {
+		7172A4001E763EA6000D5B99 /* Build configuration list for PBXNativeTarget "AAChartKit-ProDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7172A4011E763EA6000D5B99 /* Debug */,
@@ -955,7 +955,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7172A4031E763EA6000D5B99 /* Build configuration list for PBXNativeTarget "AAChartKitDemoTests" */ = {
+		7172A4031E763EA6000D5B99 /* Build configuration list for PBXNativeTarget "AAChartKit-ProDemoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7172A4041E763EA6000D5B99 /* Debug */,
@@ -964,7 +964,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7172A4061E763EA6000D5B99 /* Build configuration list for PBXNativeTarget "AAChartKitDemoUITests" */ = {
+		7172A4061E763EA6000D5B99 /* Build configuration list for PBXNativeTarget "AAChartKit-ProDemoUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7172A4071E763EA6000D5B99 /* Debug */,
