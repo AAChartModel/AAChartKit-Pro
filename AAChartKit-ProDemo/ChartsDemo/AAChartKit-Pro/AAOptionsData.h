@@ -12,16 +12,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AAOptionsData : NSObject
 
-+ (NSArray *)sankeyChartData;
-+ (NSArray *)dependencywheelChartData;
-+ (NSArray *)sunburstChartData;
-+ (NSArray *)dumbbellChartData;
-+ (NSArray *)vennChartData;
-+ (NSArray *)lollipopChartData;
-+ (NSArray *)tilemapChartData;
-+ (NSArray *)drilldownTreemapChartData;
-+ (NSArray *)xrangeChartdata;
-+ (NSArray *)vectorChartdata;
++ (NSArray *)variablepieData;
++ (NSArray *)variwideData;
++ (NSArray *)heatmapData;
++ (NSArray *)packedbubbleData;
++ (NSArray *)packedbubbleSplitData;
++ (NSArray *)columnpyramidData;
++ (NSArray *)treemapWithColorAxisData;
++ (NSArray *)drilldownTreemapData;
+
++ (NSArray *)sankeyData;
++ (NSArray *)dependencywheelData;
++ (NSArray *)sunburstData;
++ (NSArray *)dumbbellData;
++ (NSArray *)vennData;
++ (NSArray *)lollipopData;
++ (NSArray *)tilemapData;
++ (NSArray *)treemapWithLevelsData;
++ (NSArray *)xrangeData;
++ (NSArray *)vectorData;
 
 @end
 

@@ -64,7 +64,7 @@
     switch (self.selectedIndex) {
         case 0: return [self sankeyChart];
         case 1: return [self variablepieChart];
-        case 2: return [self treemapChart];
+        case 2: return [self treemapWithLevelsData];
         case 3: return [self variwideChart];
         case 4: return [self sunburstChart];
         case 5: return [self dependencywheelChart];
@@ -77,7 +77,7 @@
         case 12: return [self streamgraphChart];
         case 13: return [self columnpyramidChart];
         case 14: return [self tilemapChart];
-        case 15: return [self simpleTreemapChart];
+        case 15: return [self treemapWithColorAxisData];
         case 16: return [self drilldownTreemapChart];
         case 17: return [self xrangeChart];
         case 18: return [self vectorChart];
@@ -95,7 +95,7 @@
         AASeriesElement.new
         .typeSet(AAChartTypeSankey)
         .keysSet(@[@"from", @"to", @"weight"])
-        .dataSet(AAOptionsData.sankeyChartData),
+        .dataSet(AAOptionsData.sankeyData),
                ])
     ;
 }
@@ -114,107 +114,19 @@
     .enabledSet(true)
     .headerFormatSet(@"")
     .pointFormatSet(@"<span style=""color:{point.color}"">\u25CF</span> <b> {point.name}</b><br/>""面积 (平方千米): <b>{point.y}</b><br/>""人口密度 (每平方千米人数): <b>{point.z}</b><br/>""");
-    
-    NSArray *seriesElementArr = @[
-        AASeriesElement.new
-        .nameSet(@"countries")
-        .innerSizeSet(@"20%")
-        .dataSet(@[
-            AASeriesDataElement.new
-            .nameSet(@"西班牙")
-            .ySet(@505370)
-            .zSet(@92.9),
-            AASeriesDataElement.new
-            .nameSet(@"波兰")
-            .ySet(@312685)
-            .zSet(@124.6),
-            AASeriesDataElement.new
-            .nameSet(@"捷克共和国")
-            .ySet(@78867)
-            .zSet(@137.5),
-            AASeriesDataElement.new
-            .nameSet(@"意大利")
-            .ySet(@301340)
-            .zSet(@201.8),
-            AASeriesDataElement.new
-            .nameSet(@"瑞士")
-            .ySet(@41277)
-            .zSet(@214.5),
-            AASeriesDataElement.new
-            .nameSet(@"德国")
-            .ySet(@357022)
-            .zSet(@235.6),
-                 ])
-    ];
-    
+        
     AAOptions *aaOptionsQ = AAOptions.new
     .chartSet(aaChart)
     .titleSet(aaTitle)
     .subtitleSet(aaSubtitle)
     .tooltipSet(aaTooltip)
-    .seriesSet(seriesElementArr);
+    .seriesSet(AAOptionsData.variablepieData);
     
     return aaOptionsQ;
   
 }
 
-- (AAOptions *)treemapChart {
-    NSArray *seriesDataArr = @[
-        AASeriesDataElement.new
-        .idSet(@"A")
-        .nameSet(@"Apple🍎")
-        .colorSet(@"#EF2566"),
-        AASeriesDataElement.new
-        .idSet(@"B")
-        .nameSet(@"Banana🍌")
-        .colorSet(@"#EFE166"),
-        AASeriesDataElement.new
-        .idSet(@"O")
-        .nameSet(@"Orange🍊")
-        .colorSet(@"#EF9866"),
-        AASeriesDataElement.new
-        .nameSet(@"Angel Jill")
-        .parentSet(@"A")
-        .valueSet(@5),
-        AASeriesDataElement.new
-        .nameSet(@"Charles Bond")
-        .parentSet(@"A")
-        .valueSet(@3),
-        AASeriesDataElement.new
-        .nameSet(@"Babara Swift")
-        .parentSet(@"A")
-        .valueSet(@4),
-        AASeriesDataElement.new
-        .nameSet(@"Angel Jill")
-        .parentSet(@"B")
-        .valueSet(@4),
-        AASeriesDataElement.new
-        .nameSet(@"Charles Bond")
-        .parentSet(@"B")
-        .valueSet(@10),
-        AASeriesDataElement.new
-        .nameSet(@"Babara Swift")
-        .parentSet(@"B")
-        .valueSet(@1),
-        AASeriesDataElement.new
-        .nameSet(@"Angel Jill")
-        .parentSet(@"O")
-        .valueSet(@1),
-        AASeriesDataElement.new
-        .nameSet(@"Charles Bond")
-        .parentSet(@"O")
-        .valueSet(@3),
-        AASeriesDataElement.new
-        .nameSet(@"Babara Swift")
-        .parentSet(@"O")
-        .valueSet(@3),
-        AASeriesDataElement.new
-        .nameSet(@"阿苏")
-        .parentSet(@"wiki")
-        .valueSet(@2)
-        .colorSet(@"#9EDE00"),
-    ];
-    
+- (AAOptions *)treemapWithLevelsData {
     AAOptions *aaOptions = AAOptions.new
     .titleSet(AATitle.new
               .textSet(@"Fruit Consumption Situation"))
@@ -235,7 +147,7 @@
                                  .fontSizeSet(@"15 px")
                                  .fontWeightSet(AAChartFontWeightTypeBold)))
                ])
-    .dataSet(seriesDataArr)]);
+    .dataSet(AAOptionsData.treemapWithLevelsData)]);
     
     return aaOptions;
 }
@@ -266,26 +178,7 @@
     NSArray *seriesElementArr = @[
         AASeriesElement.new
         .nameSet(@"人工成本")
-        .dataSet(@[
-            @[@"挪威", @50.2, @335504],
-            @[@"丹麦", @42, @277339],
-            @[@"比利时", @39.2, @421611],
-            @[@"瑞典", @38, @462057],
-            @[@"法国", @35.6, @2228857],
-            @[@"荷兰", @34.3, @702641],
-            @[@"芬兰", @33.2, @215615],
-            @[@"德国", @33.0, @3144050],
-            @[@"奥地利", @32.7, @349344],
-            @[@"爱尔兰", @30.4, @275567],
-            @[@"意大利", @27.8, @1672438],
-            @[@"英国", @26.7, @2366911],
-            @[@"西班牙", @21.3, @1113851],
-            @[@"希腊", @14.2, @175887],
-            @[@"葡萄牙", @13.7, @184933],
-            @[@"捷克共和国", @10.2, @176564],
-            @[@"波兰", @8.6, @424269],
-            @[@"罗马尼亚", @5.5, @169578]
-                 ])
+        .dataSet(AAOptionsData.variwideData)
         .dataLabelsSet(AADataLabels.new
                        .enabledSet(true)
                        .formatSet(@"€{point.y:.0f}"))
@@ -346,7 +239,7 @@
                                .toSet(@0.5))
             
         ])
-        .dataSet(AAOptionsData.sunburstChartData)
+        .dataSet(AAOptionsData.sunburstData)
     ];
     
     AAOptions *aaOptions = AAOptions.new
@@ -372,7 +265,7 @@
         .typeSet(AAChartTypeDependencywheel)
         .nameSet(@"Dependency wheel series")
         .keysSet(@[@"from",@"to",@"weight"])
-        .dataSet(AAOptionsData.dependencywheelChartData)
+        .dataSet(AAOptionsData.dependencywheelData)
         .dataLabelsSet(AADataLabels.new
                        .enabledSet(true)
                        .colorSet(@"#333")
@@ -426,14 +319,7 @@
         AASeriesElement.new
         .nameSet(@"Sales")
         .borderWidthSet(@1)
-        .dataSet(@[
-            @[@0, @0, @10], @[@0, @1, @19], @[@0, @2, @8], @[@0, @3, @24], @[@0, @4, @67], @[@1, @0, @92], @[@1, @1, @58], @[@1, @2, @78], @[@1, @3, @117],
-            @[@1, @4, @48], @[@2, @0, @35], @[@2, @1, @15], @[@2, @2, @123], @[@2, @3, @64], @[@2, @4, @52], @[@3, @0, @72], @[@3, @1, @132], @[@3, @2, @114],
-            @[@3, @3, @19], @[@3, @4, @16], @[@4, @0, @38], @[@4, @1, @5], @[@4, @2, @8], @[@4, @3, @117], @[@4, @4, @115], @[@5, @0, @88], @[@5, @1, @32],
-            @[@5, @2, @12], @[@5, @3, @6], @[@5, @4, @120], @[@6, @0, @13], @[@6, @1, @44], @[@6, @2, @88], @[@6, @3, @98], @[@6, @4, @96], @[@7, @0, @31],
-            @[@7, @1, @1], @[@7, @2, @82], @[@7, @3, @32], @[@7, @4, @30], @[@8, @0, @85], @[@8, @1, @97], @[@8, @2, @123], @[@8, @3, @64], @[@8, @4, @84],
-            @[@9, @0, @47], @[@9, @1, @114], @[@9, @2, @31], @[@9, @3, @48], @[@9, @4, @91]
-                 ])
+        .dataSet(AAOptionsData.heatmapData)
         .dataLabelsSet(AADataLabels.new
                        .enabledSet(true)
                        .colorSet(@"red")
@@ -523,7 +409,7 @@
     .seriesSet(@[
         AASeriesElement.new
         .typeSet(AAChartTypeVenn)
-        .dataSet(AAOptionsData.vennChartData)])
+        .dataSet(AAOptionsData.vennData)])
     ;
 }
 
@@ -559,7 +445,7 @@
     NSArray *seriesElementArr = @[
         AASeriesElement.new
         .nameSet(@"各国预期寿命变化")
-        .dataSet(AAOptionsData.dumbbellChartData)
+        .dataSet(AAOptionsData.dumbbellData)
     ];
     
     AAOptions *aaOptionsQ = AAOptions.new
@@ -606,7 +492,7 @@
     NSArray *seriesElementArr = @[
         AASeriesElement.new
         .nameSet(@"Population")
-        .dataSet(AAOptionsData.lollipopChartData)
+        .dataSet(AAOptionsData.lollipopData)
     ];
     
     AAOptions *aaOptionsQ = AAOptions.new
@@ -675,13 +561,7 @@
         AASeriesElement.new
         .nameSet(@"Height")
         .colorByPointSet(@true)
-        .dataSet(@[
-            @[@"Pyramid of Khufu", @138.8],
-            @[@"Pyramid of Khafre", @136.4],
-            @[@"Red Pyramid", @104],
-            @[@"Bent Pyramid", @101.1],
-            @[@"Pyramid of the Sun", @75]
-                 ])
+        .dataSet(AAOptionsData.columnpyramidData)
                ])
     ;
 }
@@ -735,12 +615,12 @@
         AASeriesElement.new
         .nameSet(@"Height")
         .colorByPointSet(@true)
-        .dataSet(AAOptionsData.tilemapChartData)
+        .dataSet(AAOptionsData.tilemapData)
                ])
     ;
 }
 
-- (AAOptions *)simpleTreemapChart {
+- (AAOptions *)treemapWithColorAxisData {
     return AAOptions.new
     .chartSet(AAChart.new
               .typeSet(AAChartTypeTreemap))
@@ -752,37 +632,7 @@
                   )
     .seriesSet(@[
         AASeriesElement.new
-        .dataSet(@[
-            @{
-                @"name": @"A",
-                @"value": @6,
-                @"colorValue": @1
-            }, @{
-                @"name": @"B",
-                @"value": @6,
-                @"colorValue": @2
-            }, @{
-                @"name": @"C",
-                @"value": @4,
-                @"colorValue": @3
-            }, @{
-                @"name": @"D",
-                @"value": @3,
-                @"colorValue": @4
-            }, @{
-                @"name": @"E",
-                @"value": @2,
-                @"colorValue": @5
-            }, @{
-                @"name": @"F",
-                @"value": @2,
-                @"colorValue": @6
-            }, @{
-                @"name": @"G",
-                @"value": @1,
-                @"colorValue": @7
-            }
-                 ])
+        .dataSet(AAOptionsData.treemapWithColorAxisData)
                ])
     ;
 }
@@ -808,7 +658,7 @@
             .dataLabelsSet(AADataLabels.new
                            .enabledSet(true))
             .borderWidthSet(@3)])
-        .dataSet(AAOptionsData.drilldownTreemapChartData)
+        .dataSet(AAOptionsData.drilldownTreemapData)
                ])
     ;
 }
@@ -838,7 +688,7 @@
                      @"borderRadius":@2,
             @"pointPadding": @0,
             @"groupPadding": @0,
-            @"data": AAOptionsData.xrangeChartdata
+            @"data": AAOptionsData.xrangeData
         }])
     ;
 }
@@ -853,7 +703,7 @@
     .seriesSet(@[
         AASeriesElement.new
         .nameSet(@"Sample vector field")
-        .dataSet(AAOptionsData.vectorChartdata)
+        .dataSet(AAOptionsData.vectorData)
                ])
     ;
 }
