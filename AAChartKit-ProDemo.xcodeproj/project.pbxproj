@@ -478,8 +478,8 @@
 			children = (
 				1E66D1BB210AF4EC007EAB8C /* AAChartKitLib */,
 				7172A3D51E763EA6000D5B99 /* AAChartKit-ProDemo */,
-				7172A3EF1E763EA6000D5B99 /* AAChartKitDemoTests */,
-				7172A3FA1E763EA6000D5B99 /* AAChartKitDemoUITests */,
+				7172A3EF1E763EA6000D5B99 /* AAChartKit-ProDemoTests */,
+				7172A3FA1E763EA6000D5B99 /* AAChartKit-ProDemoUITests */,
 				7172A3D41E763EA6000D5B99 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -518,22 +518,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		7172A3EF1E763EA6000D5B99 /* AAChartKitDemoTests */ = {
+		7172A3EF1E763EA6000D5B99 /* AAChartKit-ProDemoTests */ = {
 			isa = PBXGroup;
 			children = (
 				7172A3F01E763EA6000D5B99 /* AAChartKitTests.m */,
 				7172A3F21E763EA6000D5B99 /* Info.plist */,
 			);
-			path = AAChartKitDemoTests;
+			path = "AAChartKit-ProDemoTests";
 			sourceTree = "<group>";
 		};
-		7172A3FA1E763EA6000D5B99 /* AAChartKitDemoUITests */ = {
+		7172A3FA1E763EA6000D5B99 /* AAChartKit-ProDemoUITests */ = {
 			isa = PBXGroup;
 			children = (
 				7172A3FB1E763EA6000D5B99 /* AAChartKitUITests.m */,
 				7172A3FD1E763EA6000D5B99 /* Info.plist */,
 			);
-			path = AAChartKitDemoUITests;
+			path = "AAChartKit-ProDemoUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
