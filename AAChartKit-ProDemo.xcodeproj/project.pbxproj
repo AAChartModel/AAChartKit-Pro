@@ -269,7 +269,7 @@
 		1E66D1BB210AF4EC007EAB8C /* AAChartKit-Pro */ = {
 			isa = PBXGroup;
 			children = (
-				1E66D1F0210AF4EC007EAB8C /* AAChartConfiger */,
+				1E66D1F0210AF4EC007EAB8C /* AAChartCreator */,
 				1E66D1BD210AF4EC007EAB8C /* AAOptionsModel */,
 				27EB89DC248BE1AC007E6A6B /* AAOptionsProModel */,
 				1E66D1BC210AF4EC007EAB8C /* AAJSFiles.bundle */,
@@ -332,7 +332,7 @@
 			path = AAOptionsModel;
 			sourceTree = "<group>";
 		};
-		1E66D1F0210AF4EC007EAB8C /* AAChartConfiger */ = {
+		1E66D1F0210AF4EC007EAB8C /* AAChartCreator */ = {
 			isa = PBXGroup;
 			children = (
 				1E66D1F6210AF4EC007EAB8C /* AAChartKit.h */,
@@ -348,7 +348,7 @@
 				1E66D1F1210AF4EC007EAB8C /* AAOptions.h */,
 				1E66D1F7210AF4EC007EAB8C /* AAOptions.m */,
 			);
-			path = AAChartConfiger;
+			path = AAChartCreator;
 			sourceTree = "<group>";
 		};
 		27EB89DC248BE1AC007E6A6B /* AAOptionsProModel */ = {
