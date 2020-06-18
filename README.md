@@ -1,7 +1,7 @@
 
-![AAChartKit-LOGO](https://github.com/AAChartModel/loadHtmlCssJsDemo-master/blob/master/AAChartKit/AAChartKit-Logo.png)
+![AAChartKit-Pro-LOGO](https://tool.jianshu.tech/highcharts/demo/highcharts/sankey-diagram.svg)
 
-# AAChartKit
+# AAChartKit-Pro
 [![Support](https://img.shields.io/badge/support-iOS%206%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/) <br>
 [![](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/AAChartModel/AAChartKit/blob/master/LICENSE) <br>
 [![](https://img.shields.io/badge/language-OC-green.svg)](https://github.com/AAChartModel/AAChartKit)  <br>
@@ -16,16 +16,16 @@
 ## [ **English Document 🇬🇧** ](https://github.com/AAChartModel/AAChartKit)  |  [ **简体中文文档 🇨🇳** ](https://github.com/AAChartModel/AAChartKit/blob/master/CHINESE-README.md)| [ **繁體中文文檔 🇭🇰** ](https://github.com/AAChartModel/AAChartKit/blob/master/TRADITIONAL-CHINESE-README.md)
 
 ### The Swift version of AAChartKit can be found here:
-#### *https://github.com/AAChartModel/AAChartKit-Swift*
+#### *https://github.com/AAChartModel/AAChartKit-Swift-Pro*
 
 ## Preface
 
-AAChartKit is an elegant, friendly and easy to use chart library for iOS, based on the open source `Highcharts` JS libraries. AAChartKit is extremely powerful, easy to configure and a pleasure to use. Currently AAChartKit includes support for the following chart types: column chart, bar chart, area chart, area spline chart, line chart, spline chart, radar chart, polar chart, pie chart, bubble chart, pyramid chart, funnel chart, column range and area range chart. More chart types are planned to be supported. AAChartKit gives you easy and fast access to a wide range of chart types, hassle-free and quick to integrate into your own project.
+AAChartKit-Pro is a professional version of AAChartKit, it is an elegant and friendly chart framework for iOS, iPadOS, tvOS, macOS. AAChartKit-Pro is a more powerful data visualization framework that supports more types beautiful chart like bellcurve, bullet, columnpyramid, cylinder, dependencywheel, heatmap, histogram, networkgraph, organization, packedbubble, pareto, sankey, series, solidgauge, streamgraph, sunburst, tilemap, timeline, treemap, variablepie, variwide, vector, venn, windbarb, wordcloud, xrange charts and so on. More chart types are planned to be supported. AAChartKit-Pro gives you easy and fast access to a wide range of chart types, hassle-free and quick to integrate into your own project.
  
 ***
 ## Features
 
-* 🎂  Support up from `iOS 6`, `ARC` support.
+* 🎂  Support up from `iOS 8+`, `ARC` support.
 * 🚀  Powerful and easy to use. It supports `column chart`, `bar chart`, `area chart`, `areaspline chart`, `line chart`, `spline chart`, `radar chart`, `polar chart`, `pie chart`, `bubble chart`, `pyramid chart`, `funnel chart`, `columnrange chart`, `arearange chart`, `mixed chart` and other graphics. Support for more chart types is planned.
 * 🦋  The charts are interactive and animated. The `animation` effect is exquisite, delicate, smooth and beautiful.
 * ⛓. Supports `chain programming syntax` like *Masonry* 
