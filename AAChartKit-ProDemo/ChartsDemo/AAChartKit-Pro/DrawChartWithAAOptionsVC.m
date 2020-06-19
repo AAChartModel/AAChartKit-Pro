@@ -81,7 +81,14 @@
         case 16: return [self drilldownTreemapChart];
         case 17: return [self xrangeChart];
         case 18: return [self vectorChart];
-            
+        case 19: return [self bellcurveChart];
+        case 20: return [self timelineChart];
+        case 21: return [self itemChart];
+        case 22: return [self windbarbChart];
+        case 23: return [self networkgraphChart];
+        case 24: return [self wordcloudChart];
+        case 25: return [self eulerChart];
+
     }
     return nil;
 }
@@ -124,6 +131,8 @@
         AASeriesElement.new
         .nameSet(@"countries")
         .innerSizeSet(@"20%")
+        .dataLabelsSet(AADataLabels.new
+                       .enabledSet(false))
         .dataSet(AAOptionsData.variablepieData)
     ]);
     
@@ -711,6 +720,164 @@
         .dataSet(AAOptionsData.vectorData)
                ])
     ;
+}
+
+- (AAOptions *)bellcurveChart {
+    AAOptions *aaOptions = AAOptions.new
+    .titleSet(AATitle.new
+              .textSet(@"Bell curve"))
+    .xAxisSet((id)@[
+        AATitle.new
+        .textSet(@"Data"),
+        AATitle.new
+        .textSet(@"Bell curve")
+                  ])
+    .yAxisSet((id)@[
+        AATitle.new
+        .textSet(@"Data"),
+        AATitle.new
+        .textSet(@"Bell curve")
+                  ])
+    .seriesSet(@[
+        @{
+            @"name": @"Bell curve",
+            @"type": @"bellcurve",
+            @"xAxis": @1,
+            @"yAxis": @1,
+            @"baseSeries": @1,
+            @"zIndex": @-1
+        },
+        AASeriesElement.new
+        .nameSet(@"Data")
+        .typeSet(AAChartTypeScatter)
+        .markerSet(AAMarker.new
+                   .fillColorSet(@"#ffffff")//点的填充色(用来设置折线连接点的填充色)
+                   .lineWidthSet(@2)//外沿线的宽度(用来设置折线连接点的轮廓描边的宽度)
+                   .lineColorSet(@""))//外沿线的颜色(用来设置折线连接点的轮廓描边颜色，当值为空字符串时，默认取数据点或数据列的颜色))
+        .dataSet(AAOptionsData.bellcurveData)]);
+    
+    return aaOptions;
+}
+
+- (AAOptions *)timelineChart {
+    AAOptions *aaOptions = AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(@"timeline"))
+    .titleSet(AATitle.new
+              .textSet(@"人类太空探索时间表"))
+    .subtitleSet(AASubtitle.new
+                 .textSet(@"数据来源: https://en.wikipedia.org/wiki/Timeline_of_space_exploration"))
+    .yAxisSet(AAYAxis.new
+              .visibleSet(false))
+    .seriesSet(@[
+        AASeriesElement.new
+        .dataSet(AAOptionsData.timelineData)
+               ]);
+    
+    return aaOptions;
+}
+
+- (AAOptions *)itemChart {
+    AAOptions *aaOptions = AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(@"item"))
+    .titleSet(AATitle.new
+              .textSet(@"AAChartKit-Pro item chart"))
+    .subtitleSet(AASubtitle.new
+                 .textSet(@"Parliament visualization"))
+    .legendSet(AALegend.new
+               .enabledSet(false))
+    .seriesSet(@[
+        AASeriesElement.new
+        .nameSet(@"Representatives")
+        .keysSet(@[@"name",@"y",@"color",@"label"])
+        .dataSet(AAOptionsData.itemData)
+        .dataLabelsSet(AADataLabels.new
+                       .enabledSet(false))
+        .sizeSet((id)@"170%")
+               ]);
+    
+    return aaOptions;
+}
+
+- (AAOptions *)windbarbChart {
+    AAOptions *aaOptions = AAOptions.new
+    .titleSet(AATitle.new
+              .textSet(@"AAChartKit-Pro Wind Barbst"))
+    .xAxisSet((id)@{
+        @"offset": @40
+                  })
+    .seriesSet(@[
+        AASeriesElement.new
+        .typeSet(@"windbarb")
+        .nameSet(@"Wind")
+        .dataSet(AAOptionsData.windbarbData),
+        AASeriesElement.new
+        .typeSet(AAChartTypeArea)
+        .nameSet(@"Wind speed")
+        .dataSet(AAOptionsData.windbarbData)
+        .keysSet(@[@"y"])
+        .markerSet(AAMarker.new
+                   .fillColorSet(@"#ffffff")//点的填充色(用来设置折线连接点的填充色)
+                   .lineWidthSet(@5)//外沿线的宽度(用来设置折线连接点的轮廓描边的宽度)
+                   .lineColorSet(@""))//外沿线的颜色(用来设置折线连接点的轮廓描边颜色，当值为空字符串时，默认取数据点或数据列的颜色))
+               ]);
+    
+    return aaOptions;
+}
+
+- (AAOptions *)networkgraphChart {
+    AAOptions *aaOptions = AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(@"networkgraph"))
+    .titleSet(AATitle.new
+              .textSet(@"The Indo-European Laungauge Tree"))
+    .subtitleSet(AASubtitle.new
+                 .textSet(@"A Force-Directed Network Graph in Highcharts"))
+    .seriesSet(@[
+        AASeriesElement.new
+        .dataLabelsSet(AADataLabels.new
+                       .enabledSet(true))
+        .dataSet(AAOptionsData.networkgraphData),
+               ]);
+    
+    return aaOptions;
+}
+
+- (AAOptions *)wordcloudChart {
+    AAOptions *aaOptions = AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(@"wordcloud"))
+    .titleSet(AATitle.new
+              .textSet(@"词云图"))
+    .seriesSet(@[
+        AASeriesElement.new
+        .dataSet(AAOptionsData.wordcloudData),
+               ]);
+    
+    return aaOptions;
+}
+
+- (AAOptions *)eulerChart {
+    AAOptions *aaOptions = AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(@"venn"))
+    .titleSet(AATitle.new
+              .textSet(@"欧拉图和韦恩图的关系"))
+    .tooltipSet(AATooltip.new
+                .enabledSet(true)
+                .headerFormatSet([NSString stringWithFormat:@"%@%@",
+                                  @"<span style=""color:{point.color}"">\u2022</span>",
+                                  @"<span style=""font-size: 14px""> {point.point.name}</span><br/>"])
+                .pointFormatSet(@"{point.description}<br><span style=""font-size: 10px"">Source: Wikipedia</span>")
+                )
+    
+    .seriesSet(@[
+        AASeriesElement.new
+        .dataSet(AAOptionsData.eulerData),
+               ]);
+    
+    return aaOptions;
 }
 
 @end

@@ -77,9 +77,34 @@
     return [self getJsonDataWithJsonFileName:@"treemapWithLevelsData"];
 }
 
-+ (NSArray *)dependencywheelChartData {
-    return [self getJsonDataWithJsonFileName:@"dependencywheelChartData"];
++ (NSArray *)bellcurveData {
+    return [self getJsonDataWithJsonFileName:@"bellcurveData"];
 }
+
++ (NSArray *)timelineData {
+    return [self getJsonDataWithJsonFileName:@"timelineData"];
+}
+
++ (NSArray *)itemData {
+    return [self getJsonDataWithJsonFileName:@"itemData"];
+}
+
++ (NSArray *)windbarbData {
+    return [self getJsonDataWithJsonFileName:@"windbarbData"];
+}
+
++ (NSArray *)networkgraphData {
+    return [self getJsonDataWithJsonFileName:@"networkgraphData"];
+}
+
++ (NSArray *)wordcloudData {
+    return [self getJsonDataWithJsonFileName:@"wordcloudData"];
+}
+
++ (NSArray *)eulerData {
+    return [self getJsonDataWithJsonFileName:@"eulerData"];
+}
+
 
 
 + (NSArray *)xrangeData {

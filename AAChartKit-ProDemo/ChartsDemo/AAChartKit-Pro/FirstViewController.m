@@ -267,7 +267,14 @@
               @"simpleTreemapChart---简单矩形树🌲图",
               @"drilldownTreemapChart---可下钻的矩形树🌲图",
               @"xrangeChart---X轴范围图||甘特图||条码图",
-              @"",
+              @"vectorChart---向量图🏹",
+              @"bellcurveChart---贝尔曲线图",
+              @"timelineChart---时序图⌚️",
+              @"itemChart---议会项目图",
+              @"windbarbChart---风羽图",
+              @"networkgraphChart---力导关系图",
+              @"wordcloudChart---词云图",
+              @"eulerChart---欧拉图",
 //              var dataJson = JSON.stringify(points);
 //
 //              console.log(dataJson);
