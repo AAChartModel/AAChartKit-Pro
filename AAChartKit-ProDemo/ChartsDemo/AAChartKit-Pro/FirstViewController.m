@@ -41,9 +41,6 @@
 #import "ChartListVC.h"
 #import "MixedChartVC.h"
 
-#warning revise
-#import "MonitorViewController.h"
-
 #define ColorWithRGB(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 #define AAGrayColor            [UIColor colorWithRed:245/255.0 green:246/255.0 blue:247/255.0 alpha:1.0]
 #define AABlueColor            ColorWithRGB(63, 153,231,1)
@@ -70,15 +67,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
 
     [self configTheTableView];
-    
-#warning revise
-    // 监听点击入口。
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Touch Delegate" style:UIBarButtonItemStylePlain target:self action:@selector(monitorTap)];
-}
-#warning revise
-- (void)monitorTap {
-    MonitorViewController *monitorVC = [[MonitorViewController alloc] init];
-    [self.navigationController pushViewController:monitorVC animated:YES];
 }
 
 - (void)configTheTableView {
@@ -127,11 +115,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    customTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
-        cell = [[customTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
-    cell.label.text = self.chartTypeNameArr[indexPath.section][indexPath.row];
+    cell.textLabel.text = self.chartTypeNameArr[indexPath.section][indexPath.row];
+    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.textAlignment = NSTextAlignmentLeft;
+    cell.textLabel.font = [UIFont systemFontOfSize:15];
     return cell;
 }
 
@@ -360,7 +351,7 @@
 - (NSArray *)sectionTypeArr {
     if (!_sectionTypeArr) {
         _sectionTypeArr = @[
-            @"AAOptions---Use AAOptions",
+            @"Pro types chart AAOptions",
             @"Basic Type---基础类型",
             @"Special Type---特别类型",
             @"Mixed Type Chart---混合图表",
@@ -374,21 +365,3 @@
 
 @end
 
-
-@implementation customTableViewCell
-
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        _label = [[UILabel alloc]init];
-        _label.frame = CGRectMake(60, 0, self.frame.size.width-40, 40);
-        _label.textAlignment = NSTextAlignmentLeft;
-        _label.font = [UIFont systemFontOfSize:12.f];
-        _label.textColor = [UIColor darkGrayColor];
-        [self addSubview:_label];
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    return self;
-}
-
-@end
