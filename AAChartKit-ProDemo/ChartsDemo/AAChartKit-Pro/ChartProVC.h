@@ -33,6 +33,6 @@
 #import <UIKit/UIKit.h>
 #import "AABaseChartVC.h"
 
-@interface ProTypeChartVC : AABaseChartVC
+@interface ChartProVC : AABaseChartVC
 
 @end

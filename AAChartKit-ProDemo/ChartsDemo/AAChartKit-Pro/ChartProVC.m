@@ -30,15 +30,15 @@
  
  */
 
-#import "ProTypeChartVC.h"
+#import "ChartProVC.h"
 #import "AAOptionsData.h"
 #import "AAOptionsSeries.h"
 
-@interface ProTypeChartVC ()
+@interface ChartProVC ()
 
 @end
 
-@implementation ProTypeChartVC
+@implementation ChartProVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];

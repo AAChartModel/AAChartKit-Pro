@@ -73,7 +73,7 @@
 		27EB8A7D2497C007007E6A6B /* lollipopData.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A6D2497C007007E6A6B /* lollipopData.json */; };
 		27EB8A7E2497C007007E6A6B /* bigHeatmapData.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A6E2497C007007E6A6B /* bigHeatmapData.json */; };
 		27EB8A832497C03A007E6A6B /* AAOptionsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB8A802497C03A007E6A6B /* AAOptionsData.m */; };
-		27EB8A842497C03A007E6A6B /* ProTypeChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB8A822497C03A007E6A6B /* ProTypeChartVC.m */; };
+		27EB8A842497C03A007E6A6B /* ChartProVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB8A822497C03A007E6A6B /* ChartProVC.m */; };
 		27EB8A872497C352007E6A6B /* streamgraphSeries.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A862497C352007E6A6B /* streamgraphSeries.json */; };
 		27EB8A892497C37D007E6A6B /* packedbubbleSeries.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A882497C37D007E6A6B /* packedbubbleSeries.json */; };
 		27EB8A8F249B804C007E6A6B /* bellcurveData.json in Resources */ = {isa = PBXBuildFile; fileRef = 27EB8A8E249B804C007E6A6B /* bellcurveData.json */; };
@@ -232,10 +232,10 @@
 		27EB8A6C2497C007007E6A6B /* drilldownTreemapData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = drilldownTreemapData.json; sourceTree = "<group>"; };
 		27EB8A6D2497C007007E6A6B /* lollipopData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lollipopData.json; sourceTree = "<group>"; };
 		27EB8A6E2497C007007E6A6B /* bigHeatmapData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bigHeatmapData.json; sourceTree = "<group>"; };
-		27EB8A7F2497C03A007E6A6B /* ProTypeChartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProTypeChartVC.h; sourceTree = "<group>"; };
+		27EB8A7F2497C03A007E6A6B /* ChartProVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartProVC.h; sourceTree = "<group>"; };
 		27EB8A802497C03A007E6A6B /* AAOptionsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAOptionsData.m; sourceTree = "<group>"; };
 		27EB8A812497C03A007E6A6B /* AAOptionsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAOptionsData.h; sourceTree = "<group>"; };
-		27EB8A822497C03A007E6A6B /* ProTypeChartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProTypeChartVC.m; sourceTree = "<group>"; };
+		27EB8A822497C03A007E6A6B /* ChartProVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartProVC.m; sourceTree = "<group>"; };
 		27EB8A862497C352007E6A6B /* streamgraphSeries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = streamgraphSeries.json; sourceTree = "<group>"; };
 		27EB8A882497C37D007E6A6B /* packedbubbleSeries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = packedbubbleSeries.json; sourceTree = "<group>"; };
 		27EB8A8E249B804C007E6A6B /* bellcurveData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bellcurveData.json; sourceTree = "<group>"; };
@@ -468,8 +468,8 @@
 		27EB8A222495C1F2007E6A6B /* AAChartKit-Pro */ = {
 			isa = PBXGroup;
 			children = (
-				27EB8A7F2497C03A007E6A6B /* ProTypeChartVC.h */,
-				27EB8A822497C03A007E6A6B /* ProTypeChartVC.m */,
+				27EB8A7F2497C03A007E6A6B /* ChartProVC.h */,
+				27EB8A822497C03A007E6A6B /* ChartProVC.m */,
 				27EB89E0248C8F87007E6A6B /* AAOptionsSeries.h */,
 				27EB89E1248C8F87007E6A6B /* AAOptionsSeries.m */,
 				27EB8A812497C03A007E6A6B /* AAOptionsData.h */,
@@ -817,7 +817,7 @@
 				2750144224C02CB6005A5D73 /* AALine.m in Sources */,
 				2750144124C02CB6005A5D73 /* AAPlotLinesElement.m in Sources */,
 				64F15B5C1F5D907B00DC7A7F /* DrilldownChartVC.m in Sources */,
-				27EB8A842497C03A007E6A6B /* ProTypeChartVC.m in Sources */,
+				27EB8A842497C03A007E6A6B /* ChartProVC.m in Sources */,
 				275013AF24BFFBC6005A5D73 /* BasicChartVC.m in Sources */,
 				2750143C24C02CB6005A5D73 /* AAPane.m in Sources */,
 				2750144F24C030A5005A5D73 /* AAShadow.m in Sources */,
