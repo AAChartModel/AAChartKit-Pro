@@ -25,10 +25,10 @@
     NSError *error;
     id jsonObj = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
     if (!jsonData || error) {
-        NSLog(@"失败❌❌❌%@",@"JSON解码失败");
+        NSLog(@"失败❌❌❌ 📃JSON文件%@解码失败",jsonFileName);
         return nil;
     } else {
-        NSLog(@"成功🔥🔥🔥%@",jsonObj);
+        NSLog(@"成功🔥🔥🔥 📃JSON文件%@解码成功",jsonFileName);
         return jsonObj;
     }
 }
