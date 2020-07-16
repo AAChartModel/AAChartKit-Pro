@@ -30,37 +30,23 @@
  
  */
 
-#import "DrawChartWithAAOptionsVC.h"
+#import "ProTypeChartVC.h"
 #import "AAOptionsData.h"
-#import "AAChartKit.h"
-
-#import "AADateUTCTool.h"
 #import "AAOptionsSeries.h"
-#define AAJSFunc(x) #x
 
-@interface DrawChartWithAAOptionsVC ()
+@interface ProTypeChartVC ()
 
 @end
 
-@implementation DrawChartWithAAOptionsVC
+@implementation ProTypeChartVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.title = self.navigationItemTitle;
-    
-    AAChartView *aaChartView =[[AAChartView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    aaChartView.contentHeight = aaChartView.frame.size.height-80;
-    aaChartView.isClearBackgroundColor = YES;
-    [self.view addSubview:aaChartView];
-    aaChartView.scrollEnabled = NO;
-    
-    AAOptions *aaOptions = [self configureChartOptions];
-    [aaChartView aa_drawChartWithOptions:aaOptions];
+
 }
 
 // https://www.highcharts.com/demo
-- (AAOptions *)configureChartOptions {
+- (id)chartConfigurationWithSelectedIndex:(NSUInteger)selectedIndex {
     switch (self.selectedIndex) {
         case 0: return [self sankeyChart];
         case 1: return [self variablepieChart];
@@ -98,6 +84,20 @@
     return AAOptions.new
     .titleSet(AATitle.new
               .textSet(@"AAChartKit-Pro 桑基图"))
+    .colorsSet(@[
+        @"rgb(137,78,36)",
+        @"rgb(220,36,30)",
+        @"rgb(255,206,0)",
+        @"rgb(1,114,41)",
+        @"rgb(0,175,173)",
+        @"rgb(215,153,175)",
+        @"rgb(106,114,120)",
+        @"rgb(114,17,84)",
+        @"rgb(0,0,0)",
+        @"rgb(0,24,168)",
+        @"rgb(0,160,226)",
+        @"rgb(106,187,170)"
+               ])
     .seriesSet(@[
         AASeriesElement.new
         .typeSet(AAChartTypeSankey)
@@ -155,8 +155,8 @@
         .layoutAlgorithmSet(@"sliceAndDice")
         .dataLabelsSet(AADataLabels.new
                        .enabledSet(true)
-                       .alignSet(AALegendAlignTypeLeft)
-                       .verticalAlignSet(AALegendVerticalAlignTypeTop)
+                       .alignSet(AAChartAlignTypeLeft)
+                       .verticalAlignSet(AAChartVerticalAlignTypeTop)
                        .styleSet(AAStyle.new
                                  .fontSizeSet(@"15 px")
                                  .fontWeightSet(AAChartFontWeightTypeBold)))
@@ -179,8 +179,9 @@
     AAXAxis *aaXAxis = AAXAxis.new
     .visibleSet(true)
     .typeSet(@"category")
-    .titleSet(AATitle.new
-              .textSet(@"* 柱子宽度与 GDP 成正比"));
+//    .titleSet(AATitle.new
+//              .textSet(@"* 柱子宽度与 GDP 成正比"))
+    ;
     
     AATooltip *aaTooltip = AATooltip.new
     .enabledSet(true)
@@ -309,25 +310,25 @@
     .yAxisSet(AAYAxis.new
               .visibleSet(true)
               .categoriesSet(@[@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday"])
-              .titleSet(AATitle.new
-                        .textSet(@"")))
+              .titleSet(AAAxisTitle.new
+              .textSet(@"")))
     .colorAxisSet(AAColorAxis.new
                   .minSet(@0)
                   .minColorSet(@"#FFFFFF")
                   .maxColorSet(@"#7cb5ec"))
     .legendSet(AALegend.new
                .enabledSet(true)
-               .alignSet(AAChartTitleAlignTypeRight)
+               .alignSet(AAChartAlignTypeRight)
                .layoutSet(@"vertical")
                .verticalAlignSet(@"top")
                .ySet(@25)
                )
     .tooltipSet(AATooltip.new
                 .enabledSet(true)
-//                .formatterSet(@AAJSFunc(function () {
-//                    return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> sold <br><b>' +
-//                        this.point.value + '</b> items on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
-//                }))
+                .formatterSet(@AAJSFunc(function () {
+                    return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> sold <br><b>' +
+                        this.point.value + '</b> items on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
+                }))
                 )
     .seriesSet(@[
         AASeriesElement.new
@@ -445,7 +446,7 @@
     
     AAYAxis *aaYAxis = AAYAxis.new
     .visibleSet(true)
-    .titleSet(AATitle.new
+    .titleSet(AAAxisTitle.new
               .textSet(@"Life Expectancy (years)"))
     ;
     
@@ -492,7 +493,7 @@
     
     AAYAxis *aaYAxis = AAYAxis.new
     .visibleSet(true)
-    .titleSet(AATitle.new
+    .titleSet(AAAxisTitle.new
               .textSet(@"人口"))
     ;
     
@@ -565,7 +566,7 @@
               )
     .yAxisSet(AAYAxis.new
               .visibleSet(true)
-              .titleSet(AATitle.new
+              .titleSet(AAAxisTitle.new
                         .textSet(@"高度 (m)")))
     .tooltipSet(AATooltip.new
                 .enabledSet(true)
@@ -691,11 +692,11 @@
               .textSet(@""))
     .yAxisSet(AAYAxis.new
               .visibleSet(true)
-              
-              .titleSet(AATitle.new
+              .titleSet(AAAxisTitle.new
                         .textSet(@""))
               .reversedSet(true)
-              .categoriesSet(@[@"原型",@"开发",@"测试",@"上线"]))
+              .categoriesSet(@[@"原型",@"开发",@"测试",@"上线"])
+              .gridLineWidthSet(@0))
     .legendSet(AALegend.new
                .enabledSet(false))
     .seriesSet(@[@{

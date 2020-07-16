@@ -1,8 +1,8 @@
-//
-//  Subtitle.h
+
+//  SpecialChartVC.m
 //  AAChartKit
 //
-//  Created by An An on 17/1/5.
+//  Created by An An on 17/3/23.
 //  Copyright © 2017年 An An. All rights reserved.
 //*************** ...... SOURCE CODE ...... ***************
 //***...................................................***
@@ -30,14 +30,9 @@
  
  */
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "AABaseChartVC.h"
 
-@class AAStyle;
-
-@interface AASubtitle : NSObject
-
-AAPropStatementAndPropSetFuncStatement(copy,   AASubtitle, NSString *, text);
-AAPropStatementAndPropSetFuncStatement(copy,   AASubtitle, NSString *, align);
-AAPropStatementAndPropSetFuncStatement(strong, AASubtitle, AAStyle  *, style);
+@interface ProTypeChartVC : AABaseChartVC
 
 @end

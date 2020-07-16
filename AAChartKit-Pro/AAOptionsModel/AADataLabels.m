@@ -23,7 +23,7 @@
  * And if you want to contribute for this project, please contact me as well
  * GitHub        : https://github.com/AAChartModel
  * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
- * JianShu       : http://www.jianshu.com/u/f1e6753d4254
+ * JianShu       : https://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
  *
  * -------------------------------------------------------------------------------
@@ -31,37 +31,53 @@
  */
 
 #import "AADataLabels.h"
+#import "AAJSStringPurer.h"
 
 @implementation AADataLabels
 
-//- (instancetype)init {
-//    self = [super init];
-//    if (self) {
-//        NSDictionary *styleDic = @{@"color": @"contrast",//设置图表数据文字的颜色,可修改为 #ff00ff 任意的这种十六进制字符串
-//                                   @"fontSize": @"10.5px",//数据文字大小
-//                                   @"fontWeight": @"thin",//默认数据加粗,另外可设置为 thin 即是细体字
-//                                   @"textOutline": @"1px 1px contrast" };//文字轮廓描边
-//        self.style = (id)styleDic;
-//    }
-//
-//    return self;
-//}
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _enabled = true;
+        _softConnector = true;
+    }
+    return self;
+}
 
-AAPropSetFuncImplementation(AADataLabels, BOOL      , enabled);
-AAPropSetFuncImplementation(AADataLabels, AAStyle  *, style);
-AAPropSetFuncImplementation(AADataLabels, NSString *, format);
-AAPropSetFuncImplementation(AADataLabels, NSNumber *, rotation);
-AAPropSetFuncImplementation(AADataLabels, BOOL      , allowOverlap);
-AAPropSetFuncImplementation(AADataLabels, BOOL      , useHTML);
-AAPropSetFuncImplementation(AADataLabels, NSNumber*, distance);
-AAPropSetFuncImplementation(AADataLabels, NSNumber *, x);
-AAPropSetFuncImplementation(AADataLabels, NSNumber *, y);
-AAPropSetFuncImplementation(AADataLabels, NSString *, align);
-AAPropSetFuncImplementation(AADataLabels, NSString *, verticalAlign);
-
+AAPropSetFuncImplementation(AADataLabels, BOOL      , enabled)
+AAPropSetFuncImplementation(AADataLabels, NSString *, align)
+AAPropSetFuncImplementation(AADataLabels, AAStyle  *, style) 
+AAPropSetFuncImplementation(AADataLabels, NSString *, format)
+//AAPropSetFuncImplementation(AADataLabels, NSString *, formatter)
+AAPropSetFuncImplementation(AADataLabels, NSNumber *, rotation) 
+AAPropSetFuncImplementation(AADataLabels, BOOL      , allowOverlap) 
+AAPropSetFuncImplementation(AADataLabels, BOOL      , useHTML) 
+AAPropSetFuncImplementation(AADataLabels, NSNumber *, distance)
+AAPropSetFuncImplementation(AADataLabels, NSString *, verticalAlign)
+AAPropSetFuncImplementation(AADataLabels, NSNumber *, x) 
+AAPropSetFuncImplementation(AADataLabels, NSNumber *, y)
 AAPropSetFuncImplementation(AADataLabels, NSString *, color)
-AAPropSetFuncImplementation(AADataLabels, NSDictionary *, textPath);
-AAPropSetFuncImplementation(AADataLabels, NSDictionary *, filter); 
+AAPropSetFuncImplementation(AADataLabels, NSString *, backgroundColor)
+AAPropSetFuncImplementation(AADataLabels, NSString *, borderColor)
+AAPropSetFuncImplementation(AADataLabels, NSNumber *, borderRadius)
+AAPropSetFuncImplementation(AADataLabels, NSNumber *, borderWidth)
+AAPropSetFuncImplementation(AADataLabels, NSString *, shape)
+AAPropSetFuncImplementation(AADataLabels, BOOL      , crop)
+AAPropSetFuncImplementation(AADataLabels, BOOL      , inside)
+AAPropSetFuncImplementation(AADataLabels, NSString *, overflow)
+AAPropSetFuncImplementation(AADataLabels, BOOL      , softConnector)//Whether to render the connector as a soft arc or a line with sharp break. Only useful for pie, pyramid and funnel chart
+AAPropSetFuncImplementation(AADataLabels, NSDictionary *, textPath)
+AAPropSetFuncImplementation(AADataLabels, NSDictionary *, filter);
 
+- (void)setFormatter:(NSString *)formatter {
+    _formatter = [AAJSStringPurer pureJavaScriptFunctionStringWithString:formatter];
+}
+
+- (AADataLabels * (^) (NSString * formatter))formatterSet {
+    return ^(NSString * formatter) {
+        self->_formatter = [AAJSStringPurer pureJavaScriptFunctionStringWithString:formatter];
+        return self;
+    };
+}
 
 @end

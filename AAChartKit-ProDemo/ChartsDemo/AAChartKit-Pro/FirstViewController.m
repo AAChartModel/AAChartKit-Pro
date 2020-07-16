@@ -31,11 +31,11 @@
  */
 
 #import "FirstViewController.h"
-#import "SecondViewController.h"
+#import "BasicChartVC.h"
 #import "SpecialChartVC.h"
 #import "OnlyRefreshChartDataVC.h"
 #import "ChartAnimationTypeVC.h"
-#import "DrawChartWithAAOptionsVC.h"
+#import "ProTypeChartVC.h"
 #import "DrilldownChartVC.h"
 #import "ShowManyChartViewVC.h"
 #import "ChartListVC.h"
@@ -131,15 +131,15 @@
     switch (indexPath.section) {
         case 0 : {
             /*通过AAOptions实例对象来绘制图形*/
-            DrawChartWithAAOptionsVC *vc = [[DrawChartWithAAOptionsVC alloc]init];
+            ProTypeChartVC *vc = [[ProTypeChartVC alloc]init];
             vc.selectedIndex = indexPath.row;
-            vc.navigationItemTitle = self.chartTypeNameArr[indexPath.section][indexPath.row];
+            vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 1: {
             /*基础类型图表*/
-            SecondViewController *vc = [[SecondViewController alloc]init];
+            BasicChartVC *vc = [[BasicChartVC alloc]init];
             vc.chartType = indexPath.row;
             [self.navigationController pushViewController:vc animated:YES];
         }
@@ -148,14 +148,16 @@
         case 2: {
             /*特殊类型图表*/
             SpecialChartVC *vc = [[SpecialChartVC alloc]init];
-            vc.chartType = indexPath.row;
+            vc.selectedIndex = indexPath.row;
+            vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 3: {
             /*图表数据动态刷新*/
             MixedChartVC *vc = [[MixedChartVC alloc]init];
-            vc.chartTypeIndex = indexPath.row;
+            vc.selectedIndex = indexPath.row;
+            vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
             [self.navigationController  pushViewController:vc animated:YES];
         }
             break;
@@ -282,34 +284,32 @@
               @"Scatter Chart---散点图"
             ],
             /*特殊类型图表*/
-            @[@"Colorful Column Chart---多彩柱形图",
-              @"Gradient Color Bar---颜色渐变条形图",
-              @"Mixed Line Chart---虚实线混合折线图",
-              @"With Dividing Line---带有阈值分割线区域图",
-              @"Area Chart with minus--带有负数的区域填充图",
-              @"Pie Chart---扇形图",
+            @[@"Pie Chart---扇形图",
               @"Bubble Chart---气泡图",
               @"Scatter Chart--散点图",
-              @"Arearange Chart--区域面积图",
+              @"Area Range Chart--折线区域面积图",
               @"Area Spline range Chart--曲线区域面积图",
               @"Column Range Chart--柱形范围图",
-              @"Step Line Chart--直方折线图",
-              @"Step Area Chart--直方折线填充图",
-              @"Nightingale Rose Chart---南丁格尔玫瑰图",
               @"Box Plot Chart---箱线图",
               @"Water Fall---瀑布图",
               @"Pyramid Chart---金字塔图",
-              @"Funnel Chart---漏斗图",],
+              @"Funnel Chart---漏斗图",
+              @"Error Bar Chart---误差图",
+            ],
             /*混合类型图表*/
             @[@"Arearange Mixed Line---面积范围均线图",
               @"Columnrange Mixed Line---柱形范围图混合折线图",
               @"Stacking Column Mixed Line---堆积柱形图混合折线图",
               @"Dash Style Types Mixed---多种类型曲线混合图",
-              @"Negative Color Mixed---基准线以下异色混合图",
-              @"scatterMixedLine---散点图混合折线图(待完成)",
-              @"Negative Color Mixed bubble---基准线以下异色气泡图",
+              @"All Line Dash Style Types Mixed Chart---所有类型曲线混合图",
+              @"Negative Color Mixed Column Chart---基准线以下异色混合柱状图📊",
+              @"scatterMixedLine---散点图混合折线图",
+              @"Negative Color Mixed Bubble Chart---基准线以下异色混合气泡图",
               @"Polygon Mixed Scatter---多边形混合散点图",
-              @"Polar Chart Mixed---极地混合图"
+              @"Polar Chart Mixed---极地混合图",
+              @"configure Column Mixed Scatter Chart---柱形图混合散点图",
+              @"Negative Color Mixed Areaspline chart---基准线以下异色混合曲线填充图",
+              @"Area Chart Mixed Step Area Chart---折线填充和直方折线填充混合图"
               
             ],
             /*图表数据动态刷新*/

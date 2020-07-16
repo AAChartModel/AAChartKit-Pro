@@ -23,7 +23,7 @@
  * And if you want to contribute for this project, please contact me as well
  * GitHub        : https://github.com/AAChartModel
  * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
- * JianShu       : http://www.jianshu.com/u/f1e6753d4254
+ * JianShu       : https://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
  *
  * -------------------------------------------------------------------------------
@@ -31,32 +31,8 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "AABaseChartVC.h"
 
-typedef NS_ENUM(NSInteger,SpecialChartVCChartType) {
-    SpecialChartVCChartTypeColorfulColumnChart = 0,
-    SpecialChartVCChartTypeGradientColorBar ,
-    SpecialChartVCChartTypeMixedLine,
-    SpecialChartVCChartTypeArea,
-    SpecialChartVCChartTypeAreaspline,
-    SpecialChartVCChartTypePie,
-    SpecialChartVCChartTypeBubble,
-    SpecialChartVCChartTypeScatter,
-//    SpecialChartVCChartTypeTreeMap,
-    SpecialChartVCChartTypeArearange,
-    SpecialChartVCChartTypeAreasplinerange,
-    SpecialChartVCChartTypeColumnrange,
-    SpecialChartVCChartTypeStepLine,
-    SpecialChartVCChartTypeStepArea,
-    SpecialChartVCChartTypeNightingaleRoseChart,
-    SpecialChartVCChartTypeBoxplot,
-    SpecialChartVCChartTypeWaterfall,
-    SpecialChartVCChartTypePyramid,
-    SpecialChartVCChartTypeFunnel,
-};
-
-@interface SpecialChartVC : UIViewController
-
-@property (nonatomic, copy  ) NSString  *receivedChartType;
-@property (nonatomic, assign) SpecialChartVCChartType chartType;
+@interface SpecialChartVC : AABaseChartVC
 
 @end

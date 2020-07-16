@@ -23,7 +23,7 @@
  * And if you want to contribute for this project, please contact me as well
  * GitHub        : https://github.com/AAChartModel
  * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
- * JianShu       : http://www.jianshu.com/u/f1e6753d4254
+ * JianShu       : https://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
  *
  * -------------------------------------------------------------------------------
@@ -93,20 +93,29 @@
 //y: -6
 //zIndex
 
-AAPropStatementAndPropSetFuncStatement(assign, AADataLabels, BOOL      , enabled);
-AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, AAStyle  *, style);
-AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, format);
-AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSNumber *, rotation);
-AAPropStatementAndPropSetFuncStatement(assign, AADataLabels, BOOL      , allowOverlap);
-AAPropStatementAndPropSetFuncStatement(assign, AADataLabels, BOOL      , useHTML);
-AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, NSNumber *, distance);
-AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, NSNumber *, x);
-AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, NSNumber *, y);
-AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, align);
-AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, verticalAlign);
+AAPropStatementAndPropSetFuncStatement(assign, AADataLabels, BOOL      , enabled)
+AAPropStatementAndPropSetFuncStatement(assign, AADataLabels, NSString *, align)
+AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, AAStyle  *, style) 
+AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, format)
+AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, formatter)
+AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, NSNumber *, rotation) 
+AAPropStatementAndPropSetFuncStatement(assign, AADataLabels, BOOL      , allowOverlap) 
+AAPropStatementAndPropSetFuncStatement(assign, AADataLabels, BOOL      , useHTML) 
+AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, NSNumber *, distance)
+AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, verticalAlign)
+AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, NSNumber *, x) 
+AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, NSNumber *, y)
 AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, color)
-AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, NSDictionary *, textPath);
-AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, NSDictionary *, filter);
+AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, backgroundColor)
+AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, borderColor)
+AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSNumber *, borderRadius)
+AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSNumber *, borderWidth)
+AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, shape)
+AAPropStatementAndPropSetFuncStatement(assign, AADataLabels, BOOL      , crop)
+AAPropStatementAndPropSetFuncStatement(assign, AADataLabels, BOOL      , inside)
+AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, overflow)//该参数用于处理当数据标签超出绘图区时处理方式，默认值是 justify，即将超过绘图区的数据标签对齐绘图区内，对于柱形，也就意味着数据标签将会被移动到柱子内部。通过设置 crop 为 false 及 overflow 为"none" 可以让数据标签显示在绘图区的外面。 默认是：justify.
+AAPropStatementAndPropSetFuncStatement(assign,   AADataLabels, BOOL      , softConnector)//Whether to render the connector as a soft arc or a line with sharp break. Only useful for pie, pyramid and funnel chart
+AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, NSDictionary *, textPath)
+AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, NSDictionary *, filter)
 
 @end
-

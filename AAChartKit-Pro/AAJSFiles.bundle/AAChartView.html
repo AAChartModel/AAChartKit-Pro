@@ -2,6 +2,10 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width = device-width, initial-scale = 1.0, minimum-scale = 1.0, maximum-scale = 3.0,user-scalable = no">
+<!--            <script src="AAHighchartsLib.js"></script>-->
+<!--            <script src="AAHighchartsMore.js"></script>-->
+<!--            <script src="AAFunnel.js"></script>-->
+         <script src="AAEasing.js"></script>
 
          <script src="https://code.highcharts.com.cn/highcharts/highcharts.js"></script>
          <script src="https://code.highcharts.com.cn/highcharts/highcharts-more.js"></script>
@@ -37,102 +41,209 @@
                 user-select: none; }
         </style>
     </head>
-    <body>
-        <div id="container" style="width: min-450px; height: 200px; margin: -8px">
+    <body style="margin:0px 0px 0px 0px;">
+        <div id="container" style="width:100%; height: 100%;">
         </div>
         <script>
-
-            var globalChart;
-
-            function loadTheHighChartView(sender, receivedWidth, receivedHeight) {
-                var container = document.getElementById('container'); //获得元素
+        var aaGlobalChart;
+        function loadTheHighChartView(sender, receivedWidth, receivedHeight) {
+                var container = document.getElementById('container');
                 if (receivedWidth != 0) {
-                    container.style.width = receivedWidth; //设置宽度
+                    container.style.width = receivedWidth;
                 }
-                container.style.height = receivedHeight; //设置高度
+                if (receivedHeight != 0) {
+                    container.style.height = receivedHeight;
+                }
+                
                 var aaOptions = JSON.parse(sender);
-
-                if (aaOptions.gradientColorEnabled == true) { //开启图表渐变色功能
-                    var colors = aaOptions.colors;
-                    aaOptions.colors = Highcharts.map(colors,
-                    function(color) {
-                        return {
-                            linearGradient: {
-                                x1: 0,
-                                y1: 0,
-                                x2: 0,
-                                y2: 1
-                            },
-                            stops: [[0, color], [1, Highcharts.Color(color).setOpacity(0.6).get('rgba')]]
-                        };
-                    });
-                }
 
                 Highcharts.setOptions({
                     lang: {
+                        thousandsSep: ",", //https://api.highcharts.com/highcharts/lang.thousandsSep
                         resetZoom: aaOptions.zoomResetButtonText //Set 'Reset zoom button' title if title is not set in receivedZoomButtonTitle
                     }
                 }); //Set the 'Reset zoom button' title
                 aaOptions.credits = {
                     enabled: false
-                }; //去掉表格右下角版权信息
-<!--                if (aaOptions.plotOptions) {-->
-<!--                    var animation = aaOptions.plotOptions.series.animation;-->
-<!--                    if (animation) {-->
-<!--                        var animationEasingType = animation.easing;-->
-<!--<!--                        aaOptions.plotOptions.series.animation.easing = configureTheChartAnimationEasingType(animationEasingType);-->-->
-<!--                    }-->
-<!--                }-->
+                };
+                if (aaOptions.plotOptions) {
+                    configurePlotOptions(aaOptions);
+                }
                 
-                globalChart = Highcharts.chart('container', aaOptions);
+                configureOptionsJSFunctions(aaOptions);
+                
+                aaGlobalChart = Highcharts.chart('container', aaOptions);
+            }
+        
+        function configurePlotOptions(aaOptions) {
+            var aaPlotOptions = aaOptions.plotOptions;
+            if (aaPlotOptions.series && aaPlotOptions.series.animation) {
+                var animation = aaPlotOptions.series.animation;
+                var animationEasingType = animation.easing;
+                animation.easing = configureTheChartAnimationEasingType(animationEasingType);
+            }
+            
+            // 添加鼠标事件
+            if (aaOptions.touchEventEnabled == true && aaPlotOptions.series) {
+                configureChartTouchEvent(aaPlotOptions);
+            }
+        }
+        
+        function configureChartTouchEvent(aaPlotOptions) {
+            var mouseOverFunc = function() {
+                var message = {
+                    name: this.series.name,
+                    y: this.y,
+                    x: this.x,
+                    category:this.category,
+                    offset: {plotX: this.plotX, plotY: this.plotY},
+                    index: this.index,
+                };
+            window.webkit.messageHandlers.mouseover.postMessage(message);
+            };
+            
+            var seriesPoint = {
+                events:{
+                    mouseOver: mouseOverFunc,
+                }
+            };
+            aaPlotOptions.series.point = seriesPoint;
+        }
+        
+        function configureOptionsJSFunctions(aaOptions) {
+            if (aaOptions.tooltip
+                && aaOptions.tooltip.formatter) {
+                aaOptions.tooltip.formatter = eval(aaOptions.tooltip.formatter);
             }
 
-            function onlyRefreshTheChartDataWithSeries(receivedSeries) {
-                var receivedSeriesElementArr = JSON.parse(receivedSeries);
+            if (aaOptions.xAxis
+                && aaOptions.xAxis.labels
+                && aaOptions.xAxis.labels.formatter) {
+                aaOptions.xAxis.labels.formatter = eval(aaOptions.xAxis.labels.formatter);
+            }
 
-                for (var i = 0; i < receivedSeriesElementArr.length; i++) {
-                    var receivedSeriesData = receivedSeriesElementArr[i].data;
-                    // 获取series
-                    var chartSeries = globalChart.series[i];
-                    // 执行只刷新数据的函数
-                    chartSeries.setData(receivedSeriesData);
+            if (aaOptions.yAxis
+                && aaOptions.yAxis.labels
+                && aaOptions.yAxis.labels.formatter) {
+                aaOptions.yAxis.labels.formatter = eval(aaOptions.yAxis.labels.formatter);
+            }
+                
+            if (aaOptions.plotOptions
+                && aaOptions.plotOptions.series
+               ) {
+                if (aaOptions.plotOptions.series.dataLabels
+                    && aaOptions.plotOptions.series.dataLabels.formatter) {
+                    aaOptions.plotOptions.series.dataLabels.formatter = eval(aaOptions.plotOptions.series.dataLabels.formatter);
+                }
+                    
+                if (aaOptions.plotOptions.series.events
+                    && aaOptions.plotOptions.series.events.legendItemClick) {
+                    aaOptions.plotOptions.series.events.legendItemClick = eval(aaOptions.plotOptions.series.events.legendItemClick);
                 }
             }
+        }
 
-            //pragma mark -- setter method
-            function setTheChartViewContentWidth(receivedWidth) {
-                var container = document.getElementById('container'); //获得元素
-                container.style.width = receivedWidth; //设置宽度
-                globalChart.reflow();
+        function onlyRefreshTheChartDataWithSeries(receivedSeries, animation) {
+            var receivedSeriesArr = JSON.parse(receivedSeries);
+            var seriesArrLength = receivedSeriesArr.length;
+            for (var i = 0; i < seriesArrLength; i++) {
+                var receivedSeriesElementData = receivedSeriesArr[i].data;
+                // 获取series
+                var seriesElement = aaGlobalChart.series[i];
+                // 执行只刷新数据的函数
+                seriesElement.setData(receivedSeriesElementData, false);
             }
-
-            function setTheChartViewContentHeight(receivedHeight) {
-                var container = document.getElementById('container'); //获得元素
-                container.style.height = receivedHeight; //设置高度
-                globalChart.reflow();
-            }
-
-            function setChartSeriesHidden(hidden) {
-                for (var i = 0; i < globalChart.series.length; i++) {
-                    var series = globalChart.series[i];
-                    if (hidden == true) {
-                        series.hide();
-                    } else {
-                        series.show();
-                    }
+            
+            var animationBool = (animation == "1") ? true:false;
+            aaGlobalChart.redraw(animationBool);
+        }
+        
+        function updateChart(optionsStr, redraw) {
+            var options = JSON.parse(optionsStr);
+            aaGlobalChart.update(options,redraw);
+        }
+        
+        function addPointToChartSeries(elementIndex, optionsStr, redraw, shift, animation) {
+            var options = JSON.parse(optionsStr);
+            var redrawBool = (redraw == "1") ? true:false;
+            var shiftBool = (shift == "1") ? true:false;
+            var animationBool = (animation == "1") ? true:false;
+            
+            var seriesElement = aaGlobalChart.series[elementIndex];
+            seriesElement.addPoint(options, redrawBool, shiftBool, animationBool);
+        }
+        
+        function redrawWithAnimation(animation) {
+            var animationBool = (animation == "1") ? true:false;
+            aaGlobalChart.redraw(animationBool);
+        }
+        
+        //pragma mark -- setter method
+        function setTheChartViewContentWidth(receivedWidth) {
+            var container = document.getElementById('container');
+            container.style.width = receivedWidth;
+            aaGlobalChart.reflow();
+        }
+        
+        function setTheChartViewContentHeight(receivedHeight) {
+            var container = document.getElementById('container');
+            container.style.height = receivedHeight;
+            aaGlobalChart.reflow();
+        }
+        
+        function setChartSeriesHidden(hidden) {
+            var seriesLength = aaGlobalChart.series.length;
+            for (var i = 0; i < seriesLength; i++) {
+                var seriesElement = aaGlobalChart.series[i];
+                if (hidden == true) {
+                    seriesElement.hide();
+                } else {
+                    seriesElement.show();
                 }
             }
-
-            function showTheSeriesElementContentWithIndex(elementIndex) {
-                var series = globalChart.series[elementIndex];
-                series.show();
+        }
+        
+        function showTheSeriesElementContentWithIndex(elementIndex) {
+            var seriesElement = aaGlobalChart.series[elementIndex];
+            seriesElement.show();
+        }
+        
+        function hideTheSeriesElementContentWithIndex(elementIndex) {
+            var seriesElement = aaGlobalChart.series[elementIndex];
+            seriesElement.hide();
+        }
+        
+        function addElementToChartSeriesWithElement(elementStr) {
+            var seriesElement = JSON.parse(elementStr);
+            aaGlobalChart.addSeries(seriesElement);
+        }
+        
+        function removeElementFromChartSeriesWithElementIndex(elementIndex) {
+            var seriesElement = aaGlobalChart.series[elementIndex];
+            if (seriesElement) {
+                seriesElement.remove(true);
             }
-
-            function hideTheSeriesElementContentWithIndex(elementIndex) {
-                var series = globalChart.series[elementIndex];
-                series.hide();
+        }
+        
+        function evaluateTheJavaScriptStringFunction(jsStringFunction) {
+            eval(jsStringFunction);
+        }
+        
+        function changeChartSize(receivedWidth, receivedHeight, receivedAnimation) {
+            var container = document.getElementById('container');
+            container.style.width = receivedWidth;
+            container.style.height = receivedHeight;
+            
+            var aaAnimation;
+            if (receivedAnimation) {
+               aaAnimation = JSON.parse(receivedAnimation);
+               var animationEasingType = aaAnimation.easing;
+               aaAnimation.easing = configureTheChartAnimationEasingType(animationEasingType);
             }
-        </script>
+            
+            aaGlobalChart.setSize(receivedWidth, receivedHeight, aaAnimation);
+        }
+        
+            </script>
     </body>
-
 </html>

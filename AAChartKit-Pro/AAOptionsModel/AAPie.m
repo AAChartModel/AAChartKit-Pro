@@ -23,7 +23,7 @@
  * And if you want to contribute for this project, please contact me as well
  * GitHub        : https://github.com/AAChartModel
  * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
- * JianShu       : http://www.jianshu.com/u/f1e6753d4254
+ * JianShu       : https://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
  *
  * -------------------------------------------------------------------------------
@@ -34,14 +34,14 @@
 
 @implementation AAPie
 
-AAPropSetFuncImplementation(AAPie, NSNumber     *, size);
-AAPropSetFuncImplementation(AAPie, BOOL,           allowPointSelect);
-AAPropSetFuncImplementation(AAPie, NSString     *, cursor);
-AAPropSetFuncImplementation(AAPie, AADataLabels *, dataLabels);
-AAPropSetFuncImplementation(AAPie, BOOL,           showInLegend);
-AAPropSetFuncImplementation(AAPie, NSNumber     *, startAngle);
-AAPropSetFuncImplementation(AAPie, NSNumber     *, endAngle);
-AAPropSetFuncImplementation(AAPie, NSNumber     *, depth);
-
+AAPropSetFuncImplementation(AAPie, NSNumber     *, size) 
+AAPropSetFuncImplementation(AAPie, BOOL,           allowPointSelect) 
+AAPropSetFuncImplementation(AAPie, NSString     *, cursor) 
+AAPropSetFuncImplementation(AAPie, AADataLabels *, dataLabels) 
+AAPropSetFuncImplementation(AAPie, BOOL,           showInLegend) 
+AAPropSetFuncImplementation(AAPie, NSNumber     *, startAngle) 
+AAPropSetFuncImplementation(AAPie, NSNumber     *, endAngle) 
+AAPropSetFuncImplementation(AAPie, NSNumber     *, depth)
+AAPropSetFuncImplementation(AAPie, NSArray     *,  center)
 
 @end

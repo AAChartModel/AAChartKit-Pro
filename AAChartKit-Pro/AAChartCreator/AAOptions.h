@@ -36,11 +36,12 @@
 #import "AAChart.h"
 #import "AAAnimation.h"
 #import "AATitle.h"
-#import "AASubtitle.h"
 #import "AAXAxis.h"
 #import "AAYAxis.h"
+#import "AAPlotBandsElement.h"
 #import "AACrosshair.h"
 #import "AALabels.h"
+#import "AALabel.h"
 #import "AATooltip.h"
 #import "AAPlotOptions.h"
 #import "AAColumn.h"
@@ -55,13 +56,19 @@
 #import "AAStyle.h"
 #import "AASeries.h"
 #import "AAMarker.h"
-#import "AAOptions3d.h"
+#import "AAGradientColor.h"
+#import "AAColor.h"
+#import "AAStates.h"
+#import "AAPane.h"
 
 #import "AAColorAxis.h"
 #import "AAPackedbubble.h"
 #import "AATreemap.h"
 #import "AALayoutAlgorithm.h"
 #import "AAChartTypePro.h"
+
+#define AARgbaColor(r,g,b,a) [NSString stringWithFormat:@"rgba(%d,%d,%d,%f)",r,g,b,a]
+#define AAJSFunc(x) #x
 
 @interface AAOptions : NSObject
 
@@ -77,7 +84,8 @@ AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AALegend      *, legen
 AAPropStatementAndPropSetFuncStatement(strong, AAOptions, NSArray       *, colors);
 AAPropStatementAndPropSetFuncStatement(assign, AAOptions, BOOL,            gradientColorEnabled);
 AAPropStatementAndPropSetFuncStatement(copy,   AAOptions, NSString      *, zoomResetButtonText); //String to display in 'zoom reset button"
-
+AAPropStatementAndPropSetFuncStatement(assign, AAOptions, BOOL           , touchEventEnabled)
+AAPropStatementAndPropSetFuncStatement(assign, AAOptions, BOOL           , customEventEnabled)
 
 AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AAColorAxis      *, colorAxis);
 

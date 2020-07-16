@@ -23,7 +23,7 @@
  * And if you want to contribute for this project, please contact me as well
  * GitHub        : https://github.com/AAChartModel
  * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
- * JianShu       : http://www.jianshu.com/u/f1e6753d4254
+ * JianShu       : https://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
  *
  * -------------------------------------------------------------------------------
@@ -31,27 +31,70 @@
  */
 
 #import "AAChartView.h"
-#import <WebKit/WebKit.h>
+#import "AAJSStringPurer.h"
 
-/**
- *  Get the system version number
- */
-#define AASYSTEM_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
+@interface AAWeakProxy : NSProxy
+
+@property (nonatomic, weak, readonly, nullable) id target;
+
++ (nonnull instancetype)proxyWithTarget:(nonnull id)target;
+
+@end
+
+@implementation AAWeakProxy
+
+- (instancetype)initWithTarget:(id)target {
+    _target = target;
+    return self;
+}
+
++ (instancetype)proxyWithTarget:(id)target {
+    return [[AAWeakProxy alloc] initWithTarget:target];
+}
+
+- (id)forwardingTargetForSelector:(SEL)selector {
+    return _target;
+}
+
+- (void)forwardInvocation:(NSInvocation *)invocation {
+    void *null = NULL;
+    [invocation setReturnValue:&null];
+}
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)selector {
+    return [NSObject instanceMethodSignatureForSelector:@selector(init)];
+}
+
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    return [_target respondsToSelector:aSelector];
+}
+
+@end
+
+@implementation AAMoveOverEventMessageModel
+
+@end
+
 /**
  *  The console output log
  */
 #ifdef DEBUG // Debug status, open the LOG function
-#define AADetailLog(fmt, ...) NSLog((@"-------> %@ [Line %d] \n"fmt "\n\n"), [[NSString stringWithFormat:@"%s",__FILE__] lastPathComponent], __LINE__, ##__VA_ARGS__);
+#define AADetailLog(fmt, ...) NSLog((@"-------> %@ [Line %d] \n"fmt "\n\n"), \
+[[NSString stringWithFormat:@"%s",__FILE__] lastPathComponent], __LINE__, ##__VA_ARGS__);
 #else // Release status, turn off the LOG function
 #define AADetailLog(...)
 #endif
 
-#define kDevice_Is_iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+static NSString * const kUserContentMessageNameMouseOver = @"mouseover";
+static NSString * const kUserContentMessageNameCustomEvent = @"customevent";
 
-@interface AAChartView()<WKNavigationDelegate,UIWebViewDelegate> {
-    UIWebView *_uiWebView;
-    WKWebView *_wkWebView;
+@interface AAChartView() <
+WKUIDelegate,
+WKNavigationDelegate,
+WKScriptMessageHandler
+> {
     NSString  *_optionJson;
+    BOOL _touchEventEnabled;
 }
 
 @end
@@ -59,105 +102,21 @@
 @implementation AAChartView
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setUpBasicWebView];
-    }
-    return self;
-}
-
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        [self setUpBasicWebView];
-    }
-    return self;
-}
-
-- (void)setUpBasicWebView {
+    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+    config.userContentController = [[WKUserContentController alloc] init];
+    self = [super initWithFrame:frame configuration:config];
     
-    if (AASYSTEM_VERSION >= 9.0) {
-        _wkWebView = [[WKWebView alloc] init];
-        _wkWebView.navigationDelegate = self;
-        _wkWebView.backgroundColor = [UIColor whiteColor];
-        [self addSubview:_wkWebView];
-        _wkWebView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addConstraints:[self configureTheConstraintArrayWithItem:_wkWebView toItem:self]];
-    } else {
-        _uiWebView = [[UIWebView alloc] init];
-        _uiWebView.delegate = self;
-        _uiWebView.backgroundColor = [UIColor whiteColor];
-        [self addSubview:_uiWebView];
-        _uiWebView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addConstraints:[self configureTheConstraintArrayWithItem:_uiWebView toItem:self]];
+    if (self) {
+        self.UIDelegate = self;
+        self.navigationDelegate = self;
+        self.backgroundColor = [UIColor whiteColor];
     }
+    return self;
 }
 
-- (NSArray *)configureTheConstraintArrayWithItem:(UIView *)childView toItem:(UIView *)fatherView{
-    return  @[[NSLayoutConstraint constraintWithItem:childView
-                                           attribute:NSLayoutAttributeLeft
-                                           relatedBy:NSLayoutRelationEqual
-                                              toItem:fatherView
-                                           attribute:NSLayoutAttributeLeft
-                                          multiplier:1.0
-                                            constant:0],
-              [NSLayoutConstraint constraintWithItem:childView
-                                           attribute:NSLayoutAttributeRight
-                                           relatedBy:NSLayoutRelationEqual
-                                              toItem:fatherView
-                                           attribute:NSLayoutAttributeRight
-                                          multiplier:1.0
-                                            constant:0],
-              [NSLayoutConstraint constraintWithItem:childView
-                                           attribute:NSLayoutAttributeTop
-                                           relatedBy:NSLayoutRelationEqual
-                                              toItem:fatherView
-                                           attribute:NSLayoutAttributeTop
-                                          multiplier:1.0
-                                            constant:0],
-              [NSLayoutConstraint constraintWithItem:childView
-                                           attribute:NSLayoutAttributeBottom
-                                           relatedBy:NSLayoutRelationEqual
-                                              toItem:fatherView
-                                           attribute:NSLayoutAttributeBottom
-                                          multiplier:1.0
-                                            constant:0],
-              
-              ];
-}
 
-- (NSURLRequest *)getJavaScriptFileURLRequest {
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *webPath = [bundle pathForResource:@"AAChartView" ofType:@"html" inDirectory:@"AAJSFiles.bundle"];
-    NSURL *webURL = [NSURL fileURLWithPath:webPath];
-    NSURLRequest *URLRequest = [[NSURLRequest alloc] initWithURL:webURL];
-    return URLRequest;
-}
+#pragma CONFIGURE THE CHART VIEW CONTENT WITH AACHARTMODEL
 
-- (void)configureTheOptionsJsonStringWithAAOptions:(AAOptions *)options {
-    if (self.isClearBackgroundColor == YES) {
-        options.chart.backgroundColor = @"rgba(0,0,0,0)";
-    }
-    _optionJson = [AAJsonConverter getPureOptionsString:options];
- 
-}
-
-- (NSString *)configTheJavaScriptString {
-    CGFloat chartViewContentWidth = self.contentWidth;
-    CGFloat contentHeight = self.frame.size.height;
-    if (kDevice_Is_iPhoneX == YES) {
-        contentHeight = contentHeight - 20;
-    }
-    CGFloat chartViewContentHeight = self.contentHeight == 0 ? contentHeight : self.contentHeight;
-    NSString *javaScriptStr = [NSString stringWithFormat:@"loadTheHighChartView('%@','%@','%@')",
-                               _optionJson,
-                               [NSNumber numberWithFloat:chartViewContentWidth],
-                               [NSNumber numberWithFloat:chartViewContentHeight-1]];
-    return javaScriptStr;
-}
-
-//***********************CONFIGURE THE CHART VIEW CONTENT WITH `AACHARTMODEL`***********************//
-//
 - (void)aa_drawChartWithChartModel:(AAChartModel *)chartModel {
     AAOptions *options = [AAOptionsConstructor configureChartOptionsWithAAChartModel:chartModel];
     [self aa_drawChartWithOptions:options];
@@ -168,25 +127,23 @@
     [self aa_refreshChartWithOptions:options];
 }
 
-- (void)aa_onlyRefreshTheChartDataWithChartModelSeries:(NSArray<NSDictionary *> *)series {
+- (void)aa_onlyRefreshTheChartDataWithChartModelSeries:(NSArray<AASeriesElement *> *)series {
     [self aa_onlyRefreshTheChartDataWithOptionsSeries:series];
 }
-//
-//***********************CONFIGURE THE CHART VIEW CONTENT WITH `AACHARTMODEL`***********************//
+
+- (void)aa_onlyRefreshTheChartDataWithChartModelSeries:(NSArray<AASeriesElement *> *)series
+                                             animation:(BOOL)animation {
+    [self aa_onlyRefreshTheChartDataWithOptionsSeries:series animation:animation];
+}
 
 
+#pragma CONFIGURE THE CHART VIEW CONTENT WITH AAOPTIONS
 
-//=======================CONFIGURE THE CHART VIEW CONTENT WITH `AAOPTIONS`=======================//
-//
 - (void)aa_drawChartWithOptions:(AAOptions *)options {
     if (!_optionJson) {
         [self configureTheOptionsJsonStringWithAAOptions:options];
         NSURLRequest *URLRequest = [self getJavaScriptFileURLRequest];
-        if (AASYSTEM_VERSION >= 9.0) {
-            [_wkWebView loadRequest:URLRequest];
-        } else {
-            [_uiWebView loadRequest:URLRequest];
-        }
+        [self loadRequest:URLRequest];
     } else {
         [self aa_refreshChartWithOptions:options];
     }
@@ -197,155 +154,471 @@
     [self drawChart];
 }
 
-- (void)aa_onlyRefreshTheChartDataWithOptionsSeries:(NSArray<NSDictionary *> *)series {
-    NSString *seriesJsonStr = [AAJsonConverter getPureSeriesString:series];
-    NSString *javaScriptStr = [NSString stringWithFormat:@"onlyRefreshTheChartDataWithSeries('%@')",seriesJsonStr];
-    [self evaluateJavaScriptWithFunctionNameString:javaScriptStr];
-}
-//
-//=======================CONFIGURE THE CHART VIEW CONTENT WITH `AAOPTIONS`=======================//
-
-- (void)drawChart {
-    NSString *javaScriptStr = [self configTheJavaScriptString];
-    [self evaluateJavaScriptWithFunctionNameString:javaScriptStr];
+- (void)aa_onlyRefreshTheChartDataWithOptionsSeries:(NSArray<AASeriesElement *> *)series {
+    [self aa_onlyRefreshTheChartDataWithOptionsSeries:series animation:true];
 }
 
-///WKWebView did finish load
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    [self drawChart];
-    [self.delegate AAChartViewDidFinishLoad];
+- (void)aa_onlyRefreshTheChartDataWithOptionsSeries:(NSArray<AASeriesElement *> *)series
+                                          animation:(BOOL)animation {
+    NSMutableArray *seriesDicArr = [NSMutableArray arrayWithCapacity:series.count];
+    for (AASeriesElement *aaSeriesElement in series) {
+        [seriesDicArr addObject:[AAJsonConverter dictionaryWithObjectInstance:aaSeriesElement]];
+    }
+    
+    NSString *seriesJsonStr = [AAJsonConverter pureJsonStringWithJsonObject:seriesDicArr];
+    NSString *jsStr = [NSString stringWithFormat:@"onlyRefreshTheChartDataWithSeries('%@','%d')",
+                       seriesJsonStr,
+                       animation];
+    [self safeEvaluateJavaScriptString:jsStr];
 }
 
-- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:([UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+- (void)aa_updateChartWithOptions:(id)options {
+    [self aa_updateChartWithOptions:options redraw:false];
+}
+
+- (void)aa_updateChartWithOptions:(id)options redraw:(BOOL)redraw {
+    BOOL isOptionsClass = [options isKindOfClass:[AAOptions class]];
+    NSDictionary *optionsDic = [AAJsonConverter dictionaryWithObjectInstance:options];
+    NSDictionary *finalOptionsDic;
+    if (isOptionsClass) {
+        finalOptionsDic = optionsDic;
+    } else {
+        NSString *classNameStr = NSStringFromClass([options class]);
+        classNameStr = [classNameStr stringByReplacingOccurrencesOfString:@"AA"
+                                                               withString:@""];
+        
+        //convert fisrt character to be lowercase string
+        NSString *firstChar = [classNameStr substringToIndex:1];
+        NSString *lowerFirstChar = [firstChar lowercaseString];
+        classNameStr = [classNameStr substringFromIndex:1];
+        NSString *finalClassNameStr = [NSString stringWithFormat:@"%@%@",
+                                       lowerFirstChar,
+                                       classNameStr];
+        finalOptionsDic = @{finalClassNameStr:optionsDic};
+    }
+    
+    NSString *optionsStr = [AAJsonConverter pureOptionsJsonStringWithOptionsInstance:finalOptionsDic];
+    NSString *jsStr = [NSString stringWithFormat:@"updateChart('%@','%d')",
+                       optionsStr,
+                       redraw];
+    [self safeEvaluateJavaScriptString:jsStr];
+}
+
+- (void)aa_addPointToChartSeriesElementWithElementIndex:(NSUInteger)elementIndex
+                                                options:(id)options {
+    [self aa_addPointToChartSeriesElementWithElementIndex:elementIndex
+                                                  options:options
+                                                    shift:true];
+}
+
+- (void)aa_addPointToChartSeriesElementWithElementIndex:(NSUInteger)elementIndex
+                                                options:(id)options
+                                                  shift:(BOOL)shift {
+    [self aa_addPointToChartSeriesElementWithElementIndex:elementIndex
+                                                  options:options
+                                                   redraw:true
+                                                    shift:shift
+                                                animation:true];
+}
+
+- (void)aa_addPointToChartSeriesElementWithElementIndex:(NSUInteger)elementIndex
+                                                options:(id)options
+                                                 redraw:(BOOL)redraw
+                                                  shift:(BOOL)shift
+                                              animation:(BOOL)animation {
+    NSString *optionsStr;
+    if ([options isKindOfClass:[NSNumber class]]) {
+        optionsStr = [NSString stringWithFormat:@"%@",options];
+    } else if ([options isKindOfClass:[NSArray class]]) {
+        optionsStr = [AAJsonConverter pureJsonStringWithJsonObject:options];
+    } else {
+        NSDictionary *dic = [AAJsonConverter dictionaryWithObjectInstance:options];
+        optionsStr = [AAJsonConverter pureJsonStringWithJsonObject:dic];
+    }
+    
+    NSString *jsStr = [NSString stringWithFormat:@"addPointToChartSeries('%tu','%@','%d','%d','%d')",
+                       elementIndex,
+                       optionsStr,
+                       redraw,
+                       shift,
+                       animation];
+    [self safeEvaluateJavaScriptString:jsStr];
+}
+
+- (void)aa_addPointsToChartSeriesArrayWithOptionsArray:(NSArray *)optionsArr {
+    [self aa_addPointsToChartSeriesArrayWithOptionsArray:optionsArr shift:true animation:true];
+}
+
+- (void)aa_addPointsToChartSeriesArrayWithOptionsArray:(NSArray *)optionsArr
+                                                 shift:(BOOL)shift
+                                             animation:(BOOL)animation {
+    [optionsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self aa_addPointToChartSeriesElementWithElementIndex:idx
+                                                      options:obj
+                                                       redraw:false
+                                                        shift:shift
+                                                    animation:false];
+    }];
+    [self aa_redrawWithAnimation:animation];
+}
+
+- (void)aa_addElementToChartSeriesWithElement:(AASeriesElement *)element {
+    NSDictionary * elementDic = [AAJsonConverter dictionaryWithObjectInstance:element];
+    NSString *elementStr = [AAJsonConverter pureJsonStringWithJsonObject:elementDic];
+    NSString *jsStr = [NSString stringWithFormat:@"addElementToChartSeriesWithElement('%@')",
+                       elementStr];
+    [self safeEvaluateJavaScriptString:jsStr];
+}
+
+- (void)aa_removeElementFromChartSeriesWithElementIndex:(NSUInteger)elementIndex {
+    NSString *jsStr = [NSString stringWithFormat:@"removeElementFromChartSeriesWithElementIndex('%tu')",
+                       elementIndex];
+    [self safeEvaluateJavaScriptString:jsStr];
+}
+
+
+- (void)aa_showTheSeriesElementContentWithSeriesElementIndex:(NSUInteger)elementIndex {
+    NSString *jsStr = [NSString stringWithFormat:@"showTheSeriesElementContentWithIndex('%tu')",
+                       elementIndex];
+    [self safeEvaluateJavaScriptString:jsStr];
+}
+
+- (void)aa_hideTheSeriesElementContentWithSeriesElementIndex:(NSUInteger)elementIndex {
+    NSString *jsStr = [NSString stringWithFormat:@"hideTheSeriesElementContentWithIndex('%tu')",
+                       elementIndex];
+    [self safeEvaluateJavaScriptString:jsStr];
+}
+
+- (void)aa_evaluateJavaScriptStringFunction:(NSString *)JavaScriptString {
+    NSString *pureJSFuncStr = [AAJSStringPurer pureJavaScriptFunctionStringWithString:JavaScriptString];
+    
+    //remove the useless punctuation: the first "((" and the end "))"
+    NSRange range = NSMakeRange(2, pureJSFuncStr.length - 4);
+    pureJSFuncStr = [pureJSFuncStr substringWithRange:range];
+    
+    NSString *jsFunctionNameStr = [NSString stringWithFormat:@"evaluateTheJavaScriptStringFunction('%@')",
+                                   pureJSFuncStr];
+    [self safeEvaluateJavaScriptString:jsFunctionNameStr];
+}
+
+- (void)aa_updateXAxisCategories:(NSArray *)categories {
+    [self aa_updateXAxisCategories:categories redraw:true];
+}
+
+- (void)aa_updateXAxisCategories:(NSArray *)categories redraw:(BOOL)redraw {
+    NSString *originalJsArrStr = @"";
+    for (NSString *category in categories) {
+        originalJsArrStr = [originalJsArrStr stringByAppendingFormat:@"'%@',",category];
+    }
+    NSString *finalJSArrStr = [NSString stringWithFormat:@"[%@]",originalJsArrStr];
+    
+    NSString *jsFunctionStr = [NSString stringWithFormat:@"aaGlobalChart.xAxis[0].setCategories(%@,%d)",
+                              finalJSArrStr,
+                              redraw];
+    [self safeEvaluateJavaScriptString:jsFunctionStr];
+}
+
+- (void)aa_updateXAxisExtremesWithMin:(NSUInteger)min max:(NSUInteger)max {
+    NSString *jsFuntionStr = [NSString stringWithFormat:@"aaGlobalChart.xAxis[0].setExtremes(%lu,%lu)",
+                              min, max];
+    [self safeEvaluateJavaScriptString:jsFuntionStr];
+}
+
+- (void)aa_redrawWithAnimation:(BOOL)animation {
+    NSString *jsStr = [NSString stringWithFormat:@"redrawWithAnimation('%d')",animation];
+    [self safeEvaluateJavaScriptString:jsStr];
+}
+
+- (void)aa_adaptiveScreenRotation {
+    [self aa_adaptiveScreenRotationWithAnimation:nil];
+}
+
+- (void)aa_adaptiveScreenRotationWithAnimation:(AAAnimation *)animation {
+    __weak __typeof__(self) weakSelf = self;
+    [[NSNotificationCenter defaultCenter] addObserverForName:UIDeviceOrientationDidChangeNotification
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification * _Nonnull note) {
+        [weakSelf handleDeviceOrientationChangeEventWithAnimation:animation];
+    }];
+}
+
+- (void)handleDeviceOrientationChangeEventWithAnimation:(AAAnimation *)animation {
+    [self aa_changeChartSizeWithWidth:self.frame.size.width
+                               height:self.frame.size.height
+                            animation:animation];
+}
+
+- (void)aa_changeChartSizeWithWidth:(CGFloat)width
+                             height:(CGFloat)height
+                          animation:(AAAnimation *)animation {
+    NSString *animationJsonStr = [AAJsonConverter pureOptionsJsonStringWithOptionsInstance:animation];
+    NSString *jsFuntionStr = [NSString stringWithFormat:@"changeChartSize('%f','%f','%@')",
+                              width,
+                              height,
+                              animationJsonStr];
+    [self safeEvaluateJavaScriptString:jsFuntionStr];
+}
+
+
+- (NSURLRequest *)getJavaScriptFileURLRequest {
+    NSString *resourcePath = [[NSBundle bundleForClass:[self class]] resourcePath];
+    NSString *bundlePath = [resourcePath stringByAppendingPathComponent:@"/AAChartKitLib.bundle"];
+    NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
+    if (!bundle) { //installed manually
+        bundle = [NSBundle mainBundle];
+    }
+    NSString *webPath = [bundle pathForResource:@"AAChartView"
+                                         ofType:@"html"
+                                    inDirectory:@"AAJSFiles.bundle"];
+    NSURL *webURL = [NSURL fileURLWithPath:webPath];
+    if ([[UIDevice currentDevice].systemVersion floatValue] < 9.0) {
+        webURL = [self localFileURLForBuggyiOS8WKWebViewWithFileURL:webURL];
+    }
+    
+    NSURLRequest *URLRequest = [[NSURLRequest alloc] initWithURL:webURL];
+    return URLRequest;
+}
+
+- (NSURL *)localFileURLForBuggyiOS8WKWebViewWithFileURL:(NSURL *)fileURL {
+    // Create "/tmp/www" directory
+    NSError *creatDirError = nil;
+    NSFileManager *fileManager= [NSFileManager defaultManager];
+    NSURL *tmpWwwDirURL = [[NSURL fileURLWithPath:NSTemporaryDirectory()] URLByAppendingPathComponent:@"www"];
+    NSString *htmlFileName = @"AAChartView.html";
+    NSString *tmpJsFilesDir = [tmpWwwDirURL.absoluteString stringByAppendingString:@"/"];
+    NSURL *destURL = [NSURL URLWithString:[tmpJsFilesDir stringByAppendingString:htmlFileName]];
+
+    BOOL isDir = NO;
+    BOOL isTmpWwwDirExist = [fileManager fileExistsAtPath:tmpWwwDirURL.path isDirectory:&isDir];
+    if (isTmpWwwDirExist) {
+        return destURL;
+    }
+    
+    [fileManager createDirectoryAtURL:tmpWwwDirURL
+          withIntermediateDirectories:YES
+                           attributes:nil
+                                error:&creatDirError];
+    if (creatDirError) {
+        AADetailLog("creat directory error%@",creatDirError);
+    }
+    
+    NSString *bundleFilesDir = [fileURL.absoluteString stringByReplacingOccurrencesOfString:htmlFileName
+                                                                                 withString:@""];
+    
+    NSArray *array = @[htmlFileName,
+                       @"AAEasing.js",
+                       @"AAFunnel.js",
+                       @"AAHighchartsLib.js",
+                       @"AAHighchartsMore.js",
+                       ];
+    
+    [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *bundleFilePath = [bundleFilesDir stringByAppendingString:obj];
+        NSString *tmpFilePath = [tmpJsFilesDir stringByAppendingString:obj];
+        // Now copy bundle files to the temp directory
+        NSError *copyItemError = nil;
+        [fileManager copyItemAtURL:[NSURL URLWithString:bundleFilePath]
+                             toURL:[NSURL URLWithString:tmpFilePath]
+                             error:&copyItemError];
+        if (copyItemError) {
+            AADetailLog("copy file Error%@",copyItemError);
+        }
+    }];
+    return destURL;
+}
+
+- (void)configureTheOptionsJsonStringWithAAOptions:(AAOptions *)aaOptions {
+    if (self.isClearBackgroundColor) {
+        aaOptions.chart.backgroundColor = @"rgba(0,0,0,0)";
+    }
+
+    if ( _touchEventEnabled == false) {
+        AAWeakProxy *proxy = [AAWeakProxy proxyWithTarget:self];
+        if (aaOptions.touchEventEnabled == true) {
+            [self.configuration.userContentController addScriptMessageHandler:(id<WKScriptMessageHandler>)proxy
+                                                                         name:kUserContentMessageNameMouseOver];
+        }
+        
+        if (aaOptions.customEventEnabled == true) {
+            [self.configuration.userContentController addScriptMessageHandler:(id<WKScriptMessageHandler>)proxy
+                                                                         name:kUserContentMessageNameCustomEvent];
+        }
+        
+        _touchEventEnabled = true;
+    }
+    
+    _optionJson = [AAJsonConverter pureOptionsJsonStringWithOptionsInstance:aaOptions];
+}
+
+#pragma mark - WKUIDelegate
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"JS WARNING"
+                                                                             message:message
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:([UIAlertAction actionWithTitle:@"Okay"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
         completionHandler();
     }])];
     
-    UIViewController *viewCTL = [[UIViewController alloc]init];//临时UIViewController，从它这里present UIAlertController
-    [self addSubview:viewCTL.view];//这句话很重要，即把UIViewController的view添加到当前视图或者UIWindow
-  
-    [viewCTL presentViewController:alertController animated:YES completion:nil];
+    UIViewController *alertHelperController = [[UIViewController alloc]init];
+    [self addSubview:alertHelperController.view];
     
-}
-- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler{
-    //    DLOG(@"msg = %@ frmae = %@",message,frame);
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:([UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        completionHandler(NO);
-    }])];
-    [alertController addAction:([UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        completionHandler(YES);
-    }])];
-    
-    UIViewController *viewCTL = [[UIViewController alloc]init];//临时UIViewController，从它这里present UIAlertController
-    [self addSubview:viewCTL.view];//这句话很重要，即把UIViewController的view添加到当前视图或者UIWindow
-    [viewCTL presentViewController:alertController animated:YES completion:nil];
-}
-- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * _Nullable))completionHandler{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:prompt message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.text = defaultText;
-    }];
-    [alertController addAction:([UIAlertAction actionWithTitle:@"完成" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        completionHandler(alertController.textFields[0].text?:@"");
-    }])];
-    
-    UIViewController *viewCTL = [[UIViewController alloc]init];//临时UIViewController，从它这里present UIAlertController
-    [self addSubview:viewCTL.view];//这句话很重要，即把UIViewController的view添加到当前视图或者UIWindow
-    
-    [viewCTL presentViewController:alertController animated:YES completion:nil];
+    [alertHelperController presentViewController:alertController animated:YES completion:nil];
 }
 
-//UIWebView did finish load
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
+#pragma mark - AAChartView Event Handler
+- (void)didFinishLoadHandler:(AADidFinishLoadBlock)handler {
+    self.didFinishLoadBlock = handler;
+}
+
+- (void)moveOverEventHandler:(AAMoveOverEventBlock)handler {
+    self.moveOverEventBlock = handler;
+}
+
+- (void)didReceiveScriptMessageHandler:(AADidReceiveScriptMessageBlock)handler {
+    self.didReceiveScriptMessageBlock = handler;
+}
+
+#pragma mark - WKNavigationDelegate
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [self drawChart];
-    [self.delegate AAChartViewDidFinishLoad];
-}
-
-
-- (void)aa_showTheSeriesElementContentWithSeriesElementIndex:(NSInteger)elementIndex {
-    NSString *javaScriptStr = [NSString stringWithFormat:@"showTheSeriesElementContentWithIndex(%ld)",(long)elementIndex];
-    [self evaluateJavaScriptWithFunctionNameString:javaScriptStr];
-}
-
-- (void)aa_hideTheSeriesElementContentWithSeriesElementIndex:(NSInteger)elementIndex {
-    NSString *javaScriptStr = [NSString stringWithFormat:@"hideTheSeriesElementContentWithIndex(%ld)",(long)elementIndex];
-    [self evaluateJavaScriptWithFunctionNameString:javaScriptStr];
-}
-
-- (void)evaluateJavaScriptWithFunctionNameString:(NSString *)functionNameStr {
-    if (AASYSTEM_VERSION >= 9.0) {
-        [_wkWebView  evaluateJavaScript:functionNameStr completionHandler:^(id item, NSError * _Nullable error) {
-            if (error) {
-                AADetailLog(@"☠️☠️💀☠️☠️WARNING!!!!! THERE ARE SOME ERROR INFOMATION_______%@",error);
-            }
-        }];
-    } else {
-        [_uiWebView  stringByEvaluatingJavaScriptFromString:functionNameStr];
+    if (self.didFinishLoadBlock) {
+        self.didFinishLoadBlock(self);
+        return;
     }
-}
-
-#pragma mark -- setter method
-
-- (void)setScrollEnabled:(BOOL)scrollEnabled {
-    _scrollEnabled = scrollEnabled;
-    if (AASYSTEM_VERSION >= 9.0) {
-        _wkWebView.scrollView.scrollEnabled = _scrollEnabled;
-    } else {
-        _uiWebView.scrollView.scrollEnabled = _scrollEnabled;
-    }
-}
-
-- (void)setContentWidth:(CGFloat)contentWidth {
-    _contentWidth = contentWidth;
-    NSString *javaScriptStr = [NSString stringWithFormat:@"setTheChartViewContentWidth(%f)",_contentWidth];
-    [self evaluateJavaScriptWithSetterMethodNameString:javaScriptStr];
-}
-
-- (void)setContentHeight:(CGFloat)contentHeight {
-    _contentHeight = contentHeight;
-    NSString *javaScriptStr = [NSString stringWithFormat:@"setTheChartViewContentHeight(%f)",_contentHeight];
-    [self evaluateJavaScriptWithSetterMethodNameString:javaScriptStr];
-}
-
-- (void)setChartSeriesHidden:(BOOL)chartSeriesHidden {
-    _chartSeriesHidden = chartSeriesHidden;
-    NSString *jsStr = [NSString stringWithFormat:@"setChartSeriesHidden(%d)",_chartSeriesHidden];
-    [self evaluateJavaScriptWithSetterMethodNameString:jsStr];
-}
-
-- (void)evaluateJavaScriptWithSetterMethodNameString:(NSString *)JSFunctionStr {
-    if (_optionJson) {
-          [self evaluateJavaScriptWithFunctionNameString:JSFunctionStr];
-    }
-}
-
-- (void)setIsClearBackgroundColor:(BOOL)isClearBackgroundColor {
-    _isClearBackgroundColor = isClearBackgroundColor;
-    if (_isClearBackgroundColor == YES) {
-        self.backgroundColor = [UIColor clearColor];
-        if (AASYSTEM_VERSION >= 9.0) {
-            [_wkWebView setBackgroundColor:[UIColor clearColor]];
-            [_wkWebView setOpaque:NO];
-        } else {
-            [_uiWebView setBackgroundColor:[UIColor clearColor]];
-            [_uiWebView setOpaque:NO];
+    if (self.delegate) {
+        if ([self.delegate respondsToSelector:@selector(aaChartViewDidFinishLoad:)]) {
+            [self.delegate aaChartViewDidFinishLoad:self];
         }
     }
 }
 
-- (void)setBlurEffectEnabled:(BOOL)blurEffectEnabled {
-    _blurEffectEnabled = blurEffectEnabled;
-    if (_blurEffectEnabled) {
-        UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
-        [self addSubview:effectView];
-        [self sendSubviewToBack:effectView];
-        
-        effectView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addConstraints:[self configureTheConstraintArrayWithItem:effectView toItem:self]];
+- (void)drawChart {
+    NSString *jsStr = [NSString stringWithFormat:@"loadTheHighChartView('%@','%f','%f')",
+                       _optionJson,
+                       self.contentWidth,
+                       self.contentHeight ];
+    [self safeEvaluateJavaScriptString:jsStr];
+}
+
+#pragma mark - WKScriptMessageHandler
+- (void)userContentController:(WKUserContentController *)userContentController
+      didReceiveScriptMessage:(WKScriptMessage *)message {
+    if ([message.name isEqualToString:kUserContentMessageNameMouseOver]) {
+        AAMoveOverEventMessageModel *eventMessageModel = [self eventMessageModelWithMessageBody:message.body];
+        if (self.moveOverEventBlock) {
+            self.moveOverEventBlock(self, eventMessageModel);
+            return;
+        }
+        if (self.delegate) {
+            if ([self.delegate respondsToSelector:@selector(aaChartView:moveOverEventWithMessage:)]) {
+                [self.delegate aaChartView:self moveOverEventWithMessage:eventMessageModel];
+            }
+        }
+    } else if ([message.name isEqualToString:kUserContentMessageNameCustomEvent]) {
+        if (self.didReceiveScriptMessageBlock) {
+            self.didReceiveScriptMessageBlock(self, message);
+            return;
+        }
+        if (self.delegate) {
+            if ([self.delegate respondsToSelector:@selector((aaChartView:didReceiveScriptMessage:))]) {
+                [self.delegate aaChartView:self didReceiveScriptMessage:message];
+            }
+        }
     }
+}
+
+- (AAMoveOverEventMessageModel *)eventMessageModelWithMessageBody:(id)messageBody {
+    AAMoveOverEventMessageModel *eventMessageModel = AAMoveOverEventMessageModel.new;
+    eventMessageModel.name = messageBody[@"name"];
+    eventMessageModel.x = messageBody[@"x"];
+    eventMessageModel.y = messageBody[@"y"];
+    eventMessageModel.category = messageBody[@"category"];
+    eventMessageModel.offset = messageBody[@"offset"];
+    eventMessageModel.index = [messageBody[@"index"] unsignedIntegerValue];
+    return eventMessageModel;
+}
+
+
+- (void)safeEvaluateJavaScriptString:(NSString *)functionNameStr {
+    if (!_optionJson) {
+        AADetailLog("💀💀💀AAChartView did not finish loading!!!")
+        return;
+    }
+    
+    [self evaluateJavaScript:functionNameStr completionHandler:^(id item, NSError * _Nullable error) {
+#if DEBUG
+        if (!error) return;
+        NSMutableDictionary *errorDic = [NSMutableDictionary dictionary];
+        [errorDic setValue:error.domain forKey:@"domain"];
+        [errorDic setValue:@(error.code) forKey:@"code"];
+        [errorDic setValue:error.userInfo forKey:@"userInfo"];
+        
+        NSString *basicErrorInfo = @"                                                     \n\
+☠️☠️💀☠️☠️WARNING!!!!!!!!!!!!!!!!!! JS ERROR WARNING !!!!!!!!!!!!!!!!!!WARNING☠️☠️💀☠️☠️ \
+⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩  \
+------------------------------------------------------------------------------------------\n\
+%@                                                                                          \
+------------------------------------------------------------------------------------------  \
+⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧\n\
+☠️☠️💀☠️☠️WARNING!!!!!!!!!!!!!!!!!! JS ERROR WARNING !!!!!!!!!!!!!!!!!!WARNING☠️☠️💀☠️☠️";
+        
+        NSString *errorInfoStr = [NSString stringWithFormat:basicErrorInfo,errorDic];
+        NSLog(@"%@",errorInfoStr);
+#endif
+    }];
+}
+
+#pragma mark -- setter method
+
+- (void)setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentBehavior)contentInsetAdjustmentBehavior {
+    _contentInsetAdjustmentBehavior = contentInsetAdjustmentBehavior;
+    self.scrollView.contentInsetAdjustmentBehavior = _contentInsetAdjustmentBehavior;
+}
+
+- (void)setScrollEnabled:(BOOL)scrollEnabled {
+    _scrollEnabled = scrollEnabled;
+    self.scrollView.scrollEnabled = _scrollEnabled;
+}
+
+- (void)setContentWidth:(CGFloat)contentWidth {
+    _contentWidth = contentWidth;
+    NSString *jsStr = [NSString stringWithFormat:@"setTheChartViewContentWidth('%f')",
+                       _contentWidth];
+    [self safeEvaluateJavaScriptString:jsStr];
+}
+
+- (void)setContentHeight:(CGFloat)contentHeight {
+    _contentHeight = contentHeight;
+    NSString *jsStr = [NSString stringWithFormat:@"setTheChartViewContentHeight('%f')",
+                       _contentHeight];
+    [self safeEvaluateJavaScriptString:jsStr];
+}
+
+- (void)setChartSeriesHidden:(BOOL)chartSeriesHidden {
+    _chartSeriesHidden = chartSeriesHidden;
+    NSString *jsStr = [NSString stringWithFormat:@"setChartSeriesHidden('%d')",
+                       _chartSeriesHidden];
+    [self safeEvaluateJavaScriptString:jsStr];
+}
+
+- (void)setIsClearBackgroundColor:(BOOL)isClearBackgroundColor {
+    _isClearBackgroundColor = isClearBackgroundColor;
+    if (_isClearBackgroundColor) {
+        [self setBackgroundColor:[UIColor clearColor]];
+        [self setOpaque:NO];
+    } else {
+        self.backgroundColor = [UIColor whiteColor];
+        [self setOpaque:YES];
+    }
+}
+
+- (void)dealloc {
+    [self.configuration.userContentController removeAllUserScripts];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    AADetailLog("👻👻👻 AAChartView was destroyed!!!");
 }
 
 @end
@@ -356,95 +629,103 @@
 
 @implementation AAJsonConverter
 
-+ (NSDictionary*)getObjectData:(id)obj {
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
++ (NSDictionary*)dictionaryWithObjectInstance:(id)objc {
     unsigned int propsCount;
-    Class class = [obj class];
-    do {
-        objc_property_t *props = class_copyPropertyList(class, &propsCount);
-        for (int i = 0;i < propsCount; i++) {
-            objc_property_t prop = props[i];
-            
-            NSString *propName = [NSString stringWithUTF8String:property_getName(prop)];
-            id value = [obj valueForKey:propName];
-            if (value == nil) {
-                value = [NSNull null];
-                continue;
-            } else {
-                value = [self getObjectInternal:value];
-            }
-            [dic setObject:value forKey:propName];
+    objc_property_t *props = class_copyPropertyList([objc class], &propsCount);
+    NSMutableDictionary *propsDic = [NSMutableDictionary dictionaryWithCapacity:propsCount];
+
+    for (NSUInteger i = 0; i < propsCount; i++) {
+        objc_property_t prop = props[i];
+        NSString *propName = [NSString stringWithUTF8String:property_getName(prop)];
+        id value = [objc valueForKey:propName];
+        if (value == nil) {
+            value = [NSNull null];
+            continue;
+        } else {
+            value = [self getObjectInternal:value];
         }
-        free(props);
-        class = [class superclass];
-    } while (class != [NSObject class]);
+        propsDic[propName] = value;
+    }
+    free(props);
     
-    return dic;
+    return propsDic;
 }
 
-+ (NSData*)getJSON:(id)obj options:(NSJSONWritingOptions)options error:(NSError**)error {
-    return [NSJSONSerialization dataWithJSONObject:[self getObjectData:obj] options:options error:error];
-}
-
-+ (id)getObjectInternal:(id)obj {
-    if (   [obj isKindOfClass:[NSString class]]
-        || [obj isKindOfClass:[NSNumber class]]
-        || [obj isKindOfClass:[NSNull   class]] ) {
-        return obj;
++ (id)getObjectInternal:(id)objc {
+    if (   [objc isKindOfClass:[NSString class]]
+        || [objc isKindOfClass:[NSNumber class]]
+        || [objc isKindOfClass:[NSNull   class]] ) {
+        return objc;
     }
     
-    if ([obj isKindOfClass:[NSArray class]]) {
-        NSArray *objarr = obj;
-        NSMutableArray *arr = [NSMutableArray arrayWithCapacity:objarr.count];
-        for (int i = 0;i < objarr.count; i++) {
-            [arr setObject:[self getObjectInternal:[objarr objectAtIndex:i]] atIndexedSubscript:i];
+    if ([objc isKindOfClass:[NSArray class]]) {
+        NSArray *objcArr = objc;
+        NSMutableArray *arr = [NSMutableArray arrayWithCapacity:objcArr.count];
+        for (id element in objcArr) {
+            [arr addObject:[self getObjectInternal:element]];
         }
         return arr;
     }
     
-    if ([obj isKindOfClass:[NSDictionary class]]) {
-        NSDictionary *objdic = obj;
-        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:[objdic count]];
-        for (NSString *key in objdic.allKeys) {
-            [dic setObject:[self getObjectInternal:[objdic objectForKey:key]] forKey:key];
+    if ([objc isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *objcDic = objc;
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:[objcDic count]];
+        NSArray *allKeys = objcDic.allKeys;
+        for (NSString *key in allKeys) {
+            dic[key] = [self getObjectInternal:objcDic[key]];
         }
         return dic;
     }
-    return [self getObjectData:obj];
+    
+    return [self dictionaryWithObjectInstance:objc];
 }
 
-+ (NSString*)convertDictionaryIntoJson:(NSDictionary *)dictionary {
-    NSError *parseError = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&parseError];
-    NSString *string =[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    return string;
-}
-
-+ (NSString*)wipeOffTheLineBreakAndBlankCharacter:(NSString *)originalString {
-    NSString *str =[originalString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    str = [str stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    return str;
-}
-
-+ (NSString *)getPureOptionsString:(id)optionsObject {
++ (NSString *)pureOptionsJsonStringWithOptionsInstance:(id)optionsObject {
     NSDictionary *dic;
     if ([optionsObject isKindOfClass:[NSDictionary class]] ) {
         dic = optionsObject;
     } else {
-        dic = [self getObjectData:optionsObject];
+        dic = [self dictionaryWithObjectInstance:optionsObject];
     }
-    NSString *str = [self convertDictionaryIntoJson:dic];
-    AADetailLog(@"----------- console log AAOptions JSON information of AAChartView -----------:\n%@",str);
-
-    return [self wipeOffTheLineBreakAndBlankCharacter:str];
+#if DEBUG
+    [AAJsonConverter printPrettyPrintedJsonStringWithJsonObject:dic];
+#endif
+    return [self pureJsonStringWithJsonObject:dic];
 }
 
-+ (NSString *)getPureSeriesString:(NSArray<NSDictionary*> *)series {
-    NSError *parseError = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:series options:NSJSONWritingPrettyPrinted error:&parseError];
-    NSString *seriesStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    return [self wipeOffTheLineBreakAndBlankCharacter:seriesStr];
++ (NSString*)pureJsonStringWithJsonObject:(id)jsonObject {
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonObject
+                                                       options:kNilOptions
+                                                         error:&error];
+    NSString *pureJsonStr =[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    if (error) {
+        AADetailLog(@"❌❌❌ pure JSONString with JSONObject serialization failed：%@", error);
+        return nil;
+    }
+    return pureJsonStr;
 }
+
+#if DEBUG
++ (NSString*)printPrettyPrintedJsonStringWithJsonObject:(id)jsonObject {
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonObject
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    NSString *jsonStr =[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSLog(@"----------- console log AAOptions JSON information of AAChartView -----------:\n%@",jsonStr);
+    
+    if (error) {
+        NSLog(@"❌❌❌ pretty printed JSONString with JSONObject serialization failed：%@", error);
+        return nil;
+    }
+    return jsonStr;
+}
+#endif
+
 
 @end
+
+
+
 

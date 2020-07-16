@@ -23,7 +23,7 @@
  * And if you want to contribute for this project, please contact me as well
  * GitHub        : https://github.com/AAChartModel
  * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
- * JianShu       : http://www.jianshu.com/u/f1e6753d4254
+ * JianShu       : https://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
  *
  * -------------------------------------------------------------------------------
@@ -34,19 +34,9 @@
 
 @implementation AALine
 
--(instancetype)init{
-    self = [super init];
-    if (self ) {
-//        self.lineWidth = @5;
-//        self.dashStyle = @"ShortDash";
-        
-    }
-    return self;
-}
-
-AAPropSetFuncImplementation(AALine, NSNumber     *, lineWidth);
-AAPropSetFuncImplementation(AALine, AADataLabels *, dataLabels);
-//AAPropSetFuncImplementation(AALine, BOOL , enableMouseTracking);
-//AAPropSetFuncImplementation(AALine, NSString *, dashStyle);
+AAPropSetFuncImplementation(AALine, NSNumber     *, lineWidth) 
+AAPropSetFuncImplementation(AALine, AADataLabels *, dataLabels) 
+AAPropSetFuncImplementation(AALine, NSString *, dashStyle)
+AAPropSetFuncImplementation(AALine, AAStates *, states)
 
 @end

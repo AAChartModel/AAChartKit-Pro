@@ -24,7 +24,7 @@
  * And if you want to contribute for this project, please contact me as well
  * GitHub        : https://github.com/AAChartModel
  * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
- * JianShu       : http://www.jianshu.com/u/f1e6753d4254
+ * JianShu       : https://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
  *
  * -------------------------------------------------------------------------------
@@ -35,15 +35,33 @@
 
 @implementation AALegend
 
-AAPropSetFuncImplementation(AALegend, AALegendLayoutType,        layout);
-AAPropSetFuncImplementation(AALegend, AALegendAlignType,         align);
-AAPropSetFuncImplementation(AALegend, AALegendVerticalAlignType, verticalAlign);
-AAPropSetFuncImplementation(AALegend, BOOL,          enabled);
-AAPropSetFuncImplementation(AALegend, NSString    *, borderColor);
-AAPropSetFuncImplementation(AALegend, NSNumber    *, borderWidth);
-AAPropSetFuncImplementation(AALegend, NSNumber    *, itemMarginTop);
-AAPropSetFuncImplementation(AALegend, AAItemStyle *, itemStyle);
-AAPropSetFuncImplementation(AALegend, NSNumber    *, x);
-AAPropSetFuncImplementation(AALegend, NSNumber    *, y);
+AAPropSetFuncImplementation(AALegend, AAChartLayoutType,        layout)
+AAPropSetFuncImplementation(AALegend, AAChartAlignType,         align)
+AAPropSetFuncImplementation(AALegend, AAChartVerticalAlignType, verticalAlign)
+AAPropSetFuncImplementation(AALegend, BOOL,          enabled) 
+AAPropSetFuncImplementation(AALegend, NSString    *, borderColor) 
+AAPropSetFuncImplementation(AALegend, NSNumber    *, borderWidth) 
+AAPropSetFuncImplementation(AALegend, NSNumber    *, itemMarginTop)
+AAPropSetFuncImplementation(AALegend, NSNumber    *, itemMarginBottom)
+AAPropSetFuncImplementation(AALegend, AAItemStyle *, itemStyle)
+AAPropSetFuncImplementation(AALegend, NSNumber    *, symbolHeight)//标志高度
+AAPropSetFuncImplementation(AALegend, NSNumber    *, symbolPadding)//标志后距
+AAPropSetFuncImplementation(AALegend, NSNumber    *, symbolRadius)//图标圆角
+AAPropSetFuncImplementation(AALegend, NSNumber    *, symbolWidth)//图标宽度
+AAPropSetFuncImplementation(AALegend, NSNumber    *, x) 
+AAPropSetFuncImplementation(AALegend, NSNumber    *, y)
+AAPropSetFuncImplementation(AALegend, BOOL,          floating)
+
+@end
+
+
+
+@implementation AAItemStyle
+
+AAPropSetFuncImplementation(AAItemStyle, NSString *, color)
+AAPropSetFuncImplementation(AAItemStyle, NSString *, cursor)
+AAPropSetFuncImplementation(AAItemStyle, NSString *, pointer)
+AAPropSetFuncImplementation(AAItemStyle, NSString *, fontSize)
+AAPropSetFuncImplementation(AAItemStyle, NSString *, fontWeight)
 
 @end

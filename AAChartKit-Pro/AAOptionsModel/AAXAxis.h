@@ -23,7 +23,7 @@
  * And if you want to contribute for this project, please contact me as well
  * GitHub        : https://github.com/AAChartModel
  * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
- * JianShu       : http://www.jianshu.com/u/f1e6753d4254
+ * JianShu       : https://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
  *
  * -------------------------------------------------------------------------------
@@ -34,37 +34,36 @@
 
 #import <Foundation/Foundation.h>
 
-@class AALabels,AACrosshair,AATitle;
+@class AALabels,AACrosshair,AAPlotBandsElement,AAPlotLinesElement;
 
 @interface AAXAxis : NSObject
 
+AAPropStatementAndPropSetFuncStatement(copy,   AAXAxis, NSString *, type) 
+AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSArray<AAPlotBandsElement *>*, plotBands)
+AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSArray<AAPlotLinesElement *>*, plotLines)
+AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSArray  *, categories) 
+AAPropStatementAndPropSetFuncStatement(assign, AAXAxis, BOOL,       reversed) 
+AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSNumber *, lineWidth) //x轴轴线宽度
+AAPropStatementAndPropSetFuncStatement(copy,   AAXAxis, NSString *, lineColor) //x轴轴线线颜色
+AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSNumber *,  linkedTo)
+AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSNumber *, max)  //x轴最大值
+AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSNumber *, min)  //x轴最小值
+AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSNumber *, gridLineWidth) //x轴网格线宽度
+AAPropStatementAndPropSetFuncStatement(copy,   AAXAxis, NSString *, gridLineColor) //x轴网格线颜色
+AAPropStatementAndPropSetFuncStatement(copy,   AAXAxis, NSString *, gridLineDashStyle) //x轴网格线样式
+AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSNumber *, offset) //x轴垂直偏移
+AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, AALabels *, labels) //用于设置 x 轴文字相关的
+AAPropStatementAndPropSetFuncStatement(assign, AAXAxis, BOOL ,      visible) //用于设置 x 轴以及 x 轴文字是否显示
+AAPropStatementAndPropSetFuncStatement(assign, AAXAxis, BOOL,       opposite) //是否将坐标轴显示在对立面，默认情况下 x 轴是在图表的下方显示，y 轴是在左方，坐标轴显示在对立面后，x 轴是在上方显示，y 轴是在右方显示（即坐标轴会显示在对立面）。该配置一般是用于多坐标轴区分展示，另外在 Highstock 中，y 轴默认是在对立面显示的。 默认是：false.
+AAPropStatementAndPropSetFuncStatement(assign, AAXAxis, BOOL ,      startOnTick) //Whether to force the axis to start on a tick. Use this option with the minPadding option to control the axis start. 默认是：false.
+AAPropStatementAndPropSetFuncStatement(assign, AAXAxis, BOOL ,      endOnTick) //是否强制将坐标轴结束于刻度线，可以通过本属性及 maxPadding 来控制坐标轴的结束位置。 默认是：false.
+AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, AACrosshair *, crosshair)  //准星线样式设置
+AAPropStatementAndPropSetFuncStatement(copy,   AAXAxis, NSString *, tickColor) //x轴轴线下方刻度线颜色
+AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSNumber *, tickInterval) //x轴刻度点间隔数(设置每隔几个点显示一个 X轴的内容)
+AAPropStatementAndPropSetFuncStatement(copy,   AAXAxis, NSString *, tickmarkPlacement) //本参数只对分类轴有效。 当值为 on 时刻度线将在分类上方显示；当值为 between 时，刻度线将在两个分类中间显示。当 tickInterval 为 1 时，默认是 between，其他情况默认是 on。 默认是：null.
+AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSNumber *, tickWidth) //坐标轴刻度线的宽度，设置为 0 时则不显示刻度线
+AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSNumber *, tickLength)//坐标轴刻度线的长度。 默认是：10.
+AAPropStatementAndPropSetFuncStatement(copy,   AAXAxis, NSString *, tickPosition) //刻度线相对于轴线的位置，可用的值有 inside 和 outside，分别表示在轴线的内部和外部。 默认是：outside.
+AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSNumber * , minRange)
 
-AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSArray  *, categories);
-AAPropStatementAndPropSetFuncStatement(assign, AAXAxis, BOOL,       reversed);
-AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSNumber *, lineWidth);//x轴轴线宽度
-AAPropStatementAndPropSetFuncStatement(copy,   AAXAxis, NSString *, lineColor);//x轴轴线线颜色
-AAPropStatementAndPropSetFuncStatement(assign, AAXAxis, NSNumber *, max); //x轴最大值
-AAPropStatementAndPropSetFuncStatement(assign, AAXAxis, NSNumber *, min); //x轴最小值（设置为0就不会有负数）
-AAPropStatementAndPropSetFuncStatement(copy,   AAXAxis, NSString *, tickColor);//x轴轴线下方刻度线颜色
-AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSNumber *, gridLineWidth);//x轴网格线宽度
-AAPropStatementAndPropSetFuncStatement(copy,   AAXAxis, NSString *, gridLineColor);//x轴网格线颜色
-AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, AALabels *, labels);//用于设置 x 轴文字相关的
-AAPropStatementAndPropSetFuncStatement(assign, AAXAxis, BOOL ,      visible);//用于设置 x 轴以及 x 轴文字是否显示
-AAPropStatementAndPropSetFuncStatement(assign, AAXAxis, BOOL ,      startOnTick);//Whether to force the axis to start on a tick. Use this option with the minPadding option to control the axis start. 默认是：false.
-AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSNumber *, tickInterval);//x轴刻度点间隔数(设置每隔几个点显示一个 X轴的内容)
-AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, AACrosshair *, crosshair); //准星线样式设置
-AAPropStatementAndPropSetFuncStatement(copy,   AAXAxis, NSString *, tickmarkPlacement);//本参数只对分类轴有效。 当值为 on 时刻度线将在分类上方显示；当值为 between 时，刻度线将在两个分类中间显示。当 tickInterval 为 1 时，默认是 between，其他情况默认是 on。 默认是：null.
-AAPropStatementAndPropSetFuncStatement(copy,   AAXAxis, NSString *, type);
-AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, AATitle *, title);
-
-
-
-
-//lineWidth :0,
-//tickWidth:0,
-//labels:{
-//enabled:false 
-//}
-
-//个人吐槽日记:(想不到一个简单的属性修饰词使用错误竟然造成了这么严重的后果,因为是复制粘贴,所以一开始我的属性修饰词用的是 assign, 救国造成的诡异的问题就是 crosshair 莫名其妙的 变成了 AAStyle 类型,浪费了我一下午好几个小时时间,真的很心塞啊,为什么要犯这种低级的智障错误呢???(貌似是从 AAYAxis 类中的布尔属性复制粘贴过来的))
 @end

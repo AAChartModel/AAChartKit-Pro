@@ -62,6 +62,7 @@ AAPropSetFuncImplementation(AASeriesElement, NSString *, borderColor);//柱形�
 AAPropSetFuncImplementation(AASeriesElement, NSNumber *, fillColor);//折线填充图、曲线填充图、直方折线填充图等填充图类型的填充颜色
 AAPropSetFuncImplementation(AASeriesElement, NSNumber *, fillOpacity);//折线填充图、曲线填充图、直方折线填充图等填充图类型的填充颜色透明度
 AAPropSetFuncImplementation(AASeriesElement, NSString *, negativeColor); //The color for the parts of the graph or points that are below the threshold
+AAPropSetFuncImplementation(AASeriesElement, NSString *, negativeFillColor)//A separate color for the negative part of the area.
 AAPropSetFuncImplementation(AASeriesElement, NSNumber *, borderRadius);
 AAPropSetFuncImplementation(AASeriesElement, NSString *, innerSize);
 AAPropSetFuncImplementation(AASeriesElement, NSNumber *, size);

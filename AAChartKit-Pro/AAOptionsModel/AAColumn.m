@@ -23,7 +23,7 @@
  * And if you want to contribute for this project, please contact me as well
  * GitHub        : https://github.com/AAChartModel
  * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
- * JianShu       : http://www.jianshu.com/u/f1e6753d4254
+ * JianShu       : https://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
  *
  * -------------------------------------------------------------------------------
@@ -33,22 +33,28 @@
 #import "AAColumn.h"
 
 @implementation AAColumn
-
+    
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.grouping = YES;
+        _grouping = true;
     }
     return self;
 }
 
-AAPropSetFuncImplementation(AAColumn, BOOL,           grouping);
-AAPropSetFuncImplementation(AAColumn, NSNumber *,     pointPadding);
-AAPropSetFuncImplementation(AAColumn, NSNumber *,     groupPadding);
-AAPropSetFuncImplementation(AAColumn, NSNumber *,     borderWidth);
-AAPropSetFuncImplementation(AAColumn, BOOL ,          colorByPoint);
-AAPropSetFuncImplementation(AAColumn, AADataLabels *, dataLabels);
-AAPropSetFuncImplementation(AAColumn, NSString *,     stacking);
-AAPropSetFuncImplementation(AAColumn, NSNumber *,     borderRadius);
+AAPropSetFuncImplementation(AAColumn, NSString *,     name)
+AAPropSetFuncImplementation(AAColumn, NSArray  *,     data)
+AAPropSetFuncImplementation(AAColumn, NSString *,     color)
+AAPropSetFuncImplementation(AAColumn, BOOL,             grouping)
+AAPropSetFuncImplementation(AAColumn, NSNumber *,     pointPadding)
+AAPropSetFuncImplementation(AAColumn, NSNumber *,     pointPlacement)
+AAPropSetFuncImplementation(AAColumn, NSNumber *,     groupPadding)
+AAPropSetFuncImplementation(AAColumn, NSNumber *,     borderWidth)
+AAPropSetFuncImplementation(AAColumn, BOOL ,          colorByPoint)
+AAPropSetFuncImplementation(AAColumn, AADataLabels *, dataLabels)
+AAPropSetFuncImplementation(AAColumn, NSString *,     stacking)
+AAPropSetFuncImplementation(AAColumn, NSNumber *,     borderRadius)
+AAPropSetFuncImplementation(AAColumn, NSNumber *,     yAxis)
+
 
 @end

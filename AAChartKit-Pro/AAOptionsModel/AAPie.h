@@ -23,7 +23,7 @@
  * And if you want to contribute for this project, please contact me as well
  * GitHub        : https://github.com/AAChartModel
  * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
- * JianShu       : http://www.jianshu.com/u/f1e6753d4254
+ * JianShu       : https://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
  *
  * -------------------------------------------------------------------------------
@@ -36,13 +36,14 @@
 
 @interface AAPie : NSObject
 
-AAPropStatementAndPropSetFuncStatement(strong, AAPie, NSNumber     *, size);
-AAPropStatementAndPropSetFuncStatement(assign, AAPie, BOOL,           allowPointSelect);
-AAPropStatementAndPropSetFuncStatement(copy,   AAPie, NSString     *, cursor);
-AAPropStatementAndPropSetFuncStatement(strong, AAPie, AADataLabels *, dataLabels);
-AAPropStatementAndPropSetFuncStatement(assign, AAPie, BOOL,           showInLegend);
-AAPropStatementAndPropSetFuncStatement(assign, AAPie, NSNumber     *, startAngle);
-AAPropStatementAndPropSetFuncStatement(assign, AAPie, NSNumber     *, endAngle);
-AAPropStatementAndPropSetFuncStatement(strong, AAPie, NSNumber     *, depth);
+AAPropStatementAndPropSetFuncStatement(strong, AAPie, NSNumber     *, size)
+AAPropStatementAndPropSetFuncStatement(assign, AAPie, BOOL,           allowPointSelect)
+AAPropStatementAndPropSetFuncStatement(copy,   AAPie, NSString     *, cursor)
+AAPropStatementAndPropSetFuncStatement(strong, AAPie, AADataLabels *, dataLabels)
+AAPropStatementAndPropSetFuncStatement(assign, AAPie, BOOL,           showInLegend)
+AAPropStatementAndPropSetFuncStatement(strong, AAPie, NSNumber     *, startAngle)
+AAPropStatementAndPropSetFuncStatement(strong, AAPie, NSNumber     *, endAngle)
+AAPropStatementAndPropSetFuncStatement(strong, AAPie, NSNumber     *, depth)
+AAPropStatementAndPropSetFuncStatement(strong, AAPie, NSArray     *, center)
 
 @end
