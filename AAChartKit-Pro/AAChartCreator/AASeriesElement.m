@@ -23,7 +23,7 @@
  * And if you want to contribute for this project, please contact me as well
  * GitHub        : https://github.com/AAChartModel
  * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
- * JianShu       : http://www.jianshu.com/u/f1e6753d4254
+ * JianShu       : https://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
  *
  * -------------------------------------------------------------------------------
@@ -39,43 +39,77 @@
     self = [super init];
     if (self) {
         _allowPointSelect = false;
-//        _colorByPoint = true;
         _showInLegend = true;
         _visible = true;
     }
     return self;
 }
 
-AAPropSetFuncImplementation(AASeriesElement, NSString *, type);
-AAPropSetFuncImplementation(AASeriesElement, BOOL      , allowPointSelect);//是否允许在点击数据点标记（markers）、柱子（柱形图）、扇区（饼图）时选中该点，选中的点可以通过 Chart.getSelectedPoints 来获取。 默认是：false.
-AAPropSetFuncImplementation(AASeriesElement, NSString *, name);
-AAPropSetFuncImplementation(AASeriesElement, NSArray  *, data);
-AAPropSetFuncImplementation(AASeriesElement, NSString *, color);
-AAPropSetFuncImplementation(AASeriesElement, id      , colorByPoint);//When using automatic point colors pulled from the options.colors collection, this option determines whether the chart should receive one color per series or one color per point. 默认是：false.
-AAPropSetFuncImplementation(AASeriesElement, AAMarker *, marker);
-AAPropSetFuncImplementation(AASeriesElement, NSString *, stacking);
-AAPropSetFuncImplementation(AASeriesElement, NSString *, dashStyle);
-AAPropSetFuncImplementation(AASeriesElement, NSNumber *, threshold);
-AAPropSetFuncImplementation(AASeriesElement, NSNumber *, lineWidth);//折线图、曲线图、直方折线图、折线填充图、曲线填充图、直方折线填充图的线条宽度
+AAPropSetFuncImplementation(AASeriesElement, NSString *, type)
+AAPropSetFuncImplementation(AASeriesElement, BOOL      , allowPointSelect) //是否允许在点击数据点标记（markers）、柱子（柱形图）、扇区（饼图）时选中该点，选中的点可以通过 Chart.getSelectedPoints 来获取。 默认是：false.
+AAPropSetFuncImplementation(AASeriesElement, NSString *, name)
+AAPropSetFuncImplementation(AASeriesElement, NSArray  *, data)
+AAPropSetFuncImplementation(AASeriesElement, NSString *, color)
+AAPropSetFuncImplementation(AASeriesElement, id        , colorByPoint) //When using automatic point colors pulled from the options.colors collection, this option determines whether the chart should receive one color per series or one color per point. 默认是：false.
+AAPropSetFuncImplementation(AASeriesElement, AAMarker *, marker)
+AAPropSetFuncImplementation(AASeriesElement, NSString *, stacking)
+AAPropSetFuncImplementation(AASeriesElement, NSString *, dashStyle)
+AAPropSetFuncImplementation(AASeriesElement, NSNumber *, threshold)
+AAPropSetFuncImplementation(AASeriesElement, NSNumber *, lineWidth) //折线图、曲线图、直方折线图、折线填充图、曲线填充图、直方折线填充图的线条宽度
 AAPropSetFuncImplementation(AASeriesElement, NSNumber *, borderWidth)//柱形图、条形图、扇形图等图形的描边宽度
-AAPropSetFuncImplementation(AASeriesElement, NSString *, borderColor);//柱形图、条形图、扇形图等图形的描边颜色
-AAPropSetFuncImplementation(AASeriesElement, NSNumber *, fillColor);//折线填充图、曲线填充图、直方折线填充图等填充图类型的填充颜色
-AAPropSetFuncImplementation(AASeriesElement, NSNumber *, fillOpacity);//折线填充图、曲线填充图、直方折线填充图等填充图类型的填充颜色透明度
-AAPropSetFuncImplementation(AASeriesElement, NSString *, negativeColor); //The color for the parts of the graph or points that are below the threshold
+AAPropSetFuncImplementation(AASeriesElement, NSString *, borderColor) //柱形图、条形图、扇形图等图形的描边颜色
+AAPropSetFuncImplementation(AASeriesElement, NSString *, fillColor) //折线填充图、曲线填充图、直方折线填充图等填充图类型的填充颜色
+AAPropSetFuncImplementation(AASeriesElement, NSNumber *, fillOpacity) //折线填充图、曲线填充图、直方折线填充图等填充图类型的填充颜色透明度
+AAPropSetFuncImplementation(AASeriesElement, NSString *, negativeColor)  //The color for the parts of the graph or points that are below the threshold
 AAPropSetFuncImplementation(AASeriesElement, NSString *, negativeFillColor)//A separate color for the negative part of the area.
-AAPropSetFuncImplementation(AASeriesElement, NSNumber *, borderRadius);
-AAPropSetFuncImplementation(AASeriesElement, NSString *, innerSize);
-AAPropSetFuncImplementation(AASeriesElement, NSNumber *, size);
-AAPropSetFuncImplementation(AASeriesElement, NSArray  *, keys);
-AAPropSetFuncImplementation(AASeriesElement, NSNumber *, yAxis);
-AAPropSetFuncImplementation(AASeriesElement, AADataLabels*, dataLabels);
-AAPropSetFuncImplementation(AASeriesElement, id        , step);//是否转变为直方折线图
-AAPropSetFuncImplementation(AASeriesElement, NSDictionary *, states);
-AAPropSetFuncImplementation(AASeriesElement, BOOL        , showInLegend);//Whether to display this particular series or series type in the legend. The default value is true for standalone series, false for linked series. 默认是：true.
-AAPropSetFuncImplementation(AASeriesElement, BOOL        , visible);//数据列是否显示的状态,可以通过 series.show()、series.hide()、series.setVisible 来改变这个属性
-AAPropSetFuncImplementation(AASeriesElement, NSArray<AALevels *>*, levels);
-AAPropSetFuncImplementation(AASeriesElement, BOOL        , allowDrillToNode);
+AAPropSetFuncImplementation(AASeriesElement, NSNumber *, borderRadius)
+AAPropSetFuncImplementation(AASeriesElement, NSString *, innerSize)
+AAPropSetFuncImplementation(AASeriesElement, NSNumber *, size)
+AAPropSetFuncImplementation(AASeriesElement, NSArray  *, keys)
+AAPropSetFuncImplementation(AASeriesElement, NSNumber *, yAxis)
+AAPropSetFuncImplementation(AASeriesElement, AADataLabels*, dataLabels)
+AAPropSetFuncImplementation(AASeriesElement, id        , step) //是否转变为直方折线图
+AAPropSetFuncImplementation(AASeriesElement, AAStates *, states)
+AAPropSetFuncImplementation(AASeriesElement, BOOL      , showInLegend) //Whether to display this particular series or series type in the legend. The default value is true for standalone series, false for linked series. 默认是：true.
+AAPropSetFuncImplementation(AASeriesElement, BOOL      , visible) //数据列是否显示的状态,可以通过 series.show()、series.hide()、series.setVisible 来改变这个属性
+AAPropSetFuncImplementation(AASeriesElement, NSArray<AAZonesElement *>*, zones)
+AAPropSetFuncImplementation(AASeriesElement, NSString *, zoneAxis) //Defines the Axis on which the zones are applied. 默认是：y.
+AAPropSetFuncImplementation(AASeriesElement, AAShadow *, shadow) //数据列的阴影效果。从 2.3 开始阴影可以配置成包含 color、offsetX、offsetY、opacity 和 width 属性的对象形式。 默认是：false
+AAPropSetFuncImplementation(AASeriesElement, NSString *, stack)
+AAPropSetFuncImplementation(AASeriesElement, AATooltip*, tooltip)
+AAPropSetFuncImplementation(AASeriesElement, NSNumber *, zIndex) //层叠，series element 在图表中显示的层叠级别，值越大，显示越向前
+AAPropSetFuncImplementation(AASeriesElement, NSString *, pointPlacement)
+AAPropSetFuncImplementation(AASeriesElement, id        , enableMouseTracking)
+AAPropSetFuncImplementation(AASeriesElement, AADataSorting *, dataSorting)
+AAPropSetFuncImplementation(AASeriesElement, id        , reversed) //Only useful for pyramid chart and funnel chart
+AAPropSetFuncImplementation(AASeriesElement, NSArray<AALevels *>*, levels)
+AAPropSetFuncImplementation(AASeriesElement, BOOL        , allowDrillToNode)
+
+@end
 
 
+@implementation AADataElement
+
+AAPropSetFuncImplementation(AADataElement, NSString *, color)
+AAPropSetFuncImplementation(AADataElement, AADataLabels *, dataLabels)
+AAPropSetFuncImplementation(AADataElement, AAMarker *, marker)
+AAPropSetFuncImplementation(AADataElement, NSNumber *, y)
+
+@end
+
+
+@implementation AAZonesElement : NSObject
+
+AAPropSetFuncImplementation(AAZonesElement, NSNumber *, value)
+AAPropSetFuncImplementation(AAZonesElement, NSString *, color)
+AAPropSetFuncImplementation(AAZonesElement, NSString *, dashStyle)
+
+@end
+
+
+@implementation AADataSorting : NSObject
+
+AAPropSetFuncImplementation(AADataSorting, BOOL, enabled)
+AAPropSetFuncImplementation(AADataSorting, BOOL, matchByName)
 
 @end

@@ -61,14 +61,12 @@
 #import "AAStates.h"
 #import "AAPane.h"
 
+#import "AALevels.h"
 #import "AAColorAxis.h"
 #import "AAPackedbubble.h"
 #import "AATreemap.h"
 #import "AALayoutAlgorithm.h"
 #import "AAChartTypePro.h"
-
-#define AARgbaColor(r,g,b,a) [NSString stringWithFormat:@"rgba(%d,%d,%d,%f)",r,g,b,a]
-#define AAJSFunc(x) #x
 
 @interface AAOptions : NSObject
 
