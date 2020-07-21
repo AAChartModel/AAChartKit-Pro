@@ -31,13 +31,8 @@
  */
 
 #import "BasicChartVC.h"
-#import "AAEasyTool.h"
-#import "AAChartKit.h"
 
 @interface BasicChartVC ()<AAChartViewEventDelegate>
-
-@property (nonatomic, strong) AAChartModel *aaChartModel;
-@property (nonatomic, strong) AAChartView  *aaChartView;
 
 @end
 
@@ -91,7 +86,6 @@
     AAChartType chartType = [self configureTheChartType];
     [self setupAAChartViewWithChartType:chartType];
     [_aaChartView aa_drawChartWithChartModel:_aaChartModel];
-    [self setupAAChartViewEventBlockHandler];
 }
 
 - (void)setupAAChartView {
@@ -103,47 +97,14 @@
     CGFloat chartViewHeight = self.view.frame.size.height - 160 - aaChartViewOriginY;
     _aaChartView = [[AAChartView alloc]init];
     _aaChartView.frame = CGRectMake(0, aaChartViewOriginY, chartViewWidth, chartViewHeight);
-    _aaChartView.delegate = self;
     _aaChartView.scrollEnabled = NO;//禁用 AAChartView 滚动效果
-//    设置aaChartVie 的内容高度(content height)
-//    _aaChartView.contentHeight = chartViewHeight * 2;
-//    设置aaChartVie 的内容宽度(content  width)
-//    _aaChartView.contentWidth = chartViewWidth * 2;
+    _aaChartView.isClearBackgroundColor = YES;//设置 AAChartView 的背景色是否为透明
+    //    _aaChartView.delegate = self;
     [self.view addSubview:_aaChartView];
-    //设置 AAChartView 的背景色是否为透明
-    _aaChartView.isClearBackgroundColor = YES;
+    [self setupChartViewEventHandlers];
 }
 
-- (void)setupAAChartViewWithChartType:(AAChartType)chartType {
-    _aaChartModel = AAChartModel.new
-    .chartTypeSet(chartType)//图表类型
-    .colorsThemeSet(@[@"#fe117c",@"#ffc069",@"#06caf4",@"#7dffc0"])//设置主题颜色数组
-    .tooltipValueSuffixSet(@"℃")//设置浮动提示框单位后缀
-    .yAxisLineWidthSet(@0)//Y轴轴线线宽为0即是隐藏Y轴轴线
-    .yAxisGridLineWidthSet(@0)//y轴横向分割线宽度为0(即是隐藏分割线)
-    .touchEventEnabledSet(true)//支持用户点击事件
-    .seriesSet(@[
-        AASeriesElement.new
-        .nameSet(@"2017")
-        .dataSet(@[@7.0, @6.9, @9.5, @14.5, @18.2, @21.5, @25.2, @26.5, @23.3, @18.3, @13.9, @9.6]),
-        AASeriesElement.new
-        .nameSet(@"2018")
-        .dataSet(@[@0.2, @0.8, @5.7, @11.3, @17.0, @22.0, @24.8, @24.1, @20.1, @14.1, @8.6, @2.5]),
-        AASeriesElement.new
-        .nameSet(@"2019")
-        .dataSet(@[@0.9, @0.6, @3.5, @8.4, @13.5, @17.0, @18.6, @17.9, @14.3, @9.0, @3.9, @1.0]),
-        AASeriesElement.new
-        .nameSet(@"2020")
-        .dataSet(@[@3.9, @4.2, @5.7, @8.5, @11.9, @15.2, @17.0, @16.6, @14.2, @10.3, @6.6, @4.8]),
-    ]);
-    
-    [self configureTheStyleForDifferentTypeChart];//为不同类型图表设置样式
-    
-    /*配置 Y 轴标注线,解开注释,即可查看添加标注线之后的图表效果(NOTE:必须设置 Y 轴可见)*/
-    [self configureTheYAxisPlotLineForAAChartView];
-}
-
-- (void)setupAAChartViewEventBlockHandler {
+- (void)setupChartViewEventHandlers {
     //获取图表加载完成事件
     [_aaChartView didFinishLoadHandler:^(AAChartView *aaChartView) {
         NSLog(@"🚀🚀🚀🚀 AAChartView content did finish load!!!");
@@ -167,6 +128,34 @@
                           messageDic];
         NSLog(@"%@%@",str1, str2);
     }];
+}
+
+- (void)setupAAChartViewWithChartType:(AAChartType)chartType {
+    _aaChartModel = AAChartModel.new
+    .chartTypeSet(chartType)//图表类型
+    .colorsThemeSet(@[@"#fe117c",@"#ffc069",@"#06caf4",@"#7dffc0"])//设置主题颜色数组
+    .tooltipValueSuffixSet(@"℃")//设置浮动提示框单位后缀
+    .yAxisLineWidthSet(@0)//Y轴轴线线宽为0即是隐藏Y轴轴线
+    .yAxisGridLineWidthSet(@0)//y轴横向分割线宽度为0(即是隐藏分割线)
+    .seriesSet(@[
+        AASeriesElement.new
+        .nameSet(@"2017")
+        .dataSet(@[@7.0, @6.9, @9.5, @14.5, @18.2, @21.5, @25.2, @26.5, @23.3, @18.3, @13.9, @9.6]),
+        AASeriesElement.new
+        .nameSet(@"2018")
+        .dataSet(@[@0.2, @0.8, @5.7, @11.3, @17.0, @22.0, @24.8, @24.1, @20.1, @14.1, @8.6, @2.5]),
+        AASeriesElement.new
+        .nameSet(@"2019")
+        .dataSet(@[@0.9, @0.6, @3.5, @8.4, @13.5, @17.0, @18.6, @17.9, @14.3, @9.0, @3.9, @1.0]),
+        AASeriesElement.new
+        .nameSet(@"2020")
+        .dataSet(@[@3.9, @4.2, @5.7, @8.5, @11.9, @15.2, @17.0, @16.6, @14.2, @10.3, @6.6, @4.8]),
+    ]);
+    
+    [self configureTheStyleForDifferentTypeChart];//为不同类型图表设置样式
+    
+    /*配置 Y 轴标注线,解开注释,即可查看添加标注线之后的图表效果(NOTE:必须设置 Y 轴可见)*/
+    [self configureTheYAxisPlotLineForAAChartView];
 }
 
 /**
@@ -381,7 +370,7 @@
         ];
     }
     
-    for (int i=0; i<segmentedNamesArr.count; i++) {
+    for (int i = 0; i < segmentedNamesArr.count; i++) {
         UISegmentedControl * segmentedControl = [[UISegmentedControl alloc]initWithItems:segmentedNamesArr[i]];
         segmentedControl.frame = CGRectMake(20,
                                             40 * i + (self.view.frame.size.height - 145),
@@ -410,57 +399,27 @@
 }
 
 - (void)customsegmentedControlCellValueBeChanged:(UISegmentedControl *)segmentedControl {
-    id options;
     switch (segmentedControl.tag) {
         case 0: {
-            NSArray *stackingArr = @[
-                AAChartStackingTypeFalse,
-                AAChartStackingTypeNormal,
-                AAChartStackingTypePercent
-            ];
-            AAChartStackingType stackingType = stackingArr[segmentedControl.selectedSegmentIndex];
-            AAPlotOptions *aaPlotOptions = AAPlotOptions.new
-            .seriesSet(AASeries.new
-                       .stackingSet(stackingType));
-            options = aaPlotOptions;
+            NSArray *stackingArr = @[AAChartStackingTypeFalse,
+                                     AAChartStackingTypeNormal,
+                                     AAChartStackingTypePercent];
+            _aaChartModel.stacking = stackingArr[segmentedControl.selectedSegmentIndex];
         }
             break;
             
         case 1: {
             if (_chartType == 0 || _chartType == 1 ) {
-                NSArray *borderRadiusArr = @[
-                    @1,
-                    @10,
-                    @100
-                ];
-                NSNumber *borderRadius = borderRadiusArr[segmentedControl.selectedSegmentIndex];
-                AAPlotOptions *aaPlotOptions;
-                if (_chartType == 0) {
-                    aaPlotOptions = AAPlotOptions.new
-                    .columnSet(AAColumn.new
-                               .borderRadiusSet(borderRadius));
-                } else {
-                    aaPlotOptions = AAPlotOptions.new
-                    .barSet(AABar.new
-                            .borderRadiusSet(borderRadius));
-                }
-                options = aaPlotOptions;
-                
+                NSArray *borderRadiusArr = @[ @0, @10, @100 ];
+                _aaChartModel.borderRadius = borderRadiusArr[segmentedControl.selectedSegmentIndex];
             } else {
-                NSArray *symbolArr = @[
-                    AAChartSymbolTypeCircle,
-                    AAChartSymbolTypeSquare,
-                    AAChartSymbolTypeDiamond,
-                    AAChartSymbolTypeTriangle,
-                    AAChartSymbolTypeTriangle_down
-                ];
-                AAChartSymbolType markerSymbol = symbolArr[segmentedControl.selectedSegmentIndex];
-                AAPlotOptions *aaPlotOptions = AAPlotOptions.new
-                .seriesSet(AASeries.new
-                           .markerSet(AAMarker.new
-                                      .symbolSet(markerSymbol))
-                           );
-                options = aaPlotOptions;
+                
+                NSArray *symbolArr = @[AAChartSymbolTypeCircle,
+                                       AAChartSymbolTypeSquare,
+                                       AAChartSymbolTypeDiamond,
+                                       AAChartSymbolTypeTriangle,
+                                       AAChartSymbolTypeTriangle_down];
+                _aaChartModel.markerSymbol = symbolArr[segmentedControl.selectedSegmentIndex];
             }
         }
             break;
@@ -468,7 +427,8 @@
         default:
             break;
     }
-    [_aaChartView aa_updateChartWithOptions:options];
+    
+    [self refreshTheChartView];
 }
 
 - (void)setUpTheSwitchs {
@@ -492,9 +452,9 @@
         ];
     }
     
-    CGFloat switchWidth = (self.view.frame.size.width-40)/nameArr.count;
+    CGFloat switchWidth = (self.view.frame.size.width - 40) / nameArr.count;
     
-    for (int i=0; i<nameArr.count; i++) {
+    for (int i = 0; i < nameArr.count; i++) {
         UISwitch * switchView = [[UISwitch alloc]init];
         switchView.frame = CGRectMake(switchWidth * i + 20,
                                       self.view.frame.size.height - 70,
@@ -523,103 +483,29 @@
 }
 
 - (void)switchViewClicked:(UISwitch *)switchView {
-    id options;
     switch (switchView.tag) {
-        case 0: {
-            AAXAxis *aaXAxis = AAXAxis.new
-            .reversedSet(switchView.on);
-            options = aaXAxis;
-        }
+        case 0: _aaChartModel.xAxisReversed = switchView.on;
             break;
-        case 1: {
-            AAYAxis *aaYAxis = AAYAxis.new
-            .reversedSet(switchView.on);
-            options = aaYAxis;
-        }
+        case 1: _aaChartModel.yAxisReversed = switchView.on;
             break;
-        case 2: {
-            if (_aaChartModel.chartType == AAChartTypeBar) {
-                NSLog(@"⚠️⚠️⚠️inverted is useless for Bar Chart");
-            }
-            _aaChartModel.inverted = switchView.on;
-            AAChart *aaChart = AAChart.new
-            .invertedSet(switchView.on)
-            .polarSet(_aaChartModel.polar);
-            options = aaChart;
-        }
+        case 2: _aaChartModel.inverted = switchView.on;
             break;
-        case 3: {
-            _aaChartModel.polar = switchView.on;
-            AAChart *aaChart = AAChart.new
-            .polarSet(switchView.on)
-            .invertedSet(_aaChartModel.inverted);
-            options = aaChart;
-            
-            if (_aaChartModel.chartType == AAChartTypeColumn) {
-                if (_aaChartModel.polar == true) {
-                    options = AAOptions.new
-                    .chartSet(aaChart)
-                    .plotOptionsSet(AAPlotOptions.new
-                                    .columnSet(AAColumn.new
-                                               .pointPaddingSet(@0)
-                                               .groupPaddingSet(@0.005)));
-                } else {
-                    options = AAOptions.new
-                    .chartSet(aaChart)
-                    .plotOptionsSet(AAPlotOptions.new
-                                    .columnSet(AAColumn.new
-                                               .pointPaddingSet(@0.1)
-                                               .groupPaddingSet(@0.2)));
-                }
-            } else if (_aaChartModel.chartType == AAChartTypeBar) {
-                if (_aaChartModel.chartType == AAChartTypeBar) {
-                    if (_aaChartModel.polar == true) {
-                        options = AAOptions.new
-                        .chartSet(aaChart)
-                        .plotOptionsSet(AAPlotOptions.new
-                                        .barSet(AABar.new
-                                                .pointPaddingSet(@0)
-                                                .groupPaddingSet(@0.005)));
-                    } else {
-                        options = AAOptions.new
-                        .chartSet(aaChart)
-                        .plotOptionsSet(AAPlotOptions.new
-                                        .barSet(AABar.new
-                                                .pointPaddingSet(@0.1)
-                                                .groupPaddingSet(@0.2)));
-                    }
-                }
-            }
-        }
+        case 3: _aaChartModel.polar = switchView.on;
             break;
-        case 4:  {
-            AAPlotOptions *aaPlotOptions = AAPlotOptions.new
-            .seriesSet(AASeries.new
-                       .dataLabelsSet(AADataLabels.new
-                                      .enabledSet(switchView.on)));
-            options = aaPlotOptions;
-        }
+        case 4: _aaChartModel.dataLabelsEnabled = switchView.on;
             break;
-        case 5: {
-            AAMarker *aaMarker = switchView.on ?
-            AAMarker.new
-            .enabledSet(false)
-            :
-            AAMarker.new
-            .enabledSet(true)
-            .radiusSet( @5);
-            
-            AAPlotOptions *aaPlotOptions = AAPlotOptions.new
-            .seriesSet(AASeries.new
-                       .markerSet(aaMarker));
-            options = aaPlotOptions;
-        }
+        case 5: _aaChartModel.markerRadius = switchView.on ? @0 : @5;
             break;
         default:
             break;
     }
-    
-    [_aaChartView aa_updateChartWithOptions:options];
+
+    [self refreshTheChartView];
+}
+
+
+- (void)refreshTheChartView {
+    [_aaChartView aa_refreshChartWithChartModel:_aaChartModel];
 }
 
 - (void)setUpTheNextTypeChartButton {

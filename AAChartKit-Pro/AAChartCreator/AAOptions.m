@@ -37,44 +37,48 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        AACredits *aaCreadits = [[AACredits alloc]init];
+        aaCreadits.enabled = false;
+        self.credits = aaCreadits;
+        
         NSArray *blueStopsArr = @[
-              @[@0.0, AARgbaColor(30, 144, 255, 1.0)],//颜色字符串设置支持十六进制类型和 rgba 类型
-              @[@0.6, AARgbaColor(30, 144, 255, 0.2)],
-              @[@1.0, AARgbaColor(30, 144, 255, 0.0)]
-          ];
-          NSDictionary *gradientBlueColorDic =
-          [AAGradientColor gradientColorWithDirection:AALinearGradientDirectionToBottom
-                                           stopsArray:blueStopsArr];
-          
-          
-          NSArray *redStopsArr = @[
-              @[@0.0, AARgbaColor(255, 0, 0, 1.0)],//颜色字符串设置支持十六进制类型和 rgba 类型
-              @[@0.6, AARgbaColor(255, 0, 0, 0.2)],
-              @[@1.0, AARgbaColor(255, 0, 0, 0.0)]
-          ];
-          NSDictionary *gradientRedColorDic =
-          [AAGradientColor gradientColorWithDirection:AALinearGradientDirectionToBottom
-                                           stopsArray:redStopsArr];
-          
-          
-          NSArray *goldStopsArr = @[
-              @[@0.0, AARgbaColor(255, 215, 0, 1.0)],//颜色字符串设置支持十六进制类型和 rgba 类型
-              @[@0.6, AARgbaColor(255, 215, 0, 0.2)],
-              @[@1.0, AARgbaColor(255, 215, 0, 0.0)]
-          ];
-          NSDictionary *gradientGoldColorDic =
-          [AAGradientColor gradientColorWithDirection:AALinearGradientDirectionToBottom
-                                           stopsArray:goldStopsArr];
-          
-          
-          NSArray *greenStopsArr = @[
-              @[@0.0, AARgbaColor(50, 205, 50, 1.0)],//颜色字符串设置支持十六进制类型和 rgba 类型
-              @[@0.6, AARgbaColor(50, 205, 50, 0.2)],
-              @[@1.0, AARgbaColor(50, 205, 50, 0.0)]
-          ];
-          NSDictionary *gradientGreenColorDic =
-          [AAGradientColor gradientColorWithDirection:AALinearGradientDirectionToBottom
-                                           stopsArray:greenStopsArr];
+            @[@0.0, AARgbaColor(30, 144, 255, 1.0)],//颜色字符串设置支持十六进制类型和 rgba 类型
+            @[@0.6, AARgbaColor(30, 144, 255, 0.2)],
+            @[@1.0, AARgbaColor(30, 144, 255, 0.0)]
+        ];
+        NSDictionary *gradientBlueColorDic =
+        [AAGradientColor gradientColorWithDirection:AALinearGradientDirectionToBottom
+                                         stopsArray:blueStopsArr];
+        
+        
+        NSArray *redStopsArr = @[
+            @[@0.0, AARgbaColor(255, 0, 0, 1.0)],//颜色字符串设置支持十六进制类型和 rgba 类型
+            @[@0.6, AARgbaColor(255, 0, 0, 0.2)],
+            @[@1.0, AARgbaColor(255, 0, 0, 0.0)]
+        ];
+        NSDictionary *gradientRedColorDic =
+        [AAGradientColor gradientColorWithDirection:AALinearGradientDirectionToBottom
+                                         stopsArray:redStopsArr];
+        
+        
+        NSArray *goldStopsArr = @[
+            @[@0.0, AARgbaColor(255, 215, 0, 1.0)],//颜色字符串设置支持十六进制类型和 rgba 类型
+            @[@0.6, AARgbaColor(255, 215, 0, 0.2)],
+            @[@1.0, AARgbaColor(255, 215, 0, 0.0)]
+        ];
+        NSDictionary *gradientGoldColorDic =
+        [AAGradientColor gradientColorWithDirection:AALinearGradientDirectionToBottom
+                                         stopsArray:goldStopsArr];
+        
+        
+        NSArray *greenStopsArr = @[
+            @[@0.0, AARgbaColor(50, 205, 50, 1.0)],//颜色字符串设置支持十六进制类型和 rgba 类型
+            @[@0.6, AARgbaColor(50, 205, 50, 0.2)],
+            @[@1.0, AARgbaColor(50, 205, 50, 0.0)]
+        ];
+        NSDictionary *gradientGreenColorDic =
+        [AAGradientColor gradientColorWithDirection:AALinearGradientDirectionToBottom
+                                         stopsArray:greenStopsArr];
         
         self.colors = @[
             @"rgb(137,78,36)",
@@ -89,35 +93,35 @@
             @"rgb(0,24,168)",
             @"rgb(0,160,226)",
             @"rgb(106,187,170)",
-
+            
             gradientBlueColorDic,
             gradientRedColorDic,
             gradientGoldColorDic,
             gradientGreenColorDic,
             AAGradientColor.firebrickColor,
-                             AAGradientColor.wroughtIronColor,
-                             AAGradientColor.deepSeaColor,
-                             AAGradientColor.coastalBreezeColor,
-                             AAGradientColor.eveningDelightColor,
-                  AAGradientColor.oceanBlueColor,
-                  AAGradientColor.sanguineColor,
-                  AAGradientColor.lusciousLimeColor,
-                  AAGradientColor.purpleLakeColor,
+            AAGradientColor.wroughtIronColor,
+            AAGradientColor.deepSeaColor,
+            AAGradientColor.coastalBreezeColor,
+            AAGradientColor.eveningDelightColor,
             AAGradientColor.oceanBlueColor,
-                       AAGradientColor.sanguineColor,
-                       AAGradientColor.lusciousLimeColor,
-                       AAGradientColor.purpleLakeColor,
-                       AAGradientColor.freshPapayaColor,
-                       AAGradientColor.ultramarineColor,
+            AAGradientColor.sanguineColor,
+            AAGradientColor.lusciousLimeColor,
+            AAGradientColor.purpleLakeColor,
+            AAGradientColor.oceanBlueColor,
+            AAGradientColor.sanguineColor,
+            AAGradientColor.lusciousLimeColor,
+            AAGradientColor.purpleLakeColor,
+            AAGradientColor.freshPapayaColor,
+            AAGradientColor.ultramarineColor,
             AAGradientColor.reflexSilverColor,
-                       AAGradientColor.neonGlowColor,
-                       AAGradientColor.berrySmoothieColor,
-                       AAGradientColor.newLeafColor,
-                       AAGradientColor.cottonCandyColor,
-                       AAGradientColor.pixieDustColor,
-                       AAGradientColor.fizzyPeachColor,
-                       AAGradientColor.sweetDreamColor,
-                 
+            AAGradientColor.neonGlowColor,
+            AAGradientColor.berrySmoothieColor,
+            AAGradientColor.newLeafColor,
+            AAGradientColor.cottonCandyColor,
+            AAGradientColor.pixieDustColor,
+            AAGradientColor.fizzyPeachColor,
+            AAGradientColor.sweetDreamColor,
+            
             AAGradientColor.freshPapayaColor,
             AAGradientColor.ultramarineColor,
             AAGradientColor.pinkSugarColor,
@@ -125,29 +129,28 @@
             AAGradientColor.victoriaPurpleColor,
             AAGradientColor.springGreensColor,
             AAGradientColor.mysticMauveColor,
-           
+            
         ];
     }
     return self;
 }
 
-AAPropSetFuncImplementation(AAOptions, AAChart       *, chart);
-AAPropSetFuncImplementation(AAOptions, AATitle       *, title);
-AAPropSetFuncImplementation(AAOptions, AASubtitle    *, subtitle);
-AAPropSetFuncImplementation(AAOptions, AAXAxis       *, xAxis);
-AAPropSetFuncImplementation(AAOptions, AAYAxis       *, yAxis);
-AAPropSetFuncImplementation(AAOptions, AATooltip     *, tooltip);
-AAPropSetFuncImplementation(AAOptions, AAPlotOptions *, plotOptions);
-AAPropSetFuncImplementation(AAOptions, NSArray       *, series);
-AAPropSetFuncImplementation(AAOptions, AALegend      *, legend);
-AAPropSetFuncImplementation(AAOptions, NSArray       *, colors);
-AAPropSetFuncImplementation(AAOptions, BOOL,            gradientColorEnabled);
-AAPropSetFuncImplementation(AAOptions, NSString      *, zoomResetButtonText); //String to display in 'zoom reset button"
+AAPropSetFuncImplementation(AAOptions, AAChart       *, chart)
+AAPropSetFuncImplementation(AAOptions, AATitle       *, title)
+AAPropSetFuncImplementation(AAOptions, AASubtitle    *, subtitle)
+AAPropSetFuncImplementation(AAOptions, AAXAxis       *, xAxis)
+AAPropSetFuncImplementation(AAOptions, AAYAxis       *, yAxis)
+AAPropSetFuncImplementation(AAOptions, AATooltip     *, tooltip)
+AAPropSetFuncImplementation(AAOptions, AAPlotOptions *, plotOptions)
+AAPropSetFuncImplementation(AAOptions, NSArray       *, series)
+AAPropSetFuncImplementation(AAOptions, AALegend      *, legend)
+AAPropSetFuncImplementation(AAOptions, AAPane        *, pane)
+AAPropSetFuncImplementation(AAOptions, NSArray       *, colors)
+AAPropSetFuncImplementation(AAOptions, AACredits     *, credits)
+AAPropSetFuncImplementation(AAOptions, AALang        *, defaultOptions)
 AAPropSetFuncImplementation(AAOptions, BOOL           , touchEventEnabled)
-AAPropSetFuncImplementation(AAOptions, BOOL           , customEventEnabled)
 
 AAPropSetFuncImplementation(AAOptions, AAColorAxis      *, colorAxis);
-
 @end
 
 
@@ -222,9 +225,7 @@ AAPropSetFuncImplementation(AAOptions, AAColorAxis      *, colorAxis);
     .plotOptionsSet(aaPlotOptions)
     .legendSet(aaLegend)
     .seriesSet(aaChartModel.series)
-    .colorsSet(aaChartModel.colorsTheme)//设置颜色主题
-    .zoomResetButtonTextSet(aaChartModel.zoomResetButtonText)//重置缩放按钮的默认标题
-    .touchEventEnabledSet(aaChartModel.touchEventEnabled);//是否支持点击事件
+    .colorsSet(aaChartModel.colorsTheme);//设置颜色主题
     
     [self configureAxisContentAndStyleWithAAOptions:aaOptions AAChartModel:aaChartModel];
     

@@ -97,10 +97,10 @@
     NSArray *constraintsArr = [self configureTheConstraintArrayWithSonView:self.aaChartView
                                                                     toFatherView:self.view];
     [self.view addConstraints:constraintsArr];
+    [self setupAAChartViewEventBlockHandler];
     
     [self drawChartWithChartConfiguration];
     
-    [self setupAAChartViewEventBlockHandler];
 }
 
 - (NSArray *)configureTheConstraintArrayWithSonView:(UIView *)sonView
@@ -177,8 +177,6 @@
 - (void)drawChartWithChartConfiguration {
     id chartConfiguration = [self chartConfigurationWithSelectedIndex:self.selectedIndex];
     if ([chartConfiguration isKindOfClass:AAChartModel.class]) {
-        AAChartModel *aaChartModel = chartConfiguration;
-        aaChartModel.touchEventEnabled = true;
         [self.aaChartView aa_drawChartWithChartModel:chartConfiguration];
     } else if ([chartConfiguration isKindOfClass:AAOptions.class]) {
         AAOptions *aaOptions = chartConfiguration;
@@ -191,8 +189,6 @@
 - (void)refreshChartWithChartConfiguration {
     id chartConfiguration = [self chartConfigurationWithSelectedIndex:self.selectedIndex];
     if ([chartConfiguration isKindOfClass:AAChartModel.class]) {
-        AAChartModel *aaChartModel = chartConfiguration;
-        aaChartModel.touchEventEnabled = true;
         [self.aaChartView aa_refreshChartWithChartModel:chartConfiguration];
     } else if ([chartConfiguration isKindOfClass:AAOptions.class]) {
         AAOptions *aaOptions = chartConfiguration;

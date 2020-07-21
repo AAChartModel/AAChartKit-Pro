@@ -42,33 +42,30 @@
         <script>
         var aaGlobalChart;
         function loadTheHighChartView(sender, receivedWidth, receivedHeight) {
-                var container = document.getElementById('container');
-                if (receivedWidth != 0) {
-                    container.style.width = receivedWidth;
-                }
-                if (receivedHeight != 0) {
-                    container.style.height = receivedHeight;
-                }
-                
-                var aaOptions = JSON.parse(sender);
-
-                Highcharts.setOptions({
-                    lang: {
-                        thousandsSep: ",", //https://api.highcharts.com/highcharts/lang.thousandsSep
-                        resetZoom: aaOptions.zoomResetButtonText //Set 'Reset zoom button' title if title is not set in receivedZoomButtonTitle
-                    }
-                }); //Set the 'Reset zoom button' title
-                aaOptions.credits = {
-                    enabled: false
-                };
-                if (aaOptions.plotOptions) {
-                    configurePlotOptions(aaOptions);
-                }
-                
-                configureOptionsJSFunctions(aaOptions);
-                
-                aaGlobalChart = Highcharts.chart('container', aaOptions);
+            var container = document.getElementById('container');
+            if (receivedWidth != 0) {
+                container.style.width = receivedWidth;
             }
+            if (receivedHeight != 0) {
+                container.style.height = receivedHeight;
+            }
+            
+            var aaOptions = JSON.parse(sender);
+
+            if (aaOptions.defaultOptions) {
+                Highcharts.setOptions({
+                    lang: aaOptions.defaultOptions
+                });
+            }
+
+            if (aaOptions.plotOptions) {
+                configurePlotOptions(aaOptions);
+            }
+            
+            configureOptionsJSFunctions(aaOptions);
+            
+            aaGlobalChart = Highcharts.chart('container', aaOptions);
+        }
         
         function configurePlotOptions(aaOptions) {
             var aaPlotOptions = aaOptions.plotOptions;

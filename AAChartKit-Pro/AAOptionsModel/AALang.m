@@ -1,10 +1,10 @@
 //
-//  ViewController.h
-//  AAChartKit
+//  AALang.m
+//  AAChartKitDemo
 //
-//  Created by An An on 17/3/13.
-//  Copyright © 2017年 An An. All rights reserved.
-//*************** ...... SOURCE CODE ...... ***************
+//  Created by AnAn on 2020/7/17.
+//  Copyright © 2020 AnAn. All rights reserved.
+
 //***...................................................***
 //*** https://github.com/AAChartModel/AAChartKit        ***
 //*** https://github.com/AAChartModel/AAChartKit-Swift  ***
@@ -30,28 +30,11 @@
  
  */
 
-#import <UIKit/UIKit.h>
-#import "AAEasyTool.h"
-#import "AAChartKit.h"
+#import "AALang.h"
 
-typedef NS_ENUM(NSInteger,BasicChartVCChartType) {
-    BasicChartVCChartTypeColumn = 0,
-    BasicChartVCChartTypeBar,
-    BasicChartVCChartTypeArea,
-    BasicChartVCChartTypeAreaspline,
-    BasicChartVCChartTypeLine,
-    BasicChartVCChartTypeSpline,
-    BasicChartVCChartTypeStepLine,
-    BasicChartVCChartTypeStepArea,
-    BasicChartVCChartTypeScatter,
-};
+@implementation AALang
 
-@interface BasicChartVC : UIViewController
-
-@property (nonatomic, strong) AAChartModel *aaChartModel;
-@property (nonatomic, strong) AAChartView  *aaChartView;
-@property (nonatomic, assign) BasicChartVCChartType chartType;
-@property (nonatomic, copy  ) NSString  *receivedChartType;
+AAPropSetFuncImplementation(AALang, NSString    *, resetZoom)
+AAPropSetFuncImplementation(AALang, NSString    *, thousandsSep)
 
 @end
-

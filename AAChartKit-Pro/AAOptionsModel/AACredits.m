@@ -1,9 +1,9 @@
 //
-//  ViewController.h
-//  AAChartKit
+//  AACredits.m
+//  AAChartKitDemo
 //
-//  Created by An An on 17/3/13.
-//  Copyright © 2017年 An An. All rights reserved.
+//  Created by AnAn on 2020/7/17.
+//  Copyright © 2020 AnAn. All rights reserved.
 //*************** ...... SOURCE CODE ...... ***************
 //***...................................................***
 //*** https://github.com/AAChartModel/AAChartKit        ***
@@ -30,28 +30,24 @@
  
  */
 
-#import <UIKit/UIKit.h>
-#import "AAEasyTool.h"
-#import "AAChartKit.h"
+#import "AACredits.h"
 
-typedef NS_ENUM(NSInteger,BasicChartVCChartType) {
-    BasicChartVCChartTypeColumn = 0,
-    BasicChartVCChartTypeBar,
-    BasicChartVCChartTypeArea,
-    BasicChartVCChartTypeAreaspline,
-    BasicChartVCChartTypeLine,
-    BasicChartVCChartTypeSpline,
-    BasicChartVCChartTypeStepLine,
-    BasicChartVCChartTypeStepArea,
-    BasicChartVCChartTypeScatter,
-};
+@implementation AACredits
 
-@interface BasicChartVC : UIViewController
-
-@property (nonatomic, strong) AAChartModel *aaChartModel;
-@property (nonatomic, strong) AAChartView  *aaChartView;
-@property (nonatomic, assign) BasicChartVCChartType chartType;
-@property (nonatomic, copy  ) NSString  *receivedChartType;
+AAPropSetFuncImplementation(AACredits, BOOL,          enabled)
+AAPropSetFuncImplementation(AACredits, NSString    *, href)
+AAPropSetFuncImplementation(AACredits, AAPosition  *, position)
+AAPropSetFuncImplementation(AACredits, AAStyle     *, style)
+AAPropSetFuncImplementation(AACredits, NSString    *, text)
 
 @end
 
+
+@implementation AAPosition
+
+AAPropSetFuncImplementation(AAPosition, NSString    *, align)
+AAPropSetFuncImplementation(AAPosition, NSString    *, verticalAlign)
+AAPropSetFuncImplementation(AAPosition, NSNumber    *, x)
+AAPropSetFuncImplementation(AAPosition, NSNumber    *, y)
+
+@end
