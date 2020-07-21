@@ -35,7 +35,7 @@
 #import "SpecialChartVC.h"
 #import "OnlyRefreshChartDataVC.h"
 #import "ChartAnimationTypeVC.h"
-#import "ProTypeChartVC.h"
+#import "ChartProVC.h"
 #import "DrilldownChartVC.h"
 #import "ShowManyChartViewVC.h"
 #import "ChartListVC.h"
@@ -131,7 +131,7 @@
     switch (indexPath.section) {
         case 0 : {
             /*通过AAOptions实例对象来绘制图形*/
-            ProTypeChartVC *vc = [[ProTypeChartVC alloc]init];
+            ChartProVC *vc = [[ChartProVC alloc]init];
             vc.selectedIndex = indexPath.row;
             vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
             [self.navigationController pushViewController:vc animated:YES];
@@ -351,7 +351,7 @@
 - (NSArray *)sectionTypeArr {
     if (!_sectionTypeArr) {
         _sectionTypeArr = @[
-            @"Pro types chart AAOptions",
+            @"Pro Type---高级类型",
             @"Basic Type---基础类型",
             @"Special Type---特别类型",
             @"Mixed Type Chart---混合图表",

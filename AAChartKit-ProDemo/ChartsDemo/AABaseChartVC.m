@@ -182,6 +182,7 @@
         [self.aaChartView aa_drawChartWithChartModel:chartConfiguration];
     } else if ([chartConfiguration isKindOfClass:AAOptions.class]) {
         AAOptions *aaOptions = chartConfiguration;
+        aaOptions.chart.backgroundColor = @"#000000";
         aaOptions.touchEventEnabled = true;
         [self.aaChartView aa_drawChartWithOptions:chartConfiguration];
     }
@@ -195,6 +196,8 @@
         [self.aaChartView aa_refreshChartWithChartModel:chartConfiguration];
     } else if ([chartConfiguration isKindOfClass:AAOptions.class]) {
         AAOptions *aaOptions = chartConfiguration;
+        aaOptions.chart.backgroundColor = @"#000000";
+
         aaOptions.touchEventEnabled = true;
         [self.aaChartView aa_refreshChartWithOptions:chartConfiguration];
     }

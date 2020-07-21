@@ -84,20 +84,20 @@
     return AAOptions.new
     .titleSet(AATitle.new
               .textSet(@"AAChartKit-Pro 桑基图"))
-    .colorsSet(@[
-        @"rgb(137,78,36)",
-        @"rgb(220,36,30)",
-        @"rgb(255,206,0)",
-        @"rgb(1,114,41)",
-        @"rgb(0,175,173)",
-        @"rgb(215,153,175)",
-        @"rgb(106,114,120)",
-        @"rgb(114,17,84)",
-        @"rgb(0,0,0)",
-        @"rgb(0,24,168)",
-        @"rgb(0,160,226)",
-        @"rgb(106,187,170)"
-               ])
+//    .colorsSet(@[
+//        @"rgb(137,78,36)",
+//        @"rgb(220,36,30)",
+//        @"rgb(255,206,0)",
+//        @"rgb(1,114,41)",
+//        @"rgb(0,175,173)",
+//        @"rgb(215,153,175)",
+//        @"rgb(106,114,120)",
+//        @"rgb(114,17,84)",
+//        @"rgb(0,0,0)",
+//        @"rgb(0,24,168)",
+//        @"rgb(0,160,226)",
+//        @"rgb(106,187,170)"
+//               ])
     .seriesSet(@[
         AASeriesElement.new
         .typeSet(AAChartTypeSankey)
@@ -105,6 +105,7 @@
         .dataSet(AAOptionsData.sankeyData),
                ])
     ;
+
 }
 
 - (AAOptions *)variablepieChart {
@@ -527,12 +528,12 @@
     return AAOptions.new
     .chartSet(AAChart.new
               .typeSet(AAChartTypeStreamgraph))
-    .colorsSet(@[
-        @"#7cb5ec",@"#434348",@"#90ed7d",@"#f7a35c",@"#8085e9",
-        @"rgb(255,143,179)",@"rgb(255,117,153)",
-        @"#f15c80",@"#e4d354",@"#2b908f",@"#f45b5b",@"#91e8e1",@"#7cb5ec",@"#434348",@"#f7a35c",
-        @"rgb(119,212,100)",@"rgb(93,186,74)",@"rgb(68,161,49)"
-               ])
+//    .colorsSet(@[
+//        @"#7cb5ec",@"#434348",@"#90ed7d",@"#f7a35c",@"#8085e9",
+//        @"rgb(255,143,179)",@"rgb(255,117,153)",
+//        @"#f15c80",@"#e4d354",@"#2b908f",@"#f45b5b",@"#91e8e1",@"#7cb5ec",@"#434348",@"#f7a35c",
+//        @"rgb(119,212,100)",@"rgb(93,186,74)",@"rgb(68,161,49)"
+//               ])
     .titleSet(AATitle.new
               .textSet(@"冬季奥运会奖牌分布"))
     .subtitleSet(AASubtitle.new
@@ -682,12 +683,12 @@
     return AAOptions.new
     .chartSet(AAChart.new
               .typeSet(AAChartTypeXrange))
-    .colorsSet(@[
-        @"#7cb5ec",@"#434348",@"#90ed7d",@"#f7a35c",@"#8085e9",
-        @"rgb(255,143,179)",@"rgb(255,117,153)",
-        @"#f15c80",@"#e4d354",@"#2b908f",@"#f45b5b",@"#91e8e1",@"#7cb5ec",@"#434348",@"#f7a35c",
-        @"rgb(119,212,100)",@"rgb(93,186,74)",@"rgb(68,161,49)"
-               ])
+//    .colorsSet(@[
+//        @"#7cb5ec",@"#434348",@"#90ed7d",@"#f7a35c",@"#8085e9",
+//        @"rgb(255,143,179)",@"rgb(255,117,153)",
+//        @"#f15c80",@"#e4d354",@"#2b908f",@"#f45b5b",@"#91e8e1",@"#7cb5ec",@"#434348",@"#f7a35c",
+//        @"rgb(119,212,100)",@"rgb(93,186,74)",@"rgb(68,161,49)"
+//               ])
     .titleSet(AATitle.new
               .textSet(@""))
     .yAxisSet(AAYAxis.new
@@ -838,7 +839,7 @@
     .seriesSet(@[
         AASeriesElement.new
         .dataLabelsSet(AADataLabels.new
-                       .enabledSet(true))
+                       .enabledSet(false))
         .dataSet(AAOptionsData.networkgraphData),
                ]);
     
