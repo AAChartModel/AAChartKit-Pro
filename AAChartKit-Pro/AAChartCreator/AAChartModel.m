@@ -154,29 +154,16 @@ AAPropSetFuncImplementation(AAChartModel, BOOL,       polar) //是否极化图�
 AAPropSetFuncImplementation(AAChartModel, BOOL,       dataLabelsEnabled) //是否显示数据,默认为否
 AAPropSetFuncImplementation(AAChartModel, AAStyle  *, dataLabelsStyle)//dataLabels 文字样式
 
-//AAPropSetFuncImplementation(AAChartModel, NSString *, dataLabelsFontColor) //Datalabel font color
-//AAPropSetFuncImplementation(AAChartModel, NSNumber *, dataLabelsFontSize) //Datalabel font size
-//AAPropSetFuncImplementation(AAChartModel, NSString *, dataLabelsFontWeight) //Datalabel font weight
-
-
 AAPropSetFuncImplementation(AAChartModel, BOOL,       xAxisVisible) //x 轴是否可见(默认可见)
 AAPropSetFuncImplementation(AAChartModel, BOOL,       xAxisReversed) // x 轴翻转,默认为否
-
 AAPropSetFuncImplementation(AAChartModel, BOOL,       xAxisLabelsEnabled) //x 轴是否显示文字
 AAPropSetFuncImplementation(AAChartModel, AAStyle  *, xAxisLabelsStyle) //x 轴文字样式
-
-//AAPropSetFuncImplementation(AAChartModel, NSNumber *, xAxisLabelsFontSize) //x 轴文字字体大小
-//AAPropSetFuncImplementation(AAChartModel, NSString *, xAxisLabelsFontColor) //x 轴文字字体颜色
-//AAPropSetFuncImplementation(AAChartModel, AAChartFontWeightType, xAxisLabelsFontWeight) //x 轴文字字体粗细
-
 AAPropSetFuncImplementation(AAChartModel, NSNumber *, xAxisTickInterval) //x轴刻度点间隔数(设置每隔几个点显示一个 X轴的内容)
 AAPropSetFuncImplementation(AAChartModel, AALineStyle *, xAxisGridLineStyle) //x 轴网格线的样式
 AAPropSetFuncImplementation(AAChartModel, AACrosshair *, xAxisCrosshair)
 
-
 AAPropSetFuncImplementation(AAChartModel, BOOL,       yAxisVisible) //y 轴是否可见(默认可见)
 AAPropSetFuncImplementation(AAChartModel, BOOL,       yAxisReversed) //y 轴翻转,默认为否
-
 AAPropSetFuncImplementation(AAChartModel, BOOL,       yAxisLabelsEnabled) //y 轴是否显示文字
 AAPropSetFuncImplementation(AAChartModel, AAStyle  *, yAxisLabelsStyle)//y 轴文字样式
 AAPropSetFuncImplementation(AAChartModel, NSString *, yAxisTitle) //y 轴标题
@@ -187,10 +174,8 @@ AAPropSetFuncImplementation(AAChartModel, NSNumber *, yAxisMax) //y 轴最大值
 AAPropSetFuncImplementation(AAChartModel, NSNumber *, yAxisMin) //y 轴最小值（设置为0就不会有负数）
 AAPropSetFuncImplementation(AAChartModel, NSNumber *, yAxisTickInterval) 
 AAPropSetFuncImplementation(AAChartModel, NSArray  *, yAxisTickPositions) //自定义 y 轴坐标（如：[@(0), @(25), @(50), @(75) , (100)]）
-
 AAPropSetFuncImplementation(AAChartModel, AALineStyle *, yAxisGridLineStyle) //y 轴网格线的样式
 AAPropSetFuncImplementation(AAChartModel, AACrosshair *, yAxisCrosshair)
-
 
 AAPropSetFuncImplementation(AAChartModel, BOOL,       tooltipEnabled) //是否显示浮动提示框(默认显示)
 AAPropSetFuncImplementation(AAChartModel, BOOL,       tooltipShared)//是否多组数据共享一个浮动提示框
