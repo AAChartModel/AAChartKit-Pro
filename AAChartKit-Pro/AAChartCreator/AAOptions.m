@@ -40,97 +40,6 @@
         AACredits *aaCreadits = [[AACredits alloc]init];
         aaCreadits.enabled = false;
         self.credits = aaCreadits;
-        
-        NSArray *blueStopsArr = @[
-            @[@0.0, AARgbaColor(30, 144, 255, 1.0)],//颜色字符串设置支持十六进制类型和 rgba 类型
-            @[@0.6, AARgbaColor(30, 144, 255, 0.2)],
-            @[@1.0, AARgbaColor(30, 144, 255, 0.0)]
-        ];
-        NSDictionary *gradientBlueColorDic =
-        [AAGradientColor gradientColorWithDirection:AALinearGradientDirectionToBottom
-                                         stopsArray:blueStopsArr];
-        
-        
-        NSArray *redStopsArr = @[
-            @[@0.0, AARgbaColor(255, 0, 0, 1.0)],//颜色字符串设置支持十六进制类型和 rgba 类型
-            @[@0.6, AARgbaColor(255, 0, 0, 0.2)],
-            @[@1.0, AARgbaColor(255, 0, 0, 0.0)]
-        ];
-        NSDictionary *gradientRedColorDic =
-        [AAGradientColor gradientColorWithDirection:AALinearGradientDirectionToBottom
-                                         stopsArray:redStopsArr];
-        
-        
-        NSArray *goldStopsArr = @[
-            @[@0.0, AARgbaColor(255, 215, 0, 1.0)],//颜色字符串设置支持十六进制类型和 rgba 类型
-            @[@0.6, AARgbaColor(255, 215, 0, 0.2)],
-            @[@1.0, AARgbaColor(255, 215, 0, 0.0)]
-        ];
-        NSDictionary *gradientGoldColorDic =
-        [AAGradientColor gradientColorWithDirection:AALinearGradientDirectionToBottom
-                                         stopsArray:goldStopsArr];
-        
-        
-        NSArray *greenStopsArr = @[
-            @[@0.0, AARgbaColor(50, 205, 50, 1.0)],//颜色字符串设置支持十六进制类型和 rgba 类型
-            @[@0.6, AARgbaColor(50, 205, 50, 0.2)],
-            @[@1.0, AARgbaColor(50, 205, 50, 0.0)]
-        ];
-        NSDictionary *gradientGreenColorDic =
-        [AAGradientColor gradientColorWithDirection:AALinearGradientDirectionToBottom
-                                         stopsArray:greenStopsArr];
-        
-        self.colors = @[
-            @"rgb(137,78,36)",
-            @"rgb(220,36,30)",
-            @"rgb(255,206,0)",
-            @"rgb(1,114,41)",
-            @"rgb(0,175,173)",
-            @"rgb(215,153,175)",
-            @"rgb(106,114,120)",
-            @"rgb(114,17,84)",
-            @"rgb(0,0,0)",
-            @"rgb(0,24,168)",
-            @"rgb(0,160,226)",
-            @"rgb(106,187,170)",
-            
-            gradientBlueColorDic,
-            gradientRedColorDic,
-            gradientGoldColorDic,
-            gradientGreenColorDic,
-            AAGradientColor.firebrickColor,
-            AAGradientColor.wroughtIronColor,
-            AAGradientColor.deepSeaColor,
-            AAGradientColor.coastalBreezeColor,
-            AAGradientColor.eveningDelightColor,
-            AAGradientColor.oceanBlueColor,
-            AAGradientColor.sanguineColor,
-            AAGradientColor.lusciousLimeColor,
-            AAGradientColor.purpleLakeColor,
-            AAGradientColor.oceanBlueColor,
-            AAGradientColor.sanguineColor,
-            AAGradientColor.lusciousLimeColor,
-            AAGradientColor.purpleLakeColor,
-            AAGradientColor.freshPapayaColor,
-            AAGradientColor.ultramarineColor,
-            AAGradientColor.reflexSilverColor,
-            AAGradientColor.neonGlowColor,
-            AAGradientColor.berrySmoothieColor,
-            AAGradientColor.newLeafColor,
-            AAGradientColor.cottonCandyColor,
-            AAGradientColor.pixieDustColor,
-            AAGradientColor.fizzyPeachColor,
-            AAGradientColor.sweetDreamColor,
-            
-            AAGradientColor.freshPapayaColor,
-            AAGradientColor.ultramarineColor,
-            AAGradientColor.pinkSugarColor,
-            AAGradientColor.lemonDrizzleColor,
-            AAGradientColor.victoriaPurpleColor,
-            AAGradientColor.springGreensColor,
-            AAGradientColor.mysticMauveColor,
-            
-        ];
     }
     return self;
 }
@@ -187,7 +96,6 @@ AAPropSetFuncImplementation(AAOptions, AAColorAxis   *, colorAxis);
     .enabledSet(aaChartModel.tooltipEnabled)//启用浮动提示框
     .sharedSet(aaChartModel.tooltipShared)//多组数据共享一个浮动提示框
     .crosshairsSet(true)//启用准星线
-    //.pointFormatSet(aaChartModel.tooltipValueString)//Tooltip value point format string
     .valueSuffixSet(aaChartModel.tooltipValueSuffix);//浮动提示框的单位名称后缀
     
     AAPlotOptions *aaPlotOptions = AAPlotOptions.new
@@ -327,7 +235,6 @@ AAPropSetFuncImplementation(AAOptions, AAColorAxis   *, colorAxis);
                    .styleSet(aaChartModel.xAxisLabelsStyle)
                    )
         .reversedSet(aaChartModel.xAxisReversed)
-//        .gridLineWidthSet(aaChartModel.xAxisGridLineStyle)//x轴网格线宽度
         .categoriesSet(aaChartModel.categories)
         .visibleSet(aaChartModel.xAxisVisible)//x轴是否可见
         .tickIntervalSet(aaChartModel.xAxisTickInterval)//x轴坐标点间隔数
