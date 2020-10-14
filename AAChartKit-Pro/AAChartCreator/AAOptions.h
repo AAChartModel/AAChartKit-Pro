@@ -87,7 +87,7 @@ AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AACredits     *, credi
 AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AALang        *, defaultOptions)
 AAPropStatementAndPropSetFuncStatement(assign, AAOptions, BOOL           , touchEventEnabled)
 
-AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AAColorAxis      *, colorAxis);
+AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AAColorAxis   *, colorAxis);
 
 @end
 

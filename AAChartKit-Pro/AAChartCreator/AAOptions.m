@@ -150,11 +150,10 @@ AAPropSetFuncImplementation(AAOptions, AACredits     *, credits)
 AAPropSetFuncImplementation(AAOptions, AALang        *, defaultOptions)
 AAPropSetFuncImplementation(AAOptions, BOOL           , touchEventEnabled)
 
-AAPropSetFuncImplementation(AAOptions, AAColorAxis      *, colorAxis);
+AAPropSetFuncImplementation(AAOptions, AAColorAxis   *, colorAxis);
+
 @end
 
-
-#define AAFontSizeFormat(fontSize) [self configureFontSize:fontSize]
 
 @implementation AAOptionsConstructor
 
@@ -173,11 +172,7 @@ AAPropSetFuncImplementation(AAOptions, AAColorAxis      *, colorAxis);
     .textSet(aaChartModel.title);//标题文本内容
     
     if (![aaChartModel.title isEqualToString:@""]) {
-        aaTitle.styleSet(AAStyle.new
-                         .colorSet(aaChartModel.titleFontColor)//Title font color
-                         .fontSizeSet(AAFontSizeFormat(aaChartModel.titleFontSize))//Title font size
-                         .fontWeightSet(aaChartModel.titleFontWeight)//Title font weight
-                         );
+        aaTitle.styleSet(aaChartModel.titleStyle);
     }
     
     AASubtitle *aaSubtitle;
@@ -185,11 +180,7 @@ AAPropSetFuncImplementation(AAOptions, AAColorAxis      *, colorAxis);
         aaSubtitle = AASubtitle.new
         .textSet(aaChartModel.subtitle)//副标题内容
         .alignSet(aaChartModel.subtitleAlign)//图表副标题文本水平对齐方式。可选的值有 “left”，”center“和“right”。 默认是：center.
-        .styleSet(AAStyle.new
-                  .colorSet(aaChartModel.subtitleFontColor)//Subtitle font color
-                  .fontSizeSet(AAFontSizeFormat(aaChartModel.subtitleFontSize))//Subtitle font size
-                  .fontWeightSet(aaChartModel.subtitleFontWeight)//Subtitle font weight
-                  );
+        .styleSet(aaChartModel.subtitleStyle);
     }
     
     AATooltip *aaTooltip = AATooltip.new
@@ -205,10 +196,10 @@ AAPropSetFuncImplementation(AAOptions, AAColorAxis      *, colorAxis);
                );//设置是否百分比堆叠显示图形
     
     if (aaChartModel.animationType != 0) {
-        aaPlotOptions.series.animation = (AAAnimation.new
-                                          .easingSet(aaChartModel.animationType)
-                                          .durationSet(aaChartModel.animationDuration)
-                                          );
+        aaPlotOptions.series.animation = AAAnimation.new
+        .easingSet(aaChartModel.animationType)
+        .durationSet(aaChartModel.animationDuration)
+        ;
     }
     
     [self configureTheStyleOfConnectNodeWithChartModel:aaChartModel plotOptions:aaPlotOptions];
@@ -271,11 +262,7 @@ AAPropSetFuncImplementation(AAOptions, AAColorAxis      *, colorAxis);
     .enabledSet(aaChartModel.dataLabelsEnabled);
     if (aaChartModel.dataLabelsEnabled == true) {
         aaDataLabels
-        .styleSet(AAStyle.new
-                  .colorSet(aaChartModel.dataLabelsFontColor)
-                  .fontSizeSet(AAFontSizeFormat(aaChartModel.dataLabelsFontSize))
-                  .fontWeightSet(aaChartModel.dataLabelsFontWeight)
-                  );
+        .styleSet(aaChartModel.dataLabelsStyle);
     }
     
     if (chartType == AAChartTypeColumn) {
@@ -337,11 +324,7 @@ AAPropSetFuncImplementation(AAOptions, AAColorAxis      *, colorAxis);
         AAXAxis *aaXAxis = AAXAxis.new
         .labelsSet(AALabels.new
                    .enabledSet(aaChartModel.xAxisLabelsEnabled)//设置 x 轴是否显示文字
-                   .styleSet(AAStyle.new
-                             .colorSet(aaChartModel.xAxisLabelsFontColor)//xAxis Label font color
-                             .fontSizeSet(AAFontSizeFormat(aaChartModel.xAxisLabelsFontSize))//xAxis Label font size
-                             .fontWeightSet(aaChartModel.xAxisLabelsFontWeight)//xAxis Label font weight
-                             )
+                   .styleSet(aaChartModel.xAxisLabelsStyle)
                    )
         .reversedSet(aaChartModel.xAxisReversed)
         .gridLineWidthSet(aaChartModel.xAxisGridLineWidth)//x轴网格线宽度
@@ -360,11 +343,7 @@ AAPropSetFuncImplementation(AAOptions, AAColorAxis      *, colorAxis);
         AAYAxis *aaYAxis = AAYAxis.new
         .labelsSet(AALabels.new
                    .enabledSet(aaChartModel.yAxisLabelsEnabled)//设置 y 轴是否显示数字
-                   .styleSet(AAStyle.new
-                             .colorSet(aaChartModel.yAxisLabelsFontColor)//yAxis Label font color
-                             .fontSizeSet(AAFontSizeFormat(aaChartModel.yAxisLabelsFontSize))//yAxis Label font size
-                             .fontWeightSet(aaChartModel.yAxisLabelsFontWeight)//yAxis Label font weight
-                             )
+                   .styleSet(aaChartModel.yAxisLabelsStyle)
                    .formatSet(@"{value:.,0f}")//让y轴的值完整显示 而不是100000显示为100k
                    )
         .minSet(aaChartModel.yAxisMin)//设置 y 轴最小值,最小值等于零就不能显示负值了
@@ -392,14 +371,6 @@ AAPropSetFuncImplementation(AAOptions, AAColorAxis      *, colorAxis);
         aaOptions.yAxis = aaYAxis;
     }
 }
-
-+ (NSString *)configureFontSize:(NSNumber *)fontSize {
-    if (fontSize != nil) {
-        return [NSString stringWithFormat:@"%@px", fontSize];
-    }
-    return nil;
-}
-
 
 @end
 
