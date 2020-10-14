@@ -106,12 +106,6 @@
     .yAxisTitleSet(@"")
 //    .makerSymbolStyleSet(AAChartSymbolStyleTypeBorderBlank)
     .markerRadiusSet(@6)
-    .xAxisCrosshairWidthSet(@1.5)
-    .xAxisCrosshairColorSet(@"#ff0000")
-    .xAxisCrosshairDashStyleTypeSet(AAChartLineDashStyleTypeDashDot)
-    .yAxisCrosshairWidthSet(@1.5)
-    .yAxisCrosshairColorSet(@"#ff0000")
-    .yAxisCrosshairDashStyleTypeSet(AAChartLineDashStyleTypeLongDashDot)
     .seriesSet(@[
                  AAObject(AASeriesElement)
                  .nameSet(@"2018")

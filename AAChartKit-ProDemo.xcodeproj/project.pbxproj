@@ -87,6 +87,7 @@
 		27FDCB6D24C6D7980011BB65 /* AAChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FDCB6B24C6D7980011BB65 /* AAChartModel.m */; };
 		27FDCB7024C6D8450011BB65 /* AALang.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FDCB6F24C6D8450011BB65 /* AALang.m */; };
 		27FDCB7324C6D85F0011BB65 /* AACredits.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FDCB7224C6D85F0011BB65 /* AACredits.m */; };
+		4476CDBB25370D6E004E3D0D /* AALineStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4476CDBA25370D6E004E3D0D /* AALineStyle.m */; };
 		645E59551E8403710039A0A1 /* SpecialChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 645E59541E8403710039A0A1 /* SpecialChartVC.m */; };
 		64AF87601F0A981400A801C4 /* OnlyRefreshChartDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 64AF875F1F0A981400A801C4 /* OnlyRefreshChartDataVC.m */; };
 		64F15B5C1F5D907B00DC7A7F /* DrilldownChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 64F15B5B1F5D907B00DC7A7F /* DrilldownChartVC.m */; };
@@ -255,6 +256,8 @@
 		27FDCB6F24C6D8450011BB65 /* AALang.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AALang.m; sourceTree = "<group>"; };
 		27FDCB7124C6D85F0011BB65 /* AACredits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AACredits.h; sourceTree = "<group>"; };
 		27FDCB7224C6D85F0011BB65 /* AACredits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AACredits.m; sourceTree = "<group>"; };
+		4476CDB925370D6E004E3D0D /* AALineStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AALineStyle.h; sourceTree = "<group>"; };
+		4476CDBA25370D6E004E3D0D /* AALineStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AALineStyle.m; sourceTree = "<group>"; };
 		645E59531E8403710039A0A1 /* SpecialChartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialChartVC.h; sourceTree = "<group>"; };
 		645E59541E8403710039A0A1 /* SpecialChartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialChartVC.m; sourceTree = "<group>"; };
 		64AF875E1F0A981400A801C4 /* OnlyRefreshChartDataVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlyRefreshChartDataVC.h; sourceTree = "<group>"; };
@@ -402,6 +405,8 @@
 				2750141E24C02CB5005A5D73 /* AAStates.m */,
 				2750141124C02CB4005A5D73 /* AAStyle.h */,
 				2750142824C02CB6005A5D73 /* AAStyle.m */,
+				4476CDB925370D6E004E3D0D /* AALineStyle.h */,
+				4476CDBA25370D6E004E3D0D /* AALineStyle.m */,
 				275013FF24C02CB3005A5D73 /* AATitle.h */,
 				2750140D24C02CB4005A5D73 /* AATitle.m */,
 				2750142224C02CB5005A5D73 /* AATooltip.h */,
@@ -813,6 +818,7 @@
 				27FDCB6D24C6D7980011BB65 /* AAChartModel.m in Sources */,
 				2750143B24C02CB6005A5D73 /* AAPlotOptions.m in Sources */,
 				64AF87601F0A981400A801C4 /* OnlyRefreshChartDataVC.m in Sources */,
+				4476CDBB25370D6E004E3D0D /* AALineStyle.m in Sources */,
 				2750143724C02CB6005A5D73 /* AALabel.m in Sources */,
 				7172A3DB1E763EA6000D5B99 /* AppDelegate.m in Sources */,
 				275013A124BFF6AC005A5D73 /* AAEasyTool.m in Sources */,

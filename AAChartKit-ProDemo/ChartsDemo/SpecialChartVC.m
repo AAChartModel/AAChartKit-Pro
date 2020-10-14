@@ -156,7 +156,6 @@
     .titleSet(@"Bubble")
     .subtitleSet(@"Virtual data")
     .yAxisTitleSet(@"℃")
-    .yAxisGridLineWidthSet(@0)
     .colorsThemeSet(@[@"#0c9674",@"#7dffc0",@"#d11b5f",@"#facd32",@"#ffffa0",@"#EA007B"])
     .seriesSet(seriesArr)
     ;
@@ -277,7 +276,6 @@
     .titleSet(@"按性别划分的身高体重分布图")
     .yAxisTitleSet(@"千克(kg)")
     .markerRadiusSet(@9)
-    .yAxisGridLineWidthSet(@0)
     .colorsThemeSet(@[@"#c3b1fb",@"#e70b2d",@"#77ed00",@"#00f3d2",@"#83ddff",])
     .markerSymbolStyleSet(AAChartSymbolStyleTypeInnerBlank)
     .markerSymbolSet(AAChartSymbolTypeCircle)
@@ -771,14 +769,12 @@
 - (AAChartModel *)configureColumnrangeChart {
     return AAChartModel.new
     .chartTypeSet(AAChartTypeColumnrange)
-    .yAxisGridLineWidthSet(@0)
     .yAxisTitleSet(@"℃")
     .categoriesSet(@[@"一月", @"二月", @"三月", @"四月", @"五月", @"六月", @"七月", @"八月", @"九月", @"十月", @"十一月", @"十二月"])
     .dataLabelsEnabledSet(true)
     .invertedSet(true)
     .backgroundColorSet(@"#4b2b7f")
     .dataLabelsEnabledSet(true)
-    .dataLabelsFontColorSet(@"#ffffff")
     .seriesSet(@[
         AASeriesElement.new
         .nameSet(@"温度")
