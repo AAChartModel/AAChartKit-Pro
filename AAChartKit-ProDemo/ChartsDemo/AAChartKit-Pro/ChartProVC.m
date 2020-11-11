@@ -84,20 +84,20 @@
     return AAOptions.new
     .titleSet(AATitle.new
               .textSet(@"AAChartKit-Pro 桑基图"))
-//    .colorsSet(@[
-//        @"rgb(137,78,36)",
-//        @"rgb(220,36,30)",
-//        @"rgb(255,206,0)",
-//        @"rgb(1,114,41)",
-//        @"rgb(0,175,173)",
-//        @"rgb(215,153,175)",
-//        @"rgb(106,114,120)",
-//        @"rgb(114,17,84)",
-//        @"rgb(0,0,0)",
-//        @"rgb(0,24,168)",
-//        @"rgb(0,160,226)",
-//        @"rgb(106,187,170)"
-//               ])
+    .colorsSet(@[
+        @"rgb(137,78,36)",
+        @"rgb(220,36,30)",
+        @"rgb(255,206,0)",
+        @"rgb(1,114,41)",
+        @"rgb(0,175,173)",
+        @"rgb(215,153,175)",
+        @"rgb(106,114,120)",
+        @"rgb(114,17,84)",
+        @"rgb(0,0,0)",
+        @"rgb(0,24,168)",
+        @"rgb(0,160,226)",
+        @"rgb(106,187,170)"
+               ])
     .seriesSet(@[
         AASeriesElement.new
         .typeSet(AAChartTypeSankey)
@@ -215,7 +215,7 @@
 
 - (AAOptions *)sunburstChart {
     AAChart *aaChart = AAChart.new
-    .typeSet(@"variwide");
+    .typeSet(AAChartTypeVariwide);
     
     AATitle *aaTitle = AATitle.new
     .textSet(@"2017 世界人口分布");
@@ -528,12 +528,12 @@
     return AAOptions.new
     .chartSet(AAChart.new
               .typeSet(AAChartTypeStreamgraph))
-//    .colorsSet(@[
-//        @"#7cb5ec",@"#434348",@"#90ed7d",@"#f7a35c",@"#8085e9",
-//        @"rgb(255,143,179)",@"rgb(255,117,153)",
-//        @"#f15c80",@"#e4d354",@"#2b908f",@"#f45b5b",@"#91e8e1",@"#7cb5ec",@"#434348",@"#f7a35c",
-//        @"rgb(119,212,100)",@"rgb(93,186,74)",@"rgb(68,161,49)"
-//               ])
+    .colorsSet(@[
+        @"#7cb5ec",@"#434348",@"#90ed7d",@"#f7a35c",@"#8085e9",
+        @"rgb(255,143,179)",@"rgb(255,117,153)",
+        @"#f15c80",@"#e4d354",@"#2b908f",@"#f45b5b",@"#91e8e1",@"#7cb5ec",@"#434348",@"#f7a35c",
+        @"rgb(119,212,100)",@"rgb(93,186,74)",@"rgb(68,161,49)"
+               ])
     .titleSet(AATitle.new
               .textSet(@"冬季奥运会奖牌分布"))
     .subtitleSet(AASubtitle.new
@@ -585,7 +585,7 @@
 - (AAOptions *)tilemapChart {
     return AAOptions.new
     .chartSet(AAChart.new
-              .typeSet(@"tilemap"))
+              .typeSet(AAChartTypeTilemap))
     .titleSet(AATitle.new
               .textSet(@"U.S. states by population in 2016"))
     .xAxisSet(AAXAxis.new
@@ -683,12 +683,12 @@
     return AAOptions.new
     .chartSet(AAChart.new
               .typeSet(AAChartTypeXrange))
-//    .colorsSet(@[
-//        @"#7cb5ec",@"#434348",@"#90ed7d",@"#f7a35c",@"#8085e9",
-//        @"rgb(255,143,179)",@"rgb(255,117,153)",
-//        @"#f15c80",@"#e4d354",@"#2b908f",@"#f45b5b",@"#91e8e1",@"#7cb5ec",@"#434348",@"#f7a35c",
-//        @"rgb(119,212,100)",@"rgb(93,186,74)",@"rgb(68,161,49)"
-//               ])
+    .colorsSet(@[
+        @"#7cb5ec",@"#434348",@"#90ed7d",@"#f7a35c",@"#8085e9",
+        @"rgb(255,143,179)",@"rgb(255,117,153)",
+        @"#f15c80",@"#e4d354",@"#2b908f",@"#f45b5b",@"#91e8e1",@"#7cb5ec",@"#434348",@"#f7a35c",
+        @"rgb(119,212,100)",@"rgb(93,186,74)",@"rgb(68,161,49)"
+               ])
     .titleSet(AATitle.new
               .textSet(@""))
     .yAxisSet(AAYAxis.new
@@ -712,7 +712,7 @@
 - (AAOptions *)vectorChart {
     return AAOptions.new
     .chartSet(AAChart.new
-              .typeSet(@"vector"))
+              .typeSet(AAChartTypeVector))
     .colorsSet(@[@"red"])
     .titleSet(AATitle.new
               .textSet(@"AAChartKit-Pro Vector plot"))
@@ -743,7 +743,7 @@
     .seriesSet(@[
         @{
             @"name": @"Bell curve",
-            @"type": @"bellcurve",
+            @"type": AAChartTypeBellcurve,
             @"xAxis": @1,
             @"yAxis": @1,
             @"baseSeries": @1,
@@ -764,7 +764,7 @@
 - (AAOptions *)timelineChart {
     AAOptions *aaOptions = AAOptions.new
     .chartSet(AAChart.new
-              .typeSet(@"timeline"))
+              .typeSet(AAChartTypeTimeline))
     .titleSet(AATitle.new
               .textSet(@"人类太空探索时间表"))
     .subtitleSet(AASubtitle.new
@@ -782,7 +782,7 @@
 - (AAOptions *)itemChart {
     AAOptions *aaOptions = AAOptions.new
     .chartSet(AAChart.new
-              .typeSet(@"item"))
+              .typeSet(AAChartTypeItem))
     .titleSet(AATitle.new
               .textSet(@"AAChartKit-Pro item chart"))
     .subtitleSet(AASubtitle.new
@@ -803,15 +803,16 @@
 }
 
 - (AAOptions *)windbarbChart {
+    
+    
     AAOptions *aaOptions = AAOptions.new
     .titleSet(AATitle.new
               .textSet(@"AAChartKit-Pro Wind Barbst"))
-    .xAxisSet((id)@{
-        @"offset": @40
-                  })
+    .xAxisSet(AAXAxis.new
+              .offsetSet(@40))
     .seriesSet(@[
         AASeriesElement.new
-        .typeSet(@"windbarb")
+        .typeSet(AAChartTypeWindbarb)
         .nameSet(@"Wind")
         .dataSet(AAOptionsData.windbarbData),
         AASeriesElement.new
@@ -831,7 +832,7 @@
 - (AAOptions *)networkgraphChart {
     AAOptions *aaOptions = AAOptions.new
     .chartSet(AAChart.new
-              .typeSet(@"networkgraph"))
+              .typeSet(AAChartTypeNetworkgraph))
     .titleSet(AATitle.new
               .textSet(@"The Indo-European Laungauge Tree"))
     .subtitleSet(AASubtitle.new
@@ -849,7 +850,7 @@
 - (AAOptions *)wordcloudChart {
     AAOptions *aaOptions = AAOptions.new
     .chartSet(AAChart.new
-              .typeSet(@"wordcloud"))
+              .typeSet(AAChartTypeWordcloud))
     .titleSet(AATitle.new
               .textSet(@"词云图"))
     .seriesSet(@[
@@ -863,7 +864,7 @@
 - (AAOptions *)eulerChart {
     AAOptions *aaOptions = AAOptions.new
     .chartSet(AAChart.new
-              .typeSet(@"venn"))
+              .typeSet(AAChartTypeVenn))
     .titleSet(AATitle.new
               .textSet(@"欧拉图和韦恩图的关系"))
     .tooltipSet(AATooltip.new

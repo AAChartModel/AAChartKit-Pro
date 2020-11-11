@@ -25,4 +25,13 @@ AAChartType const AAChartTypeStreamgraph     =  @"streamgraph";
 AAChartType const AAChartTypeColumnpyramid   =  @"columnpyramid";
 AAChartType const AAChartTypeXrange          =  @"xrange";
 
+AAChartType const AAChartTypeTilemap         =  @"tilemap";
+AAChartType const AAChartTypeVector          =  @"vector";
+AAChartType const AAChartTypeBellcurve       =  @"bellcurve";
+AAChartType const AAChartTypeTimeline        =  @"timeline";
+AAChartType const AAChartTypeItem            =  @"item";
+AAChartType const AAChartTypeWindbarb        =  @"windbarb";
+AAChartType const AAChartTypeNetworkgraph    =  @"networkgraph";
+AAChartType const AAChartTypeWordcloud       =  @"wordcloud";
+
 @end

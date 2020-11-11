@@ -28,6 +28,15 @@ AACHARTKIT_EXTERN AAChartType const AAChartTypeStreamgraph;
 AACHARTKIT_EXTERN AAChartType const AAChartTypeColumnpyramid;
 AACHARTKIT_EXTERN AAChartType const AAChartTypeXrange;
 
+AACHARTKIT_EXTERN AAChartType const AAChartTypeTilemap;
+AACHARTKIT_EXTERN AAChartType const AAChartTypeVector;
+AACHARTKIT_EXTERN AAChartType const AAChartTypeBellcurve;
+AACHARTKIT_EXTERN AAChartType const AAChartTypeTimeline;
+AACHARTKIT_EXTERN AAChartType const AAChartTypeItem;
+AACHARTKIT_EXTERN AAChartType const AAChartTypeWindbarb;
+AACHARTKIT_EXTERN AAChartType const AAChartTypeNetworkgraph;
+AACHARTKIT_EXTERN AAChartType const AAChartTypeWordcloud;
+
 @end
 
 NS_ASSUME_NONNULL_END
