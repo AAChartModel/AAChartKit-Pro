@@ -217,57 +217,57 @@ AAPropStatementAndPropSetFuncStatement(strong, AAChartModel, AAScrollablePlotAre
 
 @interface AAChartModel(Unavailable)
 
-@property (nonatomic, strong) NSNumber * titleFontSize __attribute__((unavailable("`titleFontSize` was removed, please use titleStyle instead of it")));
-- (AAChartModel * (^) (NSNumber * titleFontSize))titleFontSizeSet __attribute__((unavailable("`titleFontSizeSet` was removed, please use titleStyleSet instead of it")));
+@property (nonatomic, strong) NSNumber * titleFontSize AAChartKitUnavailable("`titleFontSize` was removed, please use titleStyle instead of it");
+- (AAChartModel * (^) (NSNumber * titleFontSize))titleFontSizeSet AAChartKitUnavailable("`titleFontSizeSet` was removed, please use titleStyleSet instead of it");
 
-@property (nonatomic, strong) NSString * titleFontColor __attribute__((unavailable("`titleFontColor` was removed, please use titleStyle instead of it")));
-- (AAChartModel * (^) (NSString * titleFontColor))titleFontColorSet __attribute__((unavailable("`titleFontColorSet` was removed, please use titleStyleSet instead of it")));
+@property (nonatomic, strong) NSString * titleFontColor AAChartKitUnavailable("`titleFontColor` was removed, please use titleStyle instead of it");
+- (AAChartModel * (^) (NSString * titleFontColor))titleFontColorSet AAChartKitUnavailable("`titleFontColorSet` was removed, please use titleStyleSet instead of it");
 
-@property (nonatomic, strong) NSString * titleFontWeight __attribute__((unavailable("`titleFontWeight` was removed, please use titleStyle instead of it")));
-- (AAChartModel * (^) (NSString * titleFontWeight))titleFontWeightSet __attribute__((unavailable("`titleFontWeightSet` was removed, please use titleStyleSet instead of it")));
-
-
-
-@property (nonatomic, strong) NSNumber * subtitleFontSize __attribute__((unavailable("`subtitleFontSize` was removed, please use subtitleStyle instead of it")));
-- (AAChartModel * (^) (NSNumber * subtitleFontSize))subtitleFontSizeSet __attribute__((unavailable("`subtitleFontSizeSet` was removed, please use subtitleStyleSet instead of it")));
-
-@property (nonatomic, strong) NSString * subtitleFontColor __attribute__((unavailable("`subtitleFontColor` was removed, please use subtitleStyle instead of it")));
-- (AAChartModel * (^) (NSString * subtitleFontColor))subtitleFontColorSet __attribute__((unavailable("`subtitleFontColorSet` was removed, please use subtitleStyleSet instead of it")));
-
-@property (nonatomic, strong) NSString * subtitleFontWeight __attribute__((unavailable("`subtitleFontColor` was removed, please use subtitleStyle instead of it")));
-- (AAChartModel * (^) (NSString * subtitleFontWeight))subtitleFontWeightSet __attribute__((unavailable("`subtitleFontWeightSet` was removed, please use subtitleStyleSet instead of it")));
+@property (nonatomic, strong) NSString * titleFontWeight AAChartKitUnavailable("`titleFontWeight` was removed, please use titleStyle instead of it");
+- (AAChartModel * (^) (NSString * titleFontWeight))titleFontWeightSet AAChartKitUnavailable("`titleFontWeightSet` was removed, please use titleStyleSet instead of it");
 
 
 
-@property (nonatomic, strong) NSNumber * dataLabelsFontSize __attribute__((unavailable("`dataLabelsFontSize` was removed, please use dataLabelsStyle instead of it")));
-- (AAChartModel * (^) (NSNumber * dataLabelsFontSize))dataLabelsFontSizeSet __attribute__((unavailable("`dataLabelsFontSizeSet` was removed, please use dataLabelsStyleSet instead of it")));
+@property (nonatomic, strong) NSNumber * subtitleFontSize AAChartKitUnavailable("`subtitleFontSize` was removed, please use subtitleStyle instead of it");
+- (AAChartModel * (^) (NSNumber * subtitleFontSize))subtitleFontSizeSet AAChartKitUnavailable("`subtitleFontSizeSet` was removed, please use subtitleStyleSet instead of it");
 
-@property (nonatomic, strong) NSString * dataLabelsFontColor __attribute__((unavailable("`dataLabelsFontColor` was removed, please use dataLabelsStyle instead of it")));
-- (AAChartModel * (^) (NSString * dataLabelsFontColor))dataLabelsFontColorSet __attribute__((unavailable("`dataLabelsFontColorSet` was removed, please use dataLabelsStyleSet instead of it")));
+@property (nonatomic, strong) NSString * subtitleFontColor AAChartKitUnavailable("`subtitleFontColor` was removed, please use subtitleStyle instead of it");
+- (AAChartModel * (^) (NSString * subtitleFontColor))subtitleFontColorSet AAChartKitUnavailable("`subtitleFontColorSet` was removed, please use subtitleStyleSet instead of it");
 
-@property (nonatomic, strong) NSString * dataLabelsFontWeight __attribute__((unavailable("`dataLabelsFontWeight` was removed, please use dataLabelsStyle instead of it")));
-- (AAChartModel * (^) (NSString * dataLabelsFontWeight))dataLabelsFontWeightSet __attribute__((unavailable("`dataLabelsFontWeightSet` was removed, please use dataLabelsStyleSet instead of it")));
-
-
-
-@property (nonatomic, strong) NSNumber * xAxisLabelsFontSize __attribute__((unavailable("`xAxisLabelsFontSize` was removed, please use xAxisLabelsStyle instead of it")));
-- (AAChartModel * (^) (NSNumber * xAxisLabelsFontSize))xAxisLabelsFontSizeSet __attribute__((unavailable("`xAxisLabelsFontSizeSet` was removed, please use xAxisLabelsStyleSet instead of it")));
-
-@property (nonatomic, strong) NSString * xAxisLabelsFontColor __attribute__((unavailable("`xAxisLabelsFontColor` was removed, please use xAxisLabelsStyle instead of it")));
-- (AAChartModel * (^) (NSString * xAxisLabelsFontColor))xAxisLabelsFontColorSet __attribute__((unavailable("`xAxisLabelsFontColorSet` was removed, please use xAxisLabelsStyleSet instead of it")));
-
-@property (nonatomic, strong) NSString * xAxisLabelsFontWeight __attribute__((unavailable("`xAxisLabelsFontWeight` was removed, please use xAxisLabelsStyle instead of it")));
-- (AAChartModel * (^) (NSString * xAxisLabelsFontWeight))xAxisLabelsFontWeightSet __attribute__((unavailable("`xAxisLabelsFontWeightSet` was removed, please use xAxisLabelsStyleSet instead of it")));
+@property (nonatomic, strong) NSString * subtitleFontWeight AAChartKitUnavailable("`subtitleFontColor` was removed, please use subtitleStyle instead of it");
+- (AAChartModel * (^) (NSString * subtitleFontWeight))subtitleFontWeightSet AAChartKitUnavailable("`subtitleFontWeightSet` was removed, please use subtitleStyleSet instead of it");
 
 
 
-@property (nonatomic, strong) NSNumber * yAxisLabelsFontSize __attribute__((unavailable("`yAxisLabelsFontSize` was removed, please use yAxisLabelsStyle instead of it")));
-- (AAChartModel * (^) (NSNumber * yAxisLabelsFontSize))yAxisLabelsFontSizeSet __attribute__((unavailable("`yAxisLabelsFontSizeSet` was removed, please use yAxisLabelsStyleSet instead of it")));
+@property (nonatomic, strong) NSNumber * dataLabelsFontSize AAChartKitUnavailable("`dataLabelsFontSize` was removed, please use dataLabelsStyle instead of it");
+- (AAChartModel * (^) (NSNumber * dataLabelsFontSize))dataLabelsFontSizeSet AAChartKitUnavailable("`dataLabelsFontSizeSet` was removed, please use dataLabelsStyleSet instead of it");
 
-@property (nonatomic, strong) NSString * yAxisLabelsFontColor __attribute__((unavailable("`yAxisLabelsFontColor` was removed, please use yAxisLabelsStyle instead of it")));
-- (AAChartModel * (^) (NSString * yAxisLabelsFontColor))yAxisLabelsFontColorSet __attribute__((unavailable("`yAxisLabelsFontColorSet` was removed, please use yAxisLabelsStyleSet instead of it")));
+@property (nonatomic, strong) NSString * dataLabelsFontColor AAChartKitUnavailable("`dataLabelsFontColor` was removed, please use dataLabelsStyle instead of it");
+- (AAChartModel * (^) (NSString * dataLabelsFontColor))dataLabelsFontColorSet AAChartKitUnavailable("`dataLabelsFontColorSet` was removed, please use dataLabelsStyleSet instead of it");
 
-@property (nonatomic, strong) NSString * yAxisLabelsFontWeight __attribute__((unavailable("`yAxisLabelsFontWeight` was removed, please use yAxisLabelsStyle instead of it")));
-- (AAChartModel * (^) (NSString * yAxisLabelsFontWeight))yAxisLabelsFontWeightSet __attribute__((unavailable("`yAxisLabelsFontWeightSet` was removed, please use yAxisLabelsStyleSet instead of it")));
+@property (nonatomic, strong) NSString * dataLabelsFontWeight AAChartKitUnavailable("`dataLabelsFontWeight` was removed, please use dataLabelsStyle instead of it");
+- (AAChartModel * (^) (NSString * dataLabelsFontWeight))dataLabelsFontWeightSet AAChartKitUnavailable("`dataLabelsFontWeightSet` was removed, please use dataLabelsStyleSet instead of it");
+
+
+
+@property (nonatomic, strong) NSNumber * xAxisLabelsFontSize AAChartKitUnavailable("`xAxisLabelsFontSize` was removed, please use xAxisLabelsStyle instead of it");
+- (AAChartModel * (^) (NSNumber * xAxisLabelsFontSize))xAxisLabelsFontSizeSet AAChartKitUnavailable("`xAxisLabelsFontSizeSet` was removed, please use xAxisLabelsStyleSet instead of it");
+
+@property (nonatomic, strong) NSString * xAxisLabelsFontColor AAChartKitUnavailable("`xAxisLabelsFontColor` was removed, please use xAxisLabelsStyle instead of it");
+- (AAChartModel * (^) (NSString * xAxisLabelsFontColor))xAxisLabelsFontColorSet AAChartKitUnavailable("`xAxisLabelsFontColorSet` was removed, please use xAxisLabelsStyleSet instead of it");
+
+@property (nonatomic, strong) NSString * xAxisLabelsFontWeight AAChartKitUnavailable("`xAxisLabelsFontWeight` was removed, please use xAxisLabelsStyle instead of it");
+- (AAChartModel * (^) (NSString * xAxisLabelsFontWeight))xAxisLabelsFontWeightSet AAChartKitUnavailable("`xAxisLabelsFontWeightSet` was removed, please use xAxisLabelsStyleSet instead of it");
+
+
+
+@property (nonatomic, strong) NSNumber * yAxisLabelsFontSize AAChartKitUnavailable("`yAxisLabelsFontSize` was removed, please use yAxisLabelsStyle instead of it");
+- (AAChartModel * (^) (NSNumber * yAxisLabelsFontSize))yAxisLabelsFontSizeSet AAChartKitUnavailable("`yAxisLabelsFontSizeSet` was removed, please use yAxisLabelsStyleSet instead of it");
+
+@property (nonatomic, strong) NSString * yAxisLabelsFontColor AAChartKitUnavailable("`yAxisLabelsFontColor` was removed, please use yAxisLabelsStyle instead of it");
+- (AAChartModel * (^) (NSString * yAxisLabelsFontColor))yAxisLabelsFontColorSet AAChartKitUnavailable("`yAxisLabelsFontColorSet` was removed, please use yAxisLabelsStyleSet instead of it");
+
+@property (nonatomic, strong) NSString * yAxisLabelsFontWeight AAChartKitUnavailable("`yAxisLabelsFontWeight` was removed, please use yAxisLabelsStyle instead of it");
+- (AAChartModel * (^) (NSString * yAxisLabelsFontWeight))yAxisLabelsFontWeightSet AAChartKitUnavailable("`yAxisLabelsFontWeightSet` was removed, please use yAxisLabelsStyleSet instead of it");
 
 @end

@@ -38,6 +38,8 @@
 #define AARgbaColor(r,g,b,a) [NSString stringWithFormat:@"rgba(%d,%d,%d,%f)",r,g,b,a]
 #define AAJSFunc(x) #x
 
+#define AAChartKitUnavailable(DESCRIPTION) __attribute__((unavailable(DESCRIPTION)))
+
 
 #define AAPropStatementAndPropSetFuncStatement(propertyModifier,className, propertyPointerType, propertyName)           \
 @property(nonatomic,propertyModifier)propertyPointerType  propertyName;                                                 \
