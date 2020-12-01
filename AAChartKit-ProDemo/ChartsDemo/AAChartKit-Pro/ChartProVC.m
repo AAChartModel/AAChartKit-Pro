@@ -142,7 +142,7 @@
 }
 
 - (AAOptions *)treemapWithLevelsData {
-    AAOptions *aaOptions = AAOptions.new
+    return AAOptions.new
     .titleSet(AATitle.new
               .textSet(@"Fruit Consumption Situation"))
     .legendSet(AALegend.new
@@ -163,8 +163,6 @@
                                  .fontWeightSet(AAChartFontWeightTypeBold)))
                ])
     .dataSet(AAOptionsData.treemapWithLevelsData)]);
-    
-    return aaOptions;
 }
 
 - (AAOptions *)variwideChart {
@@ -725,7 +723,7 @@
 }
 
 - (AAOptions *)bellcurveChart {
-    AAOptions *aaOptions = AAOptions.new
+    return AAOptions.new
     .titleSet(AATitle.new
               .textSet(@"Bell curve"))
     .xAxisSet((id)@[
@@ -757,12 +755,10 @@
                    .lineWidthSet(@2)//外沿线的宽度(用来设置折线连接点的轮廓描边的宽度)
                    .lineColorSet(@""))//外沿线的颜色(用来设置折线连接点的轮廓描边颜色，当值为空字符串时，默认取数据点或数据列的颜色))
         .dataSet(AAOptionsData.bellcurveData)]);
-    
-    return aaOptions;
 }
 
 - (AAOptions *)timelineChart {
-    AAOptions *aaOptions = AAOptions.new
+    return AAOptions.new
     .chartSet(AAChart.new
               .typeSet(AAChartTypeTimeline))
     .titleSet(AATitle.new
@@ -775,12 +771,10 @@
         AASeriesElement.new
         .dataSet(AAOptionsData.timelineData)
                ]);
-    
-    return aaOptions;
 }
 
 - (AAOptions *)itemChart {
-    AAOptions *aaOptions = AAOptions.new
+    return AAOptions.new
     .chartSet(AAChart.new
               .typeSet(AAChartTypeItem))
     .titleSet(AATitle.new
@@ -798,14 +792,10 @@
                        .enabledSet(false))
         .sizeSet((id)@"170%")
                ]);
-    
-    return aaOptions;
 }
 
 - (AAOptions *)windbarbChart {
-    
-    
-    AAOptions *aaOptions = AAOptions.new
+    return AAOptions.new
     .titleSet(AATitle.new
               .textSet(@"AAChartKit-Pro Wind Barbst"))
     .xAxisSet(AAXAxis.new
@@ -825,12 +815,10 @@
                    .lineWidthSet(@5)//外沿线的宽度(用来设置折线连接点的轮廓描边的宽度)
                    .lineColorSet(@""))//外沿线的颜色(用来设置折线连接点的轮廓描边颜色，当值为空字符串时，默认取数据点或数据列的颜色))
                ]);
-    
-    return aaOptions;
 }
 
 - (AAOptions *)networkgraphChart {
-    AAOptions *aaOptions = AAOptions.new
+    return AAOptions.new
     .chartSet(AAChart.new
               .typeSet(AAChartTypeNetworkgraph))
     .titleSet(AATitle.new
@@ -843,12 +831,10 @@
                        .enabledSet(false))
         .dataSet(AAOptionsData.networkgraphData),
                ]);
-    
-    return aaOptions;
 }
 
 - (AAOptions *)wordcloudChart {
-    AAOptions *aaOptions = AAOptions.new
+    return AAOptions.new
     .chartSet(AAChart.new
               .typeSet(AAChartTypeWordcloud))
     .titleSet(AATitle.new
@@ -857,12 +843,10 @@
         AASeriesElement.new
         .dataSet(AAOptionsData.wordcloudData),
                ]);
-    
-    return aaOptions;
 }
 
 - (AAOptions *)eulerChart {
-    AAOptions *aaOptions = AAOptions.new
+    return AAOptions.new
     .chartSet(AAChart.new
               .typeSet(AAChartTypeVenn))
     .titleSet(AATitle.new
@@ -879,8 +863,6 @@
         AASeriesElement.new
         .dataSet(AAOptionsData.eulerData),
                ]);
-    
-    return aaOptions;
 }
 
 @end
