@@ -42,7 +42,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
 }
 
 // https://www.highcharts.com/demo
@@ -74,7 +74,6 @@
         case 23: return [self networkgraphChart];
         case 24: return [self wordcloudChart];
         case 25: return [self eulerChart];
-
     }
     return nil;
 }
@@ -105,7 +104,6 @@
         .dataSet(AAOptionsData.sankeyData),
                ])
     ;
-
 }
 
 - (AAOptions *)variablepieChart {
@@ -122,7 +120,7 @@
     .enabledSet(true)
     .headerFormatSet(@"")
     .pointFormatSet(@"<span style=""color:{point.color}"">\u25CF</span> <b> {point.name}</b><br/>""面积 (平方千米): <b>{point.y}</b><br/>""人口密度 (每平方千米人数): <b>{point.z}</b><br/>""");
-        
+    
     AAOptions *aaOptionsQ = AAOptions.new
     .chartSet(aaChart)
     .titleSet(aaTitle)
@@ -135,10 +133,10 @@
         .dataLabelsSet(AADataLabels.new
                        .enabledSet(false))
         .dataSet(AAOptionsData.variablepieData)
-    ]);
+               ]);
     
     return aaOptionsQ;
-  
+    
 }
 
 - (AAOptions *)treemapWithLevelsData {
@@ -148,21 +146,21 @@
     .legendSet(AALegend.new
                .enabledSet(false))
     .seriesSet(@[
-    AASeriesElement.new
-    .typeSet(AAChartTypeTreemap)
-    .levelsSet(@[
-        AALevels.new
-        .levelSet(@1)
-        .layoutAlgorithmSet(@"sliceAndDice")
-        .dataLabelsSet(AADataLabels.new
-                       .enabledSet(true)
-                       .alignSet(AAChartAlignTypeLeft)
-                       .verticalAlignSet(AAChartVerticalAlignTypeTop)
-                       .styleSet(AAStyle.new
-                                 .fontSizeSet(@"15 px")
-                                 .fontWeightSet(AAChartFontWeightTypeBold)))
-               ])
-    .dataSet(AAOptionsData.treemapWithLevelsData)]);
+        AASeriesElement.new
+        .typeSet(AAChartTypeTreemap)
+        .levelsSet(@[
+            AALevels.new
+            .levelSet(@1)
+            .layoutAlgorithmSet(@"sliceAndDice")
+            .dataLabelsSet(AADataLabels.new
+                           .enabledSet(true)
+                           .alignSet(AAChartAlignTypeLeft)
+                           .verticalAlignSet(AAChartVerticalAlignTypeTop)
+                           .styleSet(AAStyle.new
+                                     .fontSizeSet(@"15 px")
+                                     .fontWeightSet(AAChartFontWeightTypeBold)))
+                   ])
+        .dataSet(AAOptionsData.treemapWithLevelsData)]);
 }
 
 - (AAOptions *)variwideChart {
@@ -174,7 +172,7 @@
     
     AASubtitle *aaSubtitle = AASubtitle.new
     .textSet(@"数据来源:EUROSTAT");
-
+    
     AAXAxis *aaXAxis = AAXAxis.new
     .visibleSet(true)
     .typeSet(@"category")
@@ -239,8 +237,8 @@
             .colorByPointSet(@true)
             .layoutAlgorithmSet(@"sliceAndDice")
             .dataLabelsSet((id)@{
-                    @"rotationMode": @"parallel"
-            }),
+                @"rotationMode": @"parallel"
+                               }),
             AALevels.new
             .levelSet(@3)
             .colorVariationSet(AAColorVariation.new
@@ -252,7 +250,7 @@
                                .keySet(@"brightness")
                                .toSet(@0.5))
             
-        ])
+                   ])
         .dataSet(AAOptionsData.sunburstData)
     ];
     
@@ -268,7 +266,7 @@
 }
 
 - (AAOptions *)dependencywheelChart {
-   return AAOptions.new
+    return AAOptions.new
     .chartSet(AAChart.new
               .marginLeftSet(@20)
               .marginRightSet(@20))
@@ -310,7 +308,7 @@
               .visibleSet(true)
               .categoriesSet(@[@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday"])
               .titleSet(AAAxisTitle.new
-              .textSet(@"")))
+                        .textSet(@"")))
     .colorAxisSet(AAColorAxis.new
                   .minSet(@0)
                   .minColorSet(@"#FFFFFF")
@@ -437,7 +435,7 @@
     
     AASubtitle *aaSubtitle = AASubtitle.new
     .textSet(@"1960 vs 2018");
-
+    
     AAXAxis *aaXAxis = AAXAxis.new
     .visibleSet(true)
     .typeSet(@"category")
@@ -484,7 +482,7 @@
     
     AASubtitle *aaSubtitle = AASubtitle.new
     .textSet(@"2018");
-
+    
     AAXAxis *aaXAxis = AAXAxis.new
     .visibleSet(true)
     .typeSet(@"category")
@@ -699,7 +697,7 @@
     .legendSet(AALegend.new
                .enabledSet(false))
     .seriesSet(@[@{
-                     @"borderRadius":@2,
+            @"borderRadius":@2,
             @"pointPadding": @0,
             @"groupPadding": @0,
             @"data": AAOptionsData.xrangeData
@@ -738,8 +736,7 @@
         AATitle.new
         .textSet(@"Bell curve")
                   ])
-    .seriesSet(@[
-        @{
+    .seriesSet(@[@{
             @"name": @"Bell curve",
             @"type": AAChartTypeBellcurve,
             @"xAxis": @1,
