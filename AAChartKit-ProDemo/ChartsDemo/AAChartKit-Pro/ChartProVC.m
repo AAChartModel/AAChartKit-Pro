@@ -121,7 +121,7 @@
     .headerFormatSet(@"")
     .pointFormatSet(@"<span style=""color:{point.color}"">\u25CF</span> <b> {point.name}</b><br/>""面积 (平方千米): <b>{point.y}</b><br/>""人口密度 (每平方千米人数): <b>{point.z}</b><br/>""");
     
-    AAOptions *aaOptionsQ = AAOptions.new
+    AAOptions *aaOptions = AAOptions.new
     .chartSet(aaChart)
     .titleSet(aaTitle)
     .subtitleSet(aaSubtitle)
@@ -135,7 +135,7 @@
         .dataSet(AAOptionsData.variablepieData)
                ]);
     
-    return aaOptionsQ;
+    return aaOptions;
     
 }
 
@@ -196,7 +196,7 @@
                        .formatSet(@"€{point.y:.0f}"))
         .colorByPointSet((id)@(true))];
     
-    AAOptions *aaOptionsQ = AAOptions.new
+    AAOptions *aaOptions = AAOptions.new
     .chartSet(aaChart)
     .titleSet(aaTitle)
     .subtitleSet(aaSubtitle)
@@ -205,20 +205,19 @@
     .legendSet(aaLegend)
     .seriesSet(seriesElementArr);
     
-    return aaOptionsQ;
+    return aaOptions;
     
 }
 
 - (AAOptions *)sunburstChart {
     AAChart *aaChart = AAChart.new
-    .typeSet(AAChartTypeVariwide);
+    .typeSet(AAChartTypeSunburst);
     
     AATitle *aaTitle = AATitle.new
     .textSet(@"2017 世界人口分布");
     
     AASubtitle *aaSubtitle = AASubtitle.new
     .textSet(@"数据来源:<href=""https://en.wikipedia.org/wiki/List_of_countries_by_population_(United_Nations)"">Wikipedia</a>");
-    
     
     AATooltip *aaTooltip = AATooltip.new
     .enabledSet(true)
@@ -229,7 +228,6 @@
     
     NSArray *seriesElementArr = @[
         AASeriesElement.new
-        .typeSet(AAChartTypeSunburst)
         .allowDrillToNodeSet(true)
         .levelsSet(@[
             AALevels.new
@@ -238,12 +236,14 @@
             .layoutAlgorithmSet(@"sliceAndDice")
             .dataLabelsSet((id)@{
                 @"rotationMode": @"parallel"
-                               }),
+                               })
+            ,
             AALevels.new
             .levelSet(@3)
             .colorVariationSet(AAColorVariation.new
                                .keySet(@"brightness")
-                               .toSet(@-0.5)),
+                               .toSet(@-0.5))
+            ,
             AALevels.new
             .levelSet(@4)
             .colorVariationSet(AAColorVariation.new
@@ -318,15 +318,13 @@
                .alignSet(AAChartAlignTypeRight)
                .layoutSet(@"vertical")
                .verticalAlignSet(@"top")
-               .ySet(@25)
-               )
+               .ySet(@25))
     .tooltipSet(AATooltip.new
                 .enabledSet(true)
                 .formatterSet(@AAJSFunc(function () {
                     return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> sold <br><b>' +
                         this.point.value + '</b> items on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
-                }))
-                )
+                })))
     .seriesSet(@[
         AASeriesElement.new
         .nameSet(@"Sales")
@@ -334,8 +332,7 @@
         .dataSet(AAOptionsData.heatmapData)
         .dataLabelsSet(AADataLabels.new
                        .enabledSet(true)
-                       .colorSet(@"red")
-                       )
+                       .colorSet(@"red"))
                ])
     ;
 }
@@ -360,8 +357,7 @@
                                      .zMaxSet(@1000)
                                      .layoutAlgorithmSet(AALayoutAlgorithm.new //只有layoutAlgorithm这一段不一样
                                                          .gravitationalConstantSet(@0.02)
-                                                         .splitSeriesSet(@false)
-                                                         )
+                                                         .splitSeriesSet(@false))
                                      .dataLabelsSet(AADataLabels.new
                                                     .enabledSet(true)
                                                     .formatSet(@"{point.name}")
@@ -369,8 +365,7 @@
                                                         @"property": @"y",
                                                         @"operator": @">",
                                                         @"value": @250
-                                                               })
-                                                    )))
+                                                               }))))
     .seriesSet(AAOptionsSeries.packedbubbleSeries)
     ;
     
@@ -407,8 +402,7 @@
                                                         @"property": @"y",
                                                         @"operator": @">",
                                                         @"value": @250
-                                                               })
-                                                    )))
+                                                               }))))
     .seriesSet(AAOptionsSeries.packedbubbleSeries)
     ;
 }
@@ -460,7 +454,7 @@
         .dataSet(AAOptionsData.dumbbellData)
     ];
     
-    AAOptions *aaOptionsQ = AAOptions.new
+    AAOptions *aaOptions = AAOptions.new
     .chartSet(aaChart)
     .titleSet(aaTitle)
     .subtitleSet(aaSubtitle)
@@ -470,7 +464,7 @@
     .legendSet(aaLegend)
     .seriesSet(seriesElementArr);
     
-    return aaOptionsQ;
+    return aaOptions;
 }
 
 - (AAOptions *)lollipopChart {
@@ -507,7 +501,7 @@
         .dataSet(AAOptionsData.lollipopData)
     ];
     
-    AAOptions *aaOptionsQ = AAOptions.new
+    AAOptions *aaOptions = AAOptions.new
     .chartSet(aaChart)
     .titleSet(aaTitle)
     .subtitleSet(aaSubtitle)
@@ -517,7 +511,7 @@
     .legendSet(aaLegend)
     .seriesSet(seriesElementArr);
     
-    return aaOptionsQ;
+    return aaOptions;
 }
 
 - (AAOptions *)streamgraphChart {
@@ -559,16 +553,14 @@
               .textSet(@"世界 5 大金字塔"))
     .xAxisSet(AAXAxis.new
               .visibleSet(true)
-              .typeSet(@"category")
-              )
+              .typeSet(@"category"))
     .yAxisSet(AAYAxis.new
               .visibleSet(true)
               .titleSet(AAAxisTitle.new
                         .textSet(@"高度 (m)")))
     .tooltipSet(AATooltip.new
                 .enabledSet(true)
-                .valueSuffixSet(@" m")
-                )
+                .valueSuffixSet(@" m"))
     .seriesSet(@[
         AASeriesElement.new
         .nameSet(@"Height")
@@ -621,8 +613,7 @@
                                               .formatSet(@"{point.hc-a2}")
                                               .colorSet(@"#ffffff")
                                               .styleSet(AAStyle.new
-                                                        .textOutlineSet(@"none"))
-                                              )))
+                                                        .textOutlineSet(@"none")))))
     .seriesSet(@[
         AASeriesElement.new
         .nameSet(@"Height")
@@ -640,8 +631,7 @@
               .textSet(@"矩形树图"))
     .colorAxisSet(AAColorAxis.new
                   .minColorSet(@"#FFFFFF")
-                  .maxColorSet(@"#FF0000")
-                  )
+                  .maxColorSet(@"#FF0000"))
     .seriesSet(@[
         AASeriesElement.new
         .dataSet(AAOptionsData.treemapWithColorAxisData)
@@ -669,7 +659,8 @@
             .levelSet(@1)
             .dataLabelsSet(AADataLabels.new
                            .enabledSet(true))
-            .borderWidthSet(@3)])
+            .borderWidthSet(@3)
+                   ])
         .dataSet(AAOptionsData.drilldownTreemapData)
                ])
     ;
@@ -853,9 +844,7 @@
                 .headerFormatSet([NSString stringWithFormat:@"%@%@",
                                   @"<span style=""color:{point.color}"">\u2022</span>",
                                   @"<span style=""font-size: 14px""> {point.point.name}</span><br/>"])
-                .pointFormatSet(@"{point.description}<br><span style=""font-size: 10px"">Source: Wikipedia</span>")
-                )
-    
+                .pointFormatSet(@"{point.description}<br><span style=""font-size: 10px"">Source: Wikipedia</span>"))
     .seriesSet(@[
         AASeriesElement.new
         .dataSet(AAOptionsData.eulerData),
