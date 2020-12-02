@@ -102,8 +102,7 @@
         .typeSet(AAChartTypeSankey)
         .keysSet(@[@"from", @"to", @"weight"])
         .dataSet(AAOptionsData.sankeyData),
-               ])
-    ;
+               ]);
 }
 
 - (AAOptions *)variablepieChart {
@@ -175,10 +174,9 @@
     
     AAXAxis *aaXAxis = AAXAxis.new
     .visibleSet(true)
-    .typeSet(@"category")
+    .typeSet(@"category");
 //    .titleSet(AATitle.new
-//              .textSet(@"* 柱子宽度与 GDP 成正比"))
-    ;
+//              .textSet(@"* 柱子宽度与 GDP 成正比"));
     
     AATooltip *aaTooltip = AATooltip.new
     .enabledSet(true)
@@ -333,8 +331,7 @@
         .dataLabelsSet(AADataLabels.new
                        .enabledSet(true)
                        .colorSet(@"red"))
-               ])
-    ;
+               ]);
 }
 
 
@@ -366,10 +363,7 @@
                                                         @"operator": @">",
                                                         @"value": @250
                                                                }))))
-    .seriesSet(AAOptionsSeries.packedbubbleSeries)
-    ;
-    
-    
+    .seriesSet(AAOptionsSeries.packedbubbleSeries);
 }
 
 // https://www.highcharts.com.cn/demo/highcharts/packed-bubble-split
@@ -403,8 +397,7 @@
                                                         @"operator": @">",
                                                         @"value": @250
                                                                }))))
-    .seriesSet(AAOptionsSeries.packedbubbleSeries)
-    ;
+    .seriesSet(AAOptionsSeries.packedbubbleSeries);
 }
 
 
@@ -415,8 +408,7 @@
     .seriesSet(@[
         AASeriesElement.new
         .typeSet(AAChartTypeVenn)
-        .dataSet(AAOptionsData.vennData)])
-    ;
+        .dataSet(AAOptionsData.vennData)]);
 }
 
 - (AAOptions *)dumbbellChart {
@@ -432,18 +424,15 @@
     
     AAXAxis *aaXAxis = AAXAxis.new
     .visibleSet(true)
-    .typeSet(@"category")
-    ;
+    .typeSet(@"category");
     
     AAYAxis *aaYAxis = AAYAxis.new
     .visibleSet(true)
     .titleSet(AAAxisTitle.new
-              .textSet(@"Life Expectancy (years)"))
-    ;
+              .textSet(@"Life Expectancy (years)"));
     
     AATooltip *aaTooltip = AATooltip.new
-    .enabledSet(true)
-    ;
+    .enabledSet(true);
     
     AALegend *aaLegend = AALegend.new
     .enabledSet(false);
@@ -479,18 +468,15 @@
     
     AAXAxis *aaXAxis = AAXAxis.new
     .visibleSet(true)
-    .typeSet(@"category")
-    ;
+    .typeSet(@"category");
     
     AAYAxis *aaYAxis = AAYAxis.new
     .visibleSet(true)
     .titleSet(AAAxisTitle.new
-              .textSet(@"人口"))
-    ;
+              .textSet(@"人口"));
     
     AATooltip *aaTooltip = AATooltip.new
-    .enabledSet(true)
-    ;
+    .enabledSet(true);
     
     AALegend *aaLegend = AALegend.new
     .enabledSet(false);
@@ -566,8 +552,7 @@
         .nameSet(@"Height")
         .colorByPointSet(@true)
         .dataSet(AAOptionsData.columnpyramidData)
-               ])
-    ;
+               ]);
 }
 
 - (AAOptions *)tilemapChart {
@@ -619,8 +604,7 @@
         .nameSet(@"Height")
         .colorByPointSet(@true)
         .dataSet(AAOptionsData.tilemapData)
-               ])
-    ;
+               ]);
 }
 
 - (AAOptions *)treemapWithColorAxisData {
@@ -635,8 +619,7 @@
     .seriesSet(@[
         AASeriesElement.new
         .dataSet(AAOptionsData.treemapWithColorAxisData)
-               ])
-    ;
+               ]);
 }
 
 - (AAOptions *)drilldownTreemapChart {
@@ -662,8 +645,7 @@
             .borderWidthSet(@3)
                    ])
         .dataSet(AAOptionsData.drilldownTreemapData)
-               ])
-    ;
+               ]);
 }
 
 - (AAOptions *)xrangeChart {
@@ -692,8 +674,7 @@
             @"pointPadding": @0,
             @"groupPadding": @0,
             @"data": AAOptionsData.xrangeData
-        }])
-    ;
+        }]);
 }
 
 - (AAOptions *)vectorChart {
@@ -707,8 +688,7 @@
         AASeriesElement.new
         .nameSet(@"Sample vector field")
         .dataSet(AAOptionsData.vectorData)
-               ])
-    ;
+               ]);
 }
 
 - (AAOptions *)bellcurveChart {
