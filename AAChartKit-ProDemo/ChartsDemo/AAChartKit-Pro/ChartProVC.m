@@ -700,14 +700,15 @@
         AATitle.new
         .textSet(@"Bell curve")
                   ])
-    .seriesSet(@[@{
-            @"name": @"Bell curve",
-            @"type": AAChartTypeBellcurve,
-            @"xAxis": @1,
-            @"yAxis": @1,
-            @"baseSeries": @1,
-            @"zIndex": @-1
-        },
+    .seriesSet(@[
+        AASeriesElement.new
+        .nameSet(@"Bell curve")
+        .typeSet(AAChartTypeBellcurve)
+        .xAxisSet(@1)
+        .yAxisSet(@1)
+        .baseSeriesSet(@1)
+        .zIndexSet(@-1)
+        ,
         AASeriesElement.new
         .nameSet(@"Data")
         .typeSet(AAChartTypeScatter)
@@ -715,7 +716,8 @@
                    .fillColorSet(@"#ffffff")//点的填充色(用来设置折线连接点的填充色)
                    .lineWidthSet(@2)//外沿线的宽度(用来设置折线连接点的轮廓描边的宽度)
                    .lineColorSet(@""))//外沿线的颜色(用来设置折线连接点的轮廓描边颜色，当值为空字符串时，默认取数据点或数据列的颜色))
-        .dataSet(AAOptionsData.bellcurveData)]);
+        .dataSet(AAOptionsData.bellcurveData)
+               ]);
 }
 
 - (AAOptions *)timelineChart {

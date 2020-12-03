@@ -75,6 +75,8 @@ AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, AADataSorting *,
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, id        , reversed) //Only useful for pyramid chart and funnel chart
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSArray<AALevels *>*, levels)
 AAPropStatementAndPropSetFuncStatement(assign, AASeriesElement, BOOL        , allowDrillToNode)
+AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, xAxis)
+AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, baseSeries)
 
 @end
 
