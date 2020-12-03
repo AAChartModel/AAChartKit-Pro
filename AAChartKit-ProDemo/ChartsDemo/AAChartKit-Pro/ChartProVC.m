@@ -135,7 +135,6 @@
                ]);
     
     return aaOptions;
-    
 }
 
 - (AAOptions *)treemapWithLevelsData {
@@ -204,7 +203,6 @@
     .seriesSet(seriesElementArr);
     
     return aaOptions;
-    
 }
 
 - (AAOptions *)sunburstChart {
@@ -232,9 +230,6 @@
             .levelSet(@2)
             .colorByPointSet(@true)
             .layoutAlgorithmSet(@"sliceAndDice")
-            .dataLabelsSet((id)@{
-                @"rotationMode": @"parallel"
-                               })
             ,
             AALevels.new
             .levelSet(@3)
