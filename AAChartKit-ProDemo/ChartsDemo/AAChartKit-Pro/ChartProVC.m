@@ -659,12 +659,15 @@
               .gridLineWidthSet(@0))
     .legendSet(AALegend.new
                .enabledSet(false))
-    .seriesSet(@[@{
-            @"borderRadius":@2,
-            @"pointPadding": @0,
-            @"groupPadding": @0,
-            @"data": AAOptionsData.xrangeData
-        }]);
+    .plotOptionsSet(AAPlotOptions.new
+                    .seriesSet(AASeries.new
+                               .pointPaddingSet(@0)
+                               .groupPaddingSet(@0)))
+    .seriesSet(@[
+        AASeriesElement.new
+        .borderRadiusSet(@2)
+        .dataSet(AAOptionsData.xrangeData)
+               ]);
 }
 
 - (AAOptions *)vectorChart {

@@ -40,11 +40,13 @@ AAPropSetFuncImplementation(AASeries, AAMarker     *, marker)
 AAPropSetFuncImplementation(AASeries, NSString     *, stacking) 
 AAPropSetFuncImplementation(AASeries, AAAnimation  *, animation) 
 AAPropSetFuncImplementation(AASeries, NSArray      *, keys) 
-//AAPropSetFuncImplementation(AASeries, BOOL , colorByPoint) //设置为 true 则是给每个点分配颜色。
-AAPropSetFuncImplementation(AASeries, BOOL ,          connectNulls) 
-AAPropSetFuncImplementation(AASeries, AAEvents *, events)
-AAPropSetFuncImplementation(AASeries, AAShadow *, shadow)
+AAPropSetFuncImplementation(AASeries, id            , colorByPoint) //设置为 true 则是给每个点分配颜色。
+AAPropSetFuncImplementation(AASeries, BOOL          , connectNulls)
+AAPropSetFuncImplementation(AASeries, AAEvents     *, events)
+AAPropSetFuncImplementation(AASeries, AAShadow     *, shadow)
 AAPropSetFuncImplementation(AASeries, AADataLabels *, dataLabels)
+AAPropSetFuncImplementation(AASeries, NSNumber     *, pointPadding)
+AAPropSetFuncImplementation(AASeries, NSNumber     *, groupPadding)
 
 @end
 
