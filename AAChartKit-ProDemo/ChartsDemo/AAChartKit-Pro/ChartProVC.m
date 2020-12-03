@@ -274,12 +274,9 @@
         .dataLabelsSet(AADataLabels.new
                        .enabledSet(true)
                        .colorSet(@"#333")
-                       .textPathSet(@{
-                           @"enabled": @true,
-                           @"attributes": @{
-                                   @"dy": @5
-                           }
-                                    })
+                       .textPathSet(AATextPath.new
+                                    .enabledSet(true)
+                                    .attributesSet(@{ @"dy": @5 }))
                        .distanceSet(@10))
                ]);
 }
@@ -347,17 +344,16 @@
                                      .maxSizeSet(@"120%")
                                      .zMinSet(@0)
                                      .zMaxSet(@1000)
-                                     .layoutAlgorithmSet(AALayoutAlgorithm.new //只有layoutAlgorithm这一段不一样
+                                     .layoutAlgorithmSet(AALayoutAlgorithm.new //packedbubbleChart 和 packedbubbleSplitChart 只有layoutAlgorithm这一段不一样
                                                          .gravitationalConstantSet(@0.02)
                                                          .splitSeriesSet(@false))
                                      .dataLabelsSet(AADataLabels.new
                                                     .enabledSet(true)
                                                     .formatSet(@"{point.name}")
-                                                    .filterSet(@{
-                                                        @"property": @"y",
-                                                        @"operator": @">",
-                                                        @"value": @250
-                                                               }))))
+                                                    .filterSet(AAFilter.new
+                                                               .propertySet(@"y")
+                                                               .operatorSet(@">")
+                                                               .valueSet(@250)))))
     .seriesSet(AAOptionsSeries.packedbubbleSeries);
 }
 
@@ -378,7 +374,7 @@
                                      .maxSizeSet(@"120%")
                                      .zMinSet(@0)
                                      .zMaxSet(@1000)
-                                     .layoutAlgorithmSet(AALayoutAlgorithm.new //只有layoutAlgorithm这一段不一样
+                                     .layoutAlgorithmSet(AALayoutAlgorithm.new //packedbubbleChart 和 packedbubbleSplitChart 只有layoutAlgorithm这一段不一样
                                                          .gravitationalConstantSet(@0.05)
                                                          .splitSeriesSet(@true)
                                                          .seriesInteractionSet(@false)
@@ -387,11 +383,10 @@
                                      .dataLabelsSet(AADataLabels.new
                                                     .enabledSet(true)
                                                     .formatSet(@"{point.name}")
-                                                    .filterSet(@{
-                                                        @"property": @"y",
-                                                        @"operator": @">",
-                                                        @"value": @250
-                                                               }))))
+                                                    .filterSet(AAFilter.new
+                                                               .propertySet(@"y")
+                                                               .operatorSet(@">")
+                                                               .valueSet(@250)))))
     .seriesSet(AAOptionsSeries.packedbubbleSeries);
 }
 

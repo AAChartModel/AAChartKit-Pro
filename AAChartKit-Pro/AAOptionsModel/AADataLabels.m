@@ -66,8 +66,9 @@ AAPropSetFuncImplementation(AADataLabels, BOOL      , crop)
 AAPropSetFuncImplementation(AADataLabels, BOOL      , inside)
 AAPropSetFuncImplementation(AADataLabels, NSString *, overflow)
 AAPropSetFuncImplementation(AADataLabels, BOOL      , softConnector)//Whether to render the connector as a soft arc or a line with sharp break. Only useful for pie, pyramid and funnel chart
-AAPropSetFuncImplementation(AADataLabels, NSDictionary *, textPath)
-AAPropSetFuncImplementation(AADataLabels, NSDictionary *, filter);
+AAPropSetFuncImplementation(AADataLabels, NSDictionary *, filter)
+AAPropSetFuncImplementation(AADataLabels, AATextPath *, textPath)
+
 
 - (void)setFormatter:(NSString *)formatter {
     _formatter = [AAJSStringPurer pureJavaScriptFunctionStringWithString:formatter];
@@ -79,5 +80,22 @@ AAPropSetFuncImplementation(AADataLabels, NSDictionary *, filter);
         return self;
     };
 }
+
+@end
+
+
+@implementation AAFilter
+
+AAPropSetFuncImplementation(AAFilter, NSString *, property)
+AAPropSetFuncImplementation(AAFilter, NSString *, operator)
+AAPropSetFuncImplementation(AAFilter, NSNumber *, value)
+
+@end
+
+
+@implementation AATextPath
+
+AAPropSetFuncImplementation(AATextPath, BOOL          , enabled)
+AAPropSetFuncImplementation(AATextPath, NSDictionary *, attributes)
 
 @end

@@ -31,8 +31,7 @@
  */
 
 #import <Foundation/Foundation.h>
-
-@class AAStyle;
+@class AAStyle, AAFilter, AATextPath;
 
 @interface AADataLabels : NSObject
 
@@ -115,7 +114,25 @@ AAPropStatementAndPropSetFuncStatement(assign, AADataLabels, BOOL      , crop)
 AAPropStatementAndPropSetFuncStatement(assign, AADataLabels, BOOL      , inside)
 AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, overflow)//该参数用于处理当数据标签超出绘图区时处理方式，默认值是 justify，即将超过绘图区的数据标签对齐绘图区内，对于柱形，也就意味着数据标签将会被移动到柱子内部。通过设置 crop 为 false 及 overflow 为"none" 可以让数据标签显示在绘图区的外面。 默认是：justify.
 AAPropStatementAndPropSetFuncStatement(assign,   AADataLabels, BOOL      , softConnector)//Whether to render the connector as a soft arc or a line with sharp break. Only useful for pie, pyramid and funnel chart
-AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, NSDictionary *, textPath)
-AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, NSDictionary *, filter)
+AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, AAFilter *, filter)
+AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, AATextPath *, textPath)
+
+
+@end
+
+
+@interface AAFilter : NSObject
+
+AAPropStatementAndPropSetFuncStatement(copy,   AAFilter, NSString *, property)
+AAPropStatementAndPropSetFuncStatement(copy,   AAFilter, NSString *, operator)
+AAPropStatementAndPropSetFuncStatement(strong, AAFilter, NSNumber *, value)
+
+@end
+
+
+@interface AATextPath : NSObject
+
+AAPropStatementAndPropSetFuncStatement(assign, AATextPath, BOOL          , enabled)
+AAPropStatementAndPropSetFuncStatement(strong, AATextPath, NSDictionary *, attributes)
 
 @end
