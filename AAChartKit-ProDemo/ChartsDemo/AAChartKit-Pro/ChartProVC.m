@@ -173,9 +173,9 @@
     
     AAXAxis *aaXAxis = AAXAxis.new
     .visibleSet(true)
-    .typeSet(@"category");
-//    .titleSet(AATitle.new
-//              .textSet(@"* 柱子宽度与 GDP 成正比"));
+    .typeSet(@"category")
+    .titleSet(AAAxisTitle.new
+              .textSet(@"* 柱子宽度与 GDP 成正比"));
     
     AATooltip *aaTooltip = AATooltip.new
     .enabledSet(true)

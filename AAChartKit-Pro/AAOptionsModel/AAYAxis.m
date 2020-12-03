@@ -51,7 +51,7 @@ AAPropSetFuncImplementation(AAYAxis, NSNumber *, gridLineWidth)
 AAPropSetFuncImplementation(AAYAxis, NSString *, gridLineColor)
 AAPropSetFuncImplementation(AAYAxis, NSString *, gridLineDashStyle) //网格线线条样式，所有可用的线条样式参考：Highcharts线条样式
 AAPropSetFuncImplementation(AAYAxis, NSNumber *, gridZIndex) //网格线的层叠值（zIndex） 默认是：1.
-AAPropSetFuncImplementation(AAYAxis, NSString *, alternateGridColor) 
+AAPropSetFuncImplementation(AAYAxis, NSString *, alternateGridColor)
 AAPropSetFuncImplementation(AAYAxis, AAYAxisGridLineInterpolation, gridLineInterpolation) 
 AAPropSetFuncImplementation(AAYAxis, AALabels *, labels) 
 AAPropSetFuncImplementation(AAYAxis, NSNumber *, lineWidth) //y轴线宽度
@@ -76,6 +76,9 @@ AAPropSetFuncImplementation(AAYAxis, NSNumber *, tickWidth) //坐标轴刻度线
 AAPropSetFuncImplementation(AAYAxis, NSNumber *, tickLength)//坐标轴刻度线的长度。 默认是：10.
 AAPropSetFuncImplementation(AAYAxis, NSString *, tickPosition) //刻度线相对于轴线的位置，可用的值有 inside 和 outside，分别表示在轴线的内部和外部。 默认是：outside.
 AAPropSetFuncImplementation(AAYAxis, NSArray  *, tickPositions) //自定义Y轴坐标（如：[@(0), @(25), @(50), @(75) , (100)]）
+AAPropSetFuncImplementation(AAYAxis, id        , top)
+AAPropSetFuncImplementation(AAYAxis, id        , height)
+
 
 @end
 
