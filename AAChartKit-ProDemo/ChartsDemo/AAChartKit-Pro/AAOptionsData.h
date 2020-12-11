@@ -15,8 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)variablepieData;
 + (NSArray *)variwideData;
 + (NSArray *)heatmapData;
-+ (NSArray *)packedbubbleData;
-+ (NSArray *)packedbubbleSplitData;
 + (NSArray *)columnpyramidData;
 + (NSArray *)treemapWithColorAxisData;
 + (NSArray *)drilldownTreemapData;
