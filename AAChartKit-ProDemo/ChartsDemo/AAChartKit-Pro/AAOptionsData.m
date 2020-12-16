@@ -22,14 +22,6 @@
     return [self getJsonDataWithJsonFileName:@"heatmapData"];
 }
 
-+ (NSArray *)packedbubbleData {
-    return [self getJsonDataWithJsonFileName:@"packedbubbleData"];
-}
-
-+ (NSArray *)packedbubbleSplitData {
-    return [self getJsonDataWithJsonFileName:@"packedbubbleSplitData"];
-}
-
 + (NSArray *)columnpyramidData {
     return [self getJsonDataWithJsonFileName:@"columnpyramidData"];
 }
