@@ -84,18 +84,18 @@
     .titleSet(AATitle.new
               .textSet(@"AAChartKit-Pro 桑基图"))
     .colorsSet(@[
-        @"rgb(137,78,36)",
-        @"rgb(220,36,30)",
-        @"rgb(255,206,0)",
-        @"rgb(1,114,41)",
-        @"rgb(0,175,173)",
-        @"rgb(215,153,175)",
-        @"rgb(106,114,120)",
-        @"rgb(114,17,84)",
-        @"rgb(0,0,0)",
-        @"rgb(0,24,168)",
-        @"rgb(0,160,226)",
-        @"rgb(106,187,170)"
+        AARgbaColor(137, 78, 36, 1.0),
+        AARgbaColor(220, 36, 30, 1.0),
+        AARgbaColor(255, 206, 0, 1.0),
+        AARgbaColor(1, 114, 41, 1.0),
+        AARgbaColor(0, 175, 173, 1.0),
+        AARgbaColor(215, 153, 175, 1.0),
+        AARgbaColor(106, 114, 120, 1.0),
+        AARgbaColor(114, 17, 84, 1.0),
+        AARgbaColor(0, 0, 0, 1.0),
+        AARgbaColor(0, 24, 168, 1.0),
+        AARgbaColor(0, 160, 226, 1.0),
+        AARgbaColor(106, 187, 170, 1.0),
                ])
     .seriesSet(@[
         AASeriesElement.new
