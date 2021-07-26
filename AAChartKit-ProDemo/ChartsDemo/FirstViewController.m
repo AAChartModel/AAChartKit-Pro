@@ -31,15 +31,8 @@
  */
 
 #import "FirstViewController.h"
-#import "BasicChartVC.h"
-#import "SpecialChartVC.h"
-#import "OnlyRefreshChartDataVC.h"
-#import "ChartAnimationTypeVC.h"
 #import "ChartProVC.h"
-#import "DrilldownChartVC.h"
-#import "ShowManyChartViewVC.h"
-#import "ChartListVC.h"
-#import "MixedChartVC.h"
+
 
 #define ColorWithRGB(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 #define AAGrayColor            [UIColor colorWithRed:245/255.0 green:246/255.0 blue:247/255.0 alpha:1.0]
@@ -137,67 +130,6 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case 1: {
-            /*基础类型图表*/
-            BasicChartVC *vc = [[BasicChartVC alloc]init];
-            vc.chartType = indexPath.row;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-            break;
-            
-        case 2: {
-            /*特殊类型图表*/
-            SpecialChartVC *vc = [[SpecialChartVC alloc]init];
-            vc.selectedIndex = indexPath.row;
-            vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-            break;
-        case 3: {
-            /*图表数据动态刷新*/
-            MixedChartVC *vc = [[MixedChartVC alloc]init];
-            vc.selectedIndex = indexPath.row;
-            vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
-            [self.navigationController  pushViewController:vc animated:YES];
-        }
-            break;
-            
-            
-        case 4: {
-            /*图表数据动态刷新*/
-            OnlyRefreshChartDataVC *vc = [[OnlyRefreshChartDataVC alloc]init];
-            vc.chartType = indexPath.row;
-            [self.navigationController  pushViewController:vc animated:YES];
-        }
-            break;
-
-        case 5: {
-            /*JQuery动画样式类型演示*/
-            ChartAnimationTypeVC *vc = [[ChartAnimationTypeVC alloc]init];
-            vc.chartType = indexPath.row;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-            break;
-            
-        case 6: {
-            /*同时显示多个 AAChartView*/
-            if (indexPath.row == 0) {
-                ShowManyChartViewVC *vc = [[ShowManyChartViewVC alloc]init];
-                [self.navigationController pushViewController:vc animated:YES];
-            } else {
-                ChartListVC *listVC = [[ChartListVC alloc]init];
-                [self.navigationController pushViewController:listVC animated:YES];
-            }
-
-        }
-            break;
-            
-        case 7: {
-            /*可向下钻取类型图表*/
-            DrilldownChartVC *vc = [[DrilldownChartVC alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-            break;
         
         default:
             break;
@@ -272,77 +204,7 @@
 //
 //              console.log(dataJson);
             ],
-            /*基础类型图表*/
-            @[@"Column Chart---柱形图",
-              @"Bar Chart---条形图",
-              @"Area Chart---折线填充图",
-              @"Areaspline Chart---曲线填充图",
-              @"Line Chart---折线图",
-              @"Spline Chart---曲线图",
-              @"Step Line Chart--直方折线图",
-              @"Step Area Chart--直方折线填充图",
-              @"Scatter Chart---散点图"
-            ],
-            /*特殊类型图表*/
-            @[@"Pie Chart---扇形图",
-              @"Bubble Chart---气泡图",
-              @"Scatter Chart--散点图",
-              @"Area Range Chart--折线区域面积图",
-              @"Area Spline range Chart--曲线区域面积图",
-              @"Column Range Chart--柱形范围图",
-              @"Box Plot Chart---箱线图",
-              @"Water Fall---瀑布图",
-              @"Pyramid Chart---金字塔图",
-              @"Funnel Chart---漏斗图",
-              @"Error Bar Chart---误差图",
-            ],
-            /*混合类型图表*/
-            @[@"Arearange Mixed Line---面积范围均线图",
-              @"Columnrange Mixed Line---柱形范围图混合折线图",
-              @"Stacking Column Mixed Line---堆积柱形图混合折线图",
-              @"Dash Style Types Mixed---多种类型曲线混合图",
-              @"All Line Dash Style Types Mixed Chart---所有类型曲线混合图",
-              @"Negative Color Mixed Column Chart---基准线以下异色混合柱状图📊",
-              @"scatterMixedLine---散点图混合折线图",
-              @"Negative Color Mixed Bubble Chart---基准线以下异色混合气泡图",
-              @"Polygon Mixed Scatter---多边形混合散点图",
-              @"Polar Chart Mixed---极地混合图",
-              @"configure Column Mixed Scatter Chart---柱形图混合散点图",
-              @"Negative Color Mixed Areaspline chart---基准线以下异色混合曲线填充图",
-              @"Area Chart Mixed Step Area Chart---折线填充和直方折线填充混合图"
-              
-            ],
-            /*图表数据动态刷新*/
-            @[@"Column Chart---柱形图",
-              @"Bar Chart---条形图",
-              @"Area Chart---折线填充图",
-              @"Areaspline Chart---曲线填充图",
-              @"Line Chart---折线图",
-              @"Spline Chart---曲线图",
-              @"Step Line Chart--直方折线图",
-              @"Step Area Chart--直方折线填充图",
-              @"Scatter Chart---散点图"
-            ],
-            /*JQuery动画样式类型演示*/
-            @[@"Column Chart---柱形图",
-              @"Bar Chart---条形图",
-              @"Area Chart---折线填充图",
-              @"Areaspline Chart---曲线填充图",
-              @"Line Chart---折线图",
-              @"Spline Chart---曲线图",
-              @"Step Line Chart--直方折线图",
-              @"Step Area Chart--直方折线填充图",
-              @"Scatter Chart --散点图",
-              @"Pie Chart --扇形图"
-            ],
-            
-            /*同时显示多个 AAChartView*/
-            @[@"同时显示多个 AAChartView",
-              @"UITableView上显示多个 AAChartView"
-            ],
-            /*可向下钻取类型图表*/
-            @[@"Drilldown column chart--向下钻取的柱状图"
-            ],
+          
         ];
     }
     return _chartTypeNameArr;
@@ -351,14 +213,7 @@
 - (NSArray *)sectionTypeArr {
     if (!_sectionTypeArr) {
         _sectionTypeArr = @[
-            @"Pro Type---高级类型",
-            @"Basic Type---基础类型",
-            @"Special Type---特别类型",
-            @"Mixed Type Chart---混合图表",
-            @"Real-time Refresh---即时刷新",
-            @"Animation Type---渲染动画",
-            @"同时显示多个 AAChartView",
-            @"Drilldown chart---钻取图表(暂时废弃)",];
+            @"Pro Type---高级类型",];
     }
     return _sectionTypeArr;
 }

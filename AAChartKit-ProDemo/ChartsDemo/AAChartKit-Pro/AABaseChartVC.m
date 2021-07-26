@@ -31,7 +31,6 @@
  */
 
 #import "AABaseChartVC.h"
-#import "AAEasyTool.h"
 
 @interface AABaseChartVC ()
 
