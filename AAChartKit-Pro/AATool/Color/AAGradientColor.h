@@ -22,7 +22,7 @@
  * -------------------------------------------------------------------------------
  * And if you want to contribute for this project, please contact me as well
  * GitHub        : https://github.com/AAChartModel
- * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
+ * StackOverflow : https://stackoverflow.com/users/12302132/codeforu
  * JianShu       : https://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
  *
@@ -31,8 +31,6 @@
  */
 
 #import <Foundation/Foundation.h>
-
-NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, AALinearGradientDirection) {
     AALinearGradientDirectionToTop = 0,     //⇧⇧⇧⇧⇧⇧
@@ -47,10 +45,10 @@ typedef NS_ENUM(NSInteger, AALinearGradientDirection) {
 
 @interface AAGradientColor : NSObject
 
-- (AAGradientColor * (^) (AALinearGradientDirection direction))directionSet ;
-- (AAGradientColor * (^) (NSString *startColor))startColorSet ;
-- (AAGradientColor * (^) (NSString *endColor))endColorSet ;
-- (AAGradientColor * (^) (NSArray *stopsArray))stopsArraySet ;
+- (AAGradientColor * (^) (AALinearGradientDirection direction))directionSet;
+- (AAGradientColor * (^) (NSString *startColor))startColorSet;
+- (AAGradientColor * (^) (NSString *endColor))endColorSet;
+- (AAGradientColor * (^) (NSArray *stopsArray))stopsArraySet;
 
 // Some convenience methods to create gradient colors.
 @property (class, nonatomic, readonly) NSDictionary *oceanBlueColor;
@@ -115,6 +113,6 @@ typedef NS_ENUM(NSInteger, AALinearGradientDirection) {
 
 @end
 
-NS_ASSUME_NONNULL_END
+
 
 

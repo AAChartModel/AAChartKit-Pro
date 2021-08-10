@@ -22,7 +22,7 @@
  * -------------------------------------------------------------------------------
  * And if you want to contribute for this project, please contact me as well
  * GitHub        : https://github.com/AAChartModel
- * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
+ * StackOverflow : https://stackoverflow.com/users/12302132/codeforu
  * JianShu       : https://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
  *
@@ -31,7 +31,8 @@
  */
 
 #import "AALabels.h"
-#import "AAJSStringPurer.h"
+#import "NSString+toPureJSString.h"
+
 @implementation AALabels
 
 - (instancetype)init {
@@ -58,15 +59,10 @@ AAPropSetFuncImplementation(AALabels, NSNumber *, x)//相对于坐标轴刻度�
 AAPropSetFuncImplementation(AALabels, NSNumber *, y)//相对于坐标轴刻度线的垂直平偏移。 默认是：null.
 AAPropSetFuncImplementation(AALabels, BOOL      , useHTML)//HTML渲染
 
-- (void)setFormatter:(NSString *)formatter {
-    _formatter = [AAJSStringPurer pureJavaScriptFunctionStringWithString:formatter];
-}
+AAJSFuncTypePropSetFuncImplementation(AALabels, NSString *, formatter)//坐标轴格式化字符串。 默认是：{value}.
 
-- (AALabels * (^) (NSString * formatter))formatterSet {
-    return ^(NSString * formatter) {
-        self->_formatter = [AAJSStringPurer pureJavaScriptFunctionStringWithString:formatter];
-        return self;
-    };
+- (void)setFormatter:(NSString *)formatter {
+    _formatter = [formatter aa_toPureJSString];
 }
 
 @end

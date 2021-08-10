@@ -23,7 +23,7 @@
  * -------------------------------------------------------------------------------
  * And if you want to contribute for this project, please contact me as well
  * GitHub        : https://github.com/AAChartModel
- * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
+ * StackOverflow : https://stackoverflow.com/users/12302132/codeforu
  * JianShu       : https://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
  *
@@ -109,14 +109,12 @@ AAChartLineDashStyleType const AAChartLineDashStyleTypeLongDashDotDot  = @"LongD
         _chartType             = AAChartTypeColumn;//默认图表类型为柱状图
         _animationType         = AAChartAnimationLinear;//默认使用非easing.js中的'linear'线性渐变效果
         _animationDuration     = @800;//默认动画时长为800毫秒
-        _subtitleAlign         = AAChartAlignTypeLeft;//默认图表副标题居左显示
         _stacking              = AAChartStackingTypeFalse;//默认不开启图表数据的堆积效果
         _zoomType              = AAChartZoomTypeNone ;//默认禁用图表的手势缩放功能
         _colorsTheme           = @[@"#1e90ff",@"#ef476f",@"#ffd066",@"#04d69f",@"#25547c",];//默认颜色主题
         _tooltipEnabled        = YES;//默认启用浮动提示框
         _tooltipShared         = YES;//默认多组数据共享一个浮动提示框
         _xAxisLabelsEnabled    = YES;//默认显示 X轴坐标点文字
-        _xAxisTickInterval     = @1; //x轴坐标点间隔数(默认是1)
         _xAxisVisible          = YES;//x轴默认可见
         _yAxisTitle            = @"";
         _yAxisVisible          = YES;//y轴默认可见
@@ -172,7 +170,7 @@ AAPropSetFuncImplementation(AAChartModel, BOOL,       yAxisAllowDecimals) //是�
 AAPropSetFuncImplementation(AAChartModel, NSArray  *, yAxisPlotLines) //y 轴标示线🧶的配置
 AAPropSetFuncImplementation(AAChartModel, NSNumber *, yAxisMax) //y 轴最大值
 AAPropSetFuncImplementation(AAChartModel, NSNumber *, yAxisMin) //y 轴最小值（设置为0就不会有负数）
-AAPropSetFuncImplementation(AAChartModel, NSNumber *, yAxisTickInterval) 
+AAPropSetFuncImplementation(AAChartModel, NSNumber *, yAxisTickInterval)
 AAPropSetFuncImplementation(AAChartModel, NSArray  *, yAxisTickPositions) //自定义 y 轴坐标（如：[@(0), @(25), @(50), @(75) , (100)]）
 AAPropSetFuncImplementation(AAChartModel, AALineStyle *, yAxisGridLineStyle) //y 轴网格线的样式
 AAPropSetFuncImplementation(AAChartModel, AACrosshair *, yAxisCrosshair)

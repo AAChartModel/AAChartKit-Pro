@@ -10,19 +10,28 @@
 
 @implementation AAStates
 
-AAPropSetFuncImplementation(AAStates, AAHover *, hover)
-AAPropSetFuncImplementation(AAStates, AASelect *, select)
+AAPropSetFuncImplementation(AAStates, AAHover    *, hover)
+AAPropSetFuncImplementation(AAStates, AASelect   *, select)
+AAPropSetFuncImplementation(AAStates, AAInactive *, inactive)
 
 @end
 
 
 @implementation AAHover
 
-AAPropSetFuncImplementation(AAHover, BOOL , enabled)
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _enabled = true;
+    }
+    return self;
+}
+
+AAPropSetFuncImplementation(AAHover, BOOL,       enabled)
 AAPropSetFuncImplementation(AAHover, NSString *, borderColor)
 AAPropSetFuncImplementation(AAHover, NSNumber *, brightness)
 AAPropSetFuncImplementation(AAHover, NSString *, color)
-AAPropSetFuncImplementation(AAHover, AAHalo *, halo)
+AAPropSetFuncImplementation(AAHover, AAHalo   *, halo)
 AAPropSetFuncImplementation(AAHover, NSNumber *, lineWidth)
 AAPropSetFuncImplementation(AAHover, NSNumber *, lineWidthPlus)
 
@@ -33,9 +42,18 @@ AAPropSetFuncImplementation(AAHover, NSNumber *, lineWidthPlus)
 
 @implementation AASelect
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _enabled = true;
+    }
+    return self;
+}
+
+AAPropSetFuncImplementation(AASelect, BOOL,       enabled)
 AAPropSetFuncImplementation(AASelect, NSString *, borderColor)
 AAPropSetFuncImplementation(AASelect, NSString *, color)
-AAPropSetFuncImplementation(AASelect, AAHalo *, halo)
+AAPropSetFuncImplementation(AASelect, AAHalo   *, halo)
 
 @end
 
@@ -45,5 +63,21 @@ AAPropSetFuncImplementation(AASelect, AAHalo *, halo)
 AAPropSetFuncImplementation(AAHalo, NSDictionary *, attributes)
 AAPropSetFuncImplementation(AAHalo, NSNumber *, opacity)
 AAPropSetFuncImplementation(AAHalo, NSNumber *, size)
+
+@end
+
+
+@implementation AAInactive
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _enabled = true;
+    }
+    return self;
+}
+
+AAPropSetFuncImplementation(AAInactive, BOOL,       enabled)
+AAPropSetFuncImplementation(AAInactive, NSNumber *, opacity)
 
 @end

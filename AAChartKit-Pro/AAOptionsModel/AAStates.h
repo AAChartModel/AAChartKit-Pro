@@ -8,25 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
-@class AAHover, AASelect, AAHalo;
+@class AAHover, AASelect, AAHalo, AAInactive;
 
 @interface AAStates : NSObject
 
-AAPropStatementAndPropSetFuncStatement(strong, AAStates, AAHover *, hover)
-AAPropStatementAndPropSetFuncStatement(strong, AAStates, AASelect *, select)
+AAPropStatementAndPropSetFuncStatement(strong, AAStates, AAHover    *, hover)
+AAPropStatementAndPropSetFuncStatement(strong, AAStates, AASelect   *, select)
+AAPropStatementAndPropSetFuncStatement(strong, AAStates, AAInactive *, inactive)
+
 
 @end
 
 
 @interface AAHover : NSObject
 
-AAPropStatementAndPropSetFuncStatement(assign, AAHover, BOOL , enabled)
+AAPropStatementAndPropSetFuncStatement(assign, AAHover, BOOL,       enabled)
 AAPropStatementAndPropSetFuncStatement(copy,   AAHover, NSString *, borderColor)
 AAPropStatementAndPropSetFuncStatement(strong, AAHover, NSNumber *, brightness)
 AAPropStatementAndPropSetFuncStatement(copy,   AAHover, NSString *, color)
-AAPropStatementAndPropSetFuncStatement(strong, AAHover, AAHalo *, halo)
+AAPropStatementAndPropSetFuncStatement(strong, AAHover, AAHalo   *, halo)
 AAPropStatementAndPropSetFuncStatement(strong, AAHover, NSNumber *, lineWidth)
 AAPropStatementAndPropSetFuncStatement(strong, AAHover, NSNumber *, lineWidthPlus)
 
@@ -35,9 +35,10 @@ AAPropStatementAndPropSetFuncStatement(strong, AAHover, NSNumber *, lineWidthPlu
 
 @interface AASelect : NSObject
 
+AAPropStatementAndPropSetFuncStatement(assign, AASelect, BOOL,       enabled)
 AAPropStatementAndPropSetFuncStatement(copy,   AASelect, NSString *, borderColor)
 AAPropStatementAndPropSetFuncStatement(copy,   AASelect, NSString *, color)
-AAPropStatementAndPropSetFuncStatement(strong, AASelect, AAHalo *, halo)
+AAPropStatementAndPropSetFuncStatement(strong, AASelect, AAHalo   *, halo)
 
 @end
 
@@ -51,6 +52,12 @@ AAPropStatementAndPropSetFuncStatement(strong, AAHalo, NSNumber *, size)
 @end
 
 
-NS_ASSUME_NONNULL_END
+@interface AAInactive : NSObject
+
+AAPropStatementAndPropSetFuncStatement(assign, AAInactive, BOOL,       enabled)
+AAPropStatementAndPropSetFuncStatement(strong, AAInactive, NSNumber *, opacity)
+
+@end
+
 
 

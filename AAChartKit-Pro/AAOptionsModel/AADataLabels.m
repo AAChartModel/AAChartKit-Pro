@@ -22,7 +22,7 @@
  * -------------------------------------------------------------------------------
  * And if you want to contribute for this project, please contact me as well
  * GitHub        : https://github.com/AAChartModel
- * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
+ * StackOverflow : https://stackoverflow.com/users/12302132/codeforu
  * JianShu       : https://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
  *
@@ -31,7 +31,7 @@
  */
 
 #import "AADataLabels.h"
-#import "AAJSStringPurer.h"
+#import "NSString+toPureJSString.h"
 
 @implementation AADataLabels
 
@@ -69,17 +69,12 @@ AAPropSetFuncImplementation(AADataLabels, BOOL      , softConnector)//Whether to
 AAPropSetFuncImplementation(AADataLabels, AAFilter *, filter)
 AAPropSetFuncImplementation(AADataLabels, AATextPath *, textPath)
 
+AAJSFuncTypePropSetFuncImplementation(AADataLabels, NSString *, formatter)
 
 - (void)setFormatter:(NSString *)formatter {
-    _formatter = [AAJSStringPurer pureJavaScriptFunctionStringWithString:formatter];
+    _formatter = [formatter aa_toPureJSString];
 }
 
-- (AADataLabels * (^) (NSString * formatter))formatterSet {
-    return ^(NSString * formatter) {
-        self->_formatter = [AAJSStringPurer pureJavaScriptFunctionStringWithString:formatter];
-        return self;
-    };
-}
 
 @end
 

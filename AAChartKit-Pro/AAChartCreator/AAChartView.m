@@ -22,7 +22,7 @@
  * ------------------------------------------------------------------------------
  * And if you want to contribute for this project, please contact me as well
  * GitHub        : https://github.com/AAChartModel
- * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
+ * StackOverflow : https://stackoverflow.com/users/12302132/codeforu
  * JianShu       : https://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
  *
@@ -31,7 +31,7 @@
  */
 
 #import "AAChartView.h"
-#import "AAJSStringPurer.h"
+#import "NSString+toPureJSString.h"
 
 @interface AAWeakProxy : NSProxy
 
@@ -104,29 +104,43 @@ WKScriptMessageHandler
 
 @implementation AAChartView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
-    config.userContentController = [[WKUserContentController alloc] init];
-    self = [super initWithFrame:frame configuration:config];
-    
+#pragma mark - Initialization
+- (instancetype)init {
+    self = [self initConfiguration];
     if (self) {
-        self.UIDelegate = self;
-        self.navigationDelegate = self;
-        self.backgroundColor = [UIColor whiteColor];
+        [self setupDelegate];
     }
     return self;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [self initConfiguration];
+    if (self) {
+        self.translatesAutoresizingMaskIntoConstraints = NO;
+        [self setupDelegate];
+    }
+    return self;
+}
 
-#pragma CONFIGURE THE CHART VIEW CONTENT WITH AACHARTMODEL
+- (instancetype)initConfiguration {
+    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+    return [super initWithFrame:CGRectNull configuration:config];
+}
 
+- (void)setupDelegate {
+    self.UIDelegate = self;
+    self.navigationDelegate = self;
+}
+
+
+#pragma mark - Configure Chart View Content With AAChartModel
 - (void)aa_drawChartWithChartModel:(AAChartModel *)chartModel {
-    AAOptions *options = [AAOptionsConstructor configureChartOptionsWithAAChartModel:chartModel];
+    AAOptions *options = chartModel.aa_toAAOptions;
     [self aa_drawChartWithOptions:options];
 }
 
 - (void)aa_refreshChartWithChartModel:(AAChartModel *)chartModel {
-    AAOptions *options = [AAOptionsConstructor configureChartOptionsWithAAChartModel:chartModel];
+    AAOptions *options = chartModel.aa_toAAOptions;
     [self aa_refreshChartWithOptions:options];
 }
 
@@ -140,8 +154,7 @@ WKScriptMessageHandler
 }
 
 
-#pragma CONFIGURE THE CHART VIEW CONTENT WITH AAOPTIONS
-
+#pragma mark - Configure Chart View Content With AAOptions
 - (void)aa_drawChartWithOptions:(AAOptions *)options {
     if (!_optionJson) {
         [self configureTheOptionsJsonStringWithAAOptions:options];
@@ -293,7 +306,7 @@ WKScriptMessageHandler
 }
 
 - (void)aa_evaluateJavaScriptStringFunction:(NSString *)JavaScriptString {
-    NSString *pureJSFuncStr = [AAJSStringPurer pureJavaScriptFunctionStringWithString:JavaScriptString];
+    NSString *pureJSFuncStr = [JavaScriptString aa_toPureJSString];
     
     //remove the useless punctuation: the first "((" and the end "))"
     NSRange range = NSMakeRange(2, pureJSFuncStr.length - 4);
@@ -332,9 +345,11 @@ WKScriptMessageHandler
     [self safeEvaluateJavaScriptString:jsStr];
 }
 
+#if TARGET_OS_IPHONE
 - (void)aa_adaptiveScreenRotation {
     [self aa_adaptiveScreenRotationWithAnimation:nil];
 }
+
 
 - (void)aa_adaptiveScreenRotationWithAnimation:(AAAnimation *)animation {
     __weak __typeof__(self) weakSelf = self;
@@ -351,6 +366,7 @@ WKScriptMessageHandler
                                height:self.frame.size.height
                             animation:animation];
 }
+#endif
 
 - (void)aa_changeChartSizeWithWidth:(CGFloat)width
                              height:(CGFloat)height
@@ -379,6 +395,7 @@ WKScriptMessageHandler
     return URLRequest;
 }
 
+
 - (void)configureTheOptionsJsonStringWithAAOptions:(AAOptions *)aaOptions {
     if (self.isClearBackgroundColor) {
         aaOptions.chart.backgroundColor = @"rgba(0,0,0,0)";
@@ -392,19 +409,32 @@ WKScriptMessageHandler
 
 #pragma mark - WKUIDelegate
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"JS WARNING"
-                                                                             message:message
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:([UIAlertAction actionWithTitle:@"Okay"
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction * _Nonnull action) {
+#if TARGET_OS_IPHONE
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:@"JS WARNING"
+                                        message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *alertAction =
+    [UIAlertAction actionWithTitle:@"Okay"
+                             style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * _Nonnull action) {
         completionHandler();
-    }])];
+    }];
+    [alertController addAction:alertAction];
     
     UIViewController *alertHelperController = [[UIViewController alloc]init];
     [self addSubview:alertHelperController.view];
     
     [alertHelperController presentViewController:alertController animated:YES completion:nil];
+#elif TARGET_OS_MAC
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.alertStyle = NSAlertStyleWarning;
+    alert.messageText = @"JS WARNING";
+    alert.informativeText = message;
+    [alert addButtonWithTitle:@"Okay"];
+    [alert beginSheetModalForWindow:[self window] completionHandler:nil];
+#endif
 }
 
 #pragma mark - AAChartView Event Handler
@@ -504,16 +534,42 @@ WKScriptMessageHandler
     }];
 }
 
-#pragma mark -- setter method
-
+#pragma mark -- Setter Method
+#if TARGET_OS_IPHONE
 - (void)setContentInsetAdjustmentBehavior:(UIScrollViewContentInsetAdjustmentBehavior)contentInsetAdjustmentBehavior {
     _contentInsetAdjustmentBehavior = contentInsetAdjustmentBehavior;
     self.scrollView.contentInsetAdjustmentBehavior = _contentInsetAdjustmentBehavior;
 }
+#endif
 
 - (void)setScrollEnabled:(BOOL)scrollEnabled {
     _scrollEnabled = scrollEnabled;
+#if TARGET_OS_IPHONE
     self.scrollView.scrollEnabled = _scrollEnabled;
+#elif TARGET_OS_MAC
+    self.scrollEnabled = _scrollEnabled;
+#endif
+}
+
+- (void)setIsClearBackgroundColor:(BOOL)isClearBackgroundColor {
+    _isClearBackgroundColor = isClearBackgroundColor;
+#if TARGET_OS_IPHONE
+    if (_isClearBackgroundColor) {
+        self.backgroundColor = [UIColor clearColor];
+        self.opaque = NO;
+    } else {
+        self.backgroundColor = [UIColor whiteColor];
+        self.opaque = YES;
+    }
+#elif TARGET_OS_MAC
+    if (_isClearBackgroundColor) {
+        self.layer.backgroundColor = [NSColor clearColor].CGColor;
+        self.layer.opaque = NO;
+    } else {
+        self.layer.backgroundColor = [NSColor whiteColor].CGColor;
+        self.layer.opaque = YES;
+    }
+#endif
 }
 
 - (void)setContentWidth:(CGFloat)contentWidth {
@@ -537,16 +593,6 @@ WKScriptMessageHandler
     [self safeEvaluateJavaScriptString:jsStr];
 }
 
-- (void)setIsClearBackgroundColor:(BOOL)isClearBackgroundColor {
-    _isClearBackgroundColor = isClearBackgroundColor;
-    if (_isClearBackgroundColor) {
-        [self setBackgroundColor:[UIColor clearColor]];
-        [self setOpaque:NO];
-    } else {
-        self.backgroundColor = [UIColor whiteColor];
-        [self setOpaque:YES];
-    }
-}
 
 - (void)setDelegate:(id<AAChartViewEventDelegate>)delegate {
     NSAssert(_optionJson == nil, @"You should set delegate before drawing chart");
@@ -591,7 +637,7 @@ WKScriptMessageHandler
                                                                  name:kUserContentMessageNameCustomEvent];
 }
 
-#pragma mark -- getter method
+#pragma mark -- Getter Method
 - (AAWeakProxy *)weakProxy {
     if (!_weakProxy) {
         _weakProxy = [AAWeakProxy proxyWithTarget:self];

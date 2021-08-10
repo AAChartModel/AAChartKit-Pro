@@ -22,8 +22,8 @@
  * -------------------------------------------------------------------------------
  * And if you want to contribute for this project, please contact me as well
  * GitHub        : https://github.com/AAChartModel
- * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
- * JianShu       : http://www.jianshu.com/u/f1e6753d4254
+ * StackOverflow : https://stackoverflow.com/users/12302132/codeforu
+ * JianShu       : https://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
  *
  * -------------------------------------------------------------------------------
@@ -51,10 +51,12 @@
 #import "AALine.h"
 #import "AASpline.h"
 #import "AAPie.h"
+#import "AAColumnrange.h"
 #import "AALegend.h"
 #import "AADataLabels.h"
 #import "AAStyle.h"
 #import "AASeries.h"
+#import "AAShadow.h"
 #import "AAMarker.h"
 #import "AAGradientColor.h"
 #import "AAColor.h"
@@ -62,9 +64,11 @@
 #import "AAPane.h"
 #import "AACredits.h"
 #import "AALang.h"
-
+#import "AADateTimeLabelFormats.h"
+#import "NSArray+toJSArray.h"
+#import "AAStyleConvenience.h"
+#import "AAMarginConvenience.h"
 #import "AALineStyle.h"
-
 
 #import "AALevels.h"
 #import "AAColorAxis.h"
@@ -73,16 +77,17 @@
 #import "AALayoutAlgorithm.h"
 #import "AAChartTypePro.h"
 
+
 @interface AAOptions : NSObject
 
-AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AAChart       *, chart)
-AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AATitle       *, title)
-AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AASubtitle    *, subtitle)
-AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AAXAxis       *, xAxis)
-AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AAYAxis       *, yAxis)
-AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AATooltip     *, tooltip)
-AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AAPlotOptions *, plotOptions)
-AAPropStatementAndPropSetFuncStatement(strong, AAOptions, NSArray       *, series)
+AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AAChart       *, chart) 
+AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AATitle       *, title) 
+AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AASubtitle    *, subtitle) 
+AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AAXAxis       *, xAxis) 
+AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AAYAxis       *, yAxis) 
+AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AATooltip     *, tooltip) 
+AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AAPlotOptions *, plotOptions) 
+AAPropStatementAndPropSetFuncStatement(strong, AAOptions, NSArray       *, series) 
 AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AALegend      *, legend)
 AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AAPane        *, pane)
 AAPropStatementAndPropSetFuncStatement(strong, AAOptions, NSArray       *, colors)
@@ -111,3 +116,12 @@ AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AAColorAxis   *, color
 
 
 @end
+
+
+@interface AAChartModel (toAAOptions)
+
+- (AAOptions *)aa_toAAOptions;
+
+@end
+
+

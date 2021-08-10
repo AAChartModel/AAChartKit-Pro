@@ -22,18 +22,21 @@
  * -------------------------------------------------------------------------------
  * And if you want to contribute for this project, please contact me as well
  * GitHub        : https://github.com/AAChartModel
- * StackOverflow : https://stackoverflow.com/users/7842508/codeforu
+ * StackOverflow : https://stackoverflow.com/users/12302132/codeforu
  * JianShu       : https://www.jianshu.com/u/f1e6753d4254
  * SegmentFault  : https://segmentfault.com/u/huanghunbieguan
  *
  * -------------------------------------------------------------------------------
  
  */
+#if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
+#elif TARGET_OS_MAC
+#import <AppKit/AppKit.h>
+#endif
+
 #import <WebKit/WebKit.h>
 #import "AAOptions.h"
-
-
 
 @interface AAMoveOverEventMessageModel : NSObject
 
@@ -77,25 +80,17 @@ typedef void(^AADidReceiveScriptMessageBlock)(AAChartView *aaChartView, WKScript
 
 @interface AAChartView:WKWebView
 
-
-/// The AAChartView did finish load event and move over event delegate
-@property (nonatomic, weak)   id<AAChartViewEventDelegate> delegate;
-
+#if TARGET_OS_IPHONE
 /// Configure the behavior of adjustedContentInset.
 /// Default is UIScrollViewContentInsetAdjustmentAutomatic.
 @property(nonatomic) UIScrollViewContentInsetAdjustmentBehavior contentInsetAdjustmentBehavior API_AVAILABLE(ios(11.0),tvos(11.0));
-
-/// The block method of chart view finish loading
-@property (nonatomic, copy) AADidFinishLoadBlock didFinishLoadBlock;
-
-/// The block method of user finger move over event
-@property (nonatomic, copy) AAMoveOverEventBlock moveOverEventBlock;
-
-/// The block method that did receive JavaScript event Message
-@property (nonatomic, copy) AADidReceiveScriptMessageBlock didReceiveScriptMessageBlock;
+#endif
 
 /// Set the chart view can scroll or not
 @property (nonatomic, assign) BOOL scrollEnabled;
+
+/// Set the chart view background color be clear
+@property (nonatomic, assign) BOOL isClearBackgroundColor;
 
 /// Content width of AAChartView
 @property (nonatomic, assign) CGFloat  contentWidth;
@@ -106,8 +101,17 @@ typedef void(^AADidReceiveScriptMessageBlock)(AAChartView *aaChartView, WKScript
 /// Hide chart series content or not
 @property (nonatomic, assign) BOOL chartSeriesHidden;
 
-/// Set the chart view background color be clear
-@property (nonatomic, assign) BOOL isClearBackgroundColor;
+/// The AAChartView did finish load event and move over event delegate
+@property (nonatomic, weak)   id<AAChartViewEventDelegate> delegate;
+
+/// The block method of chart view finish loading
+@property (nonatomic, copy) AADidFinishLoadBlock didFinishLoadBlock;
+
+/// The block method of user finger move over event
+@property (nonatomic, copy) AAMoveOverEventBlock moveOverEventBlock;
+
+/// The block method that did receive JavaScript event Message
+@property (nonatomic, copy) AADidReceiveScriptMessageBlock didReceiveScriptMessageBlock;
 
 
 /// Chart view finish loading event handler
@@ -123,7 +127,7 @@ typedef void(^AADidReceiveScriptMessageBlock)(AAChartView *aaChartView, WKScript
 - (void)didReceiveScriptMessageHandler:(AADidReceiveScriptMessageBlock)handler;
 
 
-#pragma CONFIGURE THE CHART VIEW CONTENT WITH AACHARTMODEL
+#pragma mark - Configure Chart View Content With AAChartModel
 
 /// Function of drawing chart view
 /// @param chartModel The instance object of AAChartModel
@@ -143,7 +147,7 @@ typedef void(^AADidReceiveScriptMessageBlock)(AAChartView *aaChartView, WKScript
 - (void)aa_refreshChartWithChartModel:(AAChartModel *)chartModel;
 
 
-#pragma CONFIGURE THE CHART VIEW CONTENT WITH AAOPTIONS
+#pragma mark - Configure Chart View Content With AAOptions
 
 /// Function of drawing chart view
 /// @param options The instance object of AAOptions
@@ -258,7 +262,7 @@ typedef void(^AADidReceiveScriptMessageBlock)(AAChartView *aaChartView, WKScript
 /// @param animation Have animation effect or not
 - (void)aa_redrawWithAnimation:(BOOL)animation;
 
-
+#if TARGET_OS_IPHONE
 /// Set the chart view content be adaptive to screen rotation with default animation effect
 - (void)aa_adaptiveScreenRotation;
 
@@ -267,7 +271,7 @@ typedef void(^AADidReceiveScriptMessageBlock)(AAChartView *aaChartView, WKScript
 ///
 /// @param animation The instance object of AAAnimation
 - (void)aa_adaptiveScreenRotationWithAnimation:(AAAnimation *)animation;
-
+#endif
 
 /// Change chart view content size
 /// @param width content size width
