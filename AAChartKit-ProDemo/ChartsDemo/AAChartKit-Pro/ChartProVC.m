@@ -48,16 +48,16 @@
 // https://www.highcharts.com/demo
 - (id)chartConfigurationWithSelectedIndex:(NSUInteger)selectedIndex {
     switch (self.selectedIndex) {
-        case 0: return [self sankeyChart];
-        case 1: return [self variablepieChart];
-        case 2: return [self treemapWithLevelsData];
-        case 3: return [self variwideChart];
-        case 4: return [self sunburstChart];
-        case 5: return [self dependencywheelChart];
-        case 6: return [self heatmapChart];
-        case 7: return [self packedbubbleChart];
-        case 8: return [self packedbubbleSplitChart];
-        case 9: return [self vennChart];
+        case  0: return [self sankeyChart];
+        case  1: return [self variablepieChart];
+        case  2: return [self treemapWithLevelsData];
+        case  3: return [self variwideChart];
+        case  4: return [self sunburstChart];
+        case  5: return [self dependencywheelChart];
+        case  6: return [self heatmapChart];
+        case  7: return [self packedbubbleChart];
+        case  8: return [self packedbubbleSplitChart];
+        case  9: return [self vennChart];
         case 10: return [self dumbbellChart];
         case 11: return [self lollipopChart];
         case 12: return [self streamgraphChart];
@@ -154,9 +154,7 @@
                            .enabledSet(true)
                            .alignSet(AAChartAlignTypeLeft)
                            .verticalAlignSet(AAChartVerticalAlignTypeTop)
-                           .styleSet(AAStyle.new
-                                     .fontSizeSet(@"15 px")
-                                     .fontWeightSet(AAChartFontWeightTypeBold)))
+                           .styleSet(AAStyleColorSizeWeight(AAColor.whiteColor, 15, AAChartFontWeightTypeBold)))
                    ])
         .dataSet(AAOptionsData.treemapWithLevelsData)]);
 }
@@ -301,13 +299,13 @@
                         .textSet(@"")))
     .colorAxisSet(AAColorAxis.new
                   .minSet(@0)
-                  .minColorSet(@"#FFFFFF")
+                  .minColorSet(AAColor.whiteColor)
                   .maxColorSet(@"#7cb5ec"))
     .legendSet(AALegend.new
                .enabledSet(true)
                .alignSet(AAChartAlignTypeRight)
-               .layoutSet(@"vertical")
-               .verticalAlignSet(@"top")
+               .layoutSet(AAChartLayoutTypeVertical)
+               .verticalAlignSet(AAChartVerticalAlignTypeTop)
                .ySet(@25))
     .tooltipSet(AATooltip.new
                 .enabledSet(true)
@@ -322,7 +320,7 @@
         .dataSet(AAOptionsData.heatmapData)
         .dataLabelsSet(AADataLabels.new
                        .enabledSet(true)
-                       .colorSet(@"red"))
+                       .colorSet(AAColor.redColor))
                ]);
 }
 
@@ -414,7 +412,7 @@
     
     AAXAxis *aaXAxis = AAXAxis.new
     .visibleSet(true)
-    .typeSet(@"category");
+    .typeSet(AAChartAxisTypeCategory);
     
     AAYAxis *aaYAxis = AAYAxis.new
     .visibleSet(true)
@@ -458,7 +456,7 @@
     
     AAXAxis *aaXAxis = AAXAxis.new
     .visibleSet(true)
-    .typeSet(@"category");
+    .typeSet(AAChartAxisTypeCategory);
     
     AAYAxis *aaYAxis = AAYAxis.new
     .visibleSet(true)
@@ -529,7 +527,7 @@
               .textSet(@"世界 5 大金字塔"))
     .xAxisSet(AAXAxis.new
               .visibleSet(true)
-              .typeSet(@"category"))
+              .typeSet(AAChartAxisTypeCategory))
     .yAxisSet(AAYAxis.new
               .visibleSet(true)
               .titleSet(AAAxisTitle.new
@@ -586,7 +584,7 @@
                                .dataLabelsSet(AADataLabels.new
                                               .enabledSet(true)
                                               .formatSet(@"{point.hc-a2}")
-                                              .colorSet(@"#ffffff")
+                                              .colorSet(AAColor.whiteColor)
                                               .styleSet(AAStyle.new
                                                         .textOutlineSet(@"none")))))
     .seriesSet(@[
@@ -604,8 +602,8 @@
     .titleSet(AATitle.new
               .textSet(@"矩形树图"))
     .colorAxisSet(AAColorAxis.new
-                  .minColorSet(@"#FFFFFF")
-                  .maxColorSet(@"#FF0000"))
+                  .minColorSet(AAColor.whiteColor)
+                  .maxColorSet(AAColor.redColor))
     .seriesSet(@[
         AASeriesElement.new
         .dataSet(AAOptionsData.treemapWithColorAxisData)
@@ -713,7 +711,7 @@
         .nameSet(@"Data")
         .typeSet(AAChartTypeScatter)
         .markerSet(AAMarker.new
-                   .fillColorSet(@"#ffffff")//点的填充色(用来设置折线连接点的填充色)
+                   .fillColorSet(AAColor.whiteColor)//点的填充色(用来设置折线连接点的填充色)
                    .lineWidthSet(@2)//外沿线的宽度(用来设置折线连接点的轮廓描边的宽度)
                    .lineColorSet(@""))//外沿线的颜色(用来设置折线连接点的轮廓描边颜色，当值为空字符串时，默认取数据点或数据列的颜色))
         .dataSet(AAOptionsData.bellcurveData)
@@ -774,7 +772,7 @@
         .dataSet(AAOptionsData.windbarbData)
         .keysSet(@[@"y"])
         .markerSet(AAMarker.new
-                   .fillColorSet(@"#ffffff")//点的填充色(用来设置折线连接点的填充色)
+                   .fillColorSet(AAColor.whiteColor)//点的填充色(用来设置折线连接点的填充色)
                    .lineWidthSet(@5)//外沿线的宽度(用来设置折线连接点的轮廓描边的宽度)
                    .lineColorSet(@""))//外沿线的颜色(用来设置折线连接点的轮廓描边颜色，当值为空字符串时，默认取数据点或数据列的颜色))
                ]);
