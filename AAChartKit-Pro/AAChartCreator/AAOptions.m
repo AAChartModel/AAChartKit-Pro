@@ -58,6 +58,7 @@ AAPropSetFuncImplementation(AAOptions, NSArray       *, colors)
 AAPropSetFuncImplementation(AAOptions, AACredits     *, credits)
 AAPropSetFuncImplementation(AAOptions, AALang        *, defaultOptions)
 AAPropSetFuncImplementation(AAOptions, BOOL           , touchEventEnabled)
+AAPropSetFuncImplementation(AAOptions, AAColorAxis   *, colorAxis);
 
 @end
 
