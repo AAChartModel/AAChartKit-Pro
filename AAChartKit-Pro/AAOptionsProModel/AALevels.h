@@ -3,7 +3,7 @@
 //  AAChartKit-ProDemo
 //
 //  Created by AnAn on 2020/6/10.
-//  Copyright © 2020 Danny boy. All rights reserved.
+//  Copyright © 2020 An An. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
