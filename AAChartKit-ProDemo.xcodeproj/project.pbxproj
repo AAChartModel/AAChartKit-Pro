@@ -92,6 +92,7 @@
 		8441A72726C21F0A007EAAA7 /* NSString+toPureJSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A72526C21F0A007EAAA7 /* NSString+toPureJSString.m */; };
 		84A5690027FD48E900883553 /* organizationData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A568FF27FD48E900883553 /* organizationData.json */; };
 		84A5690227FD496600883553 /* organizationNodesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690127FD496600883553 /* organizationNodesData.json */; };
+		84A5690427FD4C6800883553 /* organizationLevelsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690327FD4C6800883553 /* organizationLevelsData.json */; };
 		84FE7BB726AED3D000B68A56 /* AABaseChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */; };
 /* End PBXBuildFile section */
 
@@ -261,6 +262,7 @@
 		8441A72526C21F0A007EAAA7 /* NSString+toPureJSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+toPureJSString.m"; sourceTree = "<group>"; };
 		84A568FF27FD48E900883553 /* organizationData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = organizationData.json; sourceTree = "<group>"; };
 		84A5690127FD496600883553 /* organizationNodesData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = organizationNodesData.json; sourceTree = "<group>"; };
+		84A5690327FD4C6800883553 /* organizationLevelsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = organizationLevelsData.json; sourceTree = "<group>"; };
 		84FE7B9F26AED3D000B68A56 /* AABaseChartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABaseChartVC.h; sourceTree = "<group>"; };
 		84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABaseChartVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -447,6 +449,7 @@
 				27EB8A98249B9233007E6A6B /* wordcloudData.json */,
 				27EB8AD8249C8FFB007E6A6B /* eulerData.json */,
 				84A568FF27FD48E900883553 /* organizationData.json */,
+				84A5690327FD4C6800883553 /* organizationLevelsData.json */,
 				84A5690127FD496600883553 /* organizationNodesData.json */,
 			);
 			path = DataJsonFiles;
@@ -705,6 +708,7 @@
 				27EB8AD9249C8FFB007E6A6B /* eulerData.json in Resources */,
 				27EB8A762497C007007E6A6B /* sunburstData.json in Resources */,
 				27EB8A742497C007007E6A6B /* heatmapData.json in Resources */,
+				84A5690427FD4C6800883553 /* organizationLevelsData.json in Resources */,
 				27EB8A97249B8F00007E6A6B /* networkgraphData.json in Resources */,
 				27EB8A99249B9233007E6A6B /* wordcloudData.json in Resources */,
 				27EB8A772497C007007E6A6B /* dumbbellData.json in Resources */,
@@ -969,7 +973,7 @@
 				INFOPLIST_FILE = "AAChartKit-ProDemo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = AAChartKithihiuhuihiuhi;
+				PRODUCT_BUNDLE_IDENTIFIER = AAChartKithihiuhuih;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -984,7 +988,7 @@
 				INFOPLIST_FILE = "AAChartKit-ProDemo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = AAChartKithihiuhuihiuhi;
+				PRODUCT_BUNDLE_IDENTIFIER = AAChartKithihiuhuih;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
