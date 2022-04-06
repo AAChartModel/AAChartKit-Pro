@@ -181,8 +181,8 @@
               @"sunburstChart---旭日图",
               @"dependencywheelChart---和弦图",
               @"heatmapChart---热力图",
-              @"packedbubbleChart---气泡填充图",
-              @"packedbubbleSplitChart---圆堆积图",
+              @"packedbubbleChart---气泡🎈填充图",
+              @"packedbubbleSplitChart---圆🎈堆积图",
               @"vennChart---韦恩图",
               @"dumbbellChart---哑铃图",
               @"lollipopChart---棒棒糖🍭图",
@@ -205,6 +205,7 @@
               @"arcdiagramChart2---弧形图2",
               @"arcdiagramChart3---弧形图3",
               @"flameChart---火焰🔥图",
+              @"packedbubbleSpiralChart---渐进变化的气泡🎈图"
             ],
           
         ];

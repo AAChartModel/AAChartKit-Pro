@@ -79,6 +79,7 @@
         case 28: return [self arcdiagramChart2];
         case 29: return [self arcdiagramChart3];
         case 30: return [self flameChart];
+        case 31: return [self packedbubbleSpiralChart];
 
     }
     return nil;
@@ -195,7 +196,7 @@
         .dataLabelsSet(AADataLabels.new
                        .enabledSet(true)
                        .formatSet(@"€{point.y:.0f}"))
-        .colorByPointSet((id)@(true))];
+        .colorByPointSet(@true)];
     
     AAOptions *aaOptions = AAOptions.new
     .chartSet(aaChart)
@@ -1012,6 +1013,36 @@
         .tooltipSet(AATooltip.new
             .headerFormatSet(@"")
             .pointFormatSet(@"selfSize of {point.name} is {point.value}"));
+}
+
+- (AAOptions *)packedbubbleSpiralChart {
+    return AAOptions.new
+        .chartSet(AAChart.new
+            .typeSet(AAChartTypePackedbubble)
+//            .heightSet(@"100%")
+                  )
+        .titleSet(AATitle.new
+            .textSet(@"Carbon emissions around the world (2014)"))
+        .tooltipSet(AATooltip.new
+            .useHTMLSet(true)
+            .pointFormatSet(@"{point.name}: {point.y}m CO2"))
+        .plotOptionsSet(AAPlotOptions.new
+            .packedbubbleSet(AAPackedbubble.new
+                .useSimulationSet(@false)
+                .minSizeSet(@"20%")
+                .maxSizeSet(@"80%")
+                .dataLabelsSet(AADataLabels.new
+                    .enabledSet(true)
+                    .formatSet(@"{point.name}")
+                    .filterSet(AAFilter.new
+                        .propertySet(@"y")
+                        .operatorSet(@">")
+                        .valueSet(@250))
+                    .styleSet(AAStyle.new
+                        .colorSet(AAColor.blackColor)
+                        .textOutlineSet(@"none")
+                        .fontWeightSet(@"normal")))))
+        .seriesSet(AAOptionsSeries.packedbubbleSeries);
 }
 
 @end

@@ -20,6 +20,7 @@ AAPropStatementAndPropSetFuncStatement(strong, AAPackedbubble, NSNumber *, zMin)
 AAPropStatementAndPropSetFuncStatement(strong, AAPackedbubble, NSNumber *, zMax)
 AAPropStatementAndPropSetFuncStatement(strong, AAPackedbubble, AALayoutAlgorithm *, layoutAlgorithm)
 AAPropStatementAndPropSetFuncStatement(strong, AAPackedbubble, AADataLabels *, dataLabels)
+AAPropStatementAndPropSetFuncStatement(strong, AAPackedbubble, id, useSimulation)
 
 @end
 

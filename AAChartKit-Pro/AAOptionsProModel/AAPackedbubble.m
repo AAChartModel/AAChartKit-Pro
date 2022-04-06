@@ -16,5 +16,6 @@ AAPropSetFuncImplementation(AAPackedbubble, NSNumber *, zMin)
 AAPropSetFuncImplementation(AAPackedbubble, NSNumber *, zMax)
 AAPropSetFuncImplementation(AAPackedbubble, AALayoutAlgorithm *, layoutAlgorithm)
 AAPropSetFuncImplementation(AAPackedbubble, AADataLabels *, dataLabels)
+AAPropSetFuncImplementation(AAPackedbubble, id, useSimulation)
 
 @end
