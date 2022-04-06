@@ -36,7 +36,7 @@ AAChartType const AAChartTypeWordcloud       =  @"wordcloud";
 
 AAChartType const AAChartTypeOrganization    =  @"organization";
 AAChartType const AAChartTypeArcdiagram      =  @"arcdiagram";
-AAChartType const AAChartTypeFlame     =  @"flame";
+AAChartType const AAChartTypeFlame           =  @"flame";
 
 
 @end
