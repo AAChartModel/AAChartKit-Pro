@@ -145,10 +145,11 @@
             }]
     }, {
         "name": "非洲",
-        "data": [{
-            "name": "Senegal",
-            "value": 8.2
-        },
+        "data": [
+            {
+                "name": "Senegal",
+                "value": 8.2
+            },
             {
                 "name": "Cameroon",
                 "value": 9.2
@@ -210,13 +211,15 @@
             }, {
                 "name": "Algeria",
                 "value": 141.5
-            }]
+            }
+        ]
     }, {
         "name": "大洋洲",
-        "data": [{
-            "name": "Australia",
-            "value": 409.4
-        },
+        "data": [
+            {
+                "name": "Australia",
+                "value": 409.4
+            },
             {
                 "name": "New Zealand",
                 "value": 34.1
@@ -224,13 +227,15 @@
             {
                 "name": "Papua New Guinea",
                 "value": 7.1
-            }]
+            }
+        ]
     }, {
         "name": "北美洲",
-        "data": [{
-            "name": "Costa Rica",
-            "value": 7.6
-        },
+        "data": [
+            {
+                "name": "Costa Rica",
+                "value": 7.6
+            },
             {
                 "name": "Honduras",
                 "value": 8.4
@@ -264,13 +269,15 @@
             }, {
                 "name": "Mexico",
                 "value": 456.3
-            }]
+            }
+        ]
     }, {
         "name": "南美洲",
-        "data": [{
-            "name": "El Salvador",
-            "value": 7.2
-        },
+        "data": [
+            {
+                "name": "El Salvador",
+                "value": 7.2
+            },
             {
                 "name": "Uruguay",
                 "value": 8.1
@@ -309,13 +316,15 @@
             {
                 "name": "Venezuela",
                 "value": 195.2
-            }]
+            }
+        ]
     }, {
         "name": "亚洲",
-        "data": [{
-            "name": "Nepal",
-            "value": 6.5
-        },
+        "data": [
+            {
+                "name": "Nepal",
+                "value": 6.5
+            },
             {
                 "name": "Georgia",
                 "value": 6.5
@@ -468,5 +477,6 @@
             {
                 "name": "Korea",
                 "value": 610.1
-            }]
+            }
+        ]
     }]
