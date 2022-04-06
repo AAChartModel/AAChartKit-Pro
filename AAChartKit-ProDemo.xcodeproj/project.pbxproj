@@ -90,6 +90,8 @@
 		8441A72026C21F02007EAAA7 /* AAGradientColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A71E26C21F02007EAAA7 /* AAGradientColor.m */; };
 		8441A72626C21F0A007EAAA7 /* NSArray+toJSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A72426C21F0A007EAAA7 /* NSArray+toJSArray.m */; };
 		8441A72726C21F0A007EAAA7 /* NSString+toPureJSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A72526C21F0A007EAAA7 /* NSString+toPureJSString.m */; };
+		84A5690027FD48E900883553 /* organizationData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A568FF27FD48E900883553 /* organizationData.json */; };
+		84A5690227FD496600883553 /* organizationNodesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690127FD496600883553 /* organizationNodesData.json */; };
 		84FE7BB726AED3D000B68A56 /* AABaseChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */; };
 /* End PBXBuildFile section */
 
@@ -257,6 +259,8 @@
 		8441A72326C21F0A007EAAA7 /* NSString+toPureJSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+toPureJSString.h"; sourceTree = "<group>"; };
 		8441A72426C21F0A007EAAA7 /* NSArray+toJSArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+toJSArray.m"; sourceTree = "<group>"; };
 		8441A72526C21F0A007EAAA7 /* NSString+toPureJSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+toPureJSString.m"; sourceTree = "<group>"; };
+		84A568FF27FD48E900883553 /* organizationData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = organizationData.json; sourceTree = "<group>"; };
+		84A5690127FD496600883553 /* organizationNodesData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = organizationNodesData.json; sourceTree = "<group>"; };
 		84FE7B9F26AED3D000B68A56 /* AABaseChartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABaseChartVC.h; sourceTree = "<group>"; };
 		84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABaseChartVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -442,6 +446,8 @@
 				27EB8A96249B8F00007E6A6B /* networkgraphData.json */,
 				27EB8A98249B9233007E6A6B /* wordcloudData.json */,
 				27EB8AD8249C8FFB007E6A6B /* eulerData.json */,
+				84A568FF27FD48E900883553 /* organizationData.json */,
+				84A5690127FD496600883553 /* organizationNodesData.json */,
 			);
 			path = DataJsonFiles;
 			sourceTree = "<group>";
@@ -687,6 +693,7 @@
 				27EB8A792497C007007E6A6B /* vennData.json in Resources */,
 				27EB8A712497C007007E6A6B /* variwideData.json in Resources */,
 				27EB8A8F249B804C007E6A6B /* bellcurveData.json in Resources */,
+				84A5690027FD48E900883553 /* organizationData.json in Resources */,
 				27EB8A722497C007007E6A6B /* treemapWithLevelsData.json in Resources */,
 				27EB8A782497C007007E6A6B /* vectorData.json in Resources */,
 				27EB8A91249B82F9007E6A6B /* itemData.json in Resources */,
@@ -711,6 +718,7 @@
 				27EB8A7A2497C007007E6A6B /* sankeyData.json in Resources */,
 				7172A3E61E763EA6000D5B99 /* LaunchScreen.storyboard in Resources */,
 				7172A3E31E763EA6000D5B99 /* Assets.xcassets in Resources */,
+				84A5690227FD496600883553 /* organizationNodesData.json in Resources */,
 				7172A3E11E763EA6000D5B99 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
