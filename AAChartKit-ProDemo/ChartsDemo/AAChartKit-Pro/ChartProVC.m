@@ -942,7 +942,7 @@
             .textSet(@"Highcharts chart rendering process"))
         .legendSet(AALegend.new
             .enabledSet(false))
-        .xAxisSet(@[
+        .xAxisSet((id)@[
             AAXAxis.new
                 .visibleSet(false),
             AAXAxis.new
@@ -952,7 +952,7 @@
 //                .minPaddingSet(@0)
 //                .maxPaddingSet(@0)
             ])
-        .yAxisSet(@[
+        .yAxisSet((id)@[
             AAYAxis.new
                 .visibleSet(false),
             AAYAxis.new
@@ -964,13 +964,13 @@
             ])
         .seriesSet(@[
             AASeriesElement.new
-//                .typeSet(undefined)
+                .typeSet(AAChartTypeFlame)
                 .dataSet(@[])
                 .yAxisSet(@1)
                 .xAxisSet(@1),
             AASeriesElement.new
                 .visibleSet(false)
-                .sizeSet(@"100%")
+                .sizeSet((id)@"100%")
                 .typeSet(AAChartTypeSunburst)
                 .dataSet(@[])
                 .allowDrillToNodeSet(true)
