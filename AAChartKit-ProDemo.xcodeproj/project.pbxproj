@@ -93,6 +93,9 @@
 		84A5690027FD48E900883553 /* organizationData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A568FF27FD48E900883553 /* organizationData.json */; };
 		84A5690227FD496600883553 /* organizationNodesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690127FD496600883553 /* organizationNodesData.json */; };
 		84A5690427FD4C6800883553 /* organizationLevelsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690327FD4C6800883553 /* organizationLevelsData.json */; };
+		84A5690627FD663400883553 /* arcdiagram1Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690527FD663400883553 /* arcdiagram1Data.json */; };
+		84A5690827FD664F00883553 /* arcdiagram2Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690727FD664F00883553 /* arcdiagram2Data.json */; };
+		84A5690A27FD666900883553 /* arcdiagram3Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690927FD666900883553 /* arcdiagram3Data.json */; };
 		84FE7BB726AED3D000B68A56 /* AABaseChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */; };
 /* End PBXBuildFile section */
 
@@ -263,6 +266,9 @@
 		84A568FF27FD48E900883553 /* organizationData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = organizationData.json; sourceTree = "<group>"; };
 		84A5690127FD496600883553 /* organizationNodesData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = organizationNodesData.json; sourceTree = "<group>"; };
 		84A5690327FD4C6800883553 /* organizationLevelsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = organizationLevelsData.json; sourceTree = "<group>"; };
+		84A5690527FD663400883553 /* arcdiagram1Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = arcdiagram1Data.json; sourceTree = "<group>"; };
+		84A5690727FD664F00883553 /* arcdiagram2Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = arcdiagram2Data.json; sourceTree = "<group>"; };
+		84A5690927FD666900883553 /* arcdiagram3Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = arcdiagram3Data.json; sourceTree = "<group>"; };
 		84FE7B9F26AED3D000B68A56 /* AABaseChartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABaseChartVC.h; sourceTree = "<group>"; };
 		84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABaseChartVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -451,6 +457,9 @@
 				84A568FF27FD48E900883553 /* organizationData.json */,
 				84A5690327FD4C6800883553 /* organizationLevelsData.json */,
 				84A5690127FD496600883553 /* organizationNodesData.json */,
+				84A5690527FD663400883553 /* arcdiagram1Data.json */,
+				84A5690727FD664F00883553 /* arcdiagram2Data.json */,
+				84A5690927FD666900883553 /* arcdiagram3Data.json */,
 			);
 			path = DataJsonFiles;
 			sourceTree = "<group>";
@@ -692,6 +701,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A5690A27FD666900883553 /* arcdiagram3Data.json in Resources */,
 				27EB8A7C2497C007007E6A6B /* drilldownTreemapData.json in Resources */,
 				27EB8A792497C007007E6A6B /* vennData.json in Resources */,
 				27EB8A712497C007007E6A6B /* variwideData.json in Resources */,
@@ -710,6 +720,7 @@
 				27EB8A742497C007007E6A6B /* heatmapData.json in Resources */,
 				84A5690427FD4C6800883553 /* organizationLevelsData.json in Resources */,
 				27EB8A97249B8F00007E6A6B /* networkgraphData.json in Resources */,
+				84A5690627FD663400883553 /* arcdiagram1Data.json in Resources */,
 				27EB8A99249B9233007E6A6B /* wordcloudData.json in Resources */,
 				27EB8A772497C007007E6A6B /* dumbbellData.json in Resources */,
 				27EB8A93249B8888007E6A6B /* timelineData.json in Resources */,
@@ -718,6 +729,7 @@
 				27EB8A95249B8AA3007E6A6B /* windbarbData.json in Resources */,
 				1E66D1FB210AF4ED007EAB8C /* AAJSFiles.bundle in Resources */,
 				27EB8A702497C007007E6A6B /* columnpyramidData.json in Resources */,
+				84A5690827FD664F00883553 /* arcdiagram2Data.json in Resources */,
 				27EB8A7E2497C007007E6A6B /* bigHeatmapData.json in Resources */,
 				27EB8A7A2497C007007E6A6B /* sankeyData.json in Resources */,
 				7172A3E61E763EA6000D5B99 /* LaunchScreen.storyboard in Resources */,
