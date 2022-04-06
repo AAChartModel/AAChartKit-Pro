@@ -10,7 +10,7 @@
 		1E66D1FB210AF4ED007EAB8C /* AAJSFiles.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1E66D1BC210AF4EC007EAB8C /* AAJSFiles.bundle */; };
 		27EB89DF248BE1C9007E6A6B /* AAColorAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB89DE248BE1C9007E6A6B /* AAColorAxis.m */; };
 		27EB89E2248C8F87007E6A6B /* AAOptionsSeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB89E1248C8F87007E6A6B /* AAOptionsSeries.m */; };
-		27EB89E5249113B6007E6A6B /* AALevels.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB89E4249113B6007E6A6B /* AALevels.m */; };
+		27EB89E5249113B6007E6A6B /* AALevelsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB89E4249113B6007E6A6B /* AALevelsElement.m */; };
 		27EB89E82491246E007E6A6B /* AAPackedbubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB89E72491246E007E6A6B /* AAPackedbubble.m */; };
 		27EB89EB24912A2F007E6A6B /* AALayoutAlgorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB89EA24912A2F007E6A6B /* AALayoutAlgorithm.m */; };
 		27EB89EF2491C3A0007E6A6B /* AAChartTypePro.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EB89EE2491C39F007E6A6B /* AAChartTypePro.m */; };
@@ -124,8 +124,8 @@
 		27EB89DE248BE1C9007E6A6B /* AAColorAxis.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAColorAxis.m; sourceTree = "<group>"; };
 		27EB89E0248C8F87007E6A6B /* AAOptionsSeries.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAOptionsSeries.h; sourceTree = "<group>"; };
 		27EB89E1248C8F87007E6A6B /* AAOptionsSeries.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAOptionsSeries.m; sourceTree = "<group>"; };
-		27EB89E3249113B6007E6A6B /* AALevels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AALevels.h; sourceTree = "<group>"; };
-		27EB89E4249113B6007E6A6B /* AALevels.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AALevels.m; sourceTree = "<group>"; };
+		27EB89E3249113B6007E6A6B /* AALevelsElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AALevelsElement.h; sourceTree = "<group>"; };
+		27EB89E4249113B6007E6A6B /* AALevelsElement.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AALevelsElement.m; sourceTree = "<group>"; };
 		27EB89E62491246E007E6A6B /* AAPackedbubble.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAPackedbubble.h; sourceTree = "<group>"; };
 		27EB89E72491246E007E6A6B /* AAPackedbubble.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAPackedbubble.m; sourceTree = "<group>"; };
 		27EB89E924912A2F007E6A6B /* AALayoutAlgorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AALayoutAlgorithm.h; sourceTree = "<group>"; };
@@ -418,8 +418,8 @@
 			children = (
 				27EB89DD248BE1C9007E6A6B /* AAColorAxis.h */,
 				27EB89DE248BE1C9007E6A6B /* AAColorAxis.m */,
-				27EB89E3249113B6007E6A6B /* AALevels.h */,
-				27EB89E4249113B6007E6A6B /* AALevels.m */,
+				27EB89E3249113B6007E6A6B /* AALevelsElement.h */,
+				27EB89E4249113B6007E6A6B /* AALevelsElement.m */,
 				27EB89E62491246E007E6A6B /* AAPackedbubble.h */,
 				27EB89E72491246E007E6A6B /* AAPackedbubble.m */,
 				27EB8A1D24927BE8007E6A6B /* AATreemap.h */,
@@ -805,7 +805,7 @@
 				8441A70E26C21E6C007EAAA7 /* AAPlotBandsElement.m in Sources */,
 				8441A71026C21E6C007EAAA7 /* AATooltip.m in Sources */,
 				7172A3DB1E763EA6000D5B99 /* AppDelegate.m in Sources */,
-				27EB89E5249113B6007E6A6B /* AALevels.m in Sources */,
+				27EB89E5249113B6007E6A6B /* AALevelsElement.m in Sources */,
 				8441A70226C21E6C007EAAA7 /* AADataLabels.m in Sources */,
 				8441A6B326C21E53007EAAA7 /* AAChartView.m in Sources */,
 				8441A70B26C21E6C007EAAA7 /* AAArea.m in Sources */,

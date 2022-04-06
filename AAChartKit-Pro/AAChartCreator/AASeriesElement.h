@@ -32,7 +32,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class AAMarker, AADataLabels, AATooltip, AAStates, AAShadow, AAZonesElement, AADataSorting, AALevels;
+@class AAMarker, AADataLabels, AATooltip, AAStates, AAShadow, AAZonesElement, AADataSorting, AALevelsElement;
 
 @interface AASeriesElement : NSObject
 
@@ -77,7 +77,7 @@ AAPropStatementAndPropSetFuncStatement(copy,   AASeriesElement, NSString *, poin
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, id        , enableMouseTracking)
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, AADataSorting *, dataSorting)
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, id        , reversed) //Only useful for pyramid chart and funnel chart
-AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSArray<AALevels *>*, levels)
+AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSArray<AALevelsElement *>*, levels)
 AAPropStatementAndPropSetFuncStatement(assign, AASeriesElement, BOOL        , allowDrillToNode)
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, xAxis)
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, baseSeries)

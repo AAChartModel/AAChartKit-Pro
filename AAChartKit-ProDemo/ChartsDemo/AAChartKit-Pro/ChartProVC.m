@@ -153,7 +153,7 @@
         AASeriesElement.new
         .typeSet(AAChartTypeTreemap)
         .levelsSet(@[
-            AALevels.new
+            AALevelsElement.new
             .levelSet(@1)
             .layoutAlgorithmSet(@"sliceAndDice")
             .dataLabelsSet(AADataLabels.new
@@ -230,18 +230,18 @@
         AASeriesElement.new
         .allowDrillToNodeSet(true)
         .levelsSet(@[
-            AALevels.new
+            AALevelsElement.new
             .levelSet(@2)
             .colorByPointSet(@true)
             .layoutAlgorithmSet(@"sliceAndDice")
             ,
-            AALevels.new
+            AALevelsElement.new
             .levelSet(@3)
             .colorVariationSet(AAColorVariation.new
                                .keySet(@"brightness")
                                .toSet(@-0.5))
             ,
-            AALevels.new
+            AALevelsElement.new
             .levelSet(@4)
             .colorVariationSet(AAColorVariation.new
                                .keySet(@"brightness")
@@ -632,7 +632,7 @@
         AASeriesElement.new
         .typeSet(AAChartTypeTreemap)
         .levelsSet(@[
-            AALevels.new
+            AALevelsElement.new
             .levelSet(@1)
             .dataLabelsSet(AADataLabels.new
                            .enabledSet(true))
@@ -976,7 +976,7 @@
                 .allowDrillToNodeSet(true)
 //                .cursorSet(@"pointer")
                 .levelsSet(@[
-                    AALevels.new
+                    AALevelsElement.new
                         .levelSet(@1)
 //                        .levelIsConstantSet(false)
                         .dataLabelsSet(AADataLabels.new

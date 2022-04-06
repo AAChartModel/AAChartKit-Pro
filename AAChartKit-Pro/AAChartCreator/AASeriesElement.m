@@ -86,7 +86,7 @@ AAPropSetFuncImplementation(AASeriesElement, NSString *, pointPlacement)
 AAPropSetFuncImplementation(AASeriesElement, id        , enableMouseTracking)
 AAPropSetFuncImplementation(AASeriesElement, AADataSorting *, dataSorting)
 AAPropSetFuncImplementation(AASeriesElement, id        , reversed) //Only useful for pyramid chart and funnel chart
-AAPropSetFuncImplementation(AASeriesElement, NSArray<AALevels *>*, levels)
+AAPropSetFuncImplementation(AASeriesElement, NSArray<AALevelsElement *>*, levels)
 AAPropSetFuncImplementation(AASeriesElement, BOOL        , allowDrillToNode)
 AAPropSetFuncImplementation(AASeriesElement, NSNumber *, xAxis)
 AAPropSetFuncImplementation(AASeriesElement, NSNumber *, baseSeries)
