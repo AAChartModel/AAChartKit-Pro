@@ -200,6 +200,7 @@
               @"networkgraphChart---力导关系图",
               @"wordcloudChart---词云图",
               @"eulerChart---欧拉图",
+              @"organizationChart---组织结构图"
 //              var dataJson = JSON.stringify(points);
 //
 //              console.log(dataJson);

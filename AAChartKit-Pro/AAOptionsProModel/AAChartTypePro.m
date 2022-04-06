@@ -34,4 +34,7 @@ AAChartType const AAChartTypeWindbarb        =  @"windbarb";
 AAChartType const AAChartTypeNetworkgraph    =  @"networkgraph";
 AAChartType const AAChartTypeWordcloud       =  @"wordcloud";
 
+AAChartType const AAChartTypeOrganization       =  @"organization";
+
+
 @end

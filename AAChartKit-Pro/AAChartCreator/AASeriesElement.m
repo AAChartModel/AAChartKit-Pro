@@ -90,6 +90,7 @@ AAPropSetFuncImplementation(AASeriesElement, NSArray<AALevels *>*, levels)
 AAPropSetFuncImplementation(AASeriesElement, BOOL        , allowDrillToNode)
 AAPropSetFuncImplementation(AASeriesElement, NSNumber *, xAxis)
 AAPropSetFuncImplementation(AASeriesElement, NSNumber *, baseSeries)
+AAPropSetFuncImplementation(AASeriesElement, NSArray  *, nodes)
 
 @end
 

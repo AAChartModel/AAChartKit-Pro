@@ -37,6 +37,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)wordcloudData;
 + (NSArray *)eulerData;
 
++ (NSArray *)organizationData;
++ (NSArray *)organizationLevelsData;
++ (NSArray *)organizationNodesData;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

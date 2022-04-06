@@ -74,6 +74,8 @@
         case 23: return [self networkgraphChart];
         case 24: return [self wordcloudChart];
         case 25: return [self eulerChart];
+        case 26: return [self organizationChart];
+
     }
     return nil;
 }
@@ -822,6 +824,33 @@
         AASeriesElement.new
         .dataSet(AAOptionsData.eulerData),
                ]);
+}
+
+- (AAOptions *)organizationChart {
+    return AAOptions.new
+        .chartSet(AAChart.new
+//            .heightSet(@600)
+            .invertedSet(true))
+        .titleSet(AATitle.new
+            .textSet(@"Highsoft 公司组织结构"))
+        .seriesSet(@[
+            AASeriesElement.new
+                .typeSet(AAChartTypeOrganization)
+                .nameSet(@"Highsoft")
+                .keysSet(@[@"from", @"to"])
+                .dataSet(AAOptionsData.organizationData)
+                .levelsSet(AAOptionsData.organizationLevelsData)
+                .nodesSet(AAOptionsData.organizationNodesData)
+                .colorByPointSet(false)
+                .colorSet(@"#007ad0")
+                .dataLabelsSet(AADataLabels.new
+                    .colorSet(AAColor.whiteColor))
+                .borderColorSet(AAColor.whiteColor)
+//                .nodeWidthSet(@65)
+            ])
+//        .tooltipSet(AATooltip.new
+//            .outsideSet(true))
+        ;
 }
 
 @end

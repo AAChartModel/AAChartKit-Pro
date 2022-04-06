@@ -99,6 +99,19 @@
 
 
 
++ (NSArray *)organizationData {
+    return [self getJsonDataWithJsonFileName:@"organizationData"];
+}
+
++ (NSArray *)organizationLevelsData {
+    return [self getJsonDataWithJsonFileName:@"organizationLevelsData"];
+}
+
++ (NSArray *)organizationNodesData {
+    return [self getJsonDataWithJsonFileName:@"organizationNodesData"];
+}
+
+
 + (NSArray *)xrangeData {
     NSMutableArray *dataArr = [NSMutableArray array];
     

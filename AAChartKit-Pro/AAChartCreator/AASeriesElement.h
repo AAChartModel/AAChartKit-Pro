@@ -81,6 +81,8 @@ AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSArray<AALevels
 AAPropStatementAndPropSetFuncStatement(assign, AASeriesElement, BOOL        , allowDrillToNode)
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, xAxis)
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, baseSeries)
+AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSArray  *, nodes)
+
 
 @end
 

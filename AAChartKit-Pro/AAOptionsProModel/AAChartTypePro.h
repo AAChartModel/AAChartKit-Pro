@@ -37,6 +37,9 @@ AACHARTKIT_EXTERN AAChartType const AAChartTypeWindbarb;
 AACHARTKIT_EXTERN AAChartType const AAChartTypeNetworkgraph;
 AACHARTKIT_EXTERN AAChartType const AAChartTypeWordcloud;
 
+AACHARTKIT_EXTERN AAChartType const AAChartTypeOrganization;
+
+
 @end
 
 NS_ASSUME_NONNULL_END
