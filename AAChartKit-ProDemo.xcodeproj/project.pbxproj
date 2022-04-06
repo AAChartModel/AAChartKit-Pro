@@ -92,7 +92,6 @@
 		8441A72726C21F0A007EAAA7 /* NSString+toPureJSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A72526C21F0A007EAAA7 /* NSString+toPureJSString.m */; };
 		84A5690027FD48E900883553 /* organizationData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A568FF27FD48E900883553 /* organizationData.json */; };
 		84A5690227FD496600883553 /* organizationNodesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690127FD496600883553 /* organizationNodesData.json */; };
-		84A5690427FD4C6800883553 /* organizationLevelsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690327FD4C6800883553 /* organizationLevelsData.json */; };
 		84A5690627FD663400883553 /* arcdiagram1Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690527FD663400883553 /* arcdiagram1Data.json */; };
 		84A5690827FD664F00883553 /* arcdiagram2Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690727FD664F00883553 /* arcdiagram2Data.json */; };
 		84A5690A27FD666900883553 /* arcdiagram3Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690927FD666900883553 /* arcdiagram3Data.json */; };
@@ -267,7 +266,6 @@
 		8441A72526C21F0A007EAAA7 /* NSString+toPureJSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+toPureJSString.m"; sourceTree = "<group>"; };
 		84A568FF27FD48E900883553 /* organizationData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = organizationData.json; sourceTree = "<group>"; };
 		84A5690127FD496600883553 /* organizationNodesData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = organizationNodesData.json; sourceTree = "<group>"; };
-		84A5690327FD4C6800883553 /* organizationLevelsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = organizationLevelsData.json; sourceTree = "<group>"; };
 		84A5690527FD663400883553 /* arcdiagram1Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = arcdiagram1Data.json; sourceTree = "<group>"; };
 		84A5690727FD664F00883553 /* arcdiagram2Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = arcdiagram2Data.json; sourceTree = "<group>"; };
 		84A5690927FD666900883553 /* arcdiagram3Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = arcdiagram3Data.json; sourceTree = "<group>"; };
@@ -459,7 +457,6 @@
 				27EB8A98249B9233007E6A6B /* wordcloudData.json */,
 				27EB8AD8249C8FFB007E6A6B /* eulerData.json */,
 				84A568FF27FD48E900883553 /* organizationData.json */,
-				84A5690327FD4C6800883553 /* organizationLevelsData.json */,
 				84A5690127FD496600883553 /* organizationNodesData.json */,
 				84A5690527FD663400883553 /* arcdiagram1Data.json */,
 				84A5690727FD664F00883553 /* arcdiagram2Data.json */,
@@ -725,7 +722,6 @@
 				27EB8A762497C007007E6A6B /* sunburstData.json in Resources */,
 				27EB8A742497C007007E6A6B /* heatmapData.json in Resources */,
 				84A5690E27FD6EFA00883553 /* sunburst2Data.json in Resources */,
-				84A5690427FD4C6800883553 /* organizationLevelsData.json in Resources */,
 				27EB8A97249B8F00007E6A6B /* networkgraphData.json in Resources */,
 				84A5690627FD663400883553 /* arcdiagram1Data.json in Resources */,
 				27EB8A99249B9233007E6A6B /* wordcloudData.json in Resources */,

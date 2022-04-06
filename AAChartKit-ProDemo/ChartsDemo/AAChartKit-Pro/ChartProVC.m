@@ -843,7 +843,28 @@
                 .nameSet(@"Highsoft")
                 .keysSet(@[@"from", @"to"])
                 .dataSet(AAOptionsData.organizationData)
-                .levelsSet(AAOptionsData.organizationLevelsData)
+                .levelsSet(@[
+                    AALevelsElement.new
+                        .levelSet(@0)
+                        .colorSet(@"silver")
+                        .dataLabelsSet(AADataLabels.new
+                        .colorSet(AAColor.blackColor))
+//                        .heightSet(@25)
+                    ,
+                    AALevelsElement.new
+                        .levelSet(@1)
+                        .colorSet(@"silver")
+                        .dataLabelsSet(AADataLabels.new
+                        .colorSet(AAColor.blackColor))
+//                        .heightSet(@25)
+                    ,
+                    AALevelsElement.new
+                        .levelSet(@2)
+                        .colorSet(@"#980104"),
+                    AALevelsElement.new
+                        .levelSet(@4)
+                        .colorSet(@"#359154")
+                ])
                 .nodesSet(AAOptionsData.organizationNodesData)
                 .colorByPointSet(false)
                 .colorSet(@"#007ad0")
