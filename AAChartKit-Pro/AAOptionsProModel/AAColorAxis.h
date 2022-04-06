@@ -10,23 +10,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class AADataClasses;
+@class AADataClassesElement;
 
 @interface AAColorAxis : NSObject
 
 AAPropStatementAndPropSetFuncStatement(strong, AAColorAxis, NSNumber *, min)
 AAPropStatementAndPropSetFuncStatement(copy,   AAColorAxis, NSString *, minColor)
 AAPropStatementAndPropSetFuncStatement(copy,   AAColorAxis, NSString *, maxColor)
-AAPropStatementAndPropSetFuncStatement(strong, AAColorAxis, NSArray<AADataClasses *> *, dataClasses)
+AAPropStatementAndPropSetFuncStatement(strong, AAColorAxis, NSArray<AADataClassesElement *> *, dataClasses)
 
 @end
 
-@interface AADataClasses : NSObject
+@interface AADataClassesElement : NSObject
 
-AAPropStatementAndPropSetFuncStatement(strong, AADataClasses, NSNumber *, from)
-AAPropStatementAndPropSetFuncStatement(strong, AADataClasses, NSNumber *, to)
-AAPropStatementAndPropSetFuncStatement(copy,   AADataClasses, NSString *, color)
-AAPropStatementAndPropSetFuncStatement(copy,   AADataClasses, NSString *, name)
+AAPropStatementAndPropSetFuncStatement(strong, AADataClassesElement, NSNumber *, from)
+AAPropStatementAndPropSetFuncStatement(strong, AADataClassesElement, NSNumber *, to)
+AAPropStatementAndPropSetFuncStatement(copy,   AADataClassesElement, NSString *, color)
+AAPropStatementAndPropSetFuncStatement(copy,   AADataClassesElement, NSString *, name)
 
 @end
 

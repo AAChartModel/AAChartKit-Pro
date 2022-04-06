@@ -561,22 +561,22 @@
               .visibleSet(false))
     .colorAxisSet(AAColorAxis.new
                   .dataClassesSet(@[
-                      AADataClasses.new
+                      AADataClassesElement.new
                       .fromSet(@0)
                       .toSet(@1000000)
                       .colorSet(@"#F9EDB3")
                       .nameSet(@"< 1M"),
-                      AADataClasses.new
+                      AADataClassesElement.new
                       .fromSet(@1000000)
                       .toSet(@5000000)
                       .colorSet(@"#FFC428")
                       .nameSet(@"1M - 5M"),
-                      AADataClasses.new
+                      AADataClassesElement.new
                       .fromSet(@5000000)
                       .toSet(@20000000)
                       .colorSet(@"#F9EDB3")
                       .nameSet(@"5M - 20M"),
-                      AADataClasses.new
+                      AADataClassesElement.new
                       .fromSet(@20000000)
                       .colorSet(@"#FF2371")
                       .nameSet(@"> 20M"),

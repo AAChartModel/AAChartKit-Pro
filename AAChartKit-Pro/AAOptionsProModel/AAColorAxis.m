@@ -13,15 +13,15 @@
 AAPropSetFuncImplementation(AAColorAxis, NSNumber *, min)
 AAPropSetFuncImplementation(AAColorAxis, NSString *, minColor)
 AAPropSetFuncImplementation(AAColorAxis, NSString *, maxColor)
-AAPropSetFuncImplementation(AAColorAxis, NSArray<AADataClasses *> *, dataClasses)
+AAPropSetFuncImplementation(AAColorAxis, NSArray<AADataClassesElement *> *, dataClasses)
 
 @end
 
-@implementation AADataClasses
+@implementation AADataClassesElement
 
-AAPropSetFuncImplementation(AADataClasses, NSNumber *, from)
-AAPropSetFuncImplementation(AADataClasses, NSNumber *, to)
-AAPropSetFuncImplementation(AADataClasses, NSString *, color)
-AAPropSetFuncImplementation(AADataClasses, NSString *, name)
+AAPropSetFuncImplementation(AADataClassesElement, NSNumber *, from)
+AAPropSetFuncImplementation(AADataClassesElement, NSNumber *, to)
+AAPropSetFuncImplementation(AADataClassesElement, NSString *, color)
+AAPropSetFuncImplementation(AADataClassesElement, NSString *, name)
 
 @end
