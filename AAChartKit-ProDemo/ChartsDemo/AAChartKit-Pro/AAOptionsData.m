@@ -112,6 +112,30 @@
 }
 
 
+
++ (NSArray *)arcdiagram1Data {
+    return [self getJsonDataWithJsonFileName:@"arcdiagram1Data"];
+}
+
++ (NSArray *)arcdiagram2Data {
+    return [self getJsonDataWithJsonFileName:@"arcdiagram2Data"];
+}
+
++ (NSArray *)arcdiagram3Data {
+    return [self getJsonDataWithJsonFileName:@"arcdiagram3Data"];
+}
+
+
+
++ (NSArray *)flameData {
+    return [self getJsonDataWithJsonFileName:@"flameData"];
+}
+
++ (NSArray *)sunburst2Data {
+    return [self getJsonDataWithJsonFileName:@"sunburst2Data"];
+}
+
+
 + (NSArray *)xrangeData {
     NSMutableArray *dataArr = [NSMutableArray array];
     

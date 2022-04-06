@@ -200,10 +200,11 @@
               @"networkgraphChart---力导关系图",
               @"wordcloudChart---词云图",
               @"eulerChart---欧拉图",
-              @"organizationChart---组织结构图"
-//              var dataJson = JSON.stringify(points);
-//
-//              console.log(dataJson);
+              @"organizationChart---组织结构图",
+              @"arcdiagramChart1---弧形图1",
+              @"arcdiagramChart2---弧形图2",
+              @"arcdiagramChart3---弧形图3",
+              @"flameChart---火焰🔥图",
             ],
           
         ];

@@ -75,6 +75,10 @@
         case 24: return [self wordcloudChart];
         case 25: return [self eulerChart];
         case 26: return [self organizationChart];
+        case 27: return [self arcdiagramChart1];
+        case 28: return [self arcdiagramChart2];
+        case 29: return [self arcdiagramChart3];
+        case 30: return [self flameChart];
 
     }
     return nil;
@@ -851,6 +855,142 @@
 //        .tooltipSet(AATooltip.new
 //            .outsideSet(true))
         ;
+}
+
+- (AAOptions *)arcdiagramChart1 {
+    return AAOptions.new
+        .colorsSet(@[@"#293462", @"#a64942", @"#fe5f55", @"#fff1c1", @"#5bd1d7", @"#ff502f", @"#004d61", @"#ff8a5c", @"#fff591", @"#f5587b", @"#fad3cf", @"#a696c8", @"#5BE7C4", @"#266A2E", @"#593E1A"])
+        .titleSet(AATitle.new
+            .textSet(@"Main train connections in Europe"))
+        .seriesSet(@[
+            AASeriesElement.new
+                .keysSet(@[@"from", @"to", @"weight"])
+                .typeSet(AAChartTypeArcdiagram)
+                .nameSet(@"Train connections")
+//                .linkWeightSet(@1)
+//                .centeredLinksSet(true)
+                .dataLabelsSet(AADataLabels.new
+                    .rotationSet(@90)
+                    .ySet(@30)
+                    .alignSet(AAChartAlignTypeLeft)
+                    .colorSet(AAColor.blackColor))
+//                .offsetSet(@"65%")
+                .dataSet(AAOptionsData.organizationData)
+            ]);
+}
+
+- (AAOptions *)arcdiagramChart2 {
+    return AAOptions.new
+        .titleSet(AATitle.new
+            .textSet(@"Highcharts Arc Diagram"))
+        .subtitleSet(AASubtitle.new
+            .textSet(@"Arc Diagram with marker symbols"))
+        .seriesSet(@[
+            AASeriesElement.new
+//                .linkWeightSet(@1)
+                .keysSet(@[@"from", @"to", @"weight", ])
+                .typeSet(AAChartTypeArcdiagram)
+                .markerSet(AAMarker.new
+                    .symbolSet(AAChartSymbolTypeTriangle)
+                    .lineWidthSet(@2)
+                    .lineColorSet(AAColor.whiteColor))
+//                .centeredLinksSet(true)
+                .dataLabelsSet(AADataLabels.new
+                    .formatSet(@"{point.fromNode.name} → {point.toNode.name}")
+//                    .nodeFormatSet(@"{point.name}")
+                    .colorSet(AAColor.blackColor)
+//                    .linkTextPathSet(AALinkTextPath.new
+//                        .enabledSet(true))
+            )
+                .dataSet(AAOptionsData.organizationData)
+            ]);
+}
+
+- (AAOptions *)arcdiagramChart3 {
+    return AAOptions.new
+        .chartSet(AAChart.new
+            .invertedSet(true))
+        .titleSet(AATitle.new
+            .textSet(@"Highcharts Inverted Arc Diagram"))
+        .seriesSet(@[
+            AASeriesElement.new
+                .keysSet(@[@"from", @"to", @"weight", ])
+//                .centerPosSet(@"50%")
+                .typeSet(AAChartTypeArcdiagram)
+                .dataLabelsSet(AADataLabels.new
+                    .alignSet(AAChartAlignTypeRight)
+                    .xSet(@-20)
+                    .ySet(@-2)
+                    .colorSet(@"#333333")
+                    .overflowSet(@"allow")
+//                    .paddingSet(@0)
+            )
+//                .offsetSet(@"60%")
+                .dataSet(AAOptionsData.organizationData)
+            ]);
+}
+
+- (AAOptions *)flameChart {
+    return AAOptions.new
+        .chartSet(AAChart.new
+            .invertedSet(true))
+        .titleSet(AATitle.new
+            .alignSet(AAChartAlignTypeLeft)
+            .textSet(@"Flame chart (layout: flame)"))
+        .subtitleSet(AASubtitle.new
+            .alignSet(AAChartAlignTypeLeft)
+            .textSet(@"Highcharts chart rendering process"))
+        .legendSet(AALegend.new
+            .enabledSet(false))
+        .xAxisSet(@[
+            AAXAxis.new
+                .visibleSet(false),
+            AAXAxis.new
+                .visibleSet(false)
+                .startOnTickSet(false)
+                .endOnTickSet(false)
+//                .minPaddingSet(@0)
+//                .maxPaddingSet(@0)
+            ])
+        .yAxisSet(@[
+            AAYAxis.new
+                .visibleSet(false),
+            AAYAxis.new
+                .visibleSet(false)
+                .minSet(@0)
+//                .maxPaddingSet(@0)
+                .startOnTickSet(false)
+                .endOnTickSet(false)
+            ])
+        .seriesSet(@[
+            AASeriesElement.new
+//                .typeSet(undefined)
+                .dataSet(@[])
+                .yAxisSet(@1)
+                .xAxisSet(@1),
+            AASeriesElement.new
+                .visibleSet(false)
+                .sizeSet(@"100%")
+                .typeSet(AAChartTypeSunburst)
+                .dataSet(@[])
+                .allowDrillToNodeSet(true)
+//                .cursorSet(@"pointer")
+                .levelsSet(@[
+                    AALevels.new
+                        .levelSet(@1)
+//                        .levelIsConstantSet(false)
+                        .dataLabelsSet(AADataLabels.new
+                            .enabledSet(false))
+                    ])
+                .dataLabelsSet(AADataLabels.new
+                    .textPathSet(AATextPath.new
+//                        .attributesSet(AAAttributes.new
+//                            .dySet(@5))
+                        .enabledSet(true)))
+            ])
+        .tooltipSet(AATooltip.new
+            .headerFormatSet(@"")
+            .pointFormatSet(@"selfSize of {point.name} is {point.value}"));
 }
 
 @end

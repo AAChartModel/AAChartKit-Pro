@@ -41,6 +41,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)organizationLevelsData;
 + (NSArray *)organizationNodesData;
 
++ (NSArray *)arcdiagram1Data;
++ (NSArray *)arcdiagram2Data;
++ (NSArray *)arcdiagram3Data;
++ (NSArray *)flameData;
++ (NSArray *)sunburst2Data;
+
 
 @end
 
