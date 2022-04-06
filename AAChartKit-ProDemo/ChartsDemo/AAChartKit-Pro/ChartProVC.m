@@ -875,7 +875,7 @@
                     .alignSet(AAChartAlignTypeLeft)
                     .colorSet(AAColor.blackColor))
 //                .offsetSet(@"65%")
-                .dataSet(AAOptionsData.organizationData)
+                .dataSet(AAOptionsData.arcdiagram1Data)
             ]);
 }
 
@@ -902,7 +902,7 @@
 //                    .linkTextPathSet(AALinkTextPath.new
 //                        .enabledSet(true))
             )
-                .dataSet(AAOptionsData.organizationData)
+                .dataSet(AAOptionsData.arcdiagram2Data)
             ]);
 }
 
@@ -926,7 +926,7 @@
 //                    .paddingSet(@0)
             )
 //                .offsetSet(@"60%")
-                .dataSet(AAOptionsData.organizationData)
+                .dataSet(AAOptionsData.arcdiagram3Data)
             ]);
 }
 
@@ -965,14 +965,14 @@
         .seriesSet(@[
             AASeriesElement.new
                 .typeSet(AAChartTypeFlame)
-                .dataSet(@[])
+                .dataSet(AAOptionsData.flameData)
                 .yAxisSet(@1)
                 .xAxisSet(@1),
             AASeriesElement.new
                 .visibleSet(false)
                 .sizeSet((id)@"100%")
                 .typeSet(AAChartTypeSunburst)
-                .dataSet(@[])
+                .dataSet(AAOptionsData.sunburst2Data)
                 .allowDrillToNodeSet(true)
 //                .cursorSet(@"pointer")
                 .levelsSet(@[
