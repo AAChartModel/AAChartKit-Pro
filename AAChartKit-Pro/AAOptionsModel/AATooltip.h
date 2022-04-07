@@ -59,5 +59,6 @@ AAPropStatementAndPropSetFuncStatement(strong, AATooltip, NSNumber *, padding) /
 AAPropStatementAndPropSetFuncStatement(copy,   AATooltip, NSString *, positioner)
 AAPropStatementAndPropSetFuncStatement(strong, AATooltip, NSNumber *, hideDelay) //提示框隐藏延时: 当鼠标移出数据点或者图表后，数据提示框会在设定的延迟时间后消失 默认是：500.
 AAPropStatementAndPropSetFuncStatement(strong, AATooltip, AADateTimeLabelFormats  *, dateTimeLabelFormats)
+AAPropStatementAndPropSetFuncStatement(strong, AATooltip, id        , outside) 
 
 @end

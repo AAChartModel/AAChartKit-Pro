@@ -116,6 +116,7 @@ AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, overflo
 AAPropStatementAndPropSetFuncStatement(assign,   AADataLabels, BOOL      , softConnector)//Whether to render the connector as a soft arc or a line with sharp break. Only useful for pie, pyramid and funnel chart
 AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, AAFilter *, filter)
 AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, AATextPath *, textPath)
+AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, AATextPath *, linkTextPath)
 
 
 @end

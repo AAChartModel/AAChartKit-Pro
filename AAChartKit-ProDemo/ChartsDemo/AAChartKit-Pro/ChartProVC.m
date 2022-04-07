@@ -850,18 +850,19 @@
                         .colorSet(@"silver")
                         .dataLabelsSet(AADataLabels.new
                         .colorSet(AAColor.blackColor))
-//                        .heightSet(@25)
+                        .heightSet(@25)
                     ,
                     AALevelsElement.new
                         .levelSet(@1)
                         .colorSet(@"silver")
                         .dataLabelsSet(AADataLabels.new
                         .colorSet(AAColor.blackColor))
-//                        .heightSet(@25)
+                        .heightSet(@25)
                     ,
                     AALevelsElement.new
                         .levelSet(@2)
-                        .colorSet(@"#980104"),
+                        .colorSet(@"#980104")
+                    ,
                     AALevelsElement.new
                         .levelSet(@4)
                         .colorSet(@"#359154")
@@ -872,11 +873,10 @@
                 .dataLabelsSet(AADataLabels.new
                     .colorSet(AAColor.whiteColor))
                 .borderColorSet(AAColor.whiteColor)
-//                .nodeWidthSet(@65)
+                .nodeWidthSet(@65)
             ])
-//        .tooltipSet(AATooltip.new
-//            .outsideSet(true))
-        ;
+        .tooltipSet(AATooltip.new
+            .outsideSet(@true));
 }
 
 - (AAOptions *)arcdiagramChart1 {
@@ -921,8 +921,8 @@
                     .formatSet(@"{point.fromNode.name} → {point.toNode.name}")
 //                    .nodeFormatSet(@"{point.name}")
                     .colorSet(AAColor.blackColor)
-//                    .linkTextPathSet(AALinkTextPath.new
-//                        .enabledSet(true))
+                    .linkTextPathSet(AATextPath.new
+                        .enabledSet(true))
             )
                 .dataSet(AAOptionsData.arcdiagram2Data)
             ]);
@@ -1006,8 +1006,7 @@
                     ])
                 .dataLabelsSet(AADataLabels.new
                     .textPathSet(AATextPath.new
-//                        .attributesSet(AAAttributes.new
-//                            .dySet(@5))
+                        .attributesSet(@{@"dy": @5})
                         .enabledSet(true)))
             ])
         .tooltipSet(AATooltip.new

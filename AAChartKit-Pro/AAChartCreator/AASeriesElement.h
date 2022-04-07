@@ -82,7 +82,7 @@ AAPropStatementAndPropSetFuncStatement(assign, AASeriesElement, BOOL        , al
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, xAxis)
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, baseSeries)
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSArray  *, nodes)
-
+AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, nodeWidth)
 
 @end
 

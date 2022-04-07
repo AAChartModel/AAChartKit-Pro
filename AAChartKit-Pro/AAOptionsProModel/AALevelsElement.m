@@ -20,6 +20,7 @@ AAPropSetFuncImplementation(AALevelsElement, NSString *, layoutAlgorithm)
 AAPropSetFuncImplementation(AALevelsElement, NSString *, layoutStartingDirection)
 AAPropSetFuncImplementation(AALevelsElement, NSNumber *, level)
 AAPropSetFuncImplementation(AALevelsElement, AAColorVariation *, colorVariation)
+AAPropSetFuncImplementation(AALevelsElement, NSNumber *, height)
 
 @end
 

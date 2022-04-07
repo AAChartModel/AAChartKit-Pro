@@ -23,6 +23,7 @@ AAPropStatementAndPropSetFuncStatement(copy,   AALevelsElement, NSString *, layo
 AAPropStatementAndPropSetFuncStatement(copy,   AALevelsElement, NSString *, layoutStartingDirection)
 AAPropStatementAndPropSetFuncStatement(strong, AALevelsElement, NSNumber *, level)
 AAPropStatementAndPropSetFuncStatement(strong, AALevelsElement, AAColorVariation *, colorVariation)
+AAPropStatementAndPropSetFuncStatement(strong, AALevelsElement, NSNumber *, height)
 
 @end
 
