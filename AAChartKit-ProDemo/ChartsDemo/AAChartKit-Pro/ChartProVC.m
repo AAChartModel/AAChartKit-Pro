@@ -890,14 +890,14 @@
                 .keysSet(@[@"from", @"to", @"weight"])
                 .typeSet(AAChartTypeArcdiagram)
                 .nameSet(@"Train connections")
-//                .linkWeightSet(@1)
-//                .centeredLinksSet(true)
+                .linkWeightSet(@1)
+                .centeredLinksSet(@true)
                 .dataLabelsSet(AADataLabels.new
                     .rotationSet(@90)
                     .ySet(@30)
                     .alignSet(AAChartAlignTypeLeft)
                     .colorSet(AAColor.blackColor))
-//                .offsetSet(@"65%")
+                .offsetSet(@"65%")
                 .dataSet(AAOptionsData.arcdiagram1Data)
             ]);
 }
@@ -910,17 +910,17 @@
             .textSet(@"Arc Diagram with marker symbols"))
         .seriesSet(@[
             AASeriesElement.new
-//                .linkWeightSet(@1)
+                .linkWeightSet(@1)
                 .keysSet(@[@"from", @"to", @"weight", ])
                 .typeSet(AAChartTypeArcdiagram)
                 .markerSet(AAMarker.new
                     .symbolSet(AAChartSymbolTypeTriangle)
                     .lineWidthSet(@2)
                     .lineColorSet(AAColor.whiteColor))
-//                .centeredLinksSet(true)
+                .centeredLinksSet(@true)
                 .dataLabelsSet(AADataLabels.new
                     .formatSet(@"{point.fromNode.name} → {point.toNode.name}")
-//                    .nodeFormatSet(@"{point.name}")
+                    .nodeFormatSet(@"{point.name}")
                     .colorSet(AAColor.blackColor)
                     .linkTextPathSet(AATextPath.new
                         .enabledSet(true))

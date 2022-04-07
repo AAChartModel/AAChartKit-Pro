@@ -65,11 +65,12 @@ AAPropSetFuncImplementation(AADataLabels, NSString *, shape)
 AAPropSetFuncImplementation(AADataLabels, BOOL      , crop)
 AAPropSetFuncImplementation(AADataLabels, BOOL      , inside)
 AAPropSetFuncImplementation(AADataLabels, NSString *, overflow)
-AAPropSetFuncImplementation(AADataLabels, BOOL      , softConnector)//Whether to render the connector as a soft arc or a line with sharp break. Only useful for pie, pyramid and funnel chart
-AAPropSetFuncImplementation(AADataLabels, AAFilter *, filter)
+AAPropSetFuncImplementation(AADataLabels, BOOL      , softConnector) //Whether to render the connector as a soft arc or a line with sharp break. Only useful for pie, pyramid and funnel chart
+AAPropSetFuncImplementation(AADataLabels, AAFilter   *, filter)
 AAPropSetFuncImplementation(AADataLabels, AATextPath *, textPath)
 AAPropSetFuncImplementation(AADataLabels, AATextPath *, linkTextPath)
 AAPropSetFuncImplementation(AADataLabels, NSNumber   *, padding) //When either the borderWidth or the backgroundColor is set, this is the padding within the box. Defaults to 5.
+AAPropSetFuncImplementation(AADataLabels, NSString   *, nodeFormat) //The format string specifying what to show for nodes in the sankey diagram. By default the nodeFormatter returns {point.name}. Defaults to undefined.
 
 
 AAJSFuncTypePropSetFuncImplementation(AADataLabels, NSString *, formatter)

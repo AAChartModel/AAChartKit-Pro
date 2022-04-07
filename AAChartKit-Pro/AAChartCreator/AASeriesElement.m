@@ -56,7 +56,7 @@ AAPropSetFuncImplementation(AASeriesElement, NSString *, stacking)
 AAPropSetFuncImplementation(AASeriesElement, NSString *, dashStyle) 
 AAPropSetFuncImplementation(AASeriesElement, NSNumber *, threshold) 
 AAPropSetFuncImplementation(AASeriesElement, NSNumber *, lineWidth) //折线图、曲线图、直方折线图、折线填充图、曲线填充图、直方折线填充图的线条宽度
-AAPropSetFuncImplementation(AASeriesElement, NSNumber *, borderWidth)//柱形图、条形图、扇形图等图形的描边宽度
+AAPropSetFuncImplementation(AASeriesElement, NSNumber *, borderWidth) //柱形图、条形图、扇形图等图形的描边宽度
 AAPropSetFuncImplementation(AASeriesElement, NSString *, borderColor) //柱形图、条形图、扇形图等图形的描边颜色
 AAPropSetFuncImplementation(AASeriesElement, NSNumber *, borderRadius)
 AAPropSetFuncImplementation(AASeriesElement, NSNumber *, borderRadiusTopLeft)
@@ -66,7 +66,7 @@ AAPropSetFuncImplementation(AASeriesElement, NSNumber *, borderRadiusBottomRight
 AAPropSetFuncImplementation(AASeriesElement, NSString *, fillColor) //折线填充图、曲线填充图、直方折线填充图等填充图类型的填充颜色
 AAPropSetFuncImplementation(AASeriesElement, NSNumber *, fillOpacity) //折线填充图、曲线填充图、直方折线填充图等填充图类型的填充颜色透明度
 AAPropSetFuncImplementation(AASeriesElement, NSString *, negativeColor)  //The color for the parts of the graph or points that are below the threshold
-AAPropSetFuncImplementation(AASeriesElement, NSString *, negativeFillColor)//A separate color for the negative part of the area.
+AAPropSetFuncImplementation(AASeriesElement, NSString *, negativeFillColor) //A separate color for the negative part of the area.
 AAPropSetFuncImplementation(AASeriesElement, NSString *, innerSize) 
 AAPropSetFuncImplementation(AASeriesElement, NSNumber *, size) 
 AAPropSetFuncImplementation(AASeriesElement, NSArray  *, keys) 
@@ -94,7 +94,8 @@ AAPropSetFuncImplementation(AASeriesElement, NSArray  *, nodes)
 AAPropSetFuncImplementation(AASeriesElement, NSNumber *, nodeWidth)
 AAPropSetFuncImplementation(AASeriesElement, NSString *, cursor)
 AAPropSetFuncImplementation(AASeriesElement, NSString *, offset) //The offset of an arc diagram nodes column in relation to the plotArea. The offset equal to 50% places nodes in the center of a chart. By default the series is placed so that the biggest node is touching the bottom border of the plotArea. Defaults to '100%'.
-
+AAPropSetFuncImplementation(AASeriesElement, NSNumber *, linkWeight) //The global link weight. If not set, width is calculated per link, depending on the weight value. Defaults to undefined.
+AAPropSetFuncImplementation(AASeriesElement, id        , centeredLinks) //The option to center links rather than position them one after another. Defaults to false.
 
 @end
 

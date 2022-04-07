@@ -47,7 +47,7 @@ AAPropStatementAndPropSetFuncStatement(copy,   AASeriesElement, NSString *, stac
 AAPropStatementAndPropSetFuncStatement(copy,   AASeriesElement, NSString *, dashStyle) 
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, threshold) 
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, lineWidth) //折线图、曲线图、直方折线图、折线填充图、曲线填充图、直方折线填充图的线条宽度
-AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, borderWidth)//柱形图、条形图、扇形图等图形的描边宽度
+AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, borderWidth) //柱形图、条形图、扇形图等图形的描边宽度
 AAPropStatementAndPropSetFuncStatement(copy,   AASeriesElement, NSString *, borderColor) //柱形图、条形图、扇形图顿号等图形的描边颜色
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, borderRadius)
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, borderRadiusTopLeft)
@@ -57,7 +57,7 @@ AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, bord
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSString *, fillColor) //折线填充图、曲线填充图、直方折线填充图等填充图类型的填充颜色
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, fillOpacity) //折线填充图、曲线填充图、直方折线填充图等填充图类型的填充颜色透明度
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSString *, negativeColor)  // The color for the parts of the graph or points that are below the threshold
-AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSString *, negativeFillColor)//A separate color for the negative part of the area.
+AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSString *, negativeFillColor) //A separate color for the negative part of the area.
 AAPropStatementAndPropSetFuncStatement(copy,   AASeriesElement, NSString *, innerSize) 
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, size) 
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSArray  *, keys) 
@@ -85,6 +85,8 @@ AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSArray  *, node
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, nodeWidth)
 AAPropStatementAndPropSetFuncStatement(copy,   AASeriesElement, NSString *, cursor)
 AAPropStatementAndPropSetFuncStatement(copy,   AASeriesElement, NSString *, offset) //The offset of an arc diagram nodes column in relation to the plotArea. The offset equal to 50% places nodes in the center of a chart. By default the series is placed so that the biggest node is touching the bottom border of the plotArea. Defaults to '100%'.
+AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, linkWeight) //The global link weight. If not set, width is calculated per link, depending on the weight value. Defaults to undefined.
+AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, id        , centeredLinks) //The option to center links rather than position them one after another. Defaults to false.
 
 @end
 
