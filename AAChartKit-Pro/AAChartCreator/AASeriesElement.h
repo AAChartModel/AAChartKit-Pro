@@ -84,7 +84,7 @@ AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, base
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSArray  *, nodes)
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, nodeWidth)
 AAPropStatementAndPropSetFuncStatement(copy,   AASeriesElement, NSString *, cursor)
-
+AAPropStatementAndPropSetFuncStatement(copy,   AASeriesElement, NSString *, offset) //The offset of an arc diagram nodes column in relation to the plotArea. The offset equal to 50% places nodes in the center of a chart. By default the series is placed so that the biggest node is touching the bottom border of the plotArea. Defaults to '100%'.
 
 @end
 

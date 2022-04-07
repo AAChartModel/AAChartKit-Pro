@@ -69,6 +69,7 @@ AAPropSetFuncImplementation(AADataLabels, BOOL      , softConnector)//Whether to
 AAPropSetFuncImplementation(AADataLabels, AAFilter *, filter)
 AAPropSetFuncImplementation(AADataLabels, AATextPath *, textPath)
 AAPropSetFuncImplementation(AADataLabels, AATextPath *, linkTextPath)
+AAPropSetFuncImplementation(AADataLabels, NSNumber   *, padding) //When either the borderWidth or the backgroundColor is set, this is the padding within the box. Defaults to 5.
 
 
 AAJSFuncTypePropSetFuncImplementation(AADataLabels, NSString *, formatter)

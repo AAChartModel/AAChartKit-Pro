@@ -946,9 +946,9 @@
                     .ySet(@-2)
                     .colorSet(@"#333333")
                     .overflowSet(@"allow")
-//                    .paddingSet(@0)
+                    .paddingSet(@0)
             )
-//                .offsetSet(@"60%")
+                .offsetSet(@"60%")
                 .dataSet(AAOptionsData.arcdiagram3Data)
             ]);
 }
