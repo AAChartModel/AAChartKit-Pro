@@ -83,6 +83,8 @@ AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, xAxi
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, baseSeries)
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSArray  *, nodes)
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, nodeWidth)
+AAPropStatementAndPropSetFuncStatement(copy,   AASeriesElement, NSString *, cursor)
+
 
 @end
 

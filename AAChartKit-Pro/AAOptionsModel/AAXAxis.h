@@ -52,6 +52,8 @@ AAPropStatementAndPropSetFuncStatement(copy,   AAXAxis, NSString *, lineColor) /
 AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSNumber *, linkedTo)
 AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSNumber *, max)  //x轴最大值
 AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSNumber *, min)  //x轴最小值
+AAPropStatementAndPropSetFuncStatement(assign, AAXAxis, NSNumber *, maxPadding) //Padding of the max value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the highest data value to appear on the edge of the plot area. When the axis' max option is set or a max extreme is set using axis.setExtremes(), the maxPadding will be ignored. Defaults to 0.01.
+AAPropStatementAndPropSetFuncStatement(assign, AAXAxis, NSNumber *, minPadding)  //Padding of the min value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the lowest data value to appear on the edge of the plot area. 默认是：0.05.
 AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSNumber *, minRange)
 AAPropStatementAndPropSetFuncStatement(strong, AAXAxis, NSNumber *, minTickInterval) //最小间隔
 AAPropStatementAndPropSetFuncStatement(copy,   AAXAxis, NSString *, minorGridLineColor) //次网格线颜色

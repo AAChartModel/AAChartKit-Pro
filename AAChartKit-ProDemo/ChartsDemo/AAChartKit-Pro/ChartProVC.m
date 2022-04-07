@@ -879,6 +879,7 @@
             .outsideSet(@true));
 }
 
+//https://www.highcharts.com/docs/chart-and-series-types/arc-diagram
 - (AAOptions *)arcdiagramChart1 {
     return AAOptions.new
         .colorsSet(@[@"#293462", @"#a64942", @"#fe5f55", @"#fff1c1", @"#5bd1d7", @"#ff502f", @"#004d61", @"#ff8a5c", @"#fff591", @"#f5587b", @"#fad3cf", @"#a696c8", @"#5BE7C4", @"#266A2E", @"#593E1A"])
@@ -971,8 +972,8 @@
                 .visibleSet(false)
                 .startOnTickSet(false)
                 .endOnTickSet(false)
-//                .minPaddingSet(@0)
-//                .maxPaddingSet(@0)
+                .minPaddingSet(@0)
+                .maxPaddingSet(@0)
             ])
         .yAxisSet((id)@[
             AAYAxis.new
@@ -980,7 +981,7 @@
             AAYAxis.new
                 .visibleSet(false)
                 .minSet(@0)
-//                .maxPaddingSet(@0)
+                .maxPaddingSet(@0)
                 .startOnTickSet(false)
                 .endOnTickSet(false)
             ])
@@ -996,7 +997,7 @@
                 .typeSet(AAChartTypeSunburst)
                 .dataSet(AAOptionsData.sunburst2Data)
                 .allowDrillToNodeSet(true)
-//                .cursorSet(@"pointer")
+                .cursorSet(@"pointer")
                 .levelsSet(@[
                     AALevelsElement.new
                         .levelSet(@1)

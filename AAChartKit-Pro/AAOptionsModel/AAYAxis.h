@@ -63,7 +63,8 @@ AAPropStatementAndPropSetFuncStatement(strong, AAYAxis, NSNumber *, offset) // y
 
 AAPropStatementAndPropSetFuncStatement(strong, AAYAxis, NSNumber *, max)  //y轴最大值
 AAPropStatementAndPropSetFuncStatement(strong, AAYAxis, NSNumber *, min)  //y轴最小值（设置为0就不会有负数）
-//AAPropStatementAndPropSetFuncStatement(assign, AAYAxis, NSNumber *, minPadding)  //Padding of the min value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the lowest data value to appear on the edge of the plot area. 默认是：0.05.
+AAPropStatementAndPropSetFuncStatement(assign, AAYAxis, NSNumber *, maxPadding) //Padding of the max value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the highest data value to appear on the edge of the plot area. When the axis' max option is set or a max extreme is set using axis.setExtremes(), the maxPadding will be ignored. Defaults to 0.01.
+AAPropStatementAndPropSetFuncStatement(assign, AAYAxis, NSNumber *, minPadding)  //Padding of the min value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the lowest data value to appear on the edge of the plot area. 默认是：0.05.
 AAPropStatementAndPropSetFuncStatement(strong, AAYAxis, NSNumber *, minRange)
 AAPropStatementAndPropSetFuncStatement(strong, AAYAxis, NSNumber *, minTickInterval) //最小间隔
 AAPropStatementAndPropSetFuncStatement(copy,   AAYAxis, NSString *, minorGridLineColor) //次网格线颜色
