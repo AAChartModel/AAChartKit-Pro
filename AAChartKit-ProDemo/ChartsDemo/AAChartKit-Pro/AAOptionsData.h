@@ -38,7 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)eulerData;
 
 + (NSArray *)organizationData;
-+ (NSArray *)organizationLevelsData;
 + (NSArray *)organizationNodesData;
 
 + (NSArray *)arcdiagram1Data;
