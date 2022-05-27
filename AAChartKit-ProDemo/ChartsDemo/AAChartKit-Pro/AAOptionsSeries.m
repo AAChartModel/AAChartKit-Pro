@@ -15,7 +15,7 @@
 }
 
 + (NSArray *)streamgraphSeries {
- return [self getJsonDataWithJsonFileName:@"streamgraphSeries"];
+    return [self getJsonDataWithJsonFileName:@"streamgraphSeries"];
 }
 
 + (id)getJsonDataWithJsonFileName:(NSString *)jsonFileName
