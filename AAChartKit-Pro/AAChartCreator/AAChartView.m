@@ -395,6 +395,30 @@ WKScriptMessageHandler
     return URLRequest;
 }
 
+//private func configurePlotOptionsSeriesPointEvents(_ aaOptions: AAOptions) {
+//    if aaOptions.plotOptions == nil {
+//        aaOptions.plotOptions = AAPlotOptions().series(AASeries().point(AAPoint().events(AAPointEvents())))
+//    } else if aaOptions.plotOptions?.series == nil {
+//        aaOptions.plotOptions?.series = AASeries().point(AAPoint().events(AAPointEvents()))
+//    } else if aaOptions.plotOptions?.series?.point == nil {
+//        aaOptions.plotOptions?.series?.point = AAPoint().events(AAPointEvents())
+//    } else if aaOptions.plotOptions?.series?.point?.events == nil {
+//        aaOptions.plotOptions?.series?.point?.events = AAPointEvents()
+//    }
+//}
+
+- (void)configurePlotOptionsSeriesPointEventsWithAAOptions:(AAOptions *)aaOptions {
+    if (aaOptions.plotOptions == nil) {
+        aaOptions.plotOptions = AAPlotOptions.new.seriesSet(AASeries.new.pointSet(AAPoint.new.eventsSet(AAPointEvents.new)));
+    } else if (aaOptions.plotOptions.series == nil) {
+        aaOptions.plotOptions.series = AASeries.new.pointSet(AAPoint.new.eventsSet(AAPointEvents.new));
+    } else if (aaOptions.plotOptions.series.point == nil) {
+        aaOptions.plotOptions.series.point = AAPoint.new.eventsSet(AAPointEvents.new);
+    } else if (aaOptions.plotOptions.series.point.events == nil) {
+        aaOptions.plotOptions.series.point.events = AAPointEvents.new;
+    }
+}
+
 
 - (void)configureTheOptionsJsonStringWithAAOptions:(AAOptions *)aaOptions {
     if (self.isClearBackgroundColor) {
@@ -402,6 +426,7 @@ WKScriptMessageHandler
     }
     if (_mouseOverEventEnabled == true) {
         aaOptions.touchEventEnabled = true;
+        [self configurePlotOptionsSeriesPointEventsWithAAOptions:aaOptions];
     }
     
     _optionJson = [AAJsonConverter pureOptionsJsonStringWithOptionsInstance:aaOptions];
