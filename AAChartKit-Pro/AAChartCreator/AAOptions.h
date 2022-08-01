@@ -74,6 +74,7 @@
 #import "AAColorAxis.h"
 #import "AAPackedbubble.h"
 #import "AATreemap.h"
+#import "AAItem.h"
 #import "AALayoutAlgorithm.h"
 #import "AAChartTypePro.h"
 

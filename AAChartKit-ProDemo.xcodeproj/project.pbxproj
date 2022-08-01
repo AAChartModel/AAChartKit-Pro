@@ -97,6 +97,7 @@
 		84A5690A27FD666900883553 /* arcdiagram3Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690927FD666900883553 /* arcdiagram3Data.json */; };
 		84A5690C27FD6EB300883553 /* flameData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690B27FD6EB300883553 /* flameData.json */; };
 		84A5690E27FD6EFA00883553 /* sunburst2Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690D27FD6EFA00883553 /* sunburst2Data.json */; };
+		84B13EE72897A090007356C6 /* AAItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13EE62897A090007356C6 /* AAItem.m */; };
 		84FE7BB726AED3D000B68A56 /* AABaseChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */; };
 /* End PBXBuildFile section */
 
@@ -271,6 +272,8 @@
 		84A5690927FD666900883553 /* arcdiagram3Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = arcdiagram3Data.json; sourceTree = "<group>"; };
 		84A5690B27FD6EB300883553 /* flameData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = flameData.json; sourceTree = "<group>"; };
 		84A5690D27FD6EFA00883553 /* sunburst2Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sunburst2Data.json; sourceTree = "<group>"; };
+		84B13EE52897A090007356C6 /* AAItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAItem.h; sourceTree = "<group>"; };
+		84B13EE62897A090007356C6 /* AAItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAItem.m; sourceTree = "<group>"; };
 		84FE7B9F26AED3D000B68A56 /* AABaseChartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABaseChartVC.h; sourceTree = "<group>"; };
 		84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABaseChartVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -426,6 +429,8 @@
 				27EB89EA24912A2F007E6A6B /* AALayoutAlgorithm.m */,
 				27EB89ED2491C39F007E6A6B /* AAChartTypePro.h */,
 				27EB89EE2491C39F007E6A6B /* AAChartTypePro.m */,
+				84B13EE52897A090007356C6 /* AAItem.h */,
+				84B13EE62897A090007356C6 /* AAItem.m */,
 			);
 			path = AAOptionsProModel;
 			sourceTree = "<group>";
@@ -776,6 +781,7 @@
 				8441A6F926C21E6C007EAAA7 /* AAYAxis.m in Sources */,
 				8441A6FB26C21E6C007EAAA7 /* AAShadow.m in Sources */,
 				27EB89DF248BE1C9007E6A6B /* AAColorAxis.m in Sources */,
+				84B13EE72897A090007356C6 /* AAItem.m in Sources */,
 				8441A6FE26C21E6C007EAAA7 /* AAMarker.m in Sources */,
 				8441A71426C21E6C007EAAA7 /* AADateTimeLabelFormats.m in Sources */,
 				8441A6FF26C21E6C007EAAA7 /* AALabels.m in Sources */,
