@@ -80,6 +80,8 @@
         case 29: return [self arcdiagramChart3];
         case 30: return [self flameChart];
         case 31: return [self packedbubbleSpiralChart];
+        case 32: return [self itemChart2];
+        case 33: return [self itemChart3];
 
     }
     return nil;
@@ -752,13 +754,58 @@
     .legendSet(AALegend.new
                .enabledSet(false))
     .seriesSet(@[
-        AASeriesElement.new
+        AAItem.new
         .nameSet(@"Representatives")
         .keysSet(@[@"name",@"y",@"color",@"label"])
         .dataSet(AAOptionsData.itemData)
         .dataLabelsSet(AADataLabels.new
                        .enabledSet(false))
-        .sizeSet((id)@"170%")
+        .startAngleSet(@-100)
+        .endAngleSet(@+100)
+               ]);
+}
+
+- (AAOptions *)itemChart2 {
+    return AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(AAChartTypeItem))
+    .titleSet(AATitle.new
+              .textSet(@"AAChartKit-Pro item chart"))
+    .subtitleSet(AASubtitle.new
+                 .textSet(@"Parliament visualization"))
+    .legendSet(AALegend.new
+               .enabledSet(false))
+    .seriesSet(@[
+        AAItem.new
+        .nameSet(@"Representatives")
+        .keysSet(@[@"name",@"y",@"color",@"label"])
+        .dataSet(AAOptionsData.itemData)
+        .dataLabelsSet(AADataLabels.new
+                       .enabledSet(true))
+        .startAngleSet((id)NSNull.null)
+        .endAngleSet((id)NSNull.null)
+               ]);
+}
+
+- (AAOptions *)itemChart3 {
+    return AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(AAChartTypeItem))
+    .titleSet(AATitle.new
+              .textSet(@"AAChartKit-Pro item chart"))
+    .subtitleSet(AASubtitle.new
+                 .textSet(@"Parliament visualization"))
+    .legendSet(AALegend.new
+               .enabledSet(false))
+    .seriesSet(@[
+        AAItem.new
+        .nameSet(@"Representatives")
+        .keysSet(@[@"name",@"y",@"color",@"label"])
+        .dataSet(AAOptionsData.itemData)
+        .dataLabelsSet(AADataLabels.new
+                       .enabledSet(false))
+        .startAngleSet(@0)
+        .endAngleSet(@360)
                ]);
 }
 
