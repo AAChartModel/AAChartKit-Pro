@@ -207,7 +207,7 @@
 - (NSArray *)chartTypeNameArr {
     if (!_chartTypeNameArr) {
         _chartTypeNameArr = @[
-            /*通过AAOptions实例对象来绘制图形*/
+//            "RelationshipChart | 关系类型图表",
             @[
                 @"sankeyChart---桑基图",
                 @"dependencywheelChart---和弦图🎸",
@@ -217,7 +217,7 @@
                 @"organizationChart---组织结构图",
                 @"networkgraphChart---力导关系图",
             ],
-            
+//            "HeatOrTreeMapChart | 热力或树形类型图表",
             @[
                 @"heatmapChart---热力图🔥",
                 @"tilemapOrHoneycombChart---砖块图🧱||蜂巢图🐝🔥",
@@ -225,7 +225,7 @@
                 @"treemapWithLevelsData---包含等级的矩形树图🌲",
                 @"drilldownLargeDataTreemapChart---可下钻的大数据量矩形树图🌲"
             ],
-            
+//            "BubbleChart | 气泡类型图表",
             @[
                 @"packedbubbleChart---气泡🎈填充图",
                 @"packedbubbleSplitChart---圆🎈堆积图",
@@ -233,6 +233,7 @@
                 @"eulerChart---欧拉图",
                 @"vennChart---韦恩图",
             ],
+//            "ColumnVariantChart | 柱形图(变体)类型图表",
             @[
                 @"variwideChart---可变宽度的柱形图",
                 @"columnpyramidChart---角锥柱形图",
@@ -242,7 +243,7 @@
                 @"histogramChart---直方混合散点图📊",
                 @"bellcurveChart---钟形曲线混合散点图🔔",
             ],
-            
+//            "MoreProType | 更多高级类型图表",
             @[
                 @"sunburstChart---旭日图",
                 @"streamgraphChart---流图",
