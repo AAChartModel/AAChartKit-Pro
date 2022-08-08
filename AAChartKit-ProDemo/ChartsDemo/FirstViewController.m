@@ -32,7 +32,9 @@
 
 #import "FirstViewController.h"
 #import "ChartProVC.h"
-
+#import "AAHeatOrTreeMapChartVC.h"
+#import "AARelationshipChartVC.h"
+#import "AABubbleChartVC.h"
 
 #define ColorWithRGB(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 #define AAGrayColor            [UIColor colorWithRed:245/255.0 green:246/255.0 blue:247/255.0 alpha:1.0]
@@ -123,7 +125,30 @@
     
     switch (indexPath.section) {
         case 0 : {
-            /*通过AAOptions实例对象来绘制图形*/
+            AARelationshipChartVC *vc = [[AARelationshipChartVC alloc]init];
+            vc.selectedIndex = indexPath.row;
+            vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        case 1 : {
+            AAHeatOrTreeMapChartVC *vc = [[AAHeatOrTreeMapChartVC alloc]init];
+            vc.selectedIndex = indexPath.row;
+            vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        case 2 : {
+            AABubbleChartVC *vc = [[AABubbleChartVC alloc]init];
+            vc.selectedIndex = indexPath.row;
+            vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        case 3 : {
             ChartProVC *vc = [[ChartProVC alloc]init];
             vc.selectedIndex = indexPath.row;
             vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
@@ -174,42 +199,69 @@
     if (!_chartTypeNameArr) {
         _chartTypeNameArr = @[
             /*通过AAOptions实例对象来绘制图形*/
-            @[@"sankeyChart---桑基图",
-              @"variablepieChart---可变宽度的饼图",
-              @"treemapChart---树形图",
-              @"variwideChart---可变宽度的柱形图",
-              @"sunburstChart---旭日图",
-              @"dependencywheelChart---和弦图",
-              @"heatmapChart---热力图",
-              @"packedbubbleChart---气泡🎈填充图",
-              @"packedbubbleSplitChart---圆🎈堆积图",
-              @"vennChart---韦恩图",
-              @"dumbbellChart---哑铃图",
-              @"lollipopChart---棒棒糖🍭图",
-              @"streamgraphChart---流图",
-              @"columnpyramidChart---角锥柱形图",
-              @"tilemapChart---砖块图🧱||蜂巢图🐝",
-              @"simpleTreemapChart---简单矩形树🌲图",
-              @"drilldownTreemapChart---可下钻的矩形树🌲图",
-              @"xrangeChart---X轴范围图||甘特图||条码图",
-              @"vectorChart---向量图🏹",
-              @"bellcurveChart---贝尔曲线图",
-              @"timelineChart---时序图⌚️",
-              @"itemChart---议会项目图",
-              @"windbarbChart---风羽图",
-              @"networkgraphChart---力导关系图",
-              @"wordcloudChart---词云图",
-              @"eulerChart---欧拉图",
-              @"organizationChart---组织结构图",
-              @"arcdiagramChart1---弧形图1",
-              @"arcdiagramChart2---弧形图2",
-              @"arcdiagramChart3---弧形图3",
-              @"flameChart---火焰🔥图",
-              @"packedbubbleSpiralChart---渐进变化的气泡🎈图",
-              @"itemChart2---议会项目图2",
-              @"itemChart3---议会项目图3",
+            @[
+                @"sankeyChart---桑基图",
+                @"dependencywheelChart---和弦图🎸",
+                @"arcdiagramChart1---弧形图1🌈",
+                @"arcdiagramChart2---弧形图2🌈",
+                @"arcdiagramChart3---弧形图3🌈",
+                @"organizationChart---组织结构图",
+                @"networkgraphChart---力导关系图",
             ],
-          
+            
+            @[
+                @"heatmapChart---热力图🔥",
+                @"tilemapOrHoneycombChart---砖块图🧱||蜂巢图🐝🔥",
+                @"treemapWithColorAxisData---包好色彩轴的矩形树图🌲",
+                @"treemapWithLevelsData---包含等级的矩形树图🌲",
+                @"drilldownLargeDataTreemapChart---可下钻的大数据量矩形树图🌲"
+            ],
+            
+            @[
+                @"packedbubbleChart---气泡🎈填充图",
+                @"packedbubbleSplitChart---圆🎈堆积图",
+                @"packedbubbleSpiralChart---渐进变化的气泡🎈图",
+                @"eulerChart---欧拉图",
+                @"vennChart---韦恩图",
+            ],
+            
+            @[
+                @"sankeyChart---桑基图",
+                @"variablepieChart---可变宽度的饼图",
+                @"treemapChart---树形图",
+                @"variwideChart---可变宽度的柱形图",
+                @"sunburstChart---旭日图",
+                @"dependencywheelChart---和弦图",
+                @"heatmapChart---热力图",
+                @"packedbubbleChart---气泡🎈填充图",
+                @"packedbubbleSplitChart---圆🎈堆积图",
+                @"vennChart---韦恩图",
+                @"dumbbellChart---哑铃图",
+                @"lollipopChart---棒棒糖🍭图",
+                @"streamgraphChart---流图",
+                @"columnpyramidChart---角锥柱形图",
+                @"tilemapChart---砖块图🧱||蜂巢图🐝",
+                @"simpleTreemapChart---简单矩形树🌲图",
+                @"drilldownTreemapChart---可下钻的矩形树🌲图",
+                @"xrangeChart---X轴范围图||甘特图||条码图",
+                @"vectorChart---向量图🏹",
+                @"bellcurveChart---贝尔曲线图",
+                @"timelineChart---时序图⌚️",
+                @"itemChart---议会项目图",
+                @"windbarbChart---风羽图",
+                @"networkgraphChart---力导关系图",
+                @"wordcloudChart---词云图",
+                @"eulerChart---欧拉图",
+                @"organizationChart---组织结构图",
+                @"arcdiagramChart1---弧形图1",
+                @"arcdiagramChart2---弧形图2",
+                @"arcdiagramChart3---弧形图3",
+                @"flameChart---火焰🔥图",
+                @"packedbubbleSpiralChart---渐进变化的气泡🎈图",
+                @"itemChart2---议会项目图2",
+                @"itemChart3---议会项目图3",
+            ],
+            
         ];
     }
     return _chartTypeNameArr;
@@ -218,7 +270,11 @@
 - (NSArray *)sectionTypeArr {
     if (!_sectionTypeArr) {
         _sectionTypeArr = @[
-            @"Pro Type---高级类型",];
+            @"RelationshipChart | 关系类型图表",
+            @"HeatOrTreeMapChart | 热力或树形类型图表",
+            @"BubbleChart | 气泡类型图表",
+            @"MoreProType | 更多高级类型图表",
+        ];
     }
     return _sectionTypeArr;
 }
