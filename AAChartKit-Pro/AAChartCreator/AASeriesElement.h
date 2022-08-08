@@ -87,6 +87,7 @@ AAPropStatementAndPropSetFuncStatement(copy,   AASeriesElement, NSString *, curs
 AAPropStatementAndPropSetFuncStatement(copy,   AASeriesElement, NSString *, offset) //The offset of an arc diagram nodes column in relation to the plotArea. The offset equal to 50% places nodes in the center of a chart. By default the series is placed so that the biggest node is touching the bottom border of the plotArea. Defaults to '100%'.
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, linkWeight) //The global link weight. If not set, width is calculated per link, depending on the weight value. Defaults to undefined.
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, id        , centeredLinks) //The option to center links rather than position them one after another. Defaults to false.
+AAPropStatementAndPropSetFuncStatement(copy,   AASeriesElement, NSString *, id) //The offset of an arc diagram nodes column in relation to the plotArea. The offset equal to 50% places nodes in the center of a chart. By default the series is placed so that the biggest node is touching the bottom border of the plotArea. Defaults to '100%'.
 
 @end
 

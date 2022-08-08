@@ -200,4 +200,65 @@
                ]);
 }
 
++ (AAOptions *)histogramChart {
+    return AAOptions.new
+        .titleSet(AATitle.new
+            .textSet(@"AAChartKit-Pro Histogram"))
+        .xAxisSet((id)@[
+            AAXAxis.new
+                .titleSet(AAAxisTitle.new
+                    .textSet(@"Data")),
+            AAXAxis.new
+                .titleSet(AAAxisTitle.new
+                    .textSet(@"Histogram"))
+                .oppositeSet(true)
+            ])
+        .yAxisSet((id)@[
+            AAYAxis.new
+                .titleSet(AAAxisTitle.new
+                    .textSet(@"Data")),
+            AAYAxis.new
+                .titleSet(AAAxisTitle.new
+                    .textSet(@"Histogram"))
+                .oppositeSet(true)
+            ])
+        .seriesSet(@[
+            AASeriesElement.new
+                .nameSet(@"Histogram")
+                .typeSet(AAChartTypeHistogram)
+                .xAxisSet(@1)
+                .yAxisSet(@1)
+                .baseSeriesSet((id)@"s1")
+                .zIndexSet(@-1),
+            AASeriesElement.new
+                .nameSet(@"Data")
+                .typeSet(AAChartTypeScatter)
+                .dataSet(@[@3.5, @3, @3.2, @3.1, @3.6, @3.9, @3.4, @3.4, @2.9, @3.1, @3.7, @3.4, @3, @3, @4, @4.4, @3.9, @3.5, @3.8, @3.8, @3.4, @3.7, @3.6, @3.3, @3.4, @3, @3.4, @3.5, @3.4, @3.2, @3.1, @3.4, @4.1, @4.2, @3.1, @3.2, @3.5, @3.6, @3, @3.4, @3.5, @2.3, @3.2, @3.5, @3.8, @3, @3.8, @3.2, @3.7, @3.3, @3.2, @3.2, @3.1, @2.3, @2.8, @2.8, @3.3, @2.4, @2.9, @2.7, @2, @3, @2.2, @2.9, @2.9, @3.1, @3, @2.7, @2.2, @2.5, @3.2, @2.8, @2.5, @2.8, @2.9, @3, @2.8, @3, @2.9, @2.6, @2.4, @2.4, @2.7, @2.7, @3, @3.4, @3.1, @2.3, @3, @2.5, @2.6, @3, @2.6, @2.3, @2.7, @3, @2.9, @2.9, @2.5, @2.8, @3.3, @2.7, @3, @2.9, @3, @3, @2.5, @2.9, @2.5, @3.6, @3.2, @2.7, @3, @2.5, @2.8, @3.2, @3, @3.8, @2.6, @2.2, @3.2, @2.8, @2.8, @2.7, @3.3, @3.2, @2.8, @3, @2.8, @3, @2.8, @3.8, @2.8, @2.8, @2.6, @3, @3.4, @3.1, @3, @3.1, @3.1, @3.1, @2.7, @3.2, @3.3, @3, @2.5, @3, @3.4, @3])
+                .idSet(@"s1")
+                .markerSet(AAMarker.new
+                    .radiusSet(@1.5))
+            ]);
+}
+
++ (AAOptions *)bellcurveChart {
+    AAOptions *aaOptions = [self histogramChart];
+    
+    aaOptions.title.text = @"AAChartKit-Pro Bellcurve";
+    
+    NSArray *xAxisArr = (id)aaOptions.xAxis;
+    AAXAxis *aaXAxis = xAxisArr[1];
+    aaXAxis.title.text = @"Bellcurve";
+    
+    NSArray *yAxisArr = (id)aaOptions.yAxis;
+    AAYAxis *aaYAxis = yAxisArr[1];
+    aaYAxis.title.text = @"Bellcurve";
+    
+    AASeriesElement *aaSeriesElement = aaOptions.series.firstObject;
+    aaSeriesElement
+        .nameSet(@"Bellcurve")
+        .typeSet(AAChartTypeBellcurve)
+        ;
+    return aaOptions;
+}
+
 @end

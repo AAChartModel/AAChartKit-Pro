@@ -40,6 +40,7 @@ AACHARTKIT_EXTERN AAChartType const AAChartTypeWordcloud;
 AACHARTKIT_EXTERN AAChartType const AAChartTypeOrganization;
 AACHARTKIT_EXTERN AAChartType const AAChartTypeArcdiagram;
 AACHARTKIT_EXTERN AAChartType const AAChartTypeFlame;
+AACHARTKIT_EXTERN AAChartType const AAChartTypeHistogram;
 
 
 @end

@@ -23,6 +23,8 @@
         case  2: return [AAColumnVariantChartComposer dumbbellChart];
         case  3: return [AAColumnVariantChartComposer lollipopChart];
         case  4: return [AAColumnVariantChartComposer xrangeChart];
+        case  5: return [AAColumnVariantChartComposer histogramChart];
+        case  6: return [AAColumnVariantChartComposer bellcurveChart];
     }
     return nil;
 }
