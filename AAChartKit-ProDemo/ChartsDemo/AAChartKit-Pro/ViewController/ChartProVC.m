@@ -59,6 +59,8 @@
         case  8: return [self flameChart];
         case  9: return [self itemChart2];
         case 10: return [self itemChart3];
+        case 11: return [self icicleChart];
+        case 12: return [self sunburstChart2];
     }
     return [self sunburstChart];
 }
@@ -330,6 +332,7 @@
             AAXAxis.new
                 .visibleSet(false),
             AAXAxis.new
+                .reversedSet(true)
                 .visibleSet(false)
                 .startOnTickSet(false)
                 .endOnTickSet(false)
@@ -374,6 +377,44 @@
         .tooltipSet(AATooltip.new
             .headerFormatSet(@"")
             .pointFormatSet(@"selfSize of {point.name} is {point.value}"));
+}
+
+- (AAOptions *)icicleChart {
+    AAOptions *aaOptions = [self flameChart];
+    
+    aaOptions.chart.invertedSet(true);
+    
+    NSArray *axisArr = (id)aaOptions.xAxis;
+    AAXAxis *aaXAxisElement = axisArr[1];
+    aaXAxisElement.reversedSet(false);
+    
+    aaOptions.title.textSet(@"Flame chart (layout: icicle)");
+    
+    AASeriesElement *aaSeriesElement1 = aaOptions.series[0];
+    AASeriesElement *aaSeriesElement2 = aaOptions.series[1];
+    aaSeriesElement1.visibleSet(true);
+    aaSeriesElement2.visibleSet(false);
+    
+    return aaOptions;
+}
+
+- (AAOptions *)sunburstChart2 {
+    AAOptions *aaOptions = [self flameChart];
+    
+    aaOptions.chart.invertedSet(false);
+    
+    NSArray *axisArr = (id)aaOptions.xAxis;
+    AAXAxis *aaXAxisElement = axisArr[1];
+    aaXAxisElement.reversedSet(true);
+    
+    aaOptions.title.textSet(@"Flame chart (layout: icicle)");
+    
+    AASeriesElement *aaSeriesElement1 = aaOptions.series[0];
+    AASeriesElement *aaSeriesElement2 = aaOptions.series[1];
+    aaSeriesElement1.visibleSet(false);
+    aaSeriesElement2.visibleSet(true);
+    
+    return aaOptions;
 }
 
 @end
