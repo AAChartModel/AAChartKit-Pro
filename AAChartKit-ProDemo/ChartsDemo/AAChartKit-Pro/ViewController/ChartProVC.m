@@ -61,6 +61,8 @@
         case 10: return [self itemChart3];
         case 11: return [self icicleChart];
         case 12: return [self sunburstChart2];
+        case 13: return [self solidgaugeChart];
+
     }
     return [self sunburstChart];
 }
@@ -416,5 +418,180 @@
     
     return aaOptions;
 }
+
+- (AAOptions *)solidgaugeChart {
+    return AAOptions.new
+    .chartSet(AAChart.new
+        .typeSet(AAChartTypeSolidgauge)
+//        .heightSet(@"110%")
+        .eventsSet(AAChartEvents.new
+            .loadSet(@AAJSFunc(function () {
+                if (!this.series[0].icon) {
+                    this.series[0].icon = this.renderer.path(['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8])
+                        .attr({
+                            stroke: '#303030',
+                            'stroke-linecap': 'round',
+                            'stroke-linejoin': 'round',
+                            'stroke-width': 2,
+                            zIndex: 10
+                        })
+                        .add(this.series[2].group);
+                }
+                this.series[0].icon.translate(
+                    this.chartWidth / 2 - 10,
+                    this.plotHeight / 2 - this.series[0].points[0].shapeArgs.innerR -
+                        (this.series[0].points[0].shapeArgs.r - this.series[0].points[0].shapeArgs.innerR) / 2
+                );
+
+                if (!this.series[1].icon) {
+                    this.series[1].icon = this.renderer.path(
+                        ['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8,
+                            'M', 8, -8, 'L', 16, 0, 8, 8]
+                    )
+                        .attr({
+                            stroke: '#ffffff',
+                            'stroke-linecap': 'round',
+                            'stroke-linejoin': 'round',
+                            'stroke-width': 2,
+                            zIndex: 10
+                        })
+                        .add(this.series[2].group);
+                }
+                this.series[1].icon.translate(
+                    this.chartWidth / 2 - 10,
+                    this.plotHeight / 2 - this.series[1].points[0].shapeArgs.innerR -
+                        (this.series[1].points[0].shapeArgs.r - this.series[1].points[0].shapeArgs.innerR) / 2
+                );
+
+                if (!this.series[2].icon) {
+                    this.series[2].icon = this.renderer.path(['M', 0, 8, 'L', 0, -8, 'M', -8, 0, 'L', 0, -8, 8, 0])
+                        .attr({
+                            stroke: '#303030',
+                            'stroke-linecap': 'round',
+                            'stroke-linejoin': 'round',
+                            'stroke-width': 2,
+                            zIndex: 10
+                        })
+                        .add(this.series[2].group);
+                }
+
+                this.series[2].icon.translate(
+                    this.chartWidth / 2 - 10,
+                    this.plotHeight / 2 - this.series[2].points[0].shapeArgs.innerR -
+                        (this.series[2].points[0].shapeArgs.r - this.series[2].points[0].shapeArgs.innerR) / 2
+                );
+                })))
+              )
+    .titleSet(AATitle.new
+        .textSet(@"Activity")
+        .styleSet(AAStyle.new
+            .fontSizeSet(@"24px")))
+    .tooltipSet(AATooltip.new
+        .borderWidthSet(@0)
+        .backgroundColorSet(@"none")
+        .shadowSet(false)
+        .styleSet(AAStyle.new
+            .fontSizeSet(@"16px")
+            .textOutlineSet(@"3px"))
+        .valueSuffixSet(@"%")
+                .pointFormatSet(@"{series.name}<br><span style=""font-size:2em; color: {point.color}; font-weight: bold"">{point.y}</span>")
+                .positionerSet(@AAJSFunc(function(labelWidth) {
+                    let position = {};
+                    position["x"] = (this.chart.chartWidth - labelWidth) / 2 - 100;
+                    position["y"] = (this.chart.plotHeight / 2) + 15;
+                    return position;
+                })))
+    .paneSet(AAPane.new
+        .startAngleSet(@0)
+        .endAngleSet(@360)
+        .backgroundSet(@[
+            AABackgroundElement.new
+                .outerRadiusSet((id)@"112%")
+                .innerRadiusSet((id)@"88%")
+                .backgroundColorSet(@"rgba(124,181,236,0.3)")
+                .borderWidthSet(@0),
+            AABackgroundElement.new
+                .outerRadiusSet((id)@"87%")
+                .innerRadiusSet((id)@"63%")
+                .backgroundColorSet(@"rgba(67,67,72,0.3)")
+                .borderWidthSet(@0),
+            AABackgroundElement.new
+                .outerRadiusSet((id)@"62%")
+                .innerRadiusSet((id)@"38%")
+                .backgroundColorSet(@"rgba(144,237,125,0.3)")
+                .borderWidthSet(@0)
+            ]))
+    .yAxisSet(AAYAxis.new
+        .minSet(@0)
+        .maxSet(@100)
+        .lineWidthSet(@0)
+        .tickPositionsSet(@[]))
+    .plotOptionsSet(AAPlotOptions.new
+        .solidgaugeSet(AASolidgauge.new
+            .dataLabelsSet(AADataLabels.new
+                .enabledSet(false))
+            .linecapSet(@"round")
+            .stickyTrackingSet(false)
+            .roundedSet(true)))
+    .seriesSet(@[
+        AASeriesElement.new
+            .nameSet(@"Move")
+            .dataSet(@[
+                AASolidgaugeDataElement.new
+                    .colorSet(@"#7cb5ec")
+                    .radiusSet(@"112%")
+                    .innerRadiusSet(@"88%")
+                    .ySet(@80)
+                ]),
+        AASeriesElement.new
+            .nameSet(@"Exercise")
+            .dataSet(@[
+                AASolidgaugeDataElement.new
+                    .colorSet(@"#434348")
+                    .radiusSet(@"87%")
+                    .innerRadiusSet(@"63%")
+                    .ySet(@65)
+                ]),
+        AASeriesElement.new
+            .nameSet(@"Stand")
+            .dataSet(@[
+                AASolidgaugeDataElement.new
+                    .colorSet(@"#90ed7d")
+                    .radiusSet(@"62%")
+                    .innerRadiusSet(@"39%")
+                    .ySet(@50)
+                ]),
+        AASeriesElement.new
+            .nameSet(@"Move")
+            .dataSet(@[
+                AASolidgaugeDataElement.new
+                    .colorSet(@"#f7a35c")
+                    .radiusSet(@"38%")
+                    .innerRadiusSet(@"28%")
+                    .ySet(@80)
+                ]),
+        AASeriesElement.new
+            .nameSet(@"Exercise")
+            .dataSet(@[
+                AASolidgaugeDataElement.new
+                    .colorSet(@"#8085e9")
+                    .radiusSet(@"27%")
+                    .innerRadiusSet(@"17%")
+                    .ySet(@65)
+                ]),
+        AASeriesElement.new
+            .nameSet(@"Stand")
+            .dataSet(@[
+                AASolidgaugeDataElement.new
+                    .colorSet(@"#f15c80")
+                    .radiusSet(@"16%")
+                    .innerRadiusSet(@"6%")
+                    .ySet(@50)
+                ])
+        ]);
+}
+
+
+
 
 @end

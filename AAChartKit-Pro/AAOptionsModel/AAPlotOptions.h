@@ -32,21 +32,22 @@
 
 #import <Foundation/Foundation.h>
 
-@class AAColumn, AABar, AALine, AASpline, AAArea, AAAreaspline, AAPie, AAColumnrange, AASeries, AAPackedbubble, AATreemap;;
+@class AAColumn, AABar, AALine, AASpline, AAArea, AAAreaspline, AAPie, AAColumnrange, AASeries, AAPackedbubble, AATreemap, AASolidgauge;
 
 @interface AAPlotOptions : NSObject
 
-AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAColumn     *, column) 
-AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AALine       *, line) 
-AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAPie        *, pie) 
-AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AABar        *, bar) 
-AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AASpline     *, spline) 
-AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AASeries     *, series) 
-AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAArea       *, area) 
-AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAAreaspline *, areaspline) 
-AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAColumnrange*, columnrange)
-AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, NSObject     *, arearange) 
-AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAPackedbubble     *, packedbubble);
-AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AATreemap     *, treemap);
+AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAColumn       *, column)
+AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AALine         *, line)
+AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAPie          *, pie)
+AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AABar          *, bar)
+AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AASpline       *, spline)
+AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AASeries       *, series)
+AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAArea         *, area)
+AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAAreaspline   *, areaspline)
+AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAColumnrange  *, columnrange)
+AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, NSObject       *, arearange)
+AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAPackedbubble *, packedbubble)
+AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AATreemap      *, treemap)
+AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AASolidgauge   *, solidgauge)
 
 @end

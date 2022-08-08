@@ -77,7 +77,8 @@
 #import "AAItem.h"
 #import "AALayoutAlgorithm.h"
 #import "AAChartTypePro.h"
-
+#import "AASolidgaugeDataElement.h"
+#import "AASolidgauge.h"
 
 @interface AAOptions : NSObject
 
