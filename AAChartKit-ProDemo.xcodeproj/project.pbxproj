@@ -497,16 +497,7 @@
 			children = (
 				84B13F4228A0B5A2007356C6 /* ViewController */,
 				84B13F4128A0B018007356C6 /* Composer */,
-				84FE7B9F26AED3D000B68A56 /* AABaseChartVC.h */,
-				84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */,
-				27EB8A7F2497C03A007E6A6B /* ChartProVC.h */,
-				27EB8A822497C03A007E6A6B /* ChartProVC.m */,
-				27EB89E0248C8F87007E6A6B /* AAOptionsSeries.h */,
-				27EB89E1248C8F87007E6A6B /* AAOptionsSeries.m */,
-				27EB8A812497C03A007E6A6B /* AAOptionsData.h */,
-				27EB8A802497C03A007E6A6B /* AAOptionsData.m */,
-				27EB8A8A2497C4E7007E6A6B /* SeriesJsonFiles */,
-				27EB8A1C249276DF007E6A6B /* DataJsonFiles */,
+				84B13F5328A0DD3C007356C6 /* DataSource */,
 			);
 			path = "AAChartKit-Pro";
 			sourceTree = "<group>";
@@ -640,14 +631,31 @@
 		84B13F4228A0B5A2007356C6 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				84FE7B9F26AED3D000B68A56 /* AABaseChartVC.h */,
+				84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */,
 				84B13F4C28A0BA26007356C6 /* AARelationshipChartVC.h */,
 				84B13F4D28A0BA26007356C6 /* AARelationshipChartVC.m */,
 				84B13F4328A0B5CF007356C6 /* AAHeatOrTreeMapChartVC.h */,
 				84B13F4428A0B5CF007356C6 /* AAHeatOrTreeMapChartVC.m */,
 				84B13F4F28A0BA3A007356C6 /* AABubbleChartVC.h */,
 				84B13F5028A0BA3A007356C6 /* AABubbleChartVC.m */,
+				27EB8A7F2497C03A007E6A6B /* ChartProVC.h */,
+				27EB8A822497C03A007E6A6B /* ChartProVC.m */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		84B13F5328A0DD3C007356C6 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				27EB89E0248C8F87007E6A6B /* AAOptionsSeries.h */,
+				27EB89E1248C8F87007E6A6B /* AAOptionsSeries.m */,
+				27EB8A812497C03A007E6A6B /* AAOptionsData.h */,
+				27EB8A802497C03A007E6A6B /* AAOptionsData.m */,
+				27EB8A8A2497C4E7007E6A6B /* SeriesJsonFiles */,
+				27EB8A1C249276DF007E6A6B /* DataJsonFiles */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

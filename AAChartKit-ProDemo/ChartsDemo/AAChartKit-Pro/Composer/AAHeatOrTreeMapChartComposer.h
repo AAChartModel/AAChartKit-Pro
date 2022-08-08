@@ -14,13 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AAHeatOrTreeMapChartComposer : NSObject
 
 + (AAOptions *)heatmapChart;
-
 + (AAOptions *)tilemapChart;
-
 + (AAOptions *)treemapWithColorAxisData;
-
 + (AAOptions *)treemapWithLevelsData;
-
 + (AAOptions *)drilldownLargeDataTreemapChart;
 
 @end

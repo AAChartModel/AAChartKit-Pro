@@ -14,17 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AARelationshipChartComposer : NSObject
 
 + (AAOptions *)sankeyChart;
-
 + (AAOptions *)dependencywheelChart;
-
 + (AAOptions *)arcdiagramChart1;
-
 + (AAOptions *)arcdiagramChart2;
-
 + (AAOptions *)arcdiagramChart3;
-
 + (AAOptions *)organizationChart;
-
 + (AAOptions *)networkgraphChart;
 
 @end

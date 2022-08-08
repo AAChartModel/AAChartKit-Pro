@@ -14,13 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AABubbleChartComposer : NSObject
 
 + (AAOptions *)packedbubbleChart;
-
 + (AAOptions *)packedbubbleSplitChart;
-
 + (AAOptions *)packedbubbleSpiralChart;
-
 + (AAOptions *)eulerChart;
-
 + (AAOptions *)vennChart;
 
 @end
