@@ -219,8 +219,8 @@
             ],
 //            "HeatOrTreeMapChart | 热力或树形类型图表",
             @[
-                @"heatmapChart---热力图🔥",
-                @"tilemapOrHoneycombChart---砖块图🧱||蜂巢图🐝🔥",
+                @"heatmapChart---热力图🌡",
+                @"tilemapOrHoneycombChart---砖块图🧱||蜂巢图🐝🌡",
                 @"treemapWithColorAxisData---包好色彩轴的矩形树图🌲",
                 @"treemapWithLevelsData---包含等级的矩形树图🌲",
                 @"drilldownLargeDataTreemapChart---可下钻的大数据量矩形树图🌲"
@@ -256,6 +256,8 @@
                 @"flameChart---火焰🔥图",
                 @"itemChart2---议会项目图2",
                 @"itemChart3---议会项目图3",
+                @"icicleChart---冰柱图🧊",
+                @"sunburstChart2---旭日图☀️",
             ],
             
         ];
