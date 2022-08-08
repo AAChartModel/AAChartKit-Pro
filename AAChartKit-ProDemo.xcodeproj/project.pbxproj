@@ -292,6 +292,7 @@
 		84B13F4D28A0BA26007356C6 /* AARelationshipChartVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AARelationshipChartVC.m; sourceTree = "<group>"; };
 		84B13F4F28A0BA3A007356C6 /* AABubbleChartVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AABubbleChartVC.h; sourceTree = "<group>"; };
 		84B13F5028A0BA3A007356C6 /* AABubbleChartVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AABubbleChartVC.m; sourceTree = "<group>"; };
+		84B13F5228A0DA32007356C6 /* AAChartKit-Pro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AAChartKit-Pro.h"; sourceTree = "<group>"; };
 		84FE7B9F26AED3D000B68A56 /* AABaseChartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABaseChartVC.h; sourceTree = "<group>"; };
 		84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABaseChartVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -435,6 +436,7 @@
 		27EB89DC248BE1AC007E6A6B /* AAOptionsProModel */ = {
 			isa = PBXGroup;
 			children = (
+				84B13F5228A0DA32007356C6 /* AAChartKit-Pro.h */,
 				27EB89DD248BE1C9007E6A6B /* AAColorAxis.h */,
 				27EB89DE248BE1C9007E6A6B /* AAColorAxis.m */,
 				27EB89E3249113B6007E6A6B /* AALevelsElement.h */,
