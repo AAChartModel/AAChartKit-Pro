@@ -38,6 +38,9 @@ AAChartType const AAChartTypeOrganization    =  @"organization";
 AAChartType const AAChartTypeArcdiagram      =  @"arcdiagram";
 AAChartType const AAChartTypeFlame           =  @"flame";
 AAChartType const AAChartTypeHistogram       =  @"histogram";
+AAChartType const AAChartTypeSolidgauge      =  @"solidgauge";
+AAChartType const AAChartTypeBullet          =  @"bullet";
+
 
 
 @end
