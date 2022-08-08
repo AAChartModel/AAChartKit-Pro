@@ -105,6 +105,15 @@
     return view;
 }
 
+- (NSArray *)sectionIndexTitlesForTableView: (UITableView *)tableView {
+    NSMutableArray *listTitles = [[NSMutableArray alloc] init];
+    for (NSString *item in self.sectionTypeArr) {
+          NSString *title = [item substringToIndex: 1];
+          [listTitles addObject: title];
+    }
+    return listTitles;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSArray *arr = self.chartTypeNameArr[section];
     return arr.count;
