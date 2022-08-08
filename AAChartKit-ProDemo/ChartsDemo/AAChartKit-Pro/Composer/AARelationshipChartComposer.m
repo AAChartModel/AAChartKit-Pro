@@ -7,7 +7,8 @@
 //
 
 #import "AARelationshipChartComposer.h"
-#import "AAChartKit.h"
+#import "AAChartKit-Pro.h"
+
 
 @implementation AARelationshipChartComposer
 

@@ -7,7 +7,7 @@
 //
 
 #import "AAHeatOrTreeMapChartComposer.h"
-#import "AAChartKit.h"
+#import "AAChartKit-Pro.h"
 
 @implementation AAHeatOrTreeMapChartComposer
 

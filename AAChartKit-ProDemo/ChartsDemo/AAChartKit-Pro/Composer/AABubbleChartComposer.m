@@ -7,7 +7,7 @@
 //
 
 #import "AABubbleChartComposer.h"
-#import "AAChartKit.h"
+#import "AAChartKit-Pro.h"
 
 @implementation AABubbleChartComposer
 
