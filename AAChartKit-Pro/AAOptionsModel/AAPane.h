@@ -33,11 +33,11 @@
  */
 
 #import <Foundation/Foundation.h>
-@class AABackground;
+@class AABackgroundElement;
 
 @interface AAPane : NSObject
 
-AAPropStatementAndPropSetFuncStatement(strong, AAPane, AABackground *, background)
+AAPropStatementAndPropSetFuncStatement(strong, AAPane, NSArray<AABackgroundElement *> *, background)
 AAPropStatementAndPropSetFuncStatement(strong, AAPane, NSArray  *, center)
 AAPropStatementAndPropSetFuncStatement(strong, AAPane, NSNumber *, endAngle)
 AAPropStatementAndPropSetFuncStatement(strong, AAPane, NSNumber *, size)
@@ -46,14 +46,14 @@ AAPropStatementAndPropSetFuncStatement(strong, AAPane, NSNumber *, startAngle)
 @end
 
 
-@interface AABackground : NSObject
+@interface AABackgroundElement : NSObject
 
-AAPropStatementAndPropSetFuncStatement(copy  , AABackground, NSString *, backgroundColor)
-AAPropStatementAndPropSetFuncStatement(copy  , AABackground, NSString *, borderColor)
-AAPropStatementAndPropSetFuncStatement(strong, AABackground, NSNumber *, borderWidth)
-AAPropStatementAndPropSetFuncStatement(copy  , AABackground, NSString *, className)
-AAPropStatementAndPropSetFuncStatement(strong, AABackground, NSNumber *, innerRadius)
-AAPropStatementAndPropSetFuncStatement(strong, AABackground, NSNumber *, outerRadius)
-AAPropStatementAndPropSetFuncStatement(copy  , AABackground, NSString *, shape)
+AAPropStatementAndPropSetFuncStatement(copy,   AABackgroundElement, NSString *, backgroundColor)//背景颜色
+AAPropStatementAndPropSetFuncStatement(copy,   AABackgroundElement, NSString *, borderColor)//边框颜色
+AAPropStatementAndPropSetFuncStatement(strong, AABackgroundElement, NSNumber *, borderWidth)//边框宽度
+AAPropStatementAndPropSetFuncStatement(copy,   AABackgroundElement, NSString *, className)//类名
+AAPropStatementAndPropSetFuncStatement(strong, AABackgroundElement, NSNumber *, innerRadius)//内半径
+AAPropStatementAndPropSetFuncStatement(strong, AABackgroundElement, NSNumber *, outerRadius)//外半径
+AAPropStatementAndPropSetFuncStatement(copy,   AABackgroundElement, NSString *, shape)
 
 @end
