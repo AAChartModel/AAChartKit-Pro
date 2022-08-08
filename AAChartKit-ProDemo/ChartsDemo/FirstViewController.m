@@ -35,6 +35,7 @@
 #import "AAHeatOrTreeMapChartVC.h"
 #import "AARelationshipChartVC.h"
 #import "AABubbleChartVC.h"
+#import "AAColumnVariantChartVC.h"
 
 #define ColorWithRGB(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 #define AAGrayColor            [UIColor colorWithRed:245/255.0 green:246/255.0 blue:247/255.0 alpha:1.0]
@@ -149,6 +150,14 @@
             break;
             
         case 3 : {
+            AAColumnVariantChartVC *vc = [[AAColumnVariantChartVC alloc]init];
+            vc.selectedIndex = indexPath.row;
+            vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        case 4 : {
             ChartProVC *vc = [[ChartProVC alloc]init];
             vc.selectedIndex = indexPath.row;
             vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
@@ -224,6 +233,13 @@
                 @"eulerChart---欧拉图",
                 @"vennChart---韦恩图",
             ],
+            @[
+                @"variwideChart---可变宽度的柱形图",
+                @"columnpyramidChart---角锥柱形图",
+                @"dumbbellChart---哑铃图",
+                @"lollipopChart---棒棒糖🍭图",
+                @"xrangeChart---X轴范围图||甘特图||条码图",
+            ],
             
             @[
                 @"sankeyChart---桑基图",
@@ -273,6 +289,7 @@
             @"RelationshipChart | 关系类型图表",
             @"HeatOrTreeMapChart | 热力或树形类型图表",
             @"BubbleChart | 气泡类型图表",
+            @"ColumnVariantChart | 柱形图(变体)类型图表",
             @"MoreProType | 更多高级类型图表",
         ];
     }
