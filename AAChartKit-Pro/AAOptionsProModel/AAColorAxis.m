@@ -14,6 +14,11 @@ AAPropSetFuncImplementation(AAColorAxis, NSNumber *, min)
 AAPropSetFuncImplementation(AAColorAxis, NSString *, minColor)
 AAPropSetFuncImplementation(AAColorAxis, NSString *, maxColor)
 AAPropSetFuncImplementation(AAColorAxis, NSArray<AADataClassesElement *> *, dataClasses)
+AAPropSetFuncImplementation(AAColorAxis, NSArray *, stops)
+AAPropSetFuncImplementation(AAColorAxis, NSNumber *, max)
+AAPropSetFuncImplementation(AAColorAxis, BOOL      , startOnTick)
+AAPropSetFuncImplementation(AAColorAxis, BOOL      , endOnTick)
+AAPropSetFuncImplementation(AAColorAxis, AALabels *, labels)
 
 @end
 

@@ -232,7 +232,8 @@
                 @"tilemapOrHoneycombChart---砖块图🧱||蜂巢图🐝🌡",
                 @"treemapWithColorAxisData---包好色彩轴的矩形树图🌲",
                 @"treemapWithLevelsData---包含等级的矩形树图🌲",
-                @"drilldownLargeDataTreemapChart---可下钻的大数据量矩形树图🌲"
+                @"drilldownLargeDataTreemapChart---可下钻的大数据量矩形树图🌲",
+                @"largeDataHeatmapChart---大数据量热力图🌡",
             ],
 //            "BubbleChart | 气泡类型图表",
             @[

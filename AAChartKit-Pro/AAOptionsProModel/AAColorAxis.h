@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class AADataClassesElement;
+@class AADataClassesElement, AALabels;
 
 @interface AAColorAxis : NSObject
 
@@ -18,6 +18,11 @@ AAPropStatementAndPropSetFuncStatement(strong, AAColorAxis, NSNumber *, min)
 AAPropStatementAndPropSetFuncStatement(copy,   AAColorAxis, NSString *, minColor)
 AAPropStatementAndPropSetFuncStatement(copy,   AAColorAxis, NSString *, maxColor)
 AAPropStatementAndPropSetFuncStatement(strong, AAColorAxis, NSArray<AADataClassesElement *> *, dataClasses)
+AAPropStatementAndPropSetFuncStatement(strong, AAColorAxis, NSArray *, stops)
+AAPropStatementAndPropSetFuncStatement(strong, AAColorAxis, NSNumber *, max)
+AAPropStatementAndPropSetFuncStatement(assign, AAColorAxis, BOOL      , startOnTick)
+AAPropStatementAndPropSetFuncStatement(assign, AAColorAxis, BOOL      , endOnTick)
+AAPropStatementAndPropSetFuncStatement(strong, AAColorAxis, AALabels *, labels)
 
 @end
 

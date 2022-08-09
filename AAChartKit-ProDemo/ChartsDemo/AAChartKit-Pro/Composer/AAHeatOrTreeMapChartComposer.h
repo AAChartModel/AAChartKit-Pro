@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (AAOptions *)treemapWithColorAxisData;
 + (AAOptions *)treemapWithLevelsData;
 + (AAOptions *)drilldownLargeDataTreemapChart;
++ (AAOptions *)largeDataHeatmapChart;
 
 @end
 

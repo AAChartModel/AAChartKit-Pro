@@ -8,6 +8,8 @@
 
 #import "AAHeatOrTreeMapChartComposer.h"
 #import "AAChartKit-Pro.h"
+#import "AAOptionsCSV.h"
+#import "NSString+toPureJSString.h"
 
 @implementation AAHeatOrTreeMapChartComposer
 
@@ -169,6 +171,92 @@
                    ])
         .dataSet(AAOptionsData.drilldownTreemapData)
                ]);
+}
+
++ (AAOptions *)largeDataHeatmapChart {
+    NSString *csvStr = AAOptionsCSV.csvData[@"csv"];
+    return AAOptions.new
+        .dataSet(AAData.new
+                 .csvSet([self aa_toPureJSString2WithString:csvStr])
+                 .parsedSet(@AAJSFunc(function () {
+                     start = +new Date();
+                 })))
+        .chartSet(AAChart.new
+            .typeSet(AAChartTypeHeatmap)
+            .marginSet(@[@60, @10, @80, @50]))
+        .titleSet(AATitle.new
+            .textSet(@"大型热力图")
+            .alignSet(AAChartAlignTypeLeft)
+            .xSet(@40))
+        .subtitleSet(AASubtitle.new
+            .textSet(@"2013每天每小时的热力变化")
+            .alignSet(AAChartAlignTypeLeft)
+            .xSet(@40))
+        .xAxisSet(AAXAxis.new
+            .typeSet(AAChartAxisTypeDatetime)
+            .minSet(@1356998400000)
+            .maxSet(@1388534400000)
+            .labelsSet(AALabels.new
+                .alignSet(AAChartAlignTypeLeft)
+                .xSet(@5)
+                .ySet(@14)
+                .formatSet(@"{value:%B}"))
+//            .showLastLabelSet(false)
+            .tickLengthSet(@16))
+        .yAxisSet(AAYAxis.new
+            .titleSet(AAAxisTitle.new
+                .textSet((id)NSNull.new))
+            .labelsSet(AALabels.new
+                .formatSet(@"{value}:00"))
+            .minPaddingSet(@0)
+            .maxPaddingSet(@0)
+            .startOnTickSet(false)
+            .endOnTickSet(false)
+            .tickPositionsSet(@[@0, @6, @12, @18, @24])
+            .tickWidthSet(@1)
+            .minSet(@0)
+            .maxSet(@23)
+            .reversedSet(true))
+        .colorAxisSet(AAColorAxis.new
+            .stopsSet(@[
+                @[@0, @"#3060cf", ],
+                @[@0.5, @"#fffbbc", ],
+                @[@0.9, @"#c4463a", ],
+                @[@1, @"#c4463a", ]
+                ])
+            .minSet(@-15)
+            .maxSet(@25)
+            .startOnTickSet(false)
+            .endOnTickSet(false)
+            .labelsSet(AALabels.new
+                .formatSet(@"{value}℃"))
+                      )
+        .seriesSet(@[
+            AAHeatmap.new
+                .borderWidthSet(@0)
+                .colsizeSet(@86400000)
+                .tooltipSet(AATooltip.new
+                    .headerFormatSet(@"Temperature")
+//                    .pointFormatSet(@"{point.x:%e %b, %Y} {point.y}:00: {point.value} ℃")
+            )
+                .turboThresholdSet(@1.7976931348623157e+308)
+            ]);
+}
+
++ (NSString *)aa_toPureJSString2WithString:(NSString *)string {
+    //https://stackoverflow.com/questions/34334232/why-does-function-not-work-but-function-does-chrome-devtools-node
+    NSString *pureJSStr = [NSString stringWithFormat:@"(%@)",string];
+    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"'" withString:@"\""];
+    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\0" withString:@""];
+//    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
+    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\r" withString:@"\\r"];
+    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\f" withString:@"\\f"];
+    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\u2028" withString:@"\\u2028"];
+    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\u2029" withString:@"\\u2029"];
+    return pureJSStr;
 }
 
 @end
