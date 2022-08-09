@@ -62,6 +62,8 @@
         case 11: return [self icicleChart];
         case 12: return [self sunburstChart2];
         case 13: return [self solidgaugeChart];
+        case 14: return [self parallelCoordinatesSplineChart];
+        case 15: return [self parallelCoordinatesLineChart];
 
     }
     return [self sunburstChart];
@@ -591,7 +593,113 @@
         ]);
 }
 
+- (AAOptions *)parallelCoordinatesSplineChart {
+    return AAOptions.new
+        .chartSet(AAChart.new
+            .typeSet(AAChartTypeSpline)
+            .parallelCoordinatesSet(@true)
+            .parallelAxesSet(AAParallelAxes.new
+                .lineWidthSet(@2)))
+        .titleSet(AATitle.new
+            .textSet(@"Marathon set"))
+        .plotOptionsSet(AAPlotOptions.new
+            .seriesSet(AASeries.new
+                .animationSet(false)
+                .markerSet(AAMarker.new
+                    .enabledSet(false)
+                    .statesSet(AAMarkerStates.new
+                        .hoverSet(AAMarkerHover.new
+                            .enabledSet(false))))
+                .statesSet(AAStates.new
+                    .hoverSet(AAHover.new
+                        .haloSet(AAHalo.new
+                            .sizeSet(@0))))
+                .eventsSet(AAEvents.new
+                    .mouseOverSet(@AAJSFunc(function () {
+                        this.group.toFront();
+                    })))))
+        .tooltipSet(AATooltip.new
+            .pointFormatSet(@"●{series.name}: {point.formattedValue}"))
+        .xAxisSet(AAXAxis.new
+            .categoriesSet(@[
+                @"Training date",
+                @"Miles for training run",
+                @"Training time",
+                @"Shoe brand",
+                @"Running pace per mile",
+                @"Short or long",
+                @"After 2004",
+            ])
+            .offsetSet(@10))
+        .yAxisSet((id)@[
+            AAYAxis.new
+                .typeSet(AAChartAxisTypeDatetime)
+                .tooltipValueFormatSet(@"{value:%Y-%m-%d}"),
+            AAYAxis.new
+                .minSet(@0)
+                .tooltipValueFormatSet(@"{value} mile(s)"),
+            AAYAxis.new
+                .typeSet(AAChartAxisTypeDatetime)
+                .minSet(@0)
+                .labelsSet(AALabels.new
+                    .formatSet(@"{value:%H:%M}")),
+            AAYAxis.new
+                .categoriesSet(@[
+                    @"Other",
+                    @"Adidas",
+                    @"Mizuno",
+                    @"Asics",
+                    @"Brooks",
+                    @"New Balance",
+                    @"Izumi",
+                ]),
+            AAYAxis.new
+                .typeSet(AAChartAxisTypeDatetime),
+            AAYAxis.new
+                .categoriesSet(@[
+                    @"> 5miles",
+                    @"< 5miles",
+                ]),
+            AAYAxis.new
+                .categoriesSet(@[
+                    @"Before",
+                    @"After",
+                ])
+            ])
+        .colorsSet(@[AARgbaColor(255, 0, 0, 0.1), ])
+        .seriesSet(({
+            NSArray *marathonDataArr = AAOptionsData.marathonData;
+            NSMutableArray *seriesArr = [NSMutableArray arrayWithCapacity:marathonDataArr.count];
+            [marathonDataArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                AASeriesElement *aaSeriesElement = AASeriesElement.new
+                .nameSet(@"Runner")
+                .dataSet(obj)
+                .shadowSet((id)@false);
+                [seriesArr addObject:aaSeriesElement];
+            }];
+            seriesArr;
+        }));
+}
 
+- (AAOptions *)parallelCoordinatesLineChart {
+    AAOptions *aaOptions = [self parallelCoordinatesSplineChart];
+    
+    aaOptions.chart.typeSet(AAChartTypeLine);
+    aaOptions.colorsSet(@[({
+        NSDictionary *gradientColor =
+        [AAGradientColor gradientColorWithDirection:AALinearGradientDirectionToRight
+                                         stopsArray:@[
+            @[@0.00, @"#febc0f0F"],//颜色字符串设置支持十六进制类型和 rgba 类型
+            @[@0.25, @"#FF14d4E6"],
+            @[@0.50, @"#0bf8f5E6"],
+            @[@0.75, @"#F33c52E6"],
+            @[@1.00, @"#1904ddE6"],
+        ]];
+        gradientColor;
+    })]);
+    
+    return aaOptions;
+}
 
 
 @end

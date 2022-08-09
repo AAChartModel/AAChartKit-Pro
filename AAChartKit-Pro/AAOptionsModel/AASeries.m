@@ -60,9 +60,27 @@ AAPropSetFuncImplementation(AASeries, NSNumber     *, borderRadiusBottomRight)
 
 @implementation AAEvents
 
+//AAPropSetFuncImplementation(AAEvents, NSString *, click)
+//AAPropSetFuncImplementation(AAEvents, NSString *, mouseOver)
+//AAPropSetFuncImplementation(AAEvents, NSString *, mouseOut)
 //AAPropSetFuncImplementation(AAEvents, NSString *, legendItemClick)
 
+AAJSFuncTypePropSetFuncImplementation(AAEvents, NSString *, click)
+AAJSFuncTypePropSetFuncImplementation(AAEvents, NSString *, mouseOver)
+AAJSFuncTypePropSetFuncImplementation(AAEvents, NSString *, mouseOut)
 AAJSFuncTypePropSetFuncImplementation(AAEvents, NSString *, legendItemClick)
+
+- (void)setClick:(NSString *)click {
+    _click = [click aa_toPureJSString];
+}
+
+- (void)setMouseOver:(NSString *)mouseOver {
+    _mouseOut = [mouseOver aa_toPureJSString];
+}
+
+- (void)setMouseOut:(NSString *)mouseOut {
+    _mouseOut = [mouseOut aa_toPureJSString];
+}
 
 - (void)setLegendItemClick:(NSString *)legendItemClick {
     _legendItemClick = [legendItemClick aa_toPureJSString];

@@ -131,6 +131,10 @@
     return [self getJsonDataWithJsonFileName:@"sunburst2Data"];
 }
 
++ (NSArray *)marathonData {
+    return [self getJsonDataWithJsonFileName:@"marathonData"];
+}
+
 
 + (NSArray *)xrangeData {
     NSMutableArray *dataArr = [NSMutableArray array];

@@ -65,6 +65,9 @@ AAPropStatementAndPropSetFuncStatement(strong, AASeries, NSNumber     *, borderR
 
 @interface AAEvents : NSObject
 
+AAPropStatementAndPropSetFuncStatement(copy, AAEvents, NSString *, click)
+AAPropStatementAndPropSetFuncStatement(copy, AAEvents, NSString *, mouseOver)
+AAPropStatementAndPropSetFuncStatement(copy, AAEvents, NSString *, mouseOut)
 AAPropStatementAndPropSetFuncStatement(copy, AAEvents, NSString *, legendItemClick)
 
 @end

@@ -268,7 +268,9 @@
                 @"itemChart3---议会项目图3",
                 @"icicleChart---冰柱图🧊",
                 @"sunburstChart2---旭日图☀️",
-                @"solidgaugeChart---活动图🏃🏻‍♀️"
+                @"solidgaugeChart---活动图🏃🏻‍♀️",
+                @"parallelCoordinatesSplineChart---平行坐标曲线图",
+                @"parallelCoordinatesLineChart---平行坐标折线图📈",
             ],
             
         ];

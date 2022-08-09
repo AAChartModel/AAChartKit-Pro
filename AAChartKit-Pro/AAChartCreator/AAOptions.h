@@ -81,6 +81,7 @@
 #import "AASolidgauge.h"
 #import "AAData.h"
 #import "AAHeatmap.h"
+#import "AAParallelAxes.h"
 
 @interface AAOptions : NSObject
 

@@ -57,6 +57,8 @@ AAPropSetFuncImplementation(AAChart, NSNumber    *, spacingLeft)
 AAPropSetFuncImplementation(AAChart, AAScrollablePlotArea *, scrollablePlotArea)
 AAPropSetFuncImplementation(AAChart, AAResetZoomButton *, resetZoomButton)
 AAPropSetFuncImplementation(AAChart, AAChartEvents *, events)
+AAPropSetFuncImplementation(AAChart, id           , parallelCoordinates)
+AAPropSetFuncImplementation(AAChart, AAParallelAxes *, parallelAxes)
 
 @end
 

@@ -103,6 +103,8 @@
 		84AA68AF28A11A6E009067AE /* AAData.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AA68AE28A11A6E009067AE /* AAData.m */; };
 		84AA68B228A11E45009067AE /* AAHeatmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AA68B128A11E45009067AE /* AAHeatmap.m */; };
 		84AA68B528A120F9009067AE /* AAOptionsCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AA68B428A120F9009067AE /* AAOptionsCSV.m */; };
+		84AA68B828A1FD61009067AE /* AAParallelAxes.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AA68B728A1FD61009067AE /* AAParallelAxes.m */; };
+		84AA68BA28A1FEC6009067AE /* marathonData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84AA68B928A1FEC6009067AE /* marathonData.json */; };
 		84B13EE72897A090007356C6 /* AAItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13EE62897A090007356C6 /* AAItem.m */; };
 		84B13F4028A0AFF7007356C6 /* AAHeatOrTreeMapChartComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13F3F28A0AFF7007356C6 /* AAHeatOrTreeMapChartComposer.m */; };
 		84B13F4528A0B5CF007356C6 /* AAHeatOrTreeMapChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13F4428A0B5CF007356C6 /* AAHeatOrTreeMapChartVC.m */; };
@@ -297,6 +299,9 @@
 		84AA68B128A11E45009067AE /* AAHeatmap.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAHeatmap.m; sourceTree = "<group>"; };
 		84AA68B328A120F9009067AE /* AAOptionsCSV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAOptionsCSV.h; sourceTree = "<group>"; };
 		84AA68B428A120F9009067AE /* AAOptionsCSV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAOptionsCSV.m; sourceTree = "<group>"; };
+		84AA68B628A1FD61009067AE /* AAParallelAxes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAParallelAxes.h; sourceTree = "<group>"; };
+		84AA68B728A1FD61009067AE /* AAParallelAxes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAParallelAxes.m; sourceTree = "<group>"; };
+		84AA68B928A1FEC6009067AE /* marathonData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = marathonData.json; sourceTree = "<group>"; };
 		84B13EE52897A090007356C6 /* AAItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAItem.h; sourceTree = "<group>"; };
 		84B13EE62897A090007356C6 /* AAItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAItem.m; sourceTree = "<group>"; };
 		84B13F3E28A0AFF7007356C6 /* AAHeatOrTreeMapChartComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAHeatOrTreeMapChartComposer.h; sourceTree = "<group>"; };
@@ -480,6 +485,8 @@
 				84AA68AE28A11A6E009067AE /* AAData.m */,
 				84AA68B028A11E45009067AE /* AAHeatmap.h */,
 				84AA68B128A11E45009067AE /* AAHeatmap.m */,
+				84AA68B628A1FD61009067AE /* AAParallelAxes.h */,
+				84AA68B728A1FD61009067AE /* AAParallelAxes.m */,
 			);
 			path = AAOptionsProModel;
 			sourceTree = "<group>";
@@ -487,36 +494,37 @@
 		27EB8A1C249276DF007E6A6B /* DataJsonFiles */ = {
 			isa = PBXGroup;
 			children = (
+				84A5690527FD663400883553 /* arcdiagram1Data.json */,
+				84A5690727FD664F00883553 /* arcdiagram2Data.json */,
+				84A5690927FD666900883553 /* arcdiagram3Data.json */,
+				27EB8A8E249B804C007E6A6B /* bellcurveData.json */,
 				27EB8A6E2497C007007E6A6B /* bigHeatmapData.json */,
 				27EB8A602497C006007E6A6B /* columnpyramidData.json */,
 				27EB8A5F2497C006007E6A6B /* dependencywheelData.json */,
 				27EB8A6C2497C007007E6A6B /* drilldownTreemapData.json */,
 				27EB8A672497C006007E6A6B /* dumbbellData.json */,
+				27EB8AD8249C8FFB007E6A6B /* eulerData.json */,
+				84A5690B27FD6EB300883553 /* flameData.json */,
 				27EB8A642497C006007E6A6B /* heatmapData.json */,
+				27EB8A90249B82F9007E6A6B /* itemData.json */,
 				27EB8A6D2497C007007E6A6B /* lollipopData.json */,
+				84AA68B928A1FEC6009067AE /* marathonData.json */,
+				27EB8A96249B8F00007E6A6B /* networkgraphData.json */,
+				84A568FF27FD48E900883553 /* organizationData.json */,
+				84A5690127FD496600883553 /* organizationNodesData.json */,
 				27EB8A6A2497C006007E6A6B /* sankeyData.json */,
+				84A5690D27FD6EFA00883553 /* sunburst2Data.json */,
 				27EB8A662497C006007E6A6B /* sunburstData.json */,
 				27EB8A6B2497C007007E6A6B /* tilemapData.json */,
+				27EB8A92249B8888007E6A6B /* timelineData.json */,
 				27EB8A652497C006007E6A6B /* treemapWithColorAxisData.json */,
 				27EB8A622497C006007E6A6B /* treemapWithLevelsData.json */,
 				27EB8A632497C006007E6A6B /* variablepieData.json */,
 				27EB8A612497C006007E6A6B /* variwideData.json */,
 				27EB8A682497C006007E6A6B /* vectorData.json */,
 				27EB8A692497C006007E6A6B /* vennData.json */,
-				27EB8A8E249B804C007E6A6B /* bellcurveData.json */,
-				27EB8A90249B82F9007E6A6B /* itemData.json */,
-				27EB8A92249B8888007E6A6B /* timelineData.json */,
 				27EB8A94249B8AA3007E6A6B /* windbarbData.json */,
-				27EB8A96249B8F00007E6A6B /* networkgraphData.json */,
 				27EB8A98249B9233007E6A6B /* wordcloudData.json */,
-				27EB8AD8249C8FFB007E6A6B /* eulerData.json */,
-				84A568FF27FD48E900883553 /* organizationData.json */,
-				84A5690127FD496600883553 /* organizationNodesData.json */,
-				84A5690527FD663400883553 /* arcdiagram1Data.json */,
-				84A5690727FD664F00883553 /* arcdiagram2Data.json */,
-				84A5690927FD666900883553 /* arcdiagram3Data.json */,
-				84A5690B27FD6EB300883553 /* flameData.json */,
-				84A5690D27FD6EFA00883553 /* sunburst2Data.json */,
 			);
 			path = DataJsonFiles;
 			sourceTree = "<group>";
@@ -807,6 +815,7 @@
 				27EB8A8F249B804C007E6A6B /* bellcurveData.json in Resources */,
 				84A5690027FD48E900883553 /* organizationData.json in Resources */,
 				27EB8A722497C007007E6A6B /* treemapWithLevelsData.json in Resources */,
+				84AA68BA28A1FEC6009067AE /* marathonData.json in Resources */,
 				27EB8A782497C007007E6A6B /* vectorData.json in Resources */,
 				27EB8A91249B82F9007E6A6B /* itemData.json in Resources */,
 				27EB8A732497C007007E6A6B /* variablepieData.json in Resources */,
@@ -903,6 +912,7 @@
 				8441A72726C21F0A007EAAA7 /* NSString+toPureJSString.m in Sources */,
 				27EB8A1F24927BE8007E6A6B /* AATreemap.m in Sources */,
 				84AA68A028A0E45D009067AE /* AAColumnVariantChartVC.m in Sources */,
+				84AA68B828A1FD61009067AE /* AAParallelAxes.m in Sources */,
 				8441A6B526C21E53007EAAA7 /* AASeriesElement.m in Sources */,
 				8441A70E26C21E6C007EAAA7 /* AAPlotBandsElement.m in Sources */,
 				8441A71026C21E6C007EAAA7 /* AATooltip.m in Sources */,

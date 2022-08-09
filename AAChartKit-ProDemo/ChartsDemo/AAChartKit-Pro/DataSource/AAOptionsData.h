@@ -45,6 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)arcdiagram3Data;
 + (NSArray *)flameData;
 + (NSArray *)sunburst2Data;
++ (NSArray *)marathonData;
 
 
 @end

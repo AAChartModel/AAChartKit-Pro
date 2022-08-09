@@ -35,7 +35,7 @@
 #import <Foundation/Foundation.h>
 #import "AAGlobalMacro.h"
 
-@class AAAnimation, AAScrollablePlotArea, AAResetZoomButton, AAChartEvents;
+@class AAAnimation, AAScrollablePlotArea, AAResetZoomButton, AAChartEvents, AAParallelAxes;
 
 @interface AAChart : NSObject
 
@@ -61,7 +61,8 @@ AAPropStatementAndPropSetFuncStatement(strong, AAChart, NSNumber    *, spacingLe
 AAPropStatementAndPropSetFuncStatement(strong, AAChart, AAScrollablePlotArea *, scrollablePlotArea)
 AAPropStatementAndPropSetFuncStatement(strong, AAChart, AAResetZoomButton *, resetZoomButton)
 AAPropStatementAndPropSetFuncStatement(strong, AAChart, AAChartEvents *, events)
-
+AAPropStatementAndPropSetFuncStatement(strong, AAChart, id           , parallelCoordinates)
+AAPropStatementAndPropSetFuncStatement(strong, AAChart, AAParallelAxes *, parallelAxes)
 
 @end
 

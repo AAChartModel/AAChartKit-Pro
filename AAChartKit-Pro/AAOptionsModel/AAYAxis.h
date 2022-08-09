@@ -91,6 +91,7 @@ AAPropStatementAndPropSetFuncStatement(copy,   AAYAxis, NSString *, tickPosition
 AAPropStatementAndPropSetFuncStatement(strong, AAYAxis, NSArray  *, tickPositions) //自定义Y轴坐标（如：[@(0), @(25), @(50), @(75) , (100)]）
 AAPropStatementAndPropSetFuncStatement(strong, AAYAxis, id        , top)
 AAPropStatementAndPropSetFuncStatement(strong, AAYAxis, id        , height)
+AAPropStatementAndPropSetFuncStatement(copy,   AAYAxis, NSString *, tooltipValueFormat) //Parallel coordinates only. https://api.highcharts.com.cn/highcharts/yAxis.tooltipValueFormat.html
 
 
 @end
