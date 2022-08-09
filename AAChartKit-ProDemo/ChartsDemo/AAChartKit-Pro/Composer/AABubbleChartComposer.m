@@ -75,30 +75,29 @@
 + (AAOptions *)packedbubbleSpiralChart {
     return AAOptions.new
         .chartSet(AAChart.new
-            .typeSet(AAChartTypePackedbubble)
-//            .heightSet(@"100%")
-                  )
+                  .typeSet(AAChartTypePackedbubble)
+                  .heightSet((id)@"100%"))
         .titleSet(AATitle.new
-            .textSet(@"Carbon emissions around the world (2014)"))
+                  .textSet(@"Carbon emissions around the world (2014)"))
         .tooltipSet(AATooltip.new
-            .useHTMLSet(true)
-            .pointFormatSet(@"{point.name}: {point.y}m CO2"))
+                    .useHTMLSet(true)
+                    .pointFormatSet(@"{point.name}: {point.y}m CO2"))
         .plotOptionsSet(AAPlotOptions.new
-            .packedbubbleSet(AAPackedbubble.new
-                .useSimulationSet(@false)
-                .minSizeSet(@"20%")
-                .maxSizeSet(@"80%")
-                .dataLabelsSet(AADataLabels.new
-                    .enabledSet(true)
-                    .formatSet(@"{point.name}")
-                    .filterSet(AAFilter.new
-                        .propertySet(@"y")
-                        .operatorSet(@">")
-                        .valueSet(@250))
-                    .styleSet(AAStyle.new
-                        .colorSet(AAColor.blackColor)
-                        .textOutlineSet(@"none")
-                        .fontWeightSet(@"normal")))))
+                        .packedbubbleSet(AAPackedbubble.new
+                                         .useSimulationSet(@false)
+                                         .minSizeSet(@"20%")
+                                         .maxSizeSet(@"80%")
+                                         .dataLabelsSet(AADataLabels.new
+                                                        .enabledSet(true)
+                                                        .formatSet(@"{point.name}")
+                                                        .filterSet(AAFilter.new
+                                                                   .propertySet(@"y")
+                                                                   .operatorSet(@">")
+                                                                   .valueSet(@250))
+                                                        .styleSet(AAStyle.new
+                                                                  .colorSet(AAColor.blackColor)
+                                                                  .textOutlineSet(@"none")
+                                                                  .fontWeightSet(@"normal")))))
         .seriesSet(AAOptionsSeries.packedbubbleSeries);
 }
 
