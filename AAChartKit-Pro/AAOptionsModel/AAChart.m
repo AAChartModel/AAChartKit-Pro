@@ -59,6 +59,7 @@ AAPropSetFuncImplementation(AAChart, AAResetZoomButton *, resetZoomButton)
 AAPropSetFuncImplementation(AAChart, AAChartEvents *, events)
 AAPropSetFuncImplementation(AAChart, id           , parallelCoordinates)
 AAPropSetFuncImplementation(AAChart, AAParallelAxes *, parallelAxes)
+AAPropSetFuncImplementation(AAChart, NSNumber    *, height)
 
 @end
 

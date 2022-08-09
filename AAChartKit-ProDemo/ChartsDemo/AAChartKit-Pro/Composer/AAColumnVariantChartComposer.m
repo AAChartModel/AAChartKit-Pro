@@ -261,4 +261,55 @@
     return aaOptions;
 }
 
++ (AAOptions *)bulletChart {
+   return AAOptions.new
+        .chartSet(AAChart.new
+            .marginTopSet(@40)
+            .invertedSet(true)
+//            .marginLeftSet(@135)
+            .heightSet(@200)
+            .typeSet(AAChartTypeBullet))
+        .titleSet(AATitle.new
+            .textSet(@"2017 年公司运营情况"))
+        .xAxisSet(AAXAxis.new
+            .categoriesSet(@[@"<span style=color:#ff0000;font-weight:bold;font-size:13px>营收</span><br/>千美元", ]))
+        .yAxisSet(AAYAxis.new
+            .gridLineWidthSet(@0)
+            .plotBandsSet(@[
+                AAPlotBandsElement.new
+                    .fromSet(@0)
+                    .toSet(@150)
+                    .colorSet(@"#666"),
+                AAPlotBandsElement.new
+                    .fromSet(@150)
+                    .toSet(@225)
+                    .colorSet(@"#999"),
+                AAPlotBandsElement.new
+                    .fromSet(@225)
+                    .toSet(@9000000000)
+                    .colorSet(@"#bbb")
+                ])
+            .titleSet((id)NSNull.new))
+        .plotOptionsSet(AAPlotOptions.new
+            .seriesSet(AASeries.new
+                .pointPaddingSet(@0.25)
+                .borderWidthSet(@0)
+//                .colorSet(@"#000")
+//                .targetOptionsSet(AATargetOptions.new
+//                    .widthSet(@"200%"))
+                       ))
+        .legendSet(AALegend.new
+            .enabledSet(false))
+        .seriesSet(@[
+            AASeriesElement.new
+                .dataSet(@[
+                    AABulletDataElement.new
+                        .ySet(@275)
+                        .targetSet(@250)
+                    ])
+            ])
+        .tooltipSet(AATooltip.new
+            .pointFormatSet(@"{point.y} （目标值 {point.target}）"));
+}
+
 @end

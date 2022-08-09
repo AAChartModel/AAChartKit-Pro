@@ -38,7 +38,8 @@
 
 @interface AASeries : NSObject
 
-AAPropStatementAndPropSetFuncStatement(strong, AASeries, NSNumber     *, borderRadius) 
+AAPropStatementAndPropSetFuncStatement(strong, AASeries, NSNumber     *, borderRadius)
+AAPropStatementAndPropSetFuncStatement(strong, AASeries, NSNumber     *, borderWidth)
 AAPropStatementAndPropSetFuncStatement(strong, AASeries, AAMarker     *, marker) 
 AAPropStatementAndPropSetFuncStatement(copy,   AASeries, NSString     *, stacking) 
 AAPropStatementAndPropSetFuncStatement(strong, AASeries, AAAnimation  *, animation) 

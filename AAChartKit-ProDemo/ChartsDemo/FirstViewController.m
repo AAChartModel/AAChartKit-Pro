@@ -252,6 +252,7 @@
                 @"xrangeChart---X轴范围图||甘特图||条码图",
                 @"histogramChart---直方混合散点图📊",
                 @"bellcurveChart---钟形曲线混合散点图🔔",
+                @"bulletChart---子弹图"
             ],
 //            "MoreProType | 更多高级类型图表",
             @[

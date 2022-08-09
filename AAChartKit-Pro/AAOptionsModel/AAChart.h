@@ -63,6 +63,7 @@ AAPropStatementAndPropSetFuncStatement(strong, AAChart, AAResetZoomButton *, res
 AAPropStatementAndPropSetFuncStatement(strong, AAChart, AAChartEvents *, events)
 AAPropStatementAndPropSetFuncStatement(strong, AAChart, id           , parallelCoordinates)
 AAPropStatementAndPropSetFuncStatement(strong, AAChart, AAParallelAxes *, parallelAxes)
+AAPropStatementAndPropSetFuncStatement(strong, AAChart, NSNumber    *, height) //👇
 
 @end
 

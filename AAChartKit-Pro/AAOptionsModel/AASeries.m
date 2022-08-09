@@ -35,7 +35,8 @@
 
 @implementation AASeries
 
-AAPropSetFuncImplementation(AASeries, NSNumber     *, borderRadius) 
+AAPropSetFuncImplementation(AASeries, NSNumber     *, borderRadius)
+AAPropSetFuncImplementation(AASeries, NSNumber     *, borderWidth)
 AAPropSetFuncImplementation(AASeries, AAMarker     *, marker) 
 AAPropSetFuncImplementation(AASeries, NSString     *, stacking) 
 AAPropSetFuncImplementation(AASeries, AAAnimation  *, animation) 

@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (AAOptions *)xrangeChart;
 + (AAOptions *)histogramChart;
 + (AAOptions *)bellcurveChart;
++ (AAOptions *)bulletChart;
 
 @end
 

@@ -82,6 +82,7 @@
 #import "AAData.h"
 #import "AAHeatmap.h"
 #import "AAParallelAxes.h"
+#import "AABulletDataElement.h"
 
 @interface AAOptions : NSObject
 

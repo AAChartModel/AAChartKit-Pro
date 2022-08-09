@@ -105,6 +105,7 @@
 		84AA68B528A120F9009067AE /* AAOptionsCSV.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AA68B428A120F9009067AE /* AAOptionsCSV.m */; };
 		84AA68B828A1FD61009067AE /* AAParallelAxes.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AA68B728A1FD61009067AE /* AAParallelAxes.m */; };
 		84AA68BA28A1FEC6009067AE /* marathonData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84AA68B928A1FEC6009067AE /* marathonData.json */; };
+		84AA68BD28A208FE009067AE /* AABulletDataElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AA68BC28A208FE009067AE /* AABulletDataElement.m */; };
 		84B13EE72897A090007356C6 /* AAItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13EE62897A090007356C6 /* AAItem.m */; };
 		84B13F4028A0AFF7007356C6 /* AAHeatOrTreeMapChartComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13F3F28A0AFF7007356C6 /* AAHeatOrTreeMapChartComposer.m */; };
 		84B13F4528A0B5CF007356C6 /* AAHeatOrTreeMapChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13F4428A0B5CF007356C6 /* AAHeatOrTreeMapChartVC.m */; };
@@ -302,6 +303,8 @@
 		84AA68B628A1FD61009067AE /* AAParallelAxes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAParallelAxes.h; sourceTree = "<group>"; };
 		84AA68B728A1FD61009067AE /* AAParallelAxes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAParallelAxes.m; sourceTree = "<group>"; };
 		84AA68B928A1FEC6009067AE /* marathonData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = marathonData.json; sourceTree = "<group>"; };
+		84AA68BB28A208FE009067AE /* AABulletDataElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AABulletDataElement.h; sourceTree = "<group>"; };
+		84AA68BC28A208FE009067AE /* AABulletDataElement.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AABulletDataElement.m; sourceTree = "<group>"; };
 		84B13EE52897A090007356C6 /* AAItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAItem.h; sourceTree = "<group>"; };
 		84B13EE62897A090007356C6 /* AAItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAItem.m; sourceTree = "<group>"; };
 		84B13F3E28A0AFF7007356C6 /* AAHeatOrTreeMapChartComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAHeatOrTreeMapChartComposer.h; sourceTree = "<group>"; };
@@ -487,6 +490,8 @@
 				84AA68B128A11E45009067AE /* AAHeatmap.m */,
 				84AA68B628A1FD61009067AE /* AAParallelAxes.h */,
 				84AA68B728A1FD61009067AE /* AAParallelAxes.m */,
+				84AA68BB28A208FE009067AE /* AABulletDataElement.h */,
+				84AA68BC28A208FE009067AE /* AABulletDataElement.m */,
 			);
 			path = AAOptionsProModel;
 			sourceTree = "<group>";
@@ -917,6 +922,7 @@
 				8441A70E26C21E6C007EAAA7 /* AAPlotBandsElement.m in Sources */,
 				8441A71026C21E6C007EAAA7 /* AATooltip.m in Sources */,
 				84B13F5628A0E028007356C6 /* AAColumnVariantChartComposer.m in Sources */,
+				84AA68BD28A208FE009067AE /* AABulletDataElement.m in Sources */,
 				84B13F4B28A0B869007356C6 /* AABubbleChartComposer.m in Sources */,
 				7172A3DB1E763EA6000D5B99 /* AppDelegate.m in Sources */,
 				27EB89E5249113B6007E6A6B /* AALevelsElement.m in Sources */,
