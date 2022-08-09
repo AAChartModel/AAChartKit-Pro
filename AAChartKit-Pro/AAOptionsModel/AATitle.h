@@ -54,5 +54,7 @@ AAPropStatementAndPropSetFuncStatement(assign, AATitle, BOOL          , useHTML)
 AAPropStatementAndPropSetFuncStatement(copy,   AASubtitle, NSString *, text)
 AAPropStatementAndPropSetFuncStatement(copy,   AASubtitle, NSString *, align)
 AAPropStatementAndPropSetFuncStatement(strong, AASubtitle, AAStyle  *, style)
+AAPropStatementAndPropSetFuncStatement(strong, AASubtitle, NSNumber *, x)
+AAPropStatementAndPropSetFuncStatement(strong, AASubtitle, NSNumber *, y)
 
 @end

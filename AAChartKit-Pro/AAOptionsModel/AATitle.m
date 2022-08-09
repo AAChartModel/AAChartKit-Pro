@@ -50,5 +50,7 @@ AAPropSetFuncImplementation(AATitle, BOOL          , useHTML) //是否 使用HTM
 AAPropSetFuncImplementation(AASubtitle, NSString *, text)
 AAPropSetFuncImplementation(AASubtitle, NSString *, align)
 AAPropSetFuncImplementation(AASubtitle, AAStyle  *, style)
+AAPropSetFuncImplementation(AASubtitle, NSNumber *, x)
+AAPropSetFuncImplementation(AASubtitle, NSNumber *, y)
 
 @end
