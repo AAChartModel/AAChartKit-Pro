@@ -10,6 +10,8 @@
 #import "AAChartKit-Pro.h"
 #import "AAOptionsCSV.h"
 #import "NSString+toPureJSString.h"
+#import "AAOptionsData.h"
+#import "AAOptionsSeries.h"
 
 @implementation AAHeatOrTreeMapChartComposer
 

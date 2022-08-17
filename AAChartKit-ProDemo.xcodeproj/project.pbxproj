@@ -199,7 +199,6 @@
 		8441A6A826C21E52007EAAA7 /* AAOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAOptions.m; sourceTree = "<group>"; };
 		8441A6A926C21E52007EAAA7 /* AAGlobalMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAGlobalMacro.h; sourceTree = "<group>"; };
 		8441A6AA26C21E52007EAAA7 /* AAChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAChartView.m; sourceTree = "<group>"; };
-		8441A6AB26C21E52007EAAA7 /* AAChartKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAChartKit.h; sourceTree = "<group>"; };
 		8441A6AC26C21E52007EAAA7 /* AAChartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAChartModel.m; sourceTree = "<group>"; };
 		8441A6AD26C21E52007EAAA7 /* AASeriesElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AASeriesElement.h; sourceTree = "<group>"; };
 		8441A6AE26C21E52007EAAA7 /* AASeriesElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AASeriesElement.m; sourceTree = "<group>"; };
@@ -366,7 +365,6 @@
 		1E66D1F0210AF4EC007EAB8C /* AAChartCreator */ = {
 			isa = PBXGroup;
 			children = (
-				8441A6AB26C21E52007EAAA7 /* AAChartKit.h */,
 				8441A6B026C21E53007EAAA7 /* AAChartModel.h */,
 				8441A6AC26C21E52007EAAA7 /* AAChartModel.m */,
 				8441A6B126C21E53007EAAA7 /* AAChartView.h */,

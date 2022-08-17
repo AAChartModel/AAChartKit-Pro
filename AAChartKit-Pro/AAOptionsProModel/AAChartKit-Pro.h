@@ -9,8 +9,7 @@
 #ifndef AAChartKit_Pro_h
 #define AAChartKit_Pro_h
 
-#import "AAChartKit.h"
-#import "AAOptionsData.h"
-#import "AAOptionsSeries.h"
+#import "AAChartView.h"
+
 
 #endif /* AAChartKit_Pro_h */
