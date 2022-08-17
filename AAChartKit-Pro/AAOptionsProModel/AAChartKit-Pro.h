@@ -9,7 +9,19 @@
 #ifndef AAChartKit_Pro_h
 #define AAChartKit_Pro_h
 
-#import "AAChartView.h"
+#import "AAChartKit.h"
+
+#import "AAChartTypePro.h"
+#import "AALevelsElement.h"
+#import "AAPackedbubble.h"
+#import "AATreemap.h"
+#import "AAItem.h"
+#import "AALayoutAlgorithm.h"
+#import "AASolidgaugeDataElement.h"
+#import "AASolidgauge.h"
+#import "AAHeatmap.h"
+#import "AAParallelAxes.h"
+#import "AABulletDataElement.h"
 
 
 #endif /* AAChartKit_Pro_h */
