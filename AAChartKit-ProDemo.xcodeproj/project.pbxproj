@@ -638,9 +638,9 @@
 		8441A71A26C21F02007EAAA7 /* Color */ = {
 			isa = PBXGroup;
 			children = (
-				8441A71B26C21F02007EAAA7 /* AAGradientColor.h */,
 				8441A71C26C21F02007EAAA7 /* AAColor.h */,
 				8441A71D26C21F02007EAAA7 /* AAColor.m */,
+				8441A71B26C21F02007EAAA7 /* AAGradientColor.h */,
 				8441A71E26C21F02007EAAA7 /* AAGradientColor.m */,
 			);
 			path = Color;
@@ -650,8 +650,8 @@
 			isa = PBXGroup;
 			children = (
 				8441A72226C21F0A007EAAA7 /* NSArray+toJSArray.h */,
-				8441A72326C21F0A007EAAA7 /* NSString+toPureJSString.h */,
 				8441A72426C21F0A007EAAA7 /* NSArray+toJSArray.m */,
+				8441A72326C21F0A007EAAA7 /* NSString+toPureJSString.h */,
 				8441A72526C21F0A007EAAA7 /* NSString+toPureJSString.m */,
 			);
 			path = Category;
