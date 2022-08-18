@@ -30,5 +30,10 @@
  
  */
 #import "AAChartView.h"
+#import "AAGradientColor.h"
+#import "NSArray+toJSArray.h"
+#import "AAStyleConvenience.h"
+#import "AAMarginConvenience.h"
+#import "AALineStyle.h"
 
 
