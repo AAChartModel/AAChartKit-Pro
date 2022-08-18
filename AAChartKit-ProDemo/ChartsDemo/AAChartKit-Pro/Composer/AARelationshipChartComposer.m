@@ -9,7 +9,6 @@
 #import "AARelationshipChartComposer.h"
 #import "AAChartKit-Pro.h"
 #import "AAOptionsData.h"
-#import "AAOptionsSeries.h"
 
 @implementation AARelationshipChartComposer
 
