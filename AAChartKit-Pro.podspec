@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = 'AAChartKit-Pro'
-    s.version      = '0.0.4'
+    s.version      = '0.0.5'
     s.summary      = '📈📊🎓🎓🎓AAChartKit-Pro is a professional version of AAChartKit, it is an elegant and beutiful chart framework for iOS, iPadOS, macOS. AAChartKit-Pro is a more powerful data visualization framework that supports more types beautiful chart like bellcurve, bullet, columnpyramid, cylinder, dependencywheel, heatmap, histogram, networkgraph, organization, packedbubble, pareto, sankey, series, solidgauge, streamgraph, sunburst, tilemap, timeline, treemap, variablepie, variwide, vector, venn, windbarb, wordcloud, xrange charts and so on.'
     s.homepage     = 'https://github.com/AAChartModel/AAChartKit-Pro'
     s.license      = "Just for Test Demo"
