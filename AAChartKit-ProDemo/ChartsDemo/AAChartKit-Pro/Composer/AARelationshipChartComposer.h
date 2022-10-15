@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (AAOptions *)arcdiagramChart3;
 + (AAOptions *)organizationChart;
 + (AAOptions *)networkgraphChart;
++ (AAOptions *)simpleDependencyWheelChart;
 
 @end
 

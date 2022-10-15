@@ -225,6 +225,7 @@
                 @"arcdiagramChart3---弧形图3🌈",
                 @"organizationChart---组织结构图",
                 @"networkgraphChart---力导关系图",
+                @"simpleDependencyWheelChart---简单的和弦图🎵",
             ],
 //            "HeatOrTreeMapChart | 热力或树形类型图表",
             @[
