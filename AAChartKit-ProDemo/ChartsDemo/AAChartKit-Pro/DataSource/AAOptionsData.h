@@ -48,6 +48,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)marathonData;
 
 
++ (NSArray *)volinPlotElement1Data;
++ (NSArray *)volinPlotElement2Data;
+
++ (NSArray *)simpleDependencyWheelData;
+
 @end
 
 NS_ASSUME_NONNULL_END

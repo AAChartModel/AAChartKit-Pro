@@ -114,6 +114,9 @@
 		84B13F4E28A0BA26007356C6 /* AARelationshipChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13F4D28A0BA26007356C6 /* AARelationshipChartVC.m */; };
 		84B13F5128A0BA3A007356C6 /* AABubbleChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13F5028A0BA3A007356C6 /* AABubbleChartVC.m */; };
 		84B13F5628A0E028007356C6 /* AAColumnVariantChartComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13F5528A0E028007356C6 /* AAColumnVariantChartComposer.m */; };
+		84DEB8AD28FADCDA00BF9423 /* volinPlotElement1Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84DEB8AC28FADCDA00BF9423 /* volinPlotElement1Data.json */; };
+		84DEB8AF28FADD3A00BF9423 /* volinPlotElement2Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84DEB8AE28FADD3A00BF9423 /* volinPlotElement2Data.json */; };
+		84DEB8B128FADE1600BF9423 /* simpleDependencyWheelData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84DEB8B028FADE1600BF9423 /* simpleDependencyWheelData.json */; };
 		84FE7BB726AED3D000B68A56 /* AABaseChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */; };
 /* End PBXBuildFile section */
 
@@ -322,6 +325,9 @@
 		84B13F5228A0DA32007356C6 /* AAChartKit-Pro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AAChartKit-Pro.h"; sourceTree = "<group>"; };
 		84B13F5428A0E028007356C6 /* AAColumnVariantChartComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAColumnVariantChartComposer.h; sourceTree = "<group>"; };
 		84B13F5528A0E028007356C6 /* AAColumnVariantChartComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAColumnVariantChartComposer.m; sourceTree = "<group>"; };
+		84DEB8AC28FADCDA00BF9423 /* volinPlotElement1Data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = volinPlotElement1Data.json; sourceTree = "<group>"; };
+		84DEB8AE28FADD3A00BF9423 /* volinPlotElement2Data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = volinPlotElement2Data.json; sourceTree = "<group>"; };
+		84DEB8B028FADE1600BF9423 /* simpleDependencyWheelData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = simpleDependencyWheelData.json; sourceTree = "<group>"; };
 		84FE7B9F26AED3D000B68A56 /* AABaseChartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABaseChartVC.h; sourceTree = "<group>"; };
 		84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABaseChartVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -530,6 +536,9 @@
 				27EB8A692497C006007E6A6B /* vennData.json */,
 				27EB8A94249B8AA3007E6A6B /* windbarbData.json */,
 				27EB8A98249B9233007E6A6B /* wordcloudData.json */,
+				84DEB8AC28FADCDA00BF9423 /* volinPlotElement1Data.json */,
+				84DEB8AE28FADD3A00BF9423 /* volinPlotElement2Data.json */,
+				84DEB8B028FADE1600BF9423 /* simpleDependencyWheelData.json */,
 			);
 			path = DataJsonFiles;
 			sourceTree = "<group>";
@@ -813,6 +822,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84DEB8AD28FADCDA00BF9423 /* volinPlotElement1Data.json in Resources */,
 				84A5690A27FD666900883553 /* arcdiagram3Data.json in Resources */,
 				27EB8A7C2497C007007E6A6B /* drilldownTreemapData.json in Resources */,
 				27EB8A792497C007007E6A6B /* vennData.json in Resources */,
@@ -826,6 +836,7 @@
 				27EB8A732497C007007E6A6B /* variablepieData.json in Resources */,
 				27EB8A892497C37D007E6A6B /* packedbubbleSeries.json in Resources */,
 				27EB8A6F2497C007007E6A6B /* dependencywheelData.json in Resources */,
+				84DEB8AF28FADD3A00BF9423 /* volinPlotElement2Data.json in Resources */,
 				27EB8A752497C007007E6A6B /* treemapWithColorAxisData.json in Resources */,
 				27EB8A7D2497C007007E6A6B /* lollipopData.json in Resources */,
 				27EB8AD9249C8FFB007E6A6B /* eulerData.json in Resources */,
@@ -843,6 +854,7 @@
 				1E66D1FB210AF4ED007EAB8C /* AAJSFiles.bundle in Resources */,
 				27EB8A702497C007007E6A6B /* columnpyramidData.json in Resources */,
 				84A5690827FD664F00883553 /* arcdiagram2Data.json in Resources */,
+				84DEB8B128FADE1600BF9423 /* simpleDependencyWheelData.json in Resources */,
 				27EB8A7E2497C007007E6A6B /* bigHeatmapData.json in Resources */,
 				27EB8A7A2497C007007E6A6B /* sankeyData.json in Resources */,
 				7172A3E61E763EA6000D5B99 /* LaunchScreen.storyboard in Resources */,

@@ -155,9 +155,17 @@
 
 
 
++ (NSArray *)volinPlotElement1Data {
+    return [self getJsonDataWithJsonFileName:@"volinPlotElement1Data"];
+}
 
++ (NSArray *)volinPlotElement2Data {
+    return [self getJsonDataWithJsonFileName:@"volinPlotElement2Data"];
+}
 
-
++ (NSArray *)simpleDependencyWheelData {
+    return [self getJsonDataWithJsonFileName:@"simpleDependencyWheelData"];
+}
 
 + (NSArray *)getSingleGroupCategoryDataElementArrayWithY:(int )y {
     NSMutableArray *dataArr = [NSMutableArray array];
