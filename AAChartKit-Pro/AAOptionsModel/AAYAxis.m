@@ -95,6 +95,9 @@ AAPropSetFuncImplementation(AAYAxis, NSArray  *, tickPositions) //自定义Y轴�
 AAPropSetFuncImplementation(AAYAxis, id        , top)
 AAPropSetFuncImplementation(AAYAxis, id        , height)
 AAPropSetFuncImplementation(AAYAxis, NSString *, tooltipValueFormat) //Parallel coordinates only. https://api.highcharts.com.cn/highcharts/yAxis.tooltipValueFormat.html
+AAPropSetFuncImplementation(AAYAxis, NSNumber *, width)
+AAPropSetFuncImplementation(AAYAxis, NSNumber *, left)
+
 
 
 @end

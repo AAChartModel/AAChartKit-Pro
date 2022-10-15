@@ -70,6 +70,7 @@ AAPropSetFuncImplementation(AATooltip, NSNumber *, padding) //设置取值精确
 AAPropSetFuncImplementation(AATooltip, NSNumber *, hideDelay) //提示框隐藏延时: 当鼠标移出数据点或者图表后，数据提示框会在设定的延迟时间后消失 默认是：500.
 AAPropSetFuncImplementation(AATooltip, AADateTimeLabelFormats  *, dateTimeLabelFormats)
 AAPropSetFuncImplementation(AATooltip, id        , outside)
+AAPropSetFuncImplementation(AATooltip, id        , split)
 
 
 AAJSFuncTypePropSetFuncImplementation(AATooltip, NSString *, formatter)

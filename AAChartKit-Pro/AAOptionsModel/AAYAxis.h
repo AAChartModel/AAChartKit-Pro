@@ -92,6 +92,8 @@ AAPropStatementAndPropSetFuncStatement(strong, AAYAxis, NSArray  *, tickPosition
 AAPropStatementAndPropSetFuncStatement(strong, AAYAxis, id        , top)
 AAPropStatementAndPropSetFuncStatement(strong, AAYAxis, id        , height)
 AAPropStatementAndPropSetFuncStatement(copy,   AAYAxis, NSString *, tooltipValueFormat) //Parallel coordinates only. https://api.highcharts.com.cn/highcharts/yAxis.tooltipValueFormat.html
+AAPropStatementAndPropSetFuncStatement(strong, AAYAxis, NSNumber *, width)
+AAPropStatementAndPropSetFuncStatement(strong, AAYAxis, NSNumber *, left)
 
 
 @end
