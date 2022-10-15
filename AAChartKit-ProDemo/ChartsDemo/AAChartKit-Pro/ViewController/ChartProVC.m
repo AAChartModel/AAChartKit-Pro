@@ -65,7 +65,7 @@
         case 14: return [self parallelCoordinatesSplineChart];
         case 15: return [self parallelCoordinatesLineChart];
         case 16: return [self volinPlotChart];
-        case 17: return [self simpleDependencyWheelChart];
+        case 17: return [self variablepieChart];
 
     }
     return [self sunburstChart];
@@ -748,28 +748,36 @@
             ]);
 }
 
-- (AAOptions *)simpleDependencyWheelChart {
-    return AAOptions.new
-        .titleSet(AATitle.new
-            .textSet(@"2016 BRICS export in million USD"))
-        .colorsSet(@[@"#058DC7", @"#8dc705", @"#c73f05", @"#ffc080", @"#dd69ba", ])
-        .seriesSet(@[
-            AASeriesElement.new
-                .keysSet(@[@"from", @"to", @"weight", ])
-                .dataSet(AAOptionsData.simpleDependencyWheelData)
-                .typeSet(AAChartTypeDependencywheel)
-                .nameSet(@"Dependency wheel series")
-                .dataLabelsSet(AADataLabels.new
-                    .colorSet(@"#333")
-                    .textPathSet(AATextPath.new
-                        .enabledSet(true)
-//                        .attributesSet(AAAttributes.new
-//                            .dySet(@5))
-            )
-//                    .distanceSet(@10)
-            )
-//                .sizeSet(@"95%")
-            ]);
+- (AAOptions *)variablepieChart {
+    AAChart *aaChart = AAChart.new
+    .typeSet(AAChartTypeVariablepie);
+    
+    AATitle *aaTitle = AATitle.new
+    .textSet(@"不同国家人口密度及面积对比");
+    
+    AASubtitle *aaSubtitle = AASubtitle.new
+    .textSet(@"扇区长度（圆周方法）表示面积，宽度（纵向）表示人口密度");
+    
+    AATooltip *aaTooltip = AATooltip.new
+    .enabledSet(true)
+    .headerFormatSet(@"")
+    .pointFormatSet(@"<span style=""color:{point.color}"">\u25CF</span> <b> {point.name}</b><br/>""面积 (平方千米): <b>{point.y}</b><br/>""人口密度 (每平方千米人数): <b>{point.z}</b><br/>""");
+    
+    AAOptions *aaOptions = AAOptions.new
+    .chartSet(aaChart)
+    .titleSet(aaTitle)
+    .subtitleSet(aaSubtitle)
+    .tooltipSet(aaTooltip)
+    .seriesSet(@[
+        AASeriesElement.new
+        .nameSet(@"countries")
+        .innerSizeSet(@"20%")
+        .dataLabelsSet(AADataLabels.new
+                       .enabledSet(false))
+        .dataSet(AAOptionsData.variablepieData)
+               ]);
+    
+    return aaOptions;
 }
 
 

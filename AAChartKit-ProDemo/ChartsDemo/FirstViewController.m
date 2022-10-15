@@ -274,7 +274,7 @@
                 @"parallelCoordinatesSplineChart---平行坐标曲线图",
                 @"parallelCoordinatesLineChart---平行坐标折线图📈",
                 @"volinPlotChart---小提琴图🎻",
-                @"simpleDependencyWheelChart---简单的和弦图🎵",
+                @"variablepieChart---可变宽度的饼图🍪"
             ],
             
         ];
