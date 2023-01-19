@@ -862,10 +862,11 @@
                                                   .ySet(@(-64))
                                                   .borderWidthSet(@0)
                                                   .useHTMLSet(true)
-                                                  .formatSet(@AAJSFunc( <div style="text-align:center">
-                                                                      <span style="font-size:48px">{y}</span><br/>
-                                                                      <span style="font-size:20px;opacity:0.4">pounds</span>
-                                                                  </div>)))))
+//                                                  .formatSet(@AAJSFunc( <div style="text-align:center">
+//                                                                      <span style="font-size:48px">{y}</span><br/>
+//                                                                      <span style="font-size:20px;opacity:0.4">pounds</span>
+//                                                                  </div>))
+                                                  )))
     .yAxisSet(AAYAxis.new
                 .minSet(@0)
                 .maxSet(@100)
