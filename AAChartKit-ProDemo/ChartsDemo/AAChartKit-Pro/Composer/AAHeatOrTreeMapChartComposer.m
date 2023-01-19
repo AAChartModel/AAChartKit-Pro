@@ -59,58 +59,6 @@
                ]);
 }
 
-+ (AAOptions *)tilemapChart {
-    return AAOptions.new
-    .chartSet(AAChart.new
-              .typeSet(AAChartTypeTilemap))
-    .titleSet(AATitle.new
-              .textSet(@"U.S. states by population in 2016"))
-    .xAxisSet(AAXAxis.new
-              .visibleSet(false))
-    .yAxisSet(AAYAxis.new
-              .visibleSet(false))
-    .colorAxisSet(AAColorAxis.new
-                  .dataClassesSet(@[
-                    AADataClassesElement.new
-                        .fromSet(@0)
-                        .toSet(@1000000)
-                        .colorSet(@"#F9EDB3")
-                        .nameSet(@"< 1M"),
-                    AADataClassesElement.new
-                        .fromSet(@1000000)
-                        .toSet(@5000000)
-                        .colorSet(@"#FFC428")
-                        .nameSet(@"1M - 5M"),
-                    AADataClassesElement.new
-                        .fromSet(@5000000)
-                        .toSet(@20000000)
-                        .colorSet(@"#F9EDB3")
-                        .nameSet(@"5M - 20M"),
-                    AADataClassesElement.new
-                        .fromSet(@20000000)
-                        .colorSet(@"#FF2371")
-                        .nameSet(@"> 20M"),
-                  ]))
-    .tooltipSet(AATooltip.new
-                .enabledSet(true)
-                .headerFormatSet(@"")
-                .valueSuffixSet(@"The population of <b> {point.name}</b> is <b>{point.value}</b>"))
-    .plotOptionsSet(AAPlotOptions.new
-                    .seriesSet(AASeries.new
-                               .dataLabelsSet(AADataLabels.new
-                                              .enabledSet(true)
-                                              .formatSet(@"{point.hc-a2}")
-                                              .colorSet(AAColor.whiteColor)
-                                              .styleSet(AAStyle.new
-                                                        .textOutlineSet(@"none")))))
-    .seriesSet(@[
-        AASeriesElement.new
-        .nameSet(@"Height")
-        .colorByPointSet(@true)
-        .dataSet(AAOptionsData.tilemapData)
-               ]);
-}
-
 + (AAOptions *)treemapWithColorAxisData {
     return AAOptions.new
     .chartSet(AAChart.new
@@ -561,6 +509,100 @@
 
 + (AAOptions *)tilemapForAfricaWithSquareTileShape {
     AAOptions *aaOptions = [self tilemapForAfricaWithHexagonTileShape];
+    aaOptions.plotOptions.series
+            .tileShapeSet(AAChartTileShapeTypeSquare);
+    return aaOptions;
+}
+
++ (AAOptions *)tilemapChartForAmericaWithHexagonTileShape {
+    return AAOptions.new
+            .chartSet(AAChart.new
+                    .typeSet(AAChartTypeTilemap))
+            .titleSet(AATitle.new
+                    .textSet(@"U.S. states by population in 2016"))
+            .xAxisSet(AAXAxis.new
+                    .visibleSet(false))
+            .yAxisSet(AAYAxis.new
+                    .visibleSet(false))
+            .colorAxisSet(AAColorAxis.new
+                    .dataClassesSet(@[
+                            AADataClassesElement.new
+                                    .fromSet(@0)
+                                    .toSet(@1000000)
+                                    .colorSet(@"#F9EDB3")
+                                    .nameSet(@"< 1M"),
+                            AADataClassesElement.new
+                                    .fromSet(@1000000)
+                                    .toSet(@5000000)
+                                    .colorSet(@"#FFC428")
+                                    .nameSet(@"1M - 5M"),
+                            AADataClassesElement.new
+                                    .fromSet(@5000000)
+                                    .toSet(@20000000)
+                                    .colorSet(@"#F9EDB3")
+                                    .nameSet(@"5M - 20M"),
+                            AADataClassesElement.new
+                                    .fromSet(@20000000)
+                                    .colorSet(@"#FF2371")
+                                    .nameSet(@"> 20M"),
+                    ]))
+            .tooltipSet(AATooltip.new
+                    .enabledSet(true)
+                    .headerFormatSet(@"")
+                    .valueSuffixSet(@"The population of <b> {point.name}</b> is <b>{point.value}</b>"))
+            .plotOptionsSet(AAPlotOptions.new
+                    .seriesSet(AASeries.new
+                            .dataLabelsSet(AADataLabels.new
+                                    .enabledSet(true)
+                                    .formatSet(@"{point.hc-a2}")
+                                    .colorSet(AAColor.whiteColor)
+                                    .styleSet(AAStyle.new
+                                            .textOutlineSet(@"none")))))
+            .seriesSet(@[
+                    AASeriesElement.new
+                            .nameSet(@"Height")
+                            .colorByPointSet(@true)
+                            .dataSet(AAOptionsData.tilemapData)
+            ]);
+}
+
+//    static func tilemapChartForAmericaWithCircleTileShape() -> AAOptions {
+//        let aaOptions = tilemapChartForAmericaWithHexagonTileShape()
+//        aaOptions.plotOptions?.series?
+//                .tileShape(.circle)
+//        return aaOptions
+//    }
+//
+//    static func tilemapChartForAmericaWithDiamondTileShape() -> AAOptions {
+//        let aaOptions = tilemapChartForAmericaWithHexagonTileShape()
+//        aaOptions.plotOptions?.series?
+//                .tileShape(.diamond)
+//        return aaOptions
+//    }
+//
+//    static func tilemapChartForAmericaWithSquareTileShape() -> AAOptions {
+//        let aaOptions = tilemapChartForAmericaWithHexagonTileShape()
+//        aaOptions.plotOptions?.series?
+//                .tileShape(.square)
+//        return aaOptions
+//    }
+
++ (AAOptions *)tilemapChartForAmericaWithCircleTileShape {
+    AAOptions *aaOptions = [self tilemapChartForAmericaWithHexagonTileShape];
+    aaOptions.plotOptions.series
+            .tileShapeSet(AAChartTileShapeTypeCircle);
+    return aaOptions;
+}
+
++ (AAOptions *)tilemapChartForAmericaWithDiamondTileShape {
+    AAOptions *aaOptions = [self tilemapChartForAmericaWithHexagonTileShape];
+    aaOptions.plotOptions.series
+            .tileShapeSet(AAChartTileShapeTypeDiamond);
+    return aaOptions;
+}
+
++ (AAOptions *)tilemapChartForAmericaWithSquareTileShape {
+    AAOptions *aaOptions = [self tilemapChartForAmericaWithHexagonTileShape];
     aaOptions.plotOptions.series
             .tileShapeSet(AAChartTileShapeTypeSquare);
     return aaOptions;

@@ -69,10 +69,10 @@
         case 10: return [AAHeatOrTreeMapChartComposer tilemapForAfricaWithCircleTileShape];
         case 11: return [AAHeatOrTreeMapChartComposer tilemapForAfricaWithDiamondTileShape];
         case 12: return [AAHeatOrTreeMapChartComposer tilemapForAfricaWithSquareTileShape];
-//        case 13: return [AAHeatOrTreeMapChartComposer tilemapChartForAmericaWithHexagonTileShape];
-//        case 14: return [AAHeatOrTreeMapChartComposer tilemapChartForAmericaWithCircleTileShape];
-//        case 15: return [AAHeatOrTreeMapChartComposer tilemapChartForAmericaWithDiamondTileShape];
-//        case 16: return [AAHeatOrTreeMapChartComposer tilemapChartForAmericaWithSquareTileShape];
+        case 13: return [AAHeatOrTreeMapChartComposer tilemapChartForAmericaWithHexagonTileShape];
+        case 14: return [AAHeatOrTreeMapChartComposer tilemapChartForAmericaWithCircleTileShape];
+        case 15: return [AAHeatOrTreeMapChartComposer tilemapChartForAmericaWithDiamondTileShape];
+        case 16: return [AAHeatOrTreeMapChartComposer tilemapChartForAmericaWithSquareTileShape];
 
         default: return nil;
     }
