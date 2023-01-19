@@ -25,6 +25,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (AAOptions *)simpleTilemapWithDiamondTileShape;
 + (AAOptions *)simpleTilemapWithSquareTileShape;
 
++ (AAOptions *)tilemapForAfricaWithHexagonTileShape;
++ (AAOptions *)tilemapForAfricaWithCircleTileShape;
++ (AAOptions *)tilemapForAfricaWithDiamondTileShape;
++ (AAOptions *)tilemapForAfricaWithSquareTileShape;
+
 @end
 
 NS_ASSUME_NONNULL_END
