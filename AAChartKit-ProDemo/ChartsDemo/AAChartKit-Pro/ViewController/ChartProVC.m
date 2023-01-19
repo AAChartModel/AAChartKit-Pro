@@ -66,6 +66,7 @@
         case 15: return [self parallelCoordinatesLineChart];
         case 16: return [self volinPlotChart];
         case 17: return [self variablepieChart];
+        case 18: return [self semicircleSolidGaugeChart];
 
     }
     return [self sunburstChart];
@@ -780,5 +781,107 @@
     return aaOptions;
 }
 
+////https://www.highcharts.com/forum/viewtopic.php?f=9&t=49662&p=181012#p181048
+//    private func semicircleSolidGaugeChart() -> AAOptions {
+//        AAOptions()
+//            .chart(AAChart()
+//                    .type(.solidgauge))
+//            .title(AATitle()
+//                    .text("Big Fella")
+//                    .style(AAStyle()
+//                            .fontSize(36)))
+//            .tooltip(AATooltip()
+//                    .enabled(false))
+//            .pane(AAPane()
+//                    .center(["50%", "70%"])
+//                    .size("100%")
+//                    .startAngle(-90)
+//                    .endAngle(90)
+//                    .background([
+//                        AABackgroundElement()
+//                            .backgroundColor("#EEE")
+//                            .innerRadius("60%")
+//                            .outerRadius("100%")
+//                            .shape("arc")
+//                    ]))
+//            .plotOptions(AAPlotOptions()
+//                            .solidgauge(AASolidgauge()
+//                                            .dataLabels(AADataLabels()
+//                                                            .y(-64)
+//                                                            .borderWidth(0)
+//                                                            .useHTML(true)
+//                                                            .format(#"""
+//                                                                    <div style="text-align:center">
+//                                                                        <span style="font-size:48px">{y}</span><br/>
+//                                                                        <span style="font-size:20px;opacity:0.4">pounds</span>
+//                                                                    </div>
+//                                                                    """#.aa_toPureJSString2()))))
+//            .yAxis(AAYAxis()
+//                    .min(0)
+//                    .max(100)
+//                    .tickWidth(0)
+//                    .minorTickInterval(0)
+//                    .tickAmount(2)
+//                    .labels(AALabels()
+//                                .distance(-45)
+//                                .y(32)
+//                                .style(AAStyle()
+//                                        .fontSize(20))))
+//            .series([
+//                AASeriesElement()
+//                    .type(.solidgauge)
+//                    .data([72])
+//            ])
+//    }
+
+- (AAOptions *)semicircleSolidGaugeChart {
+    return AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(AAChartTypeSolidgauge))
+    .titleSet(AATitle.new
+                .textSet(@"Big Fella")
+                .styleSet(AAStyle.new
+                            .fontSizeSet(@36)))
+    .tooltipSet(AATooltip.new
+                .enabledSet(false))
+    .paneSet(AAPane.new
+                .centerSet(@[@"50%", @"70%"])
+                .sizeSet(@"100%")
+                .startAngleSet(@(-90))
+                .endAngleSet(@(90))
+                .backgroundSet(@[
+                    AABackgroundElement.new
+                    .backgroundColorSet(@"#EEE")
+                    .innerRadiusSet(@"60%")
+                    .outerRadiusSet(@"100%")
+                    .shapeSet(@"arc")
+                ]))
+    .plotOptionsSet(AAPlotOptions.new
+                    .solidgaugeSet(AASolidgauge.new
+                                   .dataLabelsSet(AADataLabels.new
+                                                  .ySet(@(-64))
+                                                  .borderWidthSet(@0)
+                                                  .useHTMLSet(true)
+                                                  .formatSet(@AAJSFunc( <div style="text-align:center">
+                                                                      <span style="font-size:48px">{y}</span><br/>
+                                                                      <span style="font-size:20px;opacity:0.4">pounds</span>
+                                                                  </div>)))))
+    .yAxisSet(AAYAxis.new
+                .minSet(@0)
+                .maxSet(@100)
+                .tickWidthSet(@0)
+                .minorTickIntervalSet(@0)
+                .tickAmountSet(@2)
+                .labelsSet(AALabels.new
+                            .distanceSet(@(-45))
+                            .ySet(@32)
+                            .styleSet(AAStyle.new
+                                        .fontSizeSet(@20))))
+    .seriesSet(@[
+        AASeriesElement.new
+        .typeSet(AAChartTypeSolidgauge)
+        .dataSet(@[@72])
+    ]);
+}
 
 @end
