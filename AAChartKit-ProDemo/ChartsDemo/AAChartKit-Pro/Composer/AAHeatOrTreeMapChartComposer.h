@@ -20,6 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (AAOptions *)drilldownLargeDataTreemapChart;
 + (AAOptions *)largeDataHeatmapChart;
 
++ (AAOptions *)simpleTilemapWithHexagonTileShape;
++ (AAOptions *)simpleTilemapWithCircleTileShape;
++ (AAOptions *)simpleTilemapWithDiamondTileShape;
++ (AAOptions *)simpleTilemapWithSquareTileShape;
+
 @end
 
 NS_ASSUME_NONNULL_END

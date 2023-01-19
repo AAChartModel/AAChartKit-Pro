@@ -167,6 +167,22 @@
     return [self getJsonDataWithJsonFileName:@"simpleDependencyWheelData"];
 }
 
+//    public class var simpleTilemapData : [Any] {
+//        getJsonDataWithJsonFileName("simpleTilemapData")
+//    }
+//
+//    public class var tilemapForAfricaData : [Any] {
+//        getJsonDataWithJsonFileName("tilemapForAfricaData")
+//    }
+
++ (NSArray *)simpleTilemapData {
+    return [self getJsonDataWithJsonFileName:@"simpleTilemapData"];
+}
+
++ (NSArray *)tilemapForAfricaData {
+    return [self getJsonDataWithJsonFileName:@"tilemapForAfricaData"];
+}
+
 + (NSArray *)getSingleGroupCategoryDataElementArrayWithY:(int )y {
     NSMutableArray *dataArr = [NSMutableArray array];
     

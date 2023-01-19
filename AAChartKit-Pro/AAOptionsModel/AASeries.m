@@ -54,7 +54,7 @@ AAPropSetFuncImplementation(AASeries, NSNumber     *, borderRadiusTopLeft)
 AAPropSetFuncImplementation(AASeries, NSNumber     *, borderRadiusTopRight)
 AAPropSetFuncImplementation(AASeries, NSNumber     *, borderRadiusBottomLeft)
 AAPropSetFuncImplementation(AASeries, NSNumber     *, borderRadiusBottomRight)
-
+AAPropSetFuncImplementation(AASeries, NSString     *, tileShape)
 
 @end
 

@@ -51,6 +51,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)volinPlotElement1Data;
 + (NSArray *)volinPlotElement2Data;
 
++ (NSArray *)simpleTilemapData;
++ (NSArray *)tilemapForAfricaData;
+
+
+
 + (NSArray *)simpleDependencyWheelData;
 
 @end
