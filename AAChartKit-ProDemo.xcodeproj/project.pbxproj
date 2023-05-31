@@ -121,6 +121,7 @@
 		84DEB8B128FADE1600BF9423 /* simpleDependencyWheelData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84DEB8B028FADE1600BF9423 /* simpleDependencyWheelData.json */; };
 		84DFEAB12A27382C004436BC /* pictorial2Series.json in Resources */ = {isa = PBXBuildFile; fileRef = 84DFEAAF2A27382C004436BC /* pictorial2Series.json */; };
 		84DFEAB22A27382C004436BC /* pictorial1Series.json in Resources */ = {isa = PBXBuildFile; fileRef = 84DFEAB02A27382C004436BC /* pictorial1Series.json */; };
+		84DFEABC2A274784004436BC /* treegraphData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84DFEABB2A274784004436BC /* treegraphData.json */; };
 		84FE7BB726AED3D000B68A56 /* AABaseChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */; };
 /* End PBXBuildFile section */
 
@@ -334,10 +335,10 @@
 		84DEB8AC28FADCDA00BF9423 /* volinPlotElement1Data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = volinPlotElement1Data.json; sourceTree = "<group>"; };
 		84DEB8AE28FADD3A00BF9423 /* volinPlotElement2Data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = volinPlotElement2Data.json; sourceTree = "<group>"; };
 		84DEB8B028FADE1600BF9423 /* simpleDependencyWheelData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = simpleDependencyWheelData.json; sourceTree = "<group>"; };
-		84DFEAAE2A2726A4004436BC /* treegraphData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = treegraphData.json; sourceTree = "<group>"; };
 		84DFEAAF2A27382C004436BC /* pictorial2Series.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pictorial2Series.json; sourceTree = "<group>"; };
 		84DFEAB02A27382C004436BC /* pictorial1Series.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pictorial1Series.json; sourceTree = "<group>"; };
 		84DFEAB32A274158004436BC /* AAPictorialPaths.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAPictorialPaths.h; sourceTree = "<group>"; };
+		84DFEABB2A274784004436BC /* treegraphData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = treegraphData.json; sourceTree = "<group>"; };
 		84FE7B9F26AED3D000B68A56 /* AABaseChartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABaseChartVC.h; sourceTree = "<group>"; };
 		84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABaseChartVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -515,6 +516,7 @@
 		27EB8A1C249276DF007E6A6B /* DataJsonFiles */ = {
 			isa = PBXGroup;
 			children = (
+				84DFEABB2A274784004436BC /* treegraphData.json */,
 				84A5690527FD663400883553 /* arcdiagram1Data.json */,
 				84A5690727FD664F00883553 /* arcdiagram2Data.json */,
 				84A5690927FD666900883553 /* arcdiagram3Data.json */,
@@ -527,7 +529,6 @@
 				27EB8AD8249C8FFB007E6A6B /* eulerData.json */,
 				84A5690B27FD6EB300883553 /* flameData.json */,
 				27EB8A642497C006007E6A6B /* heatmapData.json */,
-				84DFEAAE2A2726A4004436BC /* treegraphData.json */,
 				27EB8A90249B82F9007E6A6B /* itemData.json */,
 				27EB8A6D2497C007007E6A6B /* lollipopData.json */,
 				84AA68B928A1FEC6009067AE /* marathonData.json */,
@@ -874,6 +875,7 @@
 				27EB8A702497C007007E6A6B /* columnpyramidData.json in Resources */,
 				84A5690827FD664F00883553 /* arcdiagram2Data.json in Resources */,
 				84DEB8B128FADE1600BF9423 /* simpleDependencyWheelData.json in Resources */,
+				84DFEABC2A274784004436BC /* treegraphData.json in Resources */,
 				84D2B65E2978F9FF005BBA80 /* simpleTilemapData.json in Resources */,
 				27EB8A7E2497C007007E6A6B /* bigHeatmapData.json in Resources */,
 				27EB8A7A2497C007007E6A6B /* sankeyData.json in Resources */,
