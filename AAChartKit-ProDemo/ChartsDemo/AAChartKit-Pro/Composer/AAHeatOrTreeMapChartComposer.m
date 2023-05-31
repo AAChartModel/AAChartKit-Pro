@@ -687,7 +687,7 @@
     .seriesSet(@[
         AASeriesElement.new
 //        .typeSet(AAChartTypeTreeMap)
-//        .dataSet(AAOptionsData.treeData)
+        .dataSet(AAOptionsData.treegraphData)
         .tooltipSet(AATooltip.new
                     .pointFormatSet(@"{point.name}"))
         .dataLabelsSet(AADataLabels.new
@@ -781,7 +781,7 @@
     .seriesSet(@[
         AASeriesElement.new
 //        .typeSet(AAChartTypeTreeMap)
-//        .dataSet(AAOptionsData.treeData)
+        .dataSet(AAOptionsData.treegraphData)
         .tooltipSet(AATooltip.new
                     .pointFormatSet(@"{point.name}"))
         .markerSet(AAMarker.new

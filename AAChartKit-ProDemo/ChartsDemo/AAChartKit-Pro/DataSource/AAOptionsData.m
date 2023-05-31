@@ -183,6 +183,10 @@
     return [self getJsonDataWithJsonFileName:@"tilemapForAfricaData"];
 }
 
++ (NSArray *)treegraphData {
+    return [self getJsonDataWithJsonFileName:@"treegraphData"];
+}
+
 + (NSArray *)getSingleGroupCategoryDataElementArrayWithY:(int )y {
     NSMutableArray *dataArr = [NSMutableArray array];
     
