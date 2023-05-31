@@ -315,4 +315,287 @@
             .pointFormatSet(@"{point.y} （目标值 {point.target}）"));
 }
 
+//Highcharts.chart('container', {
+//    chart: {
+//        type: 'pictorial'
+//    },
+//
+//    colors: ['#B0FDFE', '#E3FED4', '#F9F492', '#FAF269', '#FAE146', '#FDA003'],
+//
+//    title: {
+//        text: 'Kelvin color temperature scale chart'
+//    },
+//
+//    subtitle: {
+//        text: 'Source: ' +
+//          '<a href="https://en.wikipedia.org/wiki/Color_temperature"' +
+//          'target="_blank">Wikipedia.org</a> '
+//    },
+//
+//
+//    xAxis: {
+//        visible: false,
+//        min: 0.2
+//    },
+//
+//    yAxis: {
+//        visible: false
+//    },
+//
+//    legend: {
+//        align: 'right',
+//        floating: true,
+//        itemMarginTop: 5,
+//        itemMarginBottom: 5,
+//        layout: 'vertical',
+//        margin: 0,
+//        padding: 0,
+//        verticalAlign: 'middle'
+//    },
+//
+//    tooltip: {
+//        headerFormat: '',
+//        valueSuffix: ' K'
+//    },
+//
+//    plotOptions: {
+//        series: {
+//            pointPadding: 0,
+//            groupPadding: 0,
+//            borderWidth: 0,
+//            dataLabels: {
+//                enabled: true,
+//                align: 'center',
+//                format: '{y} K'
+//            },
+//            stacking: 'percent',
+//            paths: [{
+//            }]
+//        }
+//    },
+//
+//    series: [{
+//        name: 'Daylight',
+//        data: [6500]
+//    }, {
+//        name: 'Moonlight',
+//        data: [4000]
+//    },
+//    {
+//        name: 'Morning/Evening Sun',
+//        data: [3500]
+//    },
+//    {
+//        name: 'Lightbulb',
+//        data: [3000]
+//    },
+//    {
+//        name: 'Sunrise/sunset',
+//        data: [2500]
+//    },
+//    {
+//        name: 'Candle flame',
+//        data: [1800]
+//    }
+//    ]
+//});
+
+//Kelvin color temperature scale chart
+- (AAOptions *)KelvinColorTemperatureScaleChart {
+    return AAOptions.new
+    .chartSet(AAChart.new
+//              .typeSet(AAChartTypePictorial)
+    )
+    .colorsSet(@[@"#B0FDFE", @"#E3FED4", @"#F9F492", @"#FAF269", @"#FAE146", @"#FDA003"])
+    .titleSet(AATitle.new
+              .textSet(@"Kelvin color temperature scale chart"))
+    .subtitleSet(AASubtitle.new
+                 .textSet(@"Source: <a href='https://en.wikipedia.org/wiki/Color_temperature' target='_blank'>Wikipedia.org</a> "))
+    .xAxisSet(AAXAxis.new
+                .visibleSet(true)
+                .minSet(@0.2))
+    .yAxisSet(AAYAxis.new
+                .visibleSet(true))
+    .legendSet(AALegend.new
+                .alignSet(AAChartAlignTypeRight)
+                .floatingSet(true)
+                .itemMarginTopSet(@5)
+                .itemMarginBottomSet(@5)
+                .layoutSet(AAChartLayoutTypeVertical)
+//                .marginSet(@0)
+//                .paddingSet(@0)
+                .verticalAlignSet(AAChartVerticalAlignTypeMiddle))
+    .tooltipSet(AATooltip.new
+                .headerFormatSet(@"")
+                .valueSuffixSet(@" K"))
+            .plotOptionsSet(AAPlotOptions.new
+            .seriesSet(AASeries.new
+                    .pointPaddingSet(@0)
+                    .groupPaddingSet(@0)
+                    .borderWidthSet(@0)
+                    .dataLabelsSet(AADataLabels.new
+                            .enabledSet(true)
+                            .alignSet(AAChartAlignTypeCenter)
+                            .formatSet(@"{y} K")
+                    )
+                    .stackingSet(AAChartStackingTypePercent)
+            ))
+    .seriesSet(@[
+        AASeriesElement.new
+        .nameSet(@"Daylight")
+        .dataSet(@[@6500]),
+        AASeriesElement.new
+        .nameSet(@"Moonlight")
+        .dataSet(@[@4000]),
+        AASeriesElement.new
+        .nameSet(@"Morning/Evening Sun")
+        .dataSet(@[@3500]),
+        AASeriesElement.new
+        .nameSet(@"Lightbulb")
+        .dataSet(@[@3000]),
+        AASeriesElement.new
+        .nameSet(@"Sunrise/sunset")
+        .dataSet(@[@2500]),
+        AASeriesElement.new
+        .nameSet(@"Candle flame")
+        .dataSet(@[@1800]),
+    ]);
+}
+
+//Highcharts.chart('container', {
+//    chart: {
+//        type: 'pictorial'
+//    },
+//
+//    title: {
+//        text: 'Composition of the human body'
+//    },
+//
+//    xAxis: {
+//        categories: ['Woman', 'Man'],
+//        lineWidth: 0,
+//        opposite: true
+//    },
+//
+//    yAxis: {
+//        visible: false,
+//        stackShadow: {
+//            enabled: true
+//        },
+//        max: 100
+//    },
+//
+//    legend: {
+//        itemMarginTop: 15,
+//        itemMarginBottom: 15,
+//        layout: 'vertical',
+//        padding: 0,
+//        verticalAlign: 'middle',
+//        align: 'center',
+//        margin: 0
+//    },
+//
+//    tooltip: {
+//        headerFormat: ''
+//    },
+//
+//    plotOptions: {
+//        series: {
+//            pointPadding: 0,
+//            groupPadding: 0,
+//            dataLabels: {
+//                enabled: true,
+//                align: 'center',
+//                format: '{y} %'
+//            },
+//            stacking: 'normal',
+//            paths: [{
+//
+//            }]
+//        }
+//    },
+//
+//    series: [{
+//        name: 'Other',
+//        data: [25, 25]
+//    }, {
+//        name: 'Essential Fat',
+//        data: [12, 3]
+//    },
+//    {
+//        name: 'Non-Essential Fat',
+//        data: [15, 12]
+//    }, {
+//        name: 'Muscle Tissue',
+//        data: [36, 45]
+//    },
+//    {
+//        name: 'Bone',
+//        data: [12, 15]
+//    }
+//    ],
+//
+//
+//});
+
+//将以上 json 内容转化为 AAOptions 实例对象
+- (AAOptions *)compositionOfTheHumanBodyChart {
+    return AAOptions.new
+    .chartSet(AAChart.new
+//              .typeSet(AAChartTypePictorial)
+    )
+    .titleSet(AATitle.new
+            .textSet(@"Composition of the human body"))
+            .xAxisSet(AAXAxis.new
+                    .categoriesSet(@[@"Woman", @"Man"])
+                    .lineWidthSet(@0)
+                    .oppositeSet(@YES))
+    .yAxisSet(AAYAxis.new
+                .visibleSet(false)
+//                .stackShadowSet(AAStackingShadow.new
+//                                .enabledSet(true))
+                .maxSet(@100))
+    .legendSet(AALegend.new
+                .itemMarginTopSet(@15)
+                .itemMarginBottomSet(@15)
+                .layoutSet(AAChartLayoutTypeVertical)
+//                .paddingSet(@0)
+                .verticalAlignSet(AAChartVerticalAlignTypeMiddle)
+                .alignSet(AAChartAlignTypeCenter)
+//                .marginSet(@0)
+    )
+            .tooltipSet(AATooltip.new
+                    .headerFormatSet(@""))
+    .plotOptionsSet(AAPlotOptions.new
+                    .seriesSet(AASeries.new
+                            .pointPaddingSet(@0)
+                            .groupPaddingSet(@0)
+                            .dataLabelsSet(AADataLabels.new
+                                    .enabledSet(true)
+                                    .alignSet(AAChartAlignTypeCenter)
+                                    .formatSet(@"{y} %"))
+                            .stackingSet(AAChartStackingTypeNormal)
+//                            .pathsSet(@[
+//                            ])
+                    ))
+    .seriesSet(@[
+        AASeriesElement.new
+        .nameSet(@"Other")
+        .dataSet(@[@25, @25]),
+        AASeriesElement.new
+        .nameSet(@"Essential Fat")
+        .dataSet(@[@12, @3]),
+        AASeriesElement.new
+        .nameSet(@"Non-Essential Fat")
+        .dataSet(@[@15, @12]),
+        AASeriesElement.new
+        .nameSet(@"Muscle Tissue")
+        .dataSet(@[@36, @45]),
+        AASeriesElement.new
+        .nameSet(@"Bone")
+        .dataSet(@[@12, @15]),
+    ]);
+
+}
+
 @end
