@@ -670,6 +670,12 @@
 //    ]
 //}
 
++ (AAOptions *)treegraph {
+    AAOptions *aaOptions = [self invertedTreegraph];
+    aaOptions.chart.inverted = false;
+    return aaOptions;
+}
+
 + (AAOptions *)invertedTreegraph {
     return AAOptions.new
     .chartSet(AAChart.new

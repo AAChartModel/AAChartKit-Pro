@@ -73,6 +73,9 @@
         case 14: return [AAHeatOrTreeMapChartComposer tilemapChartForAmericaWithCircleTileShape];
         case 15: return [AAHeatOrTreeMapChartComposer tilemapChartForAmericaWithDiamondTileShape];
         case 16: return [AAHeatOrTreeMapChartComposer tilemapChartForAmericaWithSquareTileShape];
+        case 17: return [AAHeatOrTreeMapChartComposer treegraph];
+        case 18: return [AAHeatOrTreeMapChartComposer invertedTreegraph];
+        case 19: return [AAHeatOrTreeMapChartComposer treegraphWithBoxLayout];
 
         default: return nil;
     }
