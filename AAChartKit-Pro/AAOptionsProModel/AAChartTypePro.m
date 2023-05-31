@@ -40,7 +40,7 @@ AAChartType const AAChartTypeFlame           =  @"flame";
 AAChartType const AAChartTypeHistogram       =  @"histogram";
 AAChartType const AAChartTypeSolidgauge      =  @"solidgauge";
 AAChartType const AAChartTypeBullet          =  @"bullet";
-
-
+AAChartType const AAChartTypeTreegraph       =  @"treegraph";
+AAChartType const AAChartTypePictorial       =  @"pictorial";
 
 @end

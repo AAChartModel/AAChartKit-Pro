@@ -43,6 +43,8 @@ AACHARTKIT_EXTERN AAChartType const AAChartTypeFlame;
 AACHARTKIT_EXTERN AAChartType const AAChartTypeHistogram;
 AACHARTKIT_EXTERN AAChartType const AAChartTypeSolidgauge;
 AACHARTKIT_EXTERN AAChartType const AAChartTypeBullet;
+AACHARTKIT_EXTERN AAChartType const AAChartTypeTreegraph;
+AACHARTKIT_EXTERN AAChartType const AAChartTypePictorial;
 
 @end
 

@@ -686,7 +686,7 @@
               .alignSet(AAChartAlignTypeLeft))
     .seriesSet(@[
         AASeriesElement.new
-//        .typeSet(AAChartTypeTreeMap)
+        .typeSet(AAChartTypeTreegraph)
         .dataSet(AAOptionsData.treegraphData)
         .tooltipSet(AATooltip.new
                     .pointFormatSet(@"{point.name}"))
@@ -780,7 +780,7 @@
               .textSet(@"Treegraph with box layout"))
     .seriesSet(@[
         AASeriesElement.new
-//        .typeSet(AAChartTypeTreeMap)
+        .typeSet(AAChartTypeTreegraph)
         .dataSet(AAOptionsData.treegraphData)
         .tooltipSet(AATooltip.new
                     .pointFormatSet(@"{point.name}"))

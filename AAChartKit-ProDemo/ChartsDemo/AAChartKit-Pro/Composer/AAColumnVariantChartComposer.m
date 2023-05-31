@@ -405,8 +405,7 @@
 + (AAOptions *)pictorial1Chart {
     return AAOptions.new
     .chartSet(AAChart.new
-//              .typeSet(AAChartTypePictorial)
-    )
+              .typeSet(AAChartTypePictorial))
     .colorsSet(@[@"#B0FDFE", @"#E3FED4", @"#F9F492", @"#FAF269", @"#FAE146", @"#FDA003"])
     .titleSet(AATitle.new
               .textSet(@"Kelvin color temperature scale chart"))
@@ -524,8 +523,7 @@
 + (AAOptions *)pictorial2Chart {
     return AAOptions.new
     .chartSet(AAChart.new
-//              .typeSet(AAChartTypePictorial)
-    )
+              .typeSet(AAChartTypePictorial))
     .titleSet(AATitle.new
             .textSet(@"Composition of the human body"))
             .xAxisSet(AAXAxis.new
