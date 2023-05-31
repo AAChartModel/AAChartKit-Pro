@@ -337,6 +337,7 @@
 		84DFEAAE2A2726A4004436BC /* treegraphData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = treegraphData.json; sourceTree = "<group>"; };
 		84DFEAAF2A27382C004436BC /* pictorial2Series.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pictorial2Series.json; sourceTree = "<group>"; };
 		84DFEAB02A27382C004436BC /* pictorial1Series.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pictorial1Series.json; sourceTree = "<group>"; };
+		84DFEAB32A274158004436BC /* AAPictorialPaths.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAPictorialPaths.h; sourceTree = "<group>"; };
 		84FE7B9F26AED3D000B68A56 /* AABaseChartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABaseChartVC.h; sourceTree = "<group>"; };
 		84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABaseChartVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -691,6 +692,7 @@
 				84B13F4A28A0B869007356C6 /* AABubbleChartComposer.m */,
 				84B13F5428A0E028007356C6 /* AAColumnVariantChartComposer.h */,
 				84B13F5528A0E028007356C6 /* AAColumnVariantChartComposer.m */,
+				84DFEAB32A274158004436BC /* AAPictorialPaths.h */,
 			);
 			path = Composer;
 			sourceTree = "<group>";
