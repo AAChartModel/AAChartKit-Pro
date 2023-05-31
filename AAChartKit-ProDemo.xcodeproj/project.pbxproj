@@ -332,6 +332,7 @@
 		84DEB8AC28FADCDA00BF9423 /* volinPlotElement1Data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = volinPlotElement1Data.json; sourceTree = "<group>"; };
 		84DEB8AE28FADD3A00BF9423 /* volinPlotElement2Data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = volinPlotElement2Data.json; sourceTree = "<group>"; };
 		84DEB8B028FADE1600BF9423 /* simpleDependencyWheelData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = simpleDependencyWheelData.json; sourceTree = "<group>"; };
+		84DFEAAE2A2726A4004436BC /* invertedTreegraph.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = invertedTreegraph.json; sourceTree = "<group>"; };
 		84FE7B9F26AED3D000B68A56 /* AABaseChartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABaseChartVC.h; sourceTree = "<group>"; };
 		84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABaseChartVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -521,6 +522,7 @@
 				27EB8AD8249C8FFB007E6A6B /* eulerData.json */,
 				84A5690B27FD6EB300883553 /* flameData.json */,
 				27EB8A642497C006007E6A6B /* heatmapData.json */,
+				84DFEAAE2A2726A4004436BC /* invertedTreegraph.json */,
 				27EB8A90249B82F9007E6A6B /* itemData.json */,
 				27EB8A6D2497C007007E6A6B /* lollipopData.json */,
 				84AA68B928A1FEC6009067AE /* marathonData.json */,
