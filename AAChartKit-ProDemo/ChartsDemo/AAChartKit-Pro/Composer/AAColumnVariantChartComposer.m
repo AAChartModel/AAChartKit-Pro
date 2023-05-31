@@ -10,6 +10,7 @@
 #import "AAChartKit-Pro.h"
 #import "AAOptionsData.h"
 #import "AAOptionsSeries.h"
+#import "AAPictorialPaths.h"
 
 @implementation AAColumnVariantChartComposer
 
@@ -404,42 +405,48 @@
 //Kelvin color temperature scale chart
 + (AAOptions *)pictorial1Chart {
     return AAOptions.new
-    .chartSet(AAChart.new
-              .typeSet(AAChartTypePictorial))
-    .colorsSet(@[@"#B0FDFE", @"#E3FED4", @"#F9F492", @"#FAF269", @"#FAE146", @"#FDA003"])
-    .titleSet(AATitle.new
-              .textSet(@"Kelvin color temperature scale chart"))
-    .subtitleSet(AASubtitle.new
-                 .textSet(@"Source: <a href='https://en.wikipedia.org/wiki/Color_temperature' target='_blank'>Wikipedia.org</a> "))
-    .xAxisSet(AAXAxis.new
-                .visibleSet(true)
-                .minSet(@0.2))
-    .yAxisSet(AAYAxis.new
-                .visibleSet(true))
-    .legendSet(AALegend.new
-                .alignSet(AAChartAlignTypeRight)
-                .floatingSet(true)
-                .itemMarginTopSet(@5)
-                .itemMarginBottomSet(@5)
-                .layoutSet(AAChartLayoutTypeVertical)
-//                .marginSet(@0)
-//                .paddingSet(@0)
-                .verticalAlignSet(AAChartVerticalAlignTypeMiddle))
-    .tooltipSet(AATooltip.new
-                .headerFormatSet(@"")
-                .valueSuffixSet(@" K"))
+            .chartSet(AAChart.new
+                    .typeSet(AAChartTypePictorial))
+            .colorsSet(@[@"#B0FDFE", @"#E3FED4", @"#F9F492", @"#FAF269", @"#FAE146", @"#FDA003"])
+            .titleSet(AATitle.new
+                    .textSet(@"Kelvin color temperature scale chart"))
+            .subtitleSet(AASubtitle.new
+                    .textSet(@"Source: <a href='https://en.wikipedia.org/wiki/Color_temperature' target='_blank'>Wikipedia.org</a> "))
+            .xAxisSet(AAXAxis.new
+                    .visibleSet(true)
+                    .minSet(@0.2))
+            .yAxisSet(AAYAxis.new
+                    .visibleSet(true))
+            .legendSet(AALegend.new
+                    .alignSet(AAChartAlignTypeRight)
+                    .floatingSet(true)
+                    .itemMarginTopSet(@5)
+                    .itemMarginBottomSet(@5)
+                    .layoutSet(AAChartLayoutTypeVertical)
+                            //                .marginSet(@0)
+                            //                .paddingSet(@0)
+                    .verticalAlignSet(AAChartVerticalAlignTypeMiddle))
+            .tooltipSet(AATooltip.new
+                    .headerFormatSet(@"")
+                    .valueSuffixSet(@" K"))
             .plotOptionsSet(AAPlotOptions.new
-            .seriesSet(AASeries.new
-                    .pointPaddingSet(@0)
-                    .groupPaddingSet(@0)
-                    .borderWidthSet(@0)
-                    .dataLabelsSet(AADataLabels.new
-                            .enabledSet(true)
-                            .alignSet(AAChartAlignTypeCenter)
-                            .formatSet(@"{y} K")
-                    )
-                    .stackingSet(AAChartStackingTypePercent)
-            ))
+                    .pictorialSet(AAPictorial.new
+                            .pointPaddingSet(@0)
+                            .groupPaddingSet(@0)
+                                    //                    .borderWidthSet(@0)
+                            .dataLabelsSet(AADataLabels.new
+                                    .enabledSet(true)
+                                    .alignSet(AAChartAlignTypeCenter)
+                                    .formatSet(@"{y} K")
+                            )
+                            .stackingSet(AAChartStackingTypePercent)
+                                  .pathsSet(@[
+                                    AAPathsElement.new
+                                        .definitionSet(kWomanPath),
+                                    AAPathsElement.new
+                                        .definitionSet(kManPath),
+                                  ]
+                            )))
             .seriesSet(AAOptionsSeries.pictorial2Series);
 }
 
@@ -522,32 +529,32 @@
 //将以上 json 内容转化为 AAOptions 实例对象
 + (AAOptions *)pictorial2Chart {
     return AAOptions.new
-    .chartSet(AAChart.new
-              .typeSet(AAChartTypePictorial))
-    .titleSet(AATitle.new
-            .textSet(@"Composition of the human body"))
+            .chartSet(AAChart.new
+                    .typeSet(AAChartTypePictorial))
+            .titleSet(AATitle.new
+                    .textSet(@"Composition of the human body"))
             .xAxisSet(AAXAxis.new
                     .categoriesSet(@[@"Woman", @"Man"])
                     .lineWidthSet(@0)
-                    .oppositeSet(@YES))
-    .yAxisSet(AAYAxis.new
-                .visibleSet(false)
-//                .stackShadowSet(AAStackingShadow.new
-//                                .enabledSet(true))
-                .maxSet(@100))
-    .legendSet(AALegend.new
-                .itemMarginTopSet(@15)
-                .itemMarginBottomSet(@15)
-                .layoutSet(AAChartLayoutTypeVertical)
-//                .paddingSet(@0)
-                .verticalAlignSet(AAChartVerticalAlignTypeMiddle)
-                .alignSet(AAChartAlignTypeCenter)
-//                .marginSet(@0)
-    )
+                    .oppositeSet(true))
+            .yAxisSet(AAYAxis.new
+                    .visibleSet(false)
+                            //                .stackShadowSet(AAStackingShadow.new
+                            //                                .enabledSet(true))
+                    .maxSet(@100))
+            .legendSet(AALegend.new
+                            .itemMarginTopSet(@15)
+                            .itemMarginBottomSet(@15)
+                            .layoutSet(AAChartLayoutTypeVertical)
+                                    //                .paddingSet(@0)
+                            .verticalAlignSet(AAChartVerticalAlignTypeMiddle)
+                            .alignSet(AAChartAlignTypeCenter)
+                    //                .marginSet(@0)
+            )
             .tooltipSet(AATooltip.new
                     .headerFormatSet(@""))
-    .plotOptionsSet(AAPlotOptions.new
-                    .seriesSet(AASeries.new
+            .plotOptionsSet(AAPlotOptions.new
+                    .pictorialSet(AAPictorial.new
                             .pointPaddingSet(@0)
                             .groupPaddingSet(@0)
                             .dataLabelsSet(AADataLabels.new
@@ -555,10 +562,12 @@
                                     .alignSet(AAChartAlignTypeCenter)
                                     .formatSet(@"{y} %"))
                             .stackingSet(AAChartStackingTypeNormal)
-//                            .pathsSet(@[
-//                            ])
+                            .pathsSet(@[
+                                    AAPathsElement.new
+                                        .definitionSet(kBulbPath),
+                            ])
                     ))
-    .seriesSet(AAOptionsSeries.pictorial2Series);
+            .seriesSet(AAOptionsSeries.pictorial2Series);
 
 }
 

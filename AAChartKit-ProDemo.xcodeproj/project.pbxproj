@@ -122,6 +122,7 @@
 		84DFEAB12A27382C004436BC /* pictorial2Series.json in Resources */ = {isa = PBXBuildFile; fileRef = 84DFEAAF2A27382C004436BC /* pictorial2Series.json */; };
 		84DFEAB22A27382C004436BC /* pictorial1Series.json in Resources */ = {isa = PBXBuildFile; fileRef = 84DFEAB02A27382C004436BC /* pictorial1Series.json */; };
 		84DFEABC2A274784004436BC /* treegraphData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84DFEABB2A274784004436BC /* treegraphData.json */; };
+		84DFEABF2A2748A3004436BC /* AAPictorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEABE2A2748A3004436BC /* AAPictorial.m */; };
 		84FE7BB726AED3D000B68A56 /* AABaseChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */; };
 /* End PBXBuildFile section */
 
@@ -339,6 +340,8 @@
 		84DFEAB02A27382C004436BC /* pictorial1Series.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pictorial1Series.json; sourceTree = "<group>"; };
 		84DFEAB32A274158004436BC /* AAPictorialPaths.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAPictorialPaths.h; sourceTree = "<group>"; };
 		84DFEABB2A274784004436BC /* treegraphData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = treegraphData.json; sourceTree = "<group>"; };
+		84DFEABD2A2748A3004436BC /* AAPictorial.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAPictorial.h; sourceTree = "<group>"; };
+		84DFEABE2A2748A3004436BC /* AAPictorial.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAPictorial.m; sourceTree = "<group>"; };
 		84FE7B9F26AED3D000B68A56 /* AABaseChartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABaseChartVC.h; sourceTree = "<group>"; };
 		84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABaseChartVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -509,6 +512,8 @@
 				84AA68B728A1FD61009067AE /* AAParallelAxes.m */,
 				84AA68BB28A208FE009067AE /* AABulletDataElement.h */,
 				84AA68BC28A208FE009067AE /* AABulletDataElement.m */,
+				84DFEABD2A2748A3004436BC /* AAPictorial.h */,
+				84DFEABE2A2748A3004436BC /* AAPictorial.m */,
 			);
 			path = AAOptionsProModel;
 			sourceTree = "<group>";
@@ -975,6 +980,7 @@
 				27EB8A842497C03A007E6A6B /* ChartProVC.m in Sources */,
 				713F543D1E7B71C000D506C7 /* FirstViewController.m in Sources */,
 				8441A71126C21E6C007EAAA7 /* AASeries.m in Sources */,
+				84DFEABF2A2748A3004436BC /* AAPictorial.m in Sources */,
 				8441A70F26C21E6C007EAAA7 /* AATitle.m in Sources */,
 				8441A6FC26C21E6C007EAAA7 /* AAColumnrange.m in Sources */,
 			);

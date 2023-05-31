@@ -32,7 +32,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class AAColumn, AABar, AALine, AASpline, AAArea, AAAreaspline, AAPie, AAColumnrange, AASeries, AAPackedbubble, AATreemap, AASolidgauge;
+@class AAColumn, AABar, AALine, AASpline, AAArea, AAAreaspline, AAPie, AAColumnrange, AASeries, AAPackedbubble, AATreemap, AASolidgauge, AAPictorial;
 
 @interface AAPlotOptions : NSObject
 
@@ -49,5 +49,6 @@ AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, NSObject       *, 
 AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAPackedbubble *, packedbubble)
 AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AATreemap      *, treemap)
 AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AASolidgauge   *, solidgauge)
+AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAPictorial    *, pictorial)
 
 @end

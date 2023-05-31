@@ -22,6 +22,6 @@
 #import "AAHeatmap.h"
 #import "AAParallelAxes.h"
 #import "AABulletDataElement.h"
-
+#import "AAPictorial.h"
 
 #endif /* AAChartKit_Pro_h */
