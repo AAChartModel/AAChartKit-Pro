@@ -249,6 +249,13 @@
                 @"tilemapForAmericaWithCircleTileShape---美洲砖块图🧱(圆形)",
                 @"tilemapForAmericaWithDiamondTileShape---美洲砖块图🧱(菱形)",
                 @"tilemapForAmericaWithSquareTileShape---美洲砖块图🧱(正方形)",
+                //   case 17: return [AAHeatOrTreeMapChartComposer treegraph];
+                        //        case 18: return [AAHeatOrTreeMapChartComposer invertedTreegraph];
+                        //        case 19: return [AAHeatOrTreeMapChartComposer treegraphWithBoxLayout];
+
+                        @"treegraphChart---树图",
+                        @"invertedTreegraphChart---倒置树图",
+                        @"treegraphWithBoxLayoutChart---树图(盒子布局)",
             ],
 //            "BubbleChart | 气泡类型图表",
             @[
@@ -267,7 +274,12 @@
                 @"xrangeChart---X轴范围图||甘特图||条码图",
                 @"histogramChart---直方混合散点图📊",
                 @"bellcurveChart---钟形曲线混合散点图🔔",
-                @"bulletChart---子弹图"
+                @"bulletChart---子弹图",
+                //     case  8: return [AAColumnVariantChartComposer pictorial1Chart];
+                    //        case  9: return [AAColumnVariantChartComposer pictorial2Chart];
+
+                    @"pictorial1Chart---象形柱形图1",
+                    @"pictorial2Chart---象形柱形图2",
             ],
 //            "MoreProType | 更多高级类型图表",
             @[
