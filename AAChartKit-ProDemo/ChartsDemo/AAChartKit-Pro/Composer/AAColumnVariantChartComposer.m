@@ -9,6 +9,7 @@
 #import "AAColumnVariantChartComposer.h"
 #import "AAChartKit-Pro.h"
 #import "AAOptionsData.h"
+#import "AAOptionsSeries.h"
 
 @implementation AAColumnVariantChartComposer
 
@@ -401,7 +402,7 @@
 //});
 
 //Kelvin color temperature scale chart
-- (AAOptions *)KelvinColorTemperatureScaleChart {
++ (AAOptions *)pictorial1Chart {
     return AAOptions.new
     .chartSet(AAChart.new
 //              .typeSet(AAChartTypePictorial)
@@ -440,26 +441,7 @@
                     )
                     .stackingSet(AAChartStackingTypePercent)
             ))
-    .seriesSet(@[
-        AASeriesElement.new
-        .nameSet(@"Daylight")
-        .dataSet(@[@6500]),
-        AASeriesElement.new
-        .nameSet(@"Moonlight")
-        .dataSet(@[@4000]),
-        AASeriesElement.new
-        .nameSet(@"Morning/Evening Sun")
-        .dataSet(@[@3500]),
-        AASeriesElement.new
-        .nameSet(@"Lightbulb")
-        .dataSet(@[@3000]),
-        AASeriesElement.new
-        .nameSet(@"Sunrise/sunset")
-        .dataSet(@[@2500]),
-        AASeriesElement.new
-        .nameSet(@"Candle flame")
-        .dataSet(@[@1800]),
-    ]);
+            .seriesSet(AAOptionsSeries.pictorial2Series);
 }
 
 //Highcharts.chart('container', {
@@ -539,7 +521,7 @@
 //});
 
 //将以上 json 内容转化为 AAOptions 实例对象
-- (AAOptions *)compositionOfTheHumanBodyChart {
++ (AAOptions *)pictorial2Chart {
     return AAOptions.new
     .chartSet(AAChart.new
 //              .typeSet(AAChartTypePictorial)
@@ -578,23 +560,7 @@
 //                            .pathsSet(@[
 //                            ])
                     ))
-    .seriesSet(@[
-        AASeriesElement.new
-        .nameSet(@"Other")
-        .dataSet(@[@25, @25]),
-        AASeriesElement.new
-        .nameSet(@"Essential Fat")
-        .dataSet(@[@12, @3]),
-        AASeriesElement.new
-        .nameSet(@"Non-Essential Fat")
-        .dataSet(@[@15, @12]),
-        AASeriesElement.new
-        .nameSet(@"Muscle Tissue")
-        .dataSet(@[@36, @45]),
-        AASeriesElement.new
-        .nameSet(@"Bone")
-        .dataSet(@[@12, @15]),
-    ]);
+    .seriesSet(AAOptionsSeries.pictorial2Series);
 
 }
 

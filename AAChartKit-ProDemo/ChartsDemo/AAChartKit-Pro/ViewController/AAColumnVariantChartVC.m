@@ -26,8 +26,9 @@
         case  5: return [AAColumnVariantChartComposer histogramChart];
         case  6: return [AAColumnVariantChartComposer bellcurveChart];
         case  7: return [AAColumnVariantChartComposer bulletChart];
+        case  8: return [AAColumnVariantChartComposer pictorial1Chart];
+        case  9: return [AAColumnVariantChartComposer pictorial2Chart];
 
-            
     }
     return nil;
 }

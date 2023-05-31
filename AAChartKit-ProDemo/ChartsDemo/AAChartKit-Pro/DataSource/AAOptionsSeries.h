@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AAOptionsSeries : NSObject
 
++ (NSArray *)pictorial1Series;
++ (NSArray *)pictorial2Series;
 + (NSArray *)packedbubbleSeries;
 + (NSArray *)streamgraphSeries;
 

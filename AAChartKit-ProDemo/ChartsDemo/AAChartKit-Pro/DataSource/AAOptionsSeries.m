@@ -10,6 +10,14 @@
 
 @implementation AAOptionsSeries
 
++ (NSArray *)pictorial1Series {
+    return [self getJsonDataWithJsonFileName:@"pictorial1Series"];
+}
+
++ (NSArray *)pictorial2Series {
+    return [self getJsonDataWithJsonFileName:@"pictorial2Series"];
+}
+
 + (NSArray *)packedbubbleSeries {
     return [self getJsonDataWithJsonFileName:@"packedbubbleSeries"];
 }
