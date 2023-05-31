@@ -411,7 +411,8 @@
             .titleSet(AATitle.new
                     .textSet(@"Kelvin color temperature scale chart"))
             .subtitleSet(AASubtitle.new
-                    .textSet(@"Source: <a href='https://en.wikipedia.org/wiki/Color_temperature' target='_blank'>Wikipedia.org</a> "))
+//                    .textSet(@"Source: <a href='https://en.wikipedia.org/wiki/Color_temperature' target='_blank'>Wikipedia.org</a> ")
+                         )
             .xAxisSet(AAXAxis.new
                     .visibleSet(true)
                     .minSet(@0.2))
@@ -546,7 +547,7 @@
                             .itemMarginTopSet(@15)
                             .itemMarginBottomSet(@15)
                             .layoutSet(AAChartLayoutTypeVertical)
-                                    //                .paddingSet(@0)
+//                                                    .paddingSet(@0)
                             .verticalAlignSet(AAChartVerticalAlignTypeMiddle)
                             .alignSet(AAChartAlignTypeCenter)
                     //                .marginSet(@0)

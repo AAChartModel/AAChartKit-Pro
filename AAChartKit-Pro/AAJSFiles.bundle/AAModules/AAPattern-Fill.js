@@ -1,212 +1,25 @@
-/**
- * Highcharts pattern fill plugin
- *
- * Version         3.0.3
- * Author:         Torstein Honsi
- *                 Stephane Vanraes
- * Last revision:  2016-10-05
- * License:        MIT License
- *
- * Remark:         The latest version is not compatible with earlier versions.
- *
- * Usage:          Add a 'defs' object to the options
- *                 Create a 'patterns' array under 'defs'
- *                 Each item in this array represents a pattern
- *                 To use a pattern, set the color to `url(#id-of-pattern)'
- *
- * Options for the patterns:
- * - id:           The id for the pattern, defaults to highcharts-pattern-# with # an increasing number for each pattern without id
- * - width:        The width of the pattern, defaults to 10
- * - height:       The height of the pattern, defaults to 10
- * - opacity       A general opacity for the pattern
- * - path:         In SVG, the path for the pattern
- *                 (Note: this can be a string with only a path, or an object with d, stroke, strokeWidth and fill)
- * - image:        An image source for the pattern
- * - color:        A color to be used instead of a path
- *
- * Notes:          VML does not support the path setting
- *                 If all other fills fail (no path, image or color) the pattern will return #A0A0A0 as a color
- *                 Several patterns have been predefined, called highcharts-default-pattern-# (numbered 0-9)
- */
+/*
+ Highcharts JS v11.0.1 (2023-05-08)
 
-/*global Highcharts, document */
-(function (factory) {
-    if (typeof module === 'object' && module.exports) {
-        module.exports = factory;
-    } else {
-        factory(Highcharts);
-    }
-}(function (Highcharts) {
+ Module for adding patterns and images as point fills.
 
-    'use strict';
+ (c) 2010-2021 Highsoft AS
+ Author: Torstein Hnsi, ystein Moseng
 
-    var idCounter = 0,
-        wrap = Highcharts.wrap,
-        each = Highcharts.each;
-
-    /**
-     * Exposed method to add a pattern to the renderer.
-     */
-    Highcharts.SVGRenderer.prototype.addPattern = function (id, options) {
-        var pattern,
-            path,
-            w = options.width || 10,
-            h = options.height || 10,
-            ren = this;
-
-        /**
-         * Add a rectangle for solid color
-         */
-        function rect (fill) {
-            ren.rect(0, 0, w, h)
-                .attr({
-                    fill: fill
-                })
-                .add(pattern);
-        }
-
-        if (!id) {
-            id = 'highcharts-pattern-' + idCounter;
-            idCounter += 1;
-        }
-
-        pattern = this.createElement('pattern').attr({
-            id: id,
-            patternUnits: 'userSpaceOnUse',
-            width: options.width || 10,
-            height: options.height || 10
-        }).add(this.defs);
-
-        // Get id
-        pattern.id = pattern.element.id;
-
-        // Use an SVG path for the pattern
-        if (options.path) {
-            path = options.path;
-
-            // The background
-            if (path.fill) {
-                rect(path.fill);
-            }
-
-            // The pattern
-            this.createElement('path').attr({
-                'd': path.d || path,
-                'stroke': path.stroke || options.color || '#343434',
-                'stroke-width': path.strokeWidth || 2
-            }).add(pattern);
-            pattern.color = options.color;
-
-        // Image pattern
-        } else if (options.image) {
-
-            this.image(options.image, 0, 0, options.width, options.height).add(pattern);
-
-        // A solid color
-        } else if (options.color) {
-
-            rect(options.color);
-
-        }
-
-        if (options.opacity !== undefined) {
-            each(pattern.element.children, function (child) {
-                child.setAttribute('opacity', options.opacity);
-            });
-        }
-
-        return pattern;
-    };
-
-    if (Highcharts.VMLElement) {
-
-        Highcharts.VMLRenderer.prototype.addPattern = function (id, options) {
-
-            var patterns;
-            if (!id) {
-                id = 'highcharts-pattern-' + idCounter;
-                idCounter += 1;
-            }
-            patterns = this.patterns || {};
-            patterns[id] = options;
-            this.patterns = patterns;
-        };
-
-        Highcharts.wrap(Highcharts.VMLRenderer.prototype.Element.prototype, 'fillSetter', function (proceed, color, prop, elem) {
-            if (typeof color === 'string' && color.substring(0, 5) === 'url(#') {
-                var id = color.substring(5, color.length - 1),
-                    pattern = this.renderer.patterns[id],
-                    markup;
-
-                if (pattern.image) {
-                    // Remove Previous fills
-                    if (elem.getElementsByTagName('fill').length) {
-                        elem.removeChild(elem.getElementsByTagName('fill')[0]);
-                    }
-
-                    markup = this.renderer.prepVML(['<', prop, ' type="tile" src="', pattern.image, '" />']);
-                    elem.appendChild(document.createElement(markup));
-
-                    // Work around display bug on updating attached nodes
-                    if (elem.parentNode.nodeType === 1) {
-                        elem.outerHTML = elem.outerHTML;
-                    }
-
-                } else if (pattern.color) {
-                    proceed.call(this, pattern.color, prop, elem);
-                } else {
-                    proceed.call(this, '#A0A0A0', prop, elem);
-                }
-            } else {
-                proceed.call(this, color, prop, elem);
-            }
-        });
-    }
-
-    /**
-     * Add the predefined patterns
-     */
-    function addPredefinedPatterns(renderer) {
-        var colors = Highcharts.getOptions().colors;
-
-        each([
-            'M 0 0 L 10 10 M 9 -1 L 11 1 M -1 9 L 1 11',
-            'M 0 10 L 10 0 M -1 1 L 1 -1 M 9 11 L 11 9',
-            'M 3 0 L 3 10 M 8 0 L 8 10',
-            'M 0 3 L 10 3 M 0 8 L 10 8',
-            'M 0 3 L 5 3 L 5 0 M 5 10 L 5 7 L 10 7',
-            'M 3 3 L 8 3 L 8 8 L 3 8 Z',
-            'M 5 5 m -4 0 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0',
-            'M 10 3 L 5 3 L 5 0 M 5 10 L 5 7 L 0 7',
-            'M 2 5 L 5 2 L 8 5 L 5 8 Z',
-            'M 0 0 L 5 10 L 10 0'
-        ], function (pattern, i) {
-            renderer.addPattern('highcharts-default-pattern-' + i, {
-                path: pattern,
-                color: colors[i]
-            });
-        });
-    }
-
-    // Add patterns to the defs element
-    wrap(Highcharts.Chart.prototype, 'getContainer', function (proceed) {
-        proceed.apply(this);
-
-        var chart = this,
-            renderer = chart.renderer,
-            options = chart.options,
-            patterns = options.defs && options.defs.patterns;
-
-        // First add default patterns
-        addPredefinedPatterns(renderer);
-
-        // Add user defined patterns
-        if (patterns) {
-            each(patterns, function (pattern) {
-                renderer.addPattern(pattern.id, pattern);
-            });
-        }
-
-    });
-
-}));
+ License: www.highcharts.com/license
+*/
+'use strict';(function(c){"object"===typeof module&&module.exports?(c["default"]=c,module.exports=c):"function"===typeof define&&define.amd?define("highcharts/modules/pattern-fill",["highcharts"],function(e){c(e);c.Highcharts=e;return c}):c("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(c){function e(c,k,e,q){c.hasOwnProperty(k)||(c[k]=q.apply(null,e),"function"===typeof CustomEvent&&window.dispatchEvent(new CustomEvent("HighchartsModuleLoaded",{detail:{path:k,module:c[k]}})))}c=c?
+c._modules:{};e(c,"Extensions/PatternFill.js",[c["Core/Animation/AnimationUtilities.js"],c["Core/Chart/Chart.js"],c["Core/Globals.js"],c["Core/Defaults.js"],c["Core/Series/Point.js"],c["Core/Series/Series.js"],c["Core/Renderer/SVG/SVGRenderer.js"],c["Core/Utilities.js"]],function(c,e,y,q,r,t,u,v){function k(a,b){a=JSON.stringify(a);const d=a.length||0;let f=0,g=0;if(b){b=Math.max(Math.floor(d/500),1);for(let g=0;g<d;g+=b)f+=a.charCodeAt(g);f&=f}for(;g<d;++g)b=a.charCodeAt(g),f=(f<<5)-f+b,f&=f;return f.toString(16).replace("-",
+"1")}const {animObject:z}=c,{getOptions:A}=q,{addEvent:n,defined:B,erase:C,merge:w,pick:p,removeEvent:D,wrap:E}=v,x=y.patterns=(()=>{const a=[],b=A().colors;["M 0 0 L 5 5 M 4.5 -0.5 L 5.5 0.5 M -0.5 4.5 L 0.5 5.5","M 0 5 L 5 0 M -0.5 0.5 L 0.5 -0.5 M 4.5 5.5 L 5.5 4.5","M 2 0 L 2 5 M 4 0 L 4 5","M 0 2 L 5 2 M 0 4 L 5 4","M 0 1.5 L 2.5 1.5 L 2.5 0 M 2.5 5 L 2.5 3.5 L 5 3.5"].forEach((d,f)=>{a.push({path:d,color:b[f],width:5,height:5,patternTransform:"scale(1.4 1.4)"})});["M 0 0 L 5 10 L 10 0","M 3 3 L 8 3 L 8 8 L 3 8 Z",
+"M 5 5 m -4 0 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0","M 0 0 L 10 10 M 9 -1 L 11 1 M -1 9 L 1 11","M 0 10 L 10 0 M -1 1 L 1 -1 M 9 11 L 11 9"].forEach((d,f)=>{a.push({path:d,color:b[f+5],width:10,height:10})});return a})();r.prototype.calculatePatternDimensions=function(a){if(!a.width||!a.height){var b=this.graphic&&(this.graphic.getBBox&&this.graphic.getBBox(!0)||this.graphic.element&&this.graphic.element.getBBox())||{},d=this.shapeArgs;d&&(b.width=d.width||b.width,b.height=d.height||b.height,b.x=d.x||
+b.x,b.y=d.y||b.y);if(a.image){if(!b.width||!b.height){a._width="defer";a._height="defer";b=this.series.chart.mapView&&this.series.chart.mapView.getSVGTransform().scaleY;B(b)&&0>b&&(a._inverted=!0);return}a.aspectRatio&&(b.aspectRatio=b.width/b.height,a.aspectRatio>b.aspectRatio?b.aspectWidth=b.height*a.aspectRatio:b.aspectHeight=b.width/a.aspectRatio);a._width=a.width||Math.ceil(b.aspectWidth||b.width);a._height=a.height||Math.ceil(b.aspectHeight||b.height)}a.width||(a._x=a.x||0,a._x+=b.x-Math.round(b.aspectWidth?
+Math.abs(b.aspectWidth-b.width)/2:0));a.height||(a._y=a.y||0,a._y+=b.y-Math.round(b.aspectHeight?Math.abs(b.aspectHeight-b.height)/2:0))}};u.prototype.addPattern=function(a,b){let d;b=p(b,!0);let f=z(b);let g=a.width||a._width||32,c=a.height||a._height||32,e=a.color||"#343434",l=a.id,k=this;var m=function(a){k.rect(0,0,g,c).attr({fill:a}).add(d)};l||(this.idCounter=this.idCounter||0,l="highcharts-pattern-"+this.idCounter+"-"+(this.chartIndex||0),++this.idCounter);this.forExport&&(l+="-export");this.defIds=
+this.defIds||[];if(!(-1<this.defIds.indexOf(l))){this.defIds.push(l);var h={id:l,patternUnits:"userSpaceOnUse",patternContentUnits:a.patternContentUnits||"userSpaceOnUse",width:g,height:c,x:a._x||a.x||0,y:a._y||a.y||0};a._inverted&&(h.patternTransform="scale(1, -1)",a.patternTransform&&(a.patternTransform+=" scale(1, -1)"));a.patternTransform&&(h.patternTransform=a.patternTransform);d=this.createElement("pattern").attr(h).add(this.defs);d.id=l;a.path?(h=v.isObject(a.path)?a.path:{d:a.path},a.backgroundColor&&
+m(a.backgroundColor),m={d:h.d},this.styledMode||(m.stroke=h.stroke||e,m["stroke-width"]=p(h.strokeWidth,2),m.fill=h.fill||"none"),h.transform&&(m.transform=h.transform),this.createElement("path").attr(m).add(d),d.color=e):a.image&&(b?this.image(a.image,0,0,g,c,function(){this.animate({opacity:p(a.opacity,1)},f);D(this.element,"load")}).attr({opacity:0}).add(d):this.image(a.image,0,0,g,c).add(d));a.image&&b||"undefined"===typeof a.opacity||[].forEach.call(d.element.childNodes,function(b){b.setAttribute("opacity",
+a.opacity)});this.patternElements=this.patternElements||{};return this.patternElements[l]=d}};E(t.prototype,"getColor",function(a){const b=this.options.color;b&&b.pattern&&!b.pattern.color?(delete this.options.color,a.apply(this,Array.prototype.slice.call(arguments,1)),b.pattern.color=this.color,this.color=this.options.color=b):a.apply(this,Array.prototype.slice.call(arguments,1))});n(t,"render",function(){const a=this.chart.isResizing;(this.isDirtyData||a||!this.chart.hasRendered)&&(this.points||
+[]).forEach(function(b){const d=b.options&&b.options.color;d&&d.pattern&&(!a||b.shapeArgs&&b.shapeArgs.width&&b.shapeArgs.height?b.calculatePatternDimensions(d.pattern):(d.pattern._width="defer",d.pattern._height="defer"))})});n(r,"afterInit",function(){const a=this.options.color;a&&a.pattern&&("string"===typeof a.pattern.path&&(a.pattern.path={d:a.pattern.path}),this.color=this.options.color=w(this.series.options.color,a))});n(u,"complexColor",function(a){const b=a.args[0],d=a.args[1];a=a.args[2];
+const f=this.chartIndex||0;let c=b.pattern,e="#343434";"undefined"!==typeof b.patternIndex&&x&&(c=x[b.patternIndex]);if(!c)return!0;if(c.image||"string"===typeof c.path||c.path&&c.path.d){let b=a.parentNode&&a.parentNode.getAttribute("class");b=b&&-1<b.indexOf("highcharts-legend");"defer"!==c._width&&"defer"!==c._height||r.prototype.calculatePatternDimensions.call({graphic:{element:a}},c);if(b||!c.id)c=w({},c),c.id="highcharts-pattern-"+f+"-"+k(c)+k(c,!0);this.addPattern(c,!this.forExport&&p(c.animation,
+this.globalAnimation,{duration:100}));e=`url(${this.url}#${c.id+(this.forExport?"-export":"")})`}else e=c.color||e;a.setAttribute(d,e);b.toString=function(){return e};return!1});n(e,"endResize",function(){(this.renderer&&this.renderer.defIds||[]).filter(function(a){return a&&a.indexOf&&0===a.indexOf("highcharts-pattern-")}).length&&(this.series.forEach(function(a){a.visible&&a.points.forEach(function(a){(a=a.options&&a.options.color)&&a.pattern&&(a.pattern._width="defer",a.pattern._height="defer")})}),
+this.redraw(!1))});n(e,"redraw",function(){const a={},b=this.renderer,c=(b.defIds||[]).filter(function(a){return a.indexOf&&0===a.indexOf("highcharts-pattern-")});c.length&&([].forEach.call(this.renderTo.querySelectorAll('[color^="url("], [fill^="url("], [stroke^="url("]'),function(c){if(c=c.getAttribute("fill")||c.getAttribute("color")||c.getAttribute("stroke"))c=c.replace(b.url,"").replace("url(#","").replace(")",""),a[c]=!0}),c.forEach(function(c){a[c]||(C(b.defIds,c),b.patternElements[c]&&(b.patternElements[c].destroy(),
+delete b.patternElements[c]))}))});""});e(c,"masters/modules/pattern-fill.src.js",[],function(){})});
+//# sourceMappingURL=pattern-fill.js.map
