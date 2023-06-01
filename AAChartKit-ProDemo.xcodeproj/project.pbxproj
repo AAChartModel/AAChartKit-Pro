@@ -114,18 +114,18 @@
 		84DFEABC2A274784004436BC /* treegraphData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84DFEABB2A274784004436BC /* treegraphData.json */; };
 		84DFEABF2A2748A3004436BC /* AAPictorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEABE2A2748A3004436BC /* AAPictorial.m */; };
 		84DFEAC22A284596004436BC /* AAPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEAC12A284596004436BC /* AAPattern.m */; };
-		84DFEB052A2880FE004436BC /* AASpline.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEAEF2A2880FD004436BC /* AASpline.m */; };
-		84DFEB062A2880FE004436BC /* AALine.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEAF02A2880FD004436BC /* AALine.m */; };
-		84DFEB072A2880FE004436BC /* AAPie.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEAF12A2880FD004436BC /* AAPie.m */; };
-		84DFEB082A2880FE004436BC /* AAColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEAF52A2880FD004436BC /* AAColumn.m */; };
-		84DFEB092A2880FE004436BC /* AAPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEAF62A2880FD004436BC /* AAPane.m */; };
-		84DFEB0A2A2880FE004436BC /* AAColumnrange.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEAF92A2880FD004436BC /* AAColumnrange.m */; };
-		84DFEB0B2A2880FE004436BC /* AAArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEAFA2A2880FE004436BC /* AAArea.m */; };
-		84DFEB0C2A2880FE004436BC /* AAScatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEAFC2A2880FE004436BC /* AAScatter.m */; };
-		84DFEB0D2A2880FE004436BC /* AABoxplot.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEAFD2A2880FE004436BC /* AABoxplot.m */; };
-		84DFEB0E2A2880FE004436BC /* AAAreaspline.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEAFE2A2880FE004436BC /* AAAreaspline.m */; };
-		84DFEB0F2A2880FE004436BC /* AASeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEB002A2880FE004436BC /* AASeries.m */; };
-		84DFEB102A2880FE004436BC /* AABar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEB042A2880FE004436BC /* AABar.m */; };
+		84DFEB772A2882ED004436BC /* AAArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEB5F2A2882EC004436BC /* AAArea.m */; };
+		84DFEB782A2882ED004436BC /* AALine.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEB612A2882EC004436BC /* AALine.m */; };
+		84DFEB792A2882ED004436BC /* AABar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEB642A2882EC004436BC /* AABar.m */; };
+		84DFEB7A2A2882ED004436BC /* AAAreaspline.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEB652A2882EC004436BC /* AAAreaspline.m */; };
+		84DFEB7B2A2882ED004436BC /* AAPane.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEB662A2882EC004436BC /* AAPane.m */; };
+		84DFEB7C2A2882ED004436BC /* AASeries.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEB682A2882EC004436BC /* AASeries.m */; };
+		84DFEB7D2A2882ED004436BC /* AAPie.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEB6D2A2882ED004436BC /* AAPie.m */; };
+		84DFEB7E2A2882ED004436BC /* AASpline.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEB6F2A2882ED004436BC /* AASpline.m */; };
+		84DFEB7F2A2882ED004436BC /* AAScatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEB702A2882ED004436BC /* AAScatter.m */; };
+		84DFEB802A2882ED004436BC /* AAColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEB722A2882ED004436BC /* AAColumn.m */; };
+		84DFEB812A2882ED004436BC /* AAColumnrange.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEB742A2882ED004436BC /* AAColumnrange.m */; };
+		84DFEB822A2882ED004436BC /* AABoxplot.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEB762A2882ED004436BC /* AABoxplot.m */; };
 		84FE7BB726AED3D000B68A56 /* AABaseChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */; };
 /* End PBXBuildFile section */
 
@@ -327,30 +327,30 @@
 		84DFEABE2A2748A3004436BC /* AAPictorial.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAPictorial.m; sourceTree = "<group>"; };
 		84DFEAC02A284596004436BC /* AAPattern.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAPattern.h; sourceTree = "<group>"; };
 		84DFEAC12A284596004436BC /* AAPattern.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAPattern.m; sourceTree = "<group>"; };
-		84DFEAED2A2880FD004436BC /* AAArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAArea.h; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AAArea.h"; sourceTree = SOURCE_ROOT; };
-		84DFEAEE2A2880FD004436BC /* AABar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AABar.h; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AABar.h"; sourceTree = SOURCE_ROOT; };
-		84DFEAEF2A2880FD004436BC /* AASpline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AASpline.m; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AASpline.m"; sourceTree = SOURCE_ROOT; };
-		84DFEAF02A2880FD004436BC /* AALine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AALine.m; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AALine.m"; sourceTree = SOURCE_ROOT; };
-		84DFEAF12A2880FD004436BC /* AAPie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAPie.m; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AAPie.m"; sourceTree = SOURCE_ROOT; };
-		84DFEAF22A2880FD004436BC /* AAPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAPane.h; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AAPane.h"; sourceTree = SOURCE_ROOT; };
-		84DFEAF32A2880FD004436BC /* AABoxplot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AABoxplot.h; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AABoxplot.h"; sourceTree = SOURCE_ROOT; };
-		84DFEAF42A2880FD004436BC /* AAPie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAPie.h; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AAPie.h"; sourceTree = SOURCE_ROOT; };
-		84DFEAF52A2880FD004436BC /* AAColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAColumn.m; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AAColumn.m"; sourceTree = SOURCE_ROOT; };
-		84DFEAF62A2880FD004436BC /* AAPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAPane.m; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AAPane.m"; sourceTree = SOURCE_ROOT; };
-		84DFEAF72A2880FD004436BC /* AAAreaspline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAAreaspline.h; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AAAreaspline.h"; sourceTree = SOURCE_ROOT; };
-		84DFEAF82A2880FD004436BC /* AAColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAColumn.h; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AAColumn.h"; sourceTree = SOURCE_ROOT; };
-		84DFEAF92A2880FD004436BC /* AAColumnrange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAColumnrange.m; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AAColumnrange.m"; sourceTree = SOURCE_ROOT; };
-		84DFEAFA2A2880FE004436BC /* AAArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAArea.m; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AAArea.m"; sourceTree = SOURCE_ROOT; };
-		84DFEAFB2A2880FE004436BC /* AALine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AALine.h; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AALine.h"; sourceTree = SOURCE_ROOT; };
-		84DFEAFC2A2880FE004436BC /* AAScatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAScatter.m; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AAScatter.m"; sourceTree = SOURCE_ROOT; };
-		84DFEAFD2A2880FE004436BC /* AABoxplot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AABoxplot.m; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AABoxplot.m"; sourceTree = SOURCE_ROOT; };
-		84DFEAFE2A2880FE004436BC /* AAAreaspline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAAreaspline.m; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AAAreaspline.m"; sourceTree = SOURCE_ROOT; };
-		84DFEAFF2A2880FE004436BC /* AASeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AASeries.h; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AASeries.h"; sourceTree = SOURCE_ROOT; };
-		84DFEB002A2880FE004436BC /* AASeries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AASeries.m; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AASeries.m"; sourceTree = SOURCE_ROOT; };
-		84DFEB012A2880FE004436BC /* AASpline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AASpline.h; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AASpline.h"; sourceTree = SOURCE_ROOT; };
-		84DFEB022A2880FE004436BC /* AAScatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAScatter.h; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AAScatter.h"; sourceTree = SOURCE_ROOT; };
-		84DFEB032A2880FE004436BC /* AAColumnrange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAColumnrange.h; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AAColumnrange.h"; sourceTree = SOURCE_ROOT; };
-		84DFEB042A2880FE004436BC /* AABar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AABar.m; path = "AAChartKit-Pro/AAOptionsModel/AAAxis/AABar.m"; sourceTree = SOURCE_ROOT; };
+		84DFEB5F2A2882EC004436BC /* AAArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAArea.m; sourceTree = "<group>"; };
+		84DFEB602A2882EC004436BC /* AAColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAColumn.h; sourceTree = "<group>"; };
+		84DFEB612A2882EC004436BC /* AALine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AALine.m; sourceTree = "<group>"; };
+		84DFEB622A2882EC004436BC /* AAColumnrange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAColumnrange.h; sourceTree = "<group>"; };
+		84DFEB632A2882EC004436BC /* AAScatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAScatter.h; sourceTree = "<group>"; };
+		84DFEB642A2882EC004436BC /* AABar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABar.m; sourceTree = "<group>"; };
+		84DFEB652A2882EC004436BC /* AAAreaspline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAAreaspline.m; sourceTree = "<group>"; };
+		84DFEB662A2882EC004436BC /* AAPane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPane.m; sourceTree = "<group>"; };
+		84DFEB672A2882EC004436BC /* AAPie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPie.h; sourceTree = "<group>"; };
+		84DFEB682A2882EC004436BC /* AASeries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AASeries.m; sourceTree = "<group>"; };
+		84DFEB692A2882ED004436BC /* AAArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAArea.h; sourceTree = "<group>"; };
+		84DFEB6A2A2882ED004436BC /* AALine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AALine.h; sourceTree = "<group>"; };
+		84DFEB6B2A2882ED004436BC /* AAPane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPane.h; sourceTree = "<group>"; };
+		84DFEB6C2A2882ED004436BC /* AAAreaspline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAAreaspline.h; sourceTree = "<group>"; };
+		84DFEB6D2A2882ED004436BC /* AAPie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPie.m; sourceTree = "<group>"; };
+		84DFEB6E2A2882ED004436BC /* AASeries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AASeries.h; sourceTree = "<group>"; };
+		84DFEB6F2A2882ED004436BC /* AASpline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AASpline.m; sourceTree = "<group>"; };
+		84DFEB702A2882ED004436BC /* AAScatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAScatter.m; sourceTree = "<group>"; };
+		84DFEB712A2882ED004436BC /* AASpline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AASpline.h; sourceTree = "<group>"; };
+		84DFEB722A2882ED004436BC /* AAColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAColumn.m; sourceTree = "<group>"; };
+		84DFEB732A2882ED004436BC /* AABoxplot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABoxplot.h; sourceTree = "<group>"; };
+		84DFEB742A2882ED004436BC /* AAColumnrange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAColumnrange.m; sourceTree = "<group>"; };
+		84DFEB752A2882ED004436BC /* AABar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABar.h; sourceTree = "<group>"; };
+		84DFEB762A2882ED004436BC /* AABoxplot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABoxplot.m; sourceTree = "<group>"; };
 		84FE7B9F26AED3D000B68A56 /* AABaseChartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABaseChartVC.h; sourceTree = "<group>"; };
 		84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABaseChartVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -422,7 +422,7 @@
 		275013B024BFFE26005A5D73 /* AAOptionsModel */ = {
 			isa = PBXGroup;
 			children = (
-				84DFEAEB2A287E9E004436BC /* AASeries */,
+				84DFEB3A2A2882BD004436BC /* AASeries */,
 				8441A6ED26C21E6B007EAAA7 /* AAAnimation.h */,
 				8441A6D826C21E6B007EAAA7 /* AAAnimation.m */,
 				8441A6D626C21E6A007EAAA7 /* AAChart.h */,
@@ -729,33 +729,33 @@
 			path = DataSource;
 			sourceTree = "<group>";
 		};
-		84DFEAEB2A287E9E004436BC /* AASeries */ = {
+		84DFEB3A2A2882BD004436BC /* AASeries */ = {
 			isa = PBXGroup;
 			children = (
-				84DFEAED2A2880FD004436BC /* AAArea.h */,
-				84DFEAFA2A2880FE004436BC /* AAArea.m */,
-				84DFEAF72A2880FD004436BC /* AAAreaspline.h */,
-				84DFEAFE2A2880FE004436BC /* AAAreaspline.m */,
-				84DFEAEE2A2880FD004436BC /* AABar.h */,
-				84DFEB042A2880FE004436BC /* AABar.m */,
-				84DFEAF32A2880FD004436BC /* AABoxplot.h */,
-				84DFEAFD2A2880FE004436BC /* AABoxplot.m */,
-				84DFEAF82A2880FD004436BC /* AAColumn.h */,
-				84DFEAF52A2880FD004436BC /* AAColumn.m */,
-				84DFEB032A2880FE004436BC /* AAColumnrange.h */,
-				84DFEAF92A2880FD004436BC /* AAColumnrange.m */,
-				84DFEAFB2A2880FE004436BC /* AALine.h */,
-				84DFEAF02A2880FD004436BC /* AALine.m */,
-				84DFEAF22A2880FD004436BC /* AAPane.h */,
-				84DFEAF62A2880FD004436BC /* AAPane.m */,
-				84DFEAF42A2880FD004436BC /* AAPie.h */,
-				84DFEAF12A2880FD004436BC /* AAPie.m */,
-				84DFEB022A2880FE004436BC /* AAScatter.h */,
-				84DFEAFC2A2880FE004436BC /* AAScatter.m */,
-				84DFEAFF2A2880FE004436BC /* AASeries.h */,
-				84DFEB002A2880FE004436BC /* AASeries.m */,
-				84DFEB012A2880FE004436BC /* AASpline.h */,
-				84DFEAEF2A2880FD004436BC /* AASpline.m */,
+				84DFEB692A2882ED004436BC /* AAArea.h */,
+				84DFEB5F2A2882EC004436BC /* AAArea.m */,
+				84DFEB6C2A2882ED004436BC /* AAAreaspline.h */,
+				84DFEB652A2882EC004436BC /* AAAreaspline.m */,
+				84DFEB752A2882ED004436BC /* AABar.h */,
+				84DFEB642A2882EC004436BC /* AABar.m */,
+				84DFEB732A2882ED004436BC /* AABoxplot.h */,
+				84DFEB762A2882ED004436BC /* AABoxplot.m */,
+				84DFEB602A2882EC004436BC /* AAColumn.h */,
+				84DFEB722A2882ED004436BC /* AAColumn.m */,
+				84DFEB622A2882EC004436BC /* AAColumnrange.h */,
+				84DFEB742A2882ED004436BC /* AAColumnrange.m */,
+				84DFEB6A2A2882ED004436BC /* AALine.h */,
+				84DFEB612A2882EC004436BC /* AALine.m */,
+				84DFEB6B2A2882ED004436BC /* AAPane.h */,
+				84DFEB662A2882EC004436BC /* AAPane.m */,
+				84DFEB672A2882EC004436BC /* AAPie.h */,
+				84DFEB6D2A2882ED004436BC /* AAPie.m */,
+				84DFEB632A2882EC004436BC /* AAScatter.h */,
+				84DFEB702A2882ED004436BC /* AAScatter.m */,
+				84DFEB6E2A2882ED004436BC /* AASeries.h */,
+				84DFEB682A2882EC004436BC /* AASeries.m */,
+				84DFEB712A2882ED004436BC /* AASpline.h */,
+				84DFEB6F2A2882ED004436BC /* AASpline.m */,
 			);
 			path = AASeries;
 			sourceTree = "<group>";
@@ -938,15 +938,13 @@
 			files = (
 				8441A70526C21E6C007EAAA7 /* AAChart.m in Sources */,
 				8441A70D26C21E6C007EAAA7 /* AALabel.m in Sources */,
-				84DFEB0B2A2880FE004436BC /* AAArea.m in Sources */,
-				84DFEB072A2880FE004436BC /* AAPie.m in Sources */,
-				84DFEB062A2880FE004436BC /* AALine.m in Sources */,
-				84DFEB0E2A2880FE004436BC /* AAAreaspline.m in Sources */,
+				84DFEB782A2882ED004436BC /* AALine.m in Sources */,
 				27EB89E82491246E007E6A6B /* AAPackedbubble.m in Sources */,
 				8441A70C26C21E6C007EAAA7 /* AALang.m in Sources */,
-				84DFEB0C2A2880FE004436BC /* AAScatter.m in Sources */,
+				84DFEB822A2882ED004436BC /* AABoxplot.m in Sources */,
 				84B13F4E28A0BA26007356C6 /* AARelationshipChartVC.m in Sources */,
 				8441A70A26C21E6C007EAAA7 /* AALineStyle.m in Sources */,
+				84DFEB802A2882ED004436BC /* AAColumn.m in Sources */,
 				84DFEAC22A284596004436BC /* AAPattern.m in Sources */,
 				8441A70326C21E6C007EAAA7 /* AAPlotOptions.m in Sources */,
 				84AA68A928A10B2F009067AE /* AASolidgauge.m in Sources */,
@@ -955,24 +953,26 @@
 				8441A6FB26C21E6C007EAAA7 /* AAShadow.m in Sources */,
 				27EB89DF248BE1C9007E6A6B /* AAColorAxis.m in Sources */,
 				84B13F5128A0BA3A007356C6 /* AABubbleChartVC.m in Sources */,
-				84DFEB0D2A2880FE004436BC /* AABoxplot.m in Sources */,
 				84B13EE72897A090007356C6 /* AAItem.m in Sources */,
 				8441A6FE26C21E6C007EAAA7 /* AAMarker.m in Sources */,
 				8441A71426C21E6C007EAAA7 /* AADateTimeLabelFormats.m in Sources */,
+				84DFEB7F2A2882ED004436BC /* AAScatter.m in Sources */,
 				8441A6FF26C21E6C007EAAA7 /* AALabels.m in Sources */,
 				8441A6B226C21E53007EAAA7 /* AAOptions.m in Sources */,
 				27EB89E2248C8F87007E6A6B /* AAOptionsSeries.m in Sources */,
 				8441A71F26C21F02007EAAA7 /* AAColor.m in Sources */,
-				84DFEB092A2880FE004436BC /* AAPane.m in Sources */,
 				84B13F4028A0AFF7007356C6 /* AAHeatOrTreeMapChartComposer.m in Sources */,
+				84DFEB7B2A2882ED004436BC /* AAPane.m in Sources */,
 				8441A6FD26C21E6C007EAAA7 /* AAStyle.m in Sources */,
 				8441A70826C21E6C007EAAA7 /* AAAnimation.m in Sources */,
 				8441A6FA26C21E6C007EAAA7 /* AALegend.m in Sources */,
 				84FE7BB726AED3D000B68A56 /* AABaseChartVC.m in Sources */,
+				84DFEB772A2882ED004436BC /* AAArea.m in Sources */,
 				84AA68AF28A11A6E009067AE /* AAData.m in Sources */,
-				84DFEB0F2A2880FE004436BC /* AASeries.m in Sources */,
+				84DFEB7C2A2882ED004436BC /* AASeries.m in Sources */,
 				84B13F4528A0B5CF007356C6 /* AAHeatOrTreeMapChartVC.m in Sources */,
 				84B13F4828A0B66B007356C6 /* AARelationshipChartComposer.m in Sources */,
+				84DFEB7E2A2882ED004436BC /* AASpline.m in Sources */,
 				8441A70026C21E6C007EAAA7 /* AAPlotLinesElement.m in Sources */,
 				8441A72026C21F02007EAAA7 /* AAGradientColor.m in Sources */,
 				27EB8A832497C03A007E6A6B /* AAOptionsData.m in Sources */,
@@ -981,6 +981,7 @@
 				8441A6F726C21E6C007EAAA7 /* AAStates.m in Sources */,
 				27EB89EB24912A2F007E6A6B /* AALayoutAlgorithm.m in Sources */,
 				8441A72726C21F0A007EAAA7 /* NSString+toPureJSString.m in Sources */,
+				84DFEB7A2A2882ED004436BC /* AAAreaspline.m in Sources */,
 				27EB8A1F24927BE8007E6A6B /* AATreemap.m in Sources */,
 				84AA68A028A0E45D009067AE /* AAColumnVariantChartVC.m in Sources */,
 				84AA68B828A1FD61009067AE /* AAParallelAxes.m in Sources */,
@@ -988,22 +989,21 @@
 				8441A70E26C21E6C007EAAA7 /* AAPlotBandsElement.m in Sources */,
 				8441A71026C21E6C007EAAA7 /* AATooltip.m in Sources */,
 				84B13F5628A0E028007356C6 /* AAColumnVariantChartComposer.m in Sources */,
-				84DFEB052A2880FE004436BC /* AASpline.m in Sources */,
 				84AA68BD28A208FE009067AE /* AABulletDataElement.m in Sources */,
 				84B13F4B28A0B869007356C6 /* AABubbleChartComposer.m in Sources */,
 				7172A3DB1E763EA6000D5B99 /* AppDelegate.m in Sources */,
+				84DFEB812A2882ED004436BC /* AAColumnrange.m in Sources */,
 				27EB89E5249113B6007E6A6B /* AALevelsElement.m in Sources */,
 				8441A70226C21E6C007EAAA7 /* AADataLabels.m in Sources */,
 				8441A6B326C21E53007EAAA7 /* AAChartView.m in Sources */,
 				84AA68B528A120F9009067AE /* AAOptionsCSV.m in Sources */,
-				84DFEB0A2A2880FE004436BC /* AAColumnrange.m in Sources */,
-				84DFEB082A2880FE004436BC /* AAColumn.m in Sources */,
 				84AA68A328A104B4009067AE /* AASolidgaugeDataElement.m in Sources */,
 				8441A72626C21F0A007EAAA7 /* NSArray+toJSArray.m in Sources */,
-				84DFEB102A2880FE004436BC /* AABar.m in Sources */,
 				27EB89EF2491C3A0007E6A6B /* AAChartTypePro.m in Sources */,
 				8441A6F826C21E6C007EAAA7 /* AACrosshair.m in Sources */,
+				84DFEB792A2882ED004436BC /* AABar.m in Sources */,
 				8441A71326C21E6C007EAAA7 /* AAXAxis.m in Sources */,
+				84DFEB7D2A2882ED004436BC /* AAPie.m in Sources */,
 				7172A3D81E763EA6000D5B99 /* main.m in Sources */,
 				27EB8A842497C03A007E6A6B /* ChartProVC.m in Sources */,
 				713F543D1E7B71C000D506C7 /* FirstViewController.m in Sources */,
