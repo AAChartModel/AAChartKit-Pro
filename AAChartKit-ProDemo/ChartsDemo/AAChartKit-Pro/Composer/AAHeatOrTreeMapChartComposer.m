@@ -786,7 +786,7 @@
                     .pointFormatSet(@"{point.name}"))
         .markerSet(AAMarker.new
                    .symbolSet(@"rect")
-                   .widthSet(@"25%"))
+                   .widthSet((id)@"25%"))
         .borderRadiusSet(@10)
         .dataLabelsSet(AADataLabels.new
 //                       .pointFormatSet(@"{point.name}")
