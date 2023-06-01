@@ -841,19 +841,19 @@
     .titleSet(AATitle.new
                 .textSet(@"Big Fella")
                 .styleSet(AAStyle.new
-                            .fontSizeSet(@36)))
+                            .fontSizeSet(@"36px")))
     .tooltipSet(AATooltip.new
                 .enabledSet(false))
     .paneSet(AAPane.new
                 .centerSet(@[@"50%", @"70%"])
-                .sizeSet(@"100%")
+                .sizeSet((id)@"100%")
                 .startAngleSet(@(-90))
                 .endAngleSet(@(90))
                 .backgroundSet(@[
                     AABackgroundElement.new
                     .backgroundColorSet(@"#EEE")
-                    .innerRadiusSet(@"60%")
-                    .outerRadiusSet(@"100%")
+                    .innerRadiusSet((id)@"60%")
+                    .outerRadiusSet((id)@"100%")
                     .shapeSet(@"arc")
                 ]))
     .plotOptionsSet(AAPlotOptions.new
@@ -877,7 +877,7 @@
                             .distanceSet(@(-45))
                             .ySet(@32)
                             .styleSet(AAStyle.new
-                                        .fontSizeSet(@20))))
+                                        .fontSizeSet(@"20px"))))
     .seriesSet(@[
         AASeriesElement.new
         .typeSet(AAChartTypeSolidgauge)
