@@ -423,6 +423,7 @@
 			isa = PBXGroup;
 			children = (
 				84DFEB832A288370004436BC /* AAAxis */,
+				84DFEB842A288470004436BC /* AALabel */,
 				84DFEB3A2A2882BD004436BC /* AASeries */,
 				8441A6ED26C21E6B007EAAA7 /* AAAnimation.h */,
 				8441A6D826C21E6B007EAAA7 /* AAAnimation.m */,
@@ -430,14 +431,6 @@
 				8441A6D226C21E6A007EAAA7 /* AAChart.m */,
 				8441A6C726C21E6A007EAAA7 /* AACredits.h */,
 				8441A6D126C21E6A007EAAA7 /* AACredits.m */,
-				8441A6C226C21E6A007EAAA7 /* AADataLabels.h */,
-				8441A6CC26C21E6A007EAAA7 /* AADataLabels.m */,
-				8441A6DC26C21E6B007EAAA7 /* AADateTimeLabelFormats.h */,
-				8441A6F226C21E6B007EAAA7 /* AADateTimeLabelFormats.m */,
-				8441A6CE26C21E6A007EAAA7 /* AALabel.h */,
-				8441A6E626C21E6B007EAAA7 /* AALabel.m */,
-				8441A6C026C21E6A007EAAA7 /* AALabels.h */,
-				8441A6C426C21E6A007EAAA7 /* AALabels.m */,
 				8441A6CB26C21E6A007EAAA7 /* AALang.h */,
 				8441A6E526C21E6B007EAAA7 /* AALang.m */,
 				8441A6EB26C21E6B007EAAA7 /* AALegend.h */,
@@ -766,6 +759,21 @@
 				8441A6B826C21E69007EAAA7 /* AACrosshair.m */,
 			);
 			path = AAAxis;
+			sourceTree = "<group>";
+		};
+		84DFEB842A288470004436BC /* AALabel */ = {
+			isa = PBXGroup;
+			children = (
+				8441A6C226C21E6A007EAAA7 /* AADataLabels.h */,
+				8441A6CC26C21E6A007EAAA7 /* AADataLabels.m */,
+				8441A6DC26C21E6B007EAAA7 /* AADateTimeLabelFormats.h */,
+				8441A6F226C21E6B007EAAA7 /* AADateTimeLabelFormats.m */,
+				8441A6CE26C21E6A007EAAA7 /* AALabel.h */,
+				8441A6E626C21E6B007EAAA7 /* AALabel.m */,
+				8441A6C026C21E6A007EAAA7 /* AALabels.h */,
+				8441A6C426C21E6A007EAAA7 /* AALabels.m */,
+			);
+			path = AALabel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
