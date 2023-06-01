@@ -52,6 +52,8 @@
 #import "AASpline.h"
 #import "AAPie.h"
 #import "AAColumnrange.h"
+//#import "AABoxplot.h"
+//#import "AAScatter.h"
 #import "AALegend.h"
 #import "AADataLabels.h"
 #import "AAStyle.h"
@@ -87,7 +89,9 @@ AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AAPane        *, pane)
 AAPropStatementAndPropSetFuncStatement(strong, AAOptions, NSArray       *, colors)
 AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AACredits     *, credits)
 AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AALang        *, defaultOptions)
-AAPropStatementAndPropSetFuncStatement(assign, AAOptions, BOOL           , touchEventEnabled)
+
+@property (nonatomic, assign) BOOL clickEventEnabled;//Please DO NOT use this property
+@property (nonatomic, assign) BOOL touchEventEnabled;//Please DO NOT use this property
 
 AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AAColorAxis   *, colorAxis)
 AAPropStatementAndPropSetFuncStatement(strong, AAOptions, AAData        *, data)
