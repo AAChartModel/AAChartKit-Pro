@@ -123,6 +123,7 @@
 		84DFEAB22A27382C004436BC /* pictorial1Series.json in Resources */ = {isa = PBXBuildFile; fileRef = 84DFEAB02A27382C004436BC /* pictorial1Series.json */; };
 		84DFEABC2A274784004436BC /* treegraphData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84DFEABB2A274784004436BC /* treegraphData.json */; };
 		84DFEABF2A2748A3004436BC /* AAPictorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEABE2A2748A3004436BC /* AAPictorial.m */; };
+		84DFEAC22A284596004436BC /* AAPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEAC12A284596004436BC /* AAPattern.m */; };
 		84FE7BB726AED3D000B68A56 /* AABaseChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */; };
 /* End PBXBuildFile section */
 
@@ -342,6 +343,8 @@
 		84DFEABB2A274784004436BC /* treegraphData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = treegraphData.json; sourceTree = "<group>"; };
 		84DFEABD2A2748A3004436BC /* AAPictorial.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAPictorial.h; sourceTree = "<group>"; };
 		84DFEABE2A2748A3004436BC /* AAPictorial.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAPictorial.m; sourceTree = "<group>"; };
+		84DFEAC02A284596004436BC /* AAPattern.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAPattern.h; sourceTree = "<group>"; };
+		84DFEAC12A284596004436BC /* AAPattern.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAPattern.m; sourceTree = "<group>"; };
 		84FE7B9F26AED3D000B68A56 /* AABaseChartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABaseChartVC.h; sourceTree = "<group>"; };
 		84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABaseChartVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -514,6 +517,8 @@
 				84AA68BC28A208FE009067AE /* AABulletDataElement.m */,
 				84DFEABD2A2748A3004436BC /* AAPictorial.h */,
 				84DFEABE2A2748A3004436BC /* AAPictorial.m */,
+				84DFEAC02A284596004436BC /* AAPattern.h */,
+				84DFEAC12A284596004436BC /* AAPattern.m */,
 			);
 			path = AAOptionsProModel;
 			sourceTree = "<group>";
@@ -920,6 +925,7 @@
 				8441A70C26C21E6C007EAAA7 /* AALang.m in Sources */,
 				84B13F4E28A0BA26007356C6 /* AARelationshipChartVC.m in Sources */,
 				8441A70A26C21E6C007EAAA7 /* AALineStyle.m in Sources */,
+				84DFEAC22A284596004436BC /* AAPattern.m in Sources */,
 				8441A70326C21E6C007EAAA7 /* AAPlotOptions.m in Sources */,
 				84AA68A928A10B2F009067AE /* AASolidgauge.m in Sources */,
 				8441A70426C21E6C007EAAA7 /* AACredits.m in Sources */,
