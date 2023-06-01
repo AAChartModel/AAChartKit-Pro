@@ -78,7 +78,8 @@
     return AAOptions.new
         .chartSet(AAChart.new
                   .typeSet(AAChartTypePackedbubble)
-                  .heightSet((id)@"100%"))
+//                  .heightSet((id)@"100%")
+                  )
         .titleSet(AATitle.new
                   .textSet(@"Carbon emissions around the world (2014)"))
         .tooltipSet(AATooltip.new
