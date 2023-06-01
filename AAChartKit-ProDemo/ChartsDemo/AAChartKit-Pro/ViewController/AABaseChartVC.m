@@ -173,14 +173,23 @@
     }];
 }
 
+- (void)configureChartOptions:(id)chartConfiguration {
+    AAOptions *aaOptions = chartConfiguration;
+    if (aaOptions.chart) {
+        aaOptions.chart.backgroundColor = @"#000000";
+    } else {
+        aaOptions.chartSet(AAChart.new
+                           .backgroundColorSet(@"#000000"));
+    }
+    aaOptions.touchEventEnabled = true;
+}
+
 - (void)drawChartWithChartConfiguration {
     id chartConfiguration = [self chartConfigurationWithSelectedIndex:self.selectedIndex];
     if ([chartConfiguration isKindOfClass:AAChartModel.class]) {
         [self.aaChartView aa_drawChartWithChartModel:chartConfiguration];
     } else if ([chartConfiguration isKindOfClass:AAOptions.class]) {
-        AAOptions *aaOptions = chartConfiguration;
-        aaOptions.chart.backgroundColor = @"#000000";
-        aaOptions.touchEventEnabled = true;
+        [self configureChartOptions:chartConfiguration];
         [self.aaChartView aa_drawChartWithOptions:chartConfiguration];
     }
 }
@@ -190,10 +199,7 @@
     if ([chartConfiguration isKindOfClass:AAChartModel.class]) {
         [self.aaChartView aa_refreshChartWithChartModel:chartConfiguration];
     } else if ([chartConfiguration isKindOfClass:AAOptions.class]) {
-        AAOptions *aaOptions = chartConfiguration;
-        aaOptions.chart.backgroundColor = @"#000000";
-
-        aaOptions.touchEventEnabled = true;
+        [self configureChartOptions:chartConfiguration];
         [self.aaChartView aa_refreshChartWithOptions:chartConfiguration];
     }
 }
