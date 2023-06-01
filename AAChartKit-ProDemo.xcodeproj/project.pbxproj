@@ -422,16 +422,14 @@
 		275013B024BFFE26005A5D73 /* AAOptionsModel */ = {
 			isa = PBXGroup;
 			children = (
+				84DFEB832A288370004436BC /* AAAxis */,
 				84DFEB3A2A2882BD004436BC /* AASeries */,
 				8441A6ED26C21E6B007EAAA7 /* AAAnimation.h */,
 				8441A6D826C21E6B007EAAA7 /* AAAnimation.m */,
 				8441A6D626C21E6A007EAAA7 /* AAChart.h */,
 				8441A6D226C21E6A007EAAA7 /* AAChart.m */,
-				8441A6D526C21E6A007EAAA7 /* AAChartAxisType.h */,
 				8441A6C726C21E6A007EAAA7 /* AACredits.h */,
 				8441A6D126C21E6A007EAAA7 /* AACredits.m */,
-				8441A6DF26C21E6B007EAAA7 /* AACrosshair.h */,
-				8441A6B826C21E69007EAAA7 /* AACrosshair.m */,
 				8441A6C226C21E6A007EAAA7 /* AADataLabels.h */,
 				8441A6CC26C21E6A007EAAA7 /* AADataLabels.m */,
 				8441A6DC26C21E6B007EAAA7 /* AADateTimeLabelFormats.h */,
@@ -448,10 +446,6 @@
 				8441A6E226C21E6B007EAAA7 /* AALineStyle.m */,
 				8441A6CD26C21E6A007EAAA7 /* AAMarker.h */,
 				8441A6C326C21E6A007EAAA7 /* AAMarker.m */,
-				8441A6EF26C21E6B007EAAA7 /* AAPlotBandsElement.h */,
-				8441A6E726C21E6B007EAAA7 /* AAPlotBandsElement.m */,
-				8441A6BE26C21E6A007EAAA7 /* AAPlotLinesElement.h */,
-				8441A6C826C21E6A007EAAA7 /* AAPlotLinesElement.m */,
 				8441A6E026C21E6B007EAAA7 /* AAPlotOptions.h */,
 				8441A6CF26C21E6A007EAAA7 /* AAPlotOptions.m */,
 				8441A6D026C21E6A007EAAA7 /* AAShadow.h */,
@@ -464,10 +458,6 @@
 				8441A6E926C21E6B007EAAA7 /* AATitle.m */,
 				8441A6F626C21E6C007EAAA7 /* AATooltip.h */,
 				8441A6EC26C21E6B007EAAA7 /* AATooltip.m */,
-				8441A6DD26C21E6B007EAAA7 /* AAXAxis.h */,
-				8441A6F126C21E6B007EAAA7 /* AAXAxis.m */,
-				8441A6EA26C21E6B007EAAA7 /* AAYAxis.h */,
-				8441A6B926C21E69007EAAA7 /* AAYAxis.m */,
 			);
 			path = AAOptionsModel;
 			sourceTree = "<group>";
@@ -758,6 +748,24 @@
 				84DFEB6F2A2882ED004436BC /* AASpline.m */,
 			);
 			path = AASeries;
+			sourceTree = "<group>";
+		};
+		84DFEB832A288370004436BC /* AAAxis */ = {
+			isa = PBXGroup;
+			children = (
+				8441A6DD26C21E6B007EAAA7 /* AAXAxis.h */,
+				8441A6F126C21E6B007EAAA7 /* AAXAxis.m */,
+				8441A6EA26C21E6B007EAAA7 /* AAYAxis.h */,
+				8441A6B926C21E69007EAAA7 /* AAYAxis.m */,
+				8441A6D526C21E6A007EAAA7 /* AAChartAxisType.h */,
+				8441A6EF26C21E6B007EAAA7 /* AAPlotBandsElement.h */,
+				8441A6E726C21E6B007EAAA7 /* AAPlotBandsElement.m */,
+				8441A6BE26C21E6A007EAAA7 /* AAPlotLinesElement.h */,
+				8441A6C826C21E6A007EAAA7 /* AAPlotLinesElement.m */,
+				8441A6DF26C21E6B007EAAA7 /* AACrosshair.h */,
+				8441A6B826C21E69007EAAA7 /* AACrosshair.m */,
+			);
+			path = AAAxis;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
