@@ -840,8 +840,7 @@
               .typeSet(AAChartTypeSolidgauge))
     .titleSet(AATitle.new
                 .textSet(@"Big Fella")
-                .styleSet(AAStyle.new
-                            .fontSizeSet(@"36px")))
+                .styleSet(AAStyleColorSize(AAColor.blackColor, 36)))
     .tooltipSet(AATooltip.new
                 .enabledSet(false))
     .paneSet(AAPane.new
@@ -876,8 +875,7 @@
                 .labelsSet(AALabels.new
                             .distanceSet(@(-45))
                             .ySet(@32)
-                            .styleSet(AAStyle.new
-                                        .fontSizeSet(@"20px"))))
+                            .styleSet(AAStyleColorSize(AAColor.blackColor, 20))))
     .seriesSet(@[
         AASeriesElement.new
         .typeSet(AAChartTypeSolidgauge)
