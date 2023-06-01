@@ -4,7 +4,7 @@
 //
 //  Created by AnAn on 2023/6/1.
 //  Copyright © 2023 An An. All rights reserved.
-//
+//  https://api.highcharts.com/class-reference/Highcharts.PatternOptionsObject#toc0
 
 #import <Foundation/Foundation.h>
 
