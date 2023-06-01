@@ -2,15 +2,21 @@
     {
         "id": "A",
         "name": "苹果",
-        "color": "#EC2500"
+        "color": {
+            "patternIndex": 6
+        }
     }, {
         "id": "B",
         "name": "香蕉",
-        "color": "#ECE100"
+        "color": {
+            "patternIndex": 7
+        }
     }, {
         "id": "O",
         "name": "橘子",
-        "color": "#EC9800"
+        "color": {
+            "patternIndex": 8
+        }
     }, {
         "name": "小张",
         "parent": "A",
@@ -51,6 +57,8 @@
         "name": "阿苏",
         "parent": "wiki",
         "value": 2,
-        "color": "#9EDE00"
+        "color": {
+            "patternIndex": 9
+        }
     }
 ]
