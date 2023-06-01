@@ -22,7 +22,6 @@ AAPropStatementAndPropSetFuncStatement(strong, AAPictorial, NSArray *, paths)
 
 @end
 
-NS_ASSUME_NONNULL_END
 
 @interface AAPathsElement : NSObject
 
@@ -30,3 +29,6 @@ AAPropStatementAndPropSetFuncStatement(copy  , AAPathsElement, NSString *, defin
 AAPropStatementAndPropSetFuncStatement(strong, AAPathsElement, NSNumber *, max)
 
 @end
+
+NS_ASSUME_NONNULL_END
+
