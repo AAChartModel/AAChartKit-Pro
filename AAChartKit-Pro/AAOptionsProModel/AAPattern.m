@@ -8,19 +8,28 @@
 
 #import "AAPattern.h"
 
-@implementation AAPattern
+@implementation AAPattern : NSObject
 
-AAPropSetFuncImplementation(AAPattern, NSNumber *, aspectRatio)
-AAPropSetFuncImplementation(AAPattern, NSString *, backgroundColor)
-AAPropSetFuncImplementation(AAPattern, NSString *, color)
-AAPropSetFuncImplementation(AAPattern, NSNumber *, height)
-AAPropSetFuncImplementation(AAPattern, NSString *, id)
-AAPropSetFuncImplementation(AAPattern, NSString *, image)
-AAPropSetFuncImplementation(AAPattern, NSNumber *, opacity)
-AAPropSetFuncImplementation(AAPattern, NSString *, path)
-AAPropSetFuncImplementation(AAPattern, NSString *, patternTransform)
-AAPropSetFuncImplementation(AAPattern, NSNumber *, width)
-AAPropSetFuncImplementation(AAPattern, NSNumber *, x)
-AAPropSetFuncImplementation(AAPattern, NSNumber *, y)
+AAPropSetFuncImplementation(AAPattern, id, animation)
+AAPropSetFuncImplementation(AAPattern, AAPatternOptions *, pattern)
+AAPropSetFuncImplementation(AAPattern, NSNumber *, patternIndex)
+
+@end
+
+
+@implementation AAPatternOptions
+
+AAPropSetFuncImplementation(AAPatternOptions, NSNumber *, aspectRatio)
+AAPropSetFuncImplementation(AAPatternOptions, NSString *, backgroundColor)
+AAPropSetFuncImplementation(AAPatternOptions, NSString *, color)
+AAPropSetFuncImplementation(AAPatternOptions, NSNumber *, height)
+AAPropSetFuncImplementation(AAPatternOptions, NSString *, id)
+AAPropSetFuncImplementation(AAPatternOptions, NSString *, image)
+AAPropSetFuncImplementation(AAPatternOptions, NSNumber *, opacity)
+AAPropSetFuncImplementation(AAPatternOptions, NSString *, path)
+AAPropSetFuncImplementation(AAPatternOptions, NSString *, patternTransform)
+AAPropSetFuncImplementation(AAPatternOptions, NSNumber *, width)
+AAPropSetFuncImplementation(AAPatternOptions, NSNumber *, x)
+AAPropSetFuncImplementation(AAPatternOptions, NSNumber *, y)
 
 @end
