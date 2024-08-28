@@ -501,7 +501,7 @@
         .valueSuffixSet(@"%")
                 .pointFormatSet(@"{series.name}<br><span style=""font-size:2em; color: {point.color}; font-weight: bold"">{point.y}</span>")
                 .positionerSet(@AAJSFunc(function(labelWidth) {
-                    let position = {};
+                    const position = {};
                     position["x"] = (this.chart.chartWidth - labelWidth) / 2 - 100;
                     position["y"] = (this.chart.plotHeight / 2) + 15;
                     return position;
