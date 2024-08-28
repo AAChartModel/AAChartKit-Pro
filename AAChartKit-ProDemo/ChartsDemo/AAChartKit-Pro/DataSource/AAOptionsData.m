@@ -187,6 +187,82 @@
     return [self getJsonDataWithJsonFileName:@"treegraphData"];
 }
 
++ (NSArray *)calendarHeatmapData {
+    NSArray *originalDataArr = [self getJsonDataWithJsonFileName:@"calendarHeatmapData"];
+    NSArray *chartData = generateChartData(originalDataArr);
+    return chartData;
+}
+
+
+// 该函数接收一个数据集并计算在绘制数据集前后需要多少个空白格子
+NSArray* generateChartData(NSArray *data) {
+    NSArray *weekdays = @[@"Sun", @"Mon", @"Tue", @"Wed", @"Thu", @"Fri", @"Sat"];
+
+    // 计算起始工作日索引（给定数组中第一个日期的 0-6）
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    NSDate *firstDate = [dateFormatter dateFromString:data[0][@"date"]];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSInteger firstWeekday = [calendar component:NSCalendarUnitWeekday fromDate:firstDate] - 1;
+    
+    NSInteger monthLength = [data count];
+    NSString *lastElement = data[monthLength - 1][@"date"];
+    NSDate *lastDate = [dateFormatter dateFromString:lastElement];
+    NSInteger lastWeekday = [calendar component:NSCalendarUnitWeekday fromDate:lastDate] - 1;
+    
+    NSInteger lengthOfWeek = 6;
+    NSInteger emptyTilesFirst = firstWeekday;
+    NSMutableArray *chartData = [NSMutableArray array];
+    
+    // 在月份的第一天之前添加带有空值的空白格子，以在图表中占据空间
+    for (NSInteger emptyDay = 0; emptyDay < emptyTilesFirst; emptyDay++) {
+        [chartData addObject:@{
+            @"x": @(emptyDay),
+            @"y": @5,
+            @"value": [NSNull null],
+            @"date": [NSNull null],
+            @"custom": @{@"empty": @YES}
+        }];
+    }
+    
+    // 遍历数据集并填充温度和日期
+    for (NSInteger day = 1; day <= monthLength; day++) {
+        // 从给定的数据数组中获取日期
+        NSString *date = data[day - 1][@"date"];
+        
+        // 偏移空白格子的数量
+        NSInteger xCoordinate = (emptyTilesFirst + day - 1) % 7;
+        NSInteger yCoordinate = floor((firstWeekday + day - 1) / 7.0);
+        NSInteger id = day;
+        
+        // 从给定数组中获取当前日期对应的温度
+        NSNumber *temperature = data[day - 1][@"temperature"];
+        
+        [chartData addObject:@{
+            @"x": @(xCoordinate),
+            @"y": @(5 - yCoordinate),
+            @"value": temperature,
+            @"date": @([[dateFormatter dateFromString:date] timeIntervalSince1970] * 1000),
+            @"custom": @{@"monthDay": @(id)}
+        }];
+    }
+    
+    // 在数据集遍历完后填充缺失的值
+    NSInteger emptyTilesLast = lengthOfWeek - lastWeekday;
+    for (NSInteger emptyDay = 1; emptyDay <= emptyTilesLast; emptyDay++) {
+        [chartData addObject:@{
+            @"x": @((lastWeekday + emptyDay) % 7),
+            @"y": @0,
+            @"value": [NSNull null],
+            @"date": [NSNull null],
+            @"custom": @{@"empty": @YES}
+        }];
+    }
+    
+    return chartData;
+}
+
 + (NSArray *)getSingleGroupCategoryDataElementArrayWithY:(int )y {
     NSMutableArray *dataArr = [NSMutableArray array];
     

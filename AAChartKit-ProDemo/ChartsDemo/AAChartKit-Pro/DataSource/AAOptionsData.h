@@ -58,6 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSArray *)simpleDependencyWheelData;
 + (NSArray *)treegraphData;
++ (NSArray *)calendarHeatmapData;
 
 @end
 

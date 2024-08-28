@@ -815,7 +815,102 @@
     ]);
 }
 
-
++ (AAOptions *)calendarHeatmap {
+    AAOptions *aaOptions = AAOptions.new
+        .chartSet(AAChart.new
+                  .typeSet(AAChartTypeHeatmap))
+        .titleSet(AATitle.new
+                  .textSet(@"Day temperature in Oslo, Norway July 2023")
+                  .alignSet(AAChartAlignTypeLeft))
+        .subtitleSet(AASubtitle.new
+                     .textSet(@"Temperature variation at day through July")
+                     .alignSet(AAChartAlignTypeLeft))
+//        .accessibilitySet(AAAccessibility.new
+//                          .landmarkVerbositySet(@"one"))
+        .tooltipSet(AATooltip.new
+                    .enabledSet(true)
+//                    .outsideSet(true)
+//                    .zIndexSet(@20)
+                    .headerFormatSet(@"")
+                    .pointFormatSet(@"{#unless point.custom.empty}{point.date:%A, %b %e, %Y}{/unless}")
+//                    .nullFormatSet(@"No data")
+                    )
+        .xAxisSet(AAXAxis.new
+                  .categoriesSet(@[@"Sunday", @"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday"])
+                  .oppositeSet(true)
+                  .lineWidthSet(@26)
+                  .offsetSet(@13)
+                  .lineColorSet(@"rgba(27, 26, 37, 0.2)")
+                  .labelsSet(AALabels.new
+                             .rotationSet(@0)
+                             .ySet(@20)
+                             .styleSet(AAStyle.new
+//                                       .textTransformSet(AAChartTitleAlignTypeUppercase)
+                                       .fontWeightSet(AAChartFontWeightTypeBold)))
+//                  .accessibilitySet(AAAccessibility.new
+//                                    .descriptionSet(@"weekdays")
+//                                    .rangeDescriptionSet(@"X Axis is showing all 7 days of the week, starting with Sunday."))
+                  )
+        .yAxisSet(AAYAxis.new
+                  .minSet(@0)
+                  .maxSet(@5)
+//                  .accessibilitySet(AAAccessibility.new
+//                                    .descriptionSet(@"weeks")
+//                                    )
+                  .visibleSet(false))
+        .legendSet(AALegend.new
+                   .alignSet(AAChartAlignTypeRight)
+                   .layoutSet(AAChartLayoutTypeVertical)
+                   .verticalAlignSet(AAChartVerticalAlignTypeMiddle))
+        .colorAxisSet(AAColorAxis.new
+                      .startOnTickSet(true)
+                      .endOnTickSet(true)
+                      .minSet(@0)
+                      .stopsSet(@[
+                        @[@0.2, @"lightblue"],
+                        @[@0.4, @"#CBDFC8"],
+                        @[@0.6, @"#F3E99E"],
+                        @[@0.9, @"#F9A05C"]
+                      ])
+                      .labelsSet(AALabels.new
+                                 .formatSet(@"{value} °C")))
+        .seriesSet(@[
+            AASeriesElement.new
+                .keysSet(@[@"x", @"y", @"value", @"date", @"id"])
+                .dataSet(AAOptionsData.calendarHeatmapData)
+                .nullColorSet(@"rgba(196, 196, 196, 0.2)")
+                .borderWidthSet(@2)
+                .borderColorSet(@"rgba(196, 196, 196, 0.2)")
+                .dataLabelsSet((id)@[
+                    AADataLabels.new
+                        .enabledSet(true)
+                        .formatSet(@"{#unless point.custom.empty}{point.value:.1f}°{/unless}")
+                        .styleSet(AAStyle.new
+                        .textOutlineSet(@"none")
+                        .fontWeightSet(AAChartFontWeightTypeRegular)
+                        .fontSizeSet(@"1rem"))
+                        .ySet(@4),
+                    AADataLabels.new
+                        .enabledSet(true)
+                        .alignSet(AAChartAlignTypeLeft)
+                        .verticalAlignSet(AAChartVerticalAlignTypeTop)
+                        .formatSet(@"{#unless point.custom.empty}{point.custom.monthDay}{/unless}")
+                        .backgroundColorSet(@"whitesmoke")
+                        .paddingSet(@2)
+                        .styleSet(AAStyle.new
+                        .textOutlineSet(@"none")
+                        .colorSet(@"rgba(70, 70, 92, 1)")
+                        .fontSizeSet(@"0.8rem")
+                        .fontWeightSet(AAChartFontWeightTypeBold)
+//                        .opacitySet(@0.5)
+                    )
+                        .xSet(@1)
+                        .ySet(@1)
+                ])
+        ]);
+    
+    return aaOptions;
+}
 
 + (NSString *)aa_toPureJSString2WithString:(NSString *)string {
     //https://stackoverflow.com/questions/34334232/why-does-function-not-work-but-function-does-chrome-devtools-node

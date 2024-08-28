@@ -36,6 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (AAOptions *)treegraph;
 + (AAOptions *)invertedTreegraph;
 + (AAOptions *)treegraphWithBoxLayout;
++ (AAOptions *)calendarHeatmap;
+
 
 @end
 

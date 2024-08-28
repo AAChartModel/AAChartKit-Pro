@@ -80,6 +80,7 @@
 		8441A72026C21F02007EAAA7 /* AAGradientColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A71E26C21F02007EAAA7 /* AAGradientColor.m */; };
 		8441A72626C21F0A007EAAA7 /* NSArray+toJSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A72426C21F0A007EAAA7 /* NSArray+toJSArray.m */; };
 		8441A72726C21F0A007EAAA7 /* NSString+toPureJSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A72526C21F0A007EAAA7 /* NSString+toPureJSString.m */; };
+		8492D9A02C7499DC007EB8D0 /* calendarHeatmapData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8492D99F2C7499DC007EB8D0 /* calendarHeatmapData.json */; };
 		84A5690027FD48E900883553 /* organizationData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A568FF27FD48E900883553 /* organizationData.json */; };
 		84A5690227FD496600883553 /* organizationNodesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690127FD496600883553 /* organizationNodesData.json */; };
 		84A5690627FD663400883553 /* arcdiagram1Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690527FD663400883553 /* arcdiagram1Data.json */; };
@@ -272,6 +273,8 @@
 		8441A72326C21F0A007EAAA7 /* NSString+toPureJSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+toPureJSString.h"; sourceTree = "<group>"; };
 		8441A72426C21F0A007EAAA7 /* NSArray+toJSArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+toJSArray.m"; sourceTree = "<group>"; };
 		8441A72526C21F0A007EAAA7 /* NSString+toPureJSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+toPureJSString.m"; sourceTree = "<group>"; };
+		8492D99E2C7498B8007EB8D0 /* AAChartKit-ProDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "AAChartKit-ProDemo.entitlements"; sourceTree = "<group>"; };
+		8492D99F2C7499DC007EB8D0 /* calendarHeatmapData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = calendarHeatmapData.json; sourceTree = "<group>"; };
 		84A568FF27FD48E900883553 /* organizationData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = organizationData.json; sourceTree = "<group>"; };
 		84A5690127FD496600883553 /* organizationNodesData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = organizationNodesData.json; sourceTree = "<group>"; };
 		84A5690527FD663400883553 /* arcdiagram1Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = arcdiagram1Data.json; sourceTree = "<group>"; };
@@ -516,6 +519,7 @@
 				84DEB8B028FADE1600BF9423 /* simpleDependencyWheelData.json */,
 				84D2B65C2978F9FF005BBA80 /* simpleTilemapData.json */,
 				84D2B65B2978F9FF005BBA80 /* tilemapForAfricaData.json */,
+				8492D99F2C7499DC007EB8D0 /* calendarHeatmapData.json */,
 			);
 			path = DataJsonFiles;
 			sourceTree = "<group>";
@@ -575,6 +579,7 @@
 		7172A3D51E763EA6000D5B99 /* AAChartKit-ProDemo */ = {
 			isa = PBXGroup;
 			children = (
+				8492D99E2C7498B8007EB8D0 /* AAChartKit-ProDemo.entitlements */,
 				713F54341E7B71C000D506C7 /* ChartsDemo */,
 				7172A4581E763FDB000D5B99 /* PrefixHeader.pch */,
 				7172A3D91E763EA6000D5B99 /* AppDelegate.h */,
@@ -949,6 +954,7 @@
 				27EB8A7A2497C007007E6A6B /* sankeyData.json in Resources */,
 				7172A3E61E763EA6000D5B99 /* LaunchScreen.storyboard in Resources */,
 				7172A3E31E763EA6000D5B99 /* Assets.xcassets in Resources */,
+				8492D9A02C7499DC007EB8D0 /* calendarHeatmapData.json in Resources */,
 				84A5690C27FD6EB300883553 /* flameData.json in Resources */,
 				84A5690227FD496600883553 /* organizationNodesData.json in Resources */,
 				7172A3E11E763EA6000D5B99 /* Main.storyboard in Resources */,
@@ -1215,6 +1221,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "AAChartKit-ProDemo/AAChartKit-ProDemo.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BPAYP34L8N;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AAChartKit-ProDemo/PrefixHeader.pch";
@@ -1223,6 +1233,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AAChartKithihiuhuih;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1230,6 +1244,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "AAChartKit-ProDemo/AAChartKit-ProDemo.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BPAYP34L8N;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AAChartKit-ProDemo/PrefixHeader.pch";
@@ -1238,6 +1256,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AAChartKithihiuhuih;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
