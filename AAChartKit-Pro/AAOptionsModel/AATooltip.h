@@ -43,16 +43,19 @@ AAPropStatementAndPropSetFuncStatement(strong, AATooltip, NSNumber *, borderRadi
 AAPropStatementAndPropSetFuncStatement(strong, AATooltip, NSNumber *, borderWidth) //边框宽度
 AAPropStatementAndPropSetFuncStatement(strong, AATooltip, AAStyle  *, style) //为提示框添加CSS样式。提示框同样能够通过 CSS 类 .highcharts-tooltip 来设定样式。 默认是：@{@"color":@"#333333",@"cursor":@"default",@"fontSize":@"12px",@"pointerEvents":@"none",@"whiteSpace":@"nowrap" }
 AAPropStatementAndPropSetFuncStatement(assign, AATooltip, BOOL,       enabled)
-AAPropStatementAndPropSetFuncStatement(assign, AATooltip, BOOL,       useHTML) 
-AAPropStatementAndPropSetFuncStatement(copy,   AATooltip, NSString *, formatter) 
+AAPropStatementAndPropSetFuncStatement(assign, AATooltip, BOOL,       useHTML)
+AAPropStatementAndPropSetFuncStatement(copy,   AATooltip, NSString *, format)
+AAPropStatementAndPropSetFuncStatement(copy,   AATooltip, NSString *, formatter)
 AAPropStatementAndPropSetFuncStatement(copy,   AATooltip, NSString *, headerFormat) 
 AAPropStatementAndPropSetFuncStatement(copy,   AATooltip, NSString *, pointFormat)
 AAPropStatementAndPropSetFuncStatement(copy,   AATooltip, NSString *, pointFormatter)
 AAPropStatementAndPropSetFuncStatement(copy,   AATooltip, NSString *, footerFormat) 
 AAPropStatementAndPropSetFuncStatement(strong, AATooltip, NSNumber *, valueDecimals) //设置取值精确到小数点后几位
 AAPropStatementAndPropSetFuncStatement(copy,   AATooltip, NSString *, shape)
-AAPropStatementAndPropSetFuncStatement(assign, AATooltip, BOOL,       shared) 
+AAPropStatementAndPropSetFuncStatement(assign, AATooltip, BOOL,       shared)
+AAPropStatementAndPropSetFuncStatement(copy,   AATooltip, NSString *, valuePrefix)
 AAPropStatementAndPropSetFuncStatement(copy,   AATooltip, NSString *, valueSuffix)
+AAPropStatementAndPropSetFuncStatement(assign, AATooltip, BOOL,       followPointer)
 AAPropStatementAndPropSetFuncStatement(assign, AATooltip, BOOL,       followTouchMove) //在触摸设备上，tooltip.followTouchMove选项为true（默认）时，平移需要两根手指。若要允许用一根手指平移，请将followTouchMove设置为false。
 AAPropStatementAndPropSetFuncStatement(assign, AATooltip, BOOL,       shadow)
 AAPropStatementAndPropSetFuncStatement(strong, AATooltip, NSNumber *, padding) //设置取值精确到小数点后几位

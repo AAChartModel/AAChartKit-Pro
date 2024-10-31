@@ -585,7 +585,7 @@
 + (AAOptions *)carnivoraPhylogenyOrganizationChart {
     return AAOptions.new
         .chartSet(AAChart.new
-                    .heightSet(@600)
+//                    .heightSet(@600)
                     .invertedSet(false))
     .titleSet(AATitle.new
                 .textSet(@"Carnivora Phylogeny"))
@@ -647,9 +647,9 @@
         ])
         .tooltipSet(AATooltip.new
                     .outsideSet(@true)
-//                    .formatSet(@"{point.custom.info}")
+                    .formatSet(@"{point.custom.info}")
                     .styleSet(AAStyle.new
-//                              .widthSet(@"320px")
+                              .widthSet((id)@"320px")
                               ))
 //        .exportingSet(AAExporting.new
 //                      .allowHTMLSet(@true)
