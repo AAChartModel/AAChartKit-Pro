@@ -32,12 +32,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class AADataLabels, AAStates;
+@class AADataLabels, AAStates, AAMarker;
 
 @interface AALine : NSObject
 
 AAPropStatementAndPropSetFuncStatement(strong, AALine, NSNumber     *, lineWidth) //设置折线的宽度
-AAPropStatementAndPropSetFuncStatement(strong, AALine, AADataLabels *, dataLabels) 
+AAPropStatementAndPropSetFuncStatement(copy,   AALine, NSString *, color) //设置折线的颜色
+AAPropStatementAndPropSetFuncStatement(strong, AALine, AAMarker *, marker) //折线的数据点标记
+AAPropStatementAndPropSetFuncStatement(strong, AALine, AADataLabels *, dataLabels)
 AAPropStatementAndPropSetFuncStatement(copy,   AALine, NSString *, dashStyle) //折线的样式类型
 AAPropStatementAndPropSetFuncStatement(strong, AALine, AAStates *, states)
 

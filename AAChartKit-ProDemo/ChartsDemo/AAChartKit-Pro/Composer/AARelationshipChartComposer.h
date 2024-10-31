@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (AAOptions *)organizationChart;
 + (AAOptions *)networkgraphChart;
 + (AAOptions *)simpleDependencyWheelChart;
++ (AAOptions *)neuralNetworkChart;
 
 @end
 

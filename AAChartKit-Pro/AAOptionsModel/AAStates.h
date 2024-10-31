@@ -53,6 +53,7 @@ AAPropStatementAndPropSetFuncStatement(copy,   AAHover, NSString *, color)
 AAPropStatementAndPropSetFuncStatement(strong, AAHover, AAHalo   *, halo)
 AAPropStatementAndPropSetFuncStatement(strong, AAHover, NSNumber *, lineWidth)
 AAPropStatementAndPropSetFuncStatement(strong, AAHover, NSNumber *, lineWidthPlus)
+AAPropStatementAndPropSetFuncStatement(copy,   AAHover, NSString *, lineColor)
 
 @end
 

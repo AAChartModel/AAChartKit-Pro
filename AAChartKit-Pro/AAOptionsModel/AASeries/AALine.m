@@ -33,9 +33,16 @@
 #import "AALine.h"
 
 @implementation AALine
-
-AAPropSetFuncImplementation(AALine, NSNumber     *, lineWidth) 
-AAPropSetFuncImplementation(AALine, AADataLabels *, dataLabels) 
+//AAPropStatementAndPropSetFuncStatement(strong, AALine, NSNumber     *, lineWidth) //设置折线的宽度
+//AAPropStatementAndPropSetFuncStatement(copy,   AALine, NSString *, color) //设置折线的颜色
+//AAPropStatementAndPropSetFuncStatement(strong, AALine, AAMarker *, marker) //折线的数据点标记
+//AAPropStatementAndPropSetFuncStatement(strong, AALine, AADataLabels *, dataLabels)
+//AAPropStatementAndPropSetFuncStatement(copy,   AALine, NSString *, dashStyle) //折线的样式类型
+//AAPropStatementAndPropSetFuncStatement(strong, AALine, AAStates *, states)
+AAPropSetFuncImplementation(AALine, NSNumber     *, lineWidth)
+AAPropSetFuncImplementation(AALine, NSString *, color)
+AAPropSetFuncImplementation(AALine, AAMarker *, marker)
+AAPropSetFuncImplementation(AALine, AADataLabels *, dataLabels)
 AAPropSetFuncImplementation(AALine, NSString *, dashStyle)
 AAPropSetFuncImplementation(AALine, AAStates *, states)
 
