@@ -392,10 +392,10 @@
     ];
     
     //Generates series for a neural network based on the defined layers.
-    NSArray *generateData = ({
+    NSArray * (^__block generateData) (void) = ^ {
         //If there are no layers defined, we have no neural network to visualize
         if (layers.count == 0) {
-            @[];
+            return @[];
         }
         
         NSMutableArray *data = [NSMutableArray array];
@@ -424,8 +424,8 @@
         };
         
         generate(@[]);
-        [data copy];
-    });
+        return (NSArray *)data;
+    };
     
     
     return AAOptions.new
@@ -443,9 +443,18 @@
     //                        .typeDescriptionSet(@"Neural network chart")
     //                        .pointSet(AAPoint.new
     //                                    .descriptionFormatSet(@"node on {series.xAxis.options.custom.layers.(x).label}")))
-    //    .tooltipSet(AATooltip.new
-    //                .stickOnContactSet(@true)
-    //                .formatSet(@"<span style=\"font-weight: bold\">Activation function:</span> {series.xAxis.options.custom.layers.(point.x).activation}<br><span style=\"font-weight: bold\">Number of nodes in the layer:</span> {series.xAxis.options.custom.layers.(point.x).nodes}"))
+//        .tooltipSet(AATooltip.new
+////                    .stickOnContactSet(@true)
+//                    .formatSet([self aa_toPureJSString2WithString:
+//                                @AAJSFunc(<span style="font-weight: bold">
+//                                          Activation function:
+//                                          </span>
+//                                          {series.xAxis.options.custom.layers.(point.x).activation}
+//                                          <br>
+//                                          <span style="font-weight: bold">
+//                                          Number of nodes in the layer:
+//                                          </span>
+//                                          {series.xAxis.options.custom.layers.(point.x).nodes})]))
         .plotOptionsSet(AAPlotOptions.new
                         .lineSet(AALine.new
                                  .lineWidthSet(@0.5)
@@ -457,8 +466,8 @@
                                             .fillColorSet(@"white")
                                             .lineWidthSet(@1.5)
                                             .lineColorSet(@"#7f30a6")
-                                            .statesSet(AAStates.new
-                                                       .hoverSet(AAHover.new
+                                            .statesSet(AAMarkerStates.new
+                                                       .hoverSet(AAMarkerHover.new
                                                                  .lineColorSet(@"#fa56fc"))))
                                  .statesSet(AAStates.new
                                             .inactiveSet(AAInactive.new
@@ -474,7 +483,7 @@
                   //                                    .descriptionSet(@"Layers of a neural network."))
                   )
         .yAxisSet([layers valueForKeyPath:@"@unionOfObjects.nodes"])
-        .seriesSet(generateData)
+        .seriesSet(generateData())
     ;
     //    .responsiveSet(AAResponsive.new
     //                    .rulesSet(@[
@@ -603,6 +612,7 @@
             AASeriesElement.new
                 .typeSet(AAChartTypeOrganization)
                 .nameSet(@"Carnivora Phyologeny")
+                .nodeWidthSet((id)@"22%")
                 .keysSet(@[@"from", @"to"])
                 .dataSet(@[
                     @[@"Carnivora", @"Felidae"],
@@ -656,6 +666,23 @@
 //                      .sourceWidthSet(@800)
 //                      .sourceHeightSet(@600))
     ;
+}
+
+
++ (NSString *)aa_toPureJSString2WithString:(NSString *)string {
+    //https://stackoverflow.com/questions/34334232/why-does-function-not-work-but-function-does-chrome-devtools-node
+    NSString *pureJSStr = [NSString stringWithFormat:@"%@",string];
+    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"'" withString:@"\""];
+    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\0" withString:@""];
+//    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
+    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\r" withString:@"\\r"];
+    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\f" withString:@"\\f"];
+    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\u2028" withString:@"\\u2028"];
+    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\u2029" withString:@"\\u2029"];
+    return pureJSStr;
 }
 
 @end
