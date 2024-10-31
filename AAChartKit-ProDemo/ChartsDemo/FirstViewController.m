@@ -249,13 +249,11 @@
                 @"tilemapForAmericaWithCircleTileShape---美洲砖块图🧱(圆形)",
                 @"tilemapForAmericaWithDiamondTileShape---美洲砖块图🧱(菱形)",
                 @"tilemapForAmericaWithSquareTileShape---美洲砖块图🧱(正方形)",
-                //   case 17: return [AAHeatOrTreeMapChartComposer treegraph];
-                        //        case 18: return [AAHeatOrTreeMapChartComposer invertedTreegraph];
-                        //        case 19: return [AAHeatOrTreeMapChartComposer treegraphWithBoxLayout];
-
-                        @"treegraphChart---树图",
-                        @"invertedTreegraphChart---倒置树图",
-                        @"treegraphWithBoxLayoutChart---树图(盒子布局)",
+                
+                @"treegraphChart---树图",
+                @"invertedTreegraphChart---倒置树图",
+                @"treegraphWithBoxLayoutChart---树图(盒子布局)",
+                @"calendarHeatmap---日历热力图",
             ],
 //            "BubbleChart | 气泡类型图表",
             @[

@@ -76,6 +76,7 @@
         case 17: return [AAHeatOrTreeMapChartComposer treegraph];
         case 18: return [AAHeatOrTreeMapChartComposer invertedTreegraph];
         case 19: return [AAHeatOrTreeMapChartComposer treegraphWithBoxLayout];
+        case 20: return [AAHeatOrTreeMapChartComposer calendarHeatmap];
 
         default: return nil;
     }
