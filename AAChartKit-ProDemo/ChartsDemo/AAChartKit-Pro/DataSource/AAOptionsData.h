@@ -39,6 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSArray *)organizationData;
 + (NSArray *)organizationNodesData;
++ (NSArray *)carnivoraPhylogenyNodesData;
 
 + (NSArray *)arcdiagram1Data;
 + (NSArray *)arcdiagram2Data;

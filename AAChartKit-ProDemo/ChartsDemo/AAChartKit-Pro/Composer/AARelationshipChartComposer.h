@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (AAOptions *)networkgraphChart;
 + (AAOptions *)simpleDependencyWheelChart;
 + (AAOptions *)neuralNetworkChart;
++ (AAOptions *)carnivoraPhylogenyOrganizationChart;
 
 @end
 

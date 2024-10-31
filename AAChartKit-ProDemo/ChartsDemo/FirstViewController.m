@@ -226,6 +226,8 @@
                 @"organizationChart---组织结构图",
                 @"networkgraphChart---力导关系图",
                 @"simpleDependencyWheelChart---简单的和弦图🎵",
+                @"neuralNetworkChart---神经网络图",
+                @"carnivoraPhylogenyOrganizationChart---食肉目动物系统发育组织图",
             ],
 //            "HeatOrTreeMapChart | 热力或树形类型图表",
             @[

@@ -488,6 +488,174 @@
     
 }
 
+//Highcharts.chart('container', {
+//    chart: {
+//        height: 600,
+//        inverted: false
+//    },
+//
+//    title: {
+//        text: 'Carnivora Phylogeny'
+//    },
+//
+//    subtitle: {
+//        text: 'Tracing the Evolutionary Relationship of Carnivores'
+//    },
+//
+//    plotOptions: {
+//        series: {
+//            nodeWidth: '22%'
+//        }
+//    },
+//
+//    accessibility: {
+//        point: {
+//            descriptionFormat: '{toNode.name} ' +
+//            '{#if (eq toNode.level 1 )} is a distinct family within the ' +
+//            'order of {fromNode.id}. {toNode.custom.info}{/if}' +
+//            '{#if (eq toNode.level 2 )} is a genus within the {fromNode.id}. ' +
+//            '{toNode.custom.info} {/if}' +
+//            '{#if (eq toNode.level 3 )} is a species within the ' +
+//            '{fromNode.id}. {toNode.custom.info} {/if}'
+//        }
+//    },
+//
+//    series: [{
+//        type: 'organization',
+//        name: 'Carnivora Phyologeny',
+//        keys: ['from', 'to'],
+//        data: [
+//            ['Carnivora', 'Felidae'],
+//            ['Carnivora', 'Mustelidae'],
+//            ['Carnivora', 'Canidae'],
+//            ['Felidae', 'Panthera'],
+//            ['Mustelidae', 'Taxidea'],
+//            ['Mustelidae', 'Lutra'],
+//            ['Panthera', 'Panthera pardus'],
+//            ['Taxidea', 'Taxidea taxus'],
+//            ['Lutra', 'Lutra lutra'],
+//            ['Canidae', 'Canis'],
+//            ['Canis', 'Canis latrans'],
+//            ['Canis', 'Canis lupus']
+//        ],
+//        levels: [{
+//            level: 0,
+//            color: '#DEDDCF',
+//            dataLabels: {
+//                color: 'black'
+//            }
+//        }, {
+//            level: 1,
+//            color: '#DEDDCF',
+//            dataLabels: {
+//                color: 'black'
+//            },
+//            height: 25
+//        }, {
+//            level: 2,
+//            color: '#DEDDCF',
+//            dataLabels: {
+//                color: 'black'
+//            }
+//        }, {
+//            level: 3,
+//            dataLabels: {
+//                color: 'black'
+//            }
+//        }],
+//        colorByPoint: false,
+//        borderColor: 'black',
+//        borderWidth: 2
+//    }],
+//
+//    tooltip: {
+//        outside: true,
+//        format: '{point.custom.info}',
+//        style: {
+//            width: '320px'
+//        }
+//    },
+//
+//    exporting: {
+//        allowHTML: true,
+//        sourceWidth: 800,
+//        sourceHeight: 600
+//    }
+//});
++ (AAOptions *)carnivoraPhylogenyOrganizationChart {
+    return AAOptions.new
+        .chartSet(AAChart.new
+                    .heightSet(@600)
+                    .invertedSet(false))
+    .titleSet(AATitle.new
+                .textSet(@"Carnivora Phylogeny"))
+    .subtitleSet(AASubtitle.new
+                    .textSet(@"Tracing the Evolutionary Relationship of Carnivores"))
     
+        .plotOptionsSet(AAPlotOptions.new
+                        .seriesSet(AASeries.new
+//                                   .nodeWidthSet(@"22%")
+                                   ))
+//        .accessibilitySet(AAAccessibility.new
+//                          .pointSet(AAPoint.new
+//                                    .descriptionFormatSet(@"{toNode.name} {#if (eq toNode.level 1 )} is a distinct family within the order of {fromNode.id}. {toNode.custom.info}{/if}{#if (eq toNode.level 2 )} is a genus within the {fromNode.id}. {toNode.custom.info} {/if}{#if (eq toNode.level 3 )} is a species within the {fromNode.id}. {toNode.custom.info} {/if}")))
+        .seriesSet(@[
+            AASeriesElement.new
+                .typeSet(AAChartTypeOrganization)
+                .nameSet(@"Carnivora Phyologeny")
+                .keysSet(@[@"from", @"to"])
+                .dataSet(@[
+                    @[@"Carnivora", @"Felidae"],
+                    @[@"Carnivora", @"Mustelidae"],
+                    @[@"Carnivora", @"Canidae"],
+                    @[@"Felidae", @"Panthera"],
+                    @[@"Mustelidae", @"Taxidea"],
+                    @[@"Mustelidae", @"Lutra"],
+                    @[@"Panthera", @"Panthera pardus"],
+                    @[@"Taxidea", @"Taxidea taxus"],
+                    @[@"Lutra", @"Lutra lutra"],
+                    @[@"Canidae", @"Canis"],
+                    @[@"Canis", @"Canis latrans"],
+                    @[@"Canis", @"Canis lupus"]
+                ])
+                .levelsSet(@[
+                    AALevelsElement.new
+                        .levelSet(@0)
+                        .colorSet(@"#DEDDCF")
+                        .dataLabelsSet(AADataLabels.new
+                        .colorSet(@"black")),
+                    AALevelsElement.new
+                        .levelSet(@1)
+                        .colorSet(@"#DEDDCF")
+                        .dataLabelsSet(AADataLabels.new
+                        .colorSet(@"black"))
+                        .heightSet(@25),
+                    AALevelsElement.new
+                        .levelSet(@2)
+                        .colorSet(@"#DEDDCF")
+                        .dataLabelsSet(AADataLabels.new
+                        .colorSet(@"black")),
+                    AALevelsElement.new
+                        .levelSet(@3)
+                        .dataLabelsSet(AADataLabels.new
+                        .colorSet(@"black"))
+                ])
+                .nodesSet(AAOptionsData.carnivoraPhylogenyNodesData)
+                .colorByPointSet(@false)
+                .borderColorSet(@"black")
+                .borderWidthSet(@2)
+        ])
+        .tooltipSet(AATooltip.new
+                    .outsideSet(@true)
+//                    .formatSet(@"{point.custom.info}")
+                    .styleSet(AAStyle.new
+//                              .widthSet(@"320px")
+                              ))
+//        .exportingSet(AAExporting.new
+//                      .allowHTMLSet(@true)
+//                      .sourceWidthSet(@800)
+//                      .sourceHeightSet(@600))
+    ;
+}
 
 @end

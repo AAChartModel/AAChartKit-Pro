@@ -107,6 +107,10 @@
     return [self getJsonDataWithJsonFileName:@"organizationNodesData"];
 }
 
++ (NSArray *)carnivoraPhylogenyNodesData {
+    return [self getJsonDataWithJsonFileName:@"carnivoraPhylogenyNodesData"];
+}
+
 
 
 + (NSArray *)arcdiagram1Data {

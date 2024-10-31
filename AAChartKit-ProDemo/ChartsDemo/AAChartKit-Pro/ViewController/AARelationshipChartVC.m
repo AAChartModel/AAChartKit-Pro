@@ -25,7 +25,9 @@
         case  4: return [AARelationshipChartComposer arcdiagramChart3];
         case  5: return [AARelationshipChartComposer organizationChart];
         case  6: return [AARelationshipChartComposer networkgraphChart];
-        case  7: return [AARelationshipChartComposer neuralNetworkChart];
+        case  7: return [AARelationshipChartComposer simpleDependencyWheelChart];
+        case  8: return [AARelationshipChartComposer neuralNetworkChart];
+        case  9: return [AARelationshipChartComposer carnivoraPhylogenyOrganizationChart];
     }
     return nil;
 }
