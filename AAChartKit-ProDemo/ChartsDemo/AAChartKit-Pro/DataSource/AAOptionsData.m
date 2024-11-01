@@ -69,6 +69,10 @@
     return [self getJsonDataWithJsonFileName:@"treemapWithLevelsData"];
 }
 
++ (NSArray *)treemapWithLevels2Data {
+    return [self getJsonDataWithJsonFileName:@"treemapWithLevels2Data"];
+}
+
 + (NSArray *)bellcurveData {
     return [self getJsonDataWithJsonFileName:@"bellcurveData"];
 }

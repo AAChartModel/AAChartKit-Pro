@@ -57,6 +57,7 @@
 		8409E69D2CD48544000EFCF2 /* AASankeyComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8409E69C2CD48544000EFCF2 /* AASankeyComposer.m */; };
 		8409E69F2CD485F5000EFCF2 /* sankeyDiagramSeries.json in Resources */ = {isa = PBXBuildFile; fileRef = 8409E69E2CD485F5000EFCF2 /* sankeyDiagramSeries.json */; };
 		8409E6A12CD489C9000EFCF2 /* verticalSankeySeries.json in Resources */ = {isa = PBXBuildFile; fileRef = 8409E6A02CD489C9000EFCF2 /* verticalSankeySeries.json */; };
+		8409E6A32CD4B5A3000EFCF2 /* treemapWithLevels2Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 8409E6A22CD4B5A3000EFCF2 /* treemapWithLevels2Data.json */; };
 		8441A6B226C21E53007EAAA7 /* AAOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6A826C21E52007EAAA7 /* AAOptions.m */; };
 		8441A6B326C21E53007EAAA7 /* AAChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6AA26C21E52007EAAA7 /* AAChartView.m */; };
 		8441A6B426C21E53007EAAA7 /* AAChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6AC26C21E52007EAAA7 /* AAChartModel.m */; };
@@ -226,6 +227,7 @@
 		8409E69C2CD48544000EFCF2 /* AASankeyComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AASankeyComposer.m; sourceTree = "<group>"; };
 		8409E69E2CD485F5000EFCF2 /* sankeyDiagramSeries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sankeyDiagramSeries.json; sourceTree = "<group>"; };
 		8409E6A02CD489C9000EFCF2 /* verticalSankeySeries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = verticalSankeySeries.json; sourceTree = "<group>"; };
+		8409E6A22CD4B5A3000EFCF2 /* treemapWithLevels2Data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = treemapWithLevels2Data.json; sourceTree = "<group>"; };
 		8441A6A826C21E52007EAAA7 /* AAOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAOptions.m; sourceTree = "<group>"; };
 		8441A6A926C21E52007EAAA7 /* AAGlobalMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAGlobalMacro.h; sourceTree = "<group>"; };
 		8441A6AA26C21E52007EAAA7 /* AAChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAChartView.m; sourceTree = "<group>"; };
@@ -527,6 +529,7 @@
 				27EB8A92249B8888007E6A6B /* timelineData.json */,
 				27EB8A652497C006007E6A6B /* treemapWithColorAxisData.json */,
 				27EB8A622497C006007E6A6B /* treemapWithLevelsData.json */,
+				8409E6A22CD4B5A3000EFCF2 /* treemapWithLevels2Data.json */,
 				27EB8A632497C006007E6A6B /* variablepieData.json */,
 				27EB8A612497C006007E6A6B /* variwideData.json */,
 				27EB8A682497C006007E6A6B /* vectorData.json */,
@@ -956,6 +959,7 @@
 				27EB8A6F2497C007007E6A6B /* dependencywheelData.json in Resources */,
 				84DEB8AF28FADD3A00BF9423 /* volinPlotElement2Data.json in Resources */,
 				27EB8A752497C007007E6A6B /* treemapWithColorAxisData.json in Resources */,
+				8409E6A32CD4B5A3000EFCF2 /* treemapWithLevels2Data.json in Resources */,
 				84DFEAB22A27382C004436BC /* pictorial1Series.json in Resources */,
 				27EB8A7D2497C007007E6A6B /* lollipopData.json in Resources */,
 				27EB8AD9249C8FFB007E6A6B /* eulerData.json in Resources */,

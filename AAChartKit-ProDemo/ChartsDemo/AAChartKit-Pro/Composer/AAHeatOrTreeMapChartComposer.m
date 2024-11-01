@@ -95,6 +95,86 @@
                    ])
         .dataSet(AAOptionsData.treemapWithLevelsData)]);
 }
+//Highcharts.chart('container', {
+//    series: [{
+//        type: 'treemap',
+//        layoutAlgorithm: 'stripes',
+//        alternateStartingDirection: true,
+//        borderColor: '#fff',
+//        borderRadius: 6,
+//        borderWidth: 2,
+//        dataLabels: {
+//            style: {
+//                textOutline: 'none'
+//            }
+//        },
+//        levels: [{
+//            level: 1,
+//            layoutAlgorithm: 'sliceAndDice',
+//            dataLabels: {
+//                enabled: true,
+//                align: 'left',
+//                verticalAlign: 'top',
+//                style: {
+//                    fontSize: '15px',
+//                    fontWeight: 'bold'
+//                }
+//            }
+//        }],
+//        data:
+//    }],
+//    title: {
+//        text: 'Norwegian regions and counties by area',
+//        align: 'left'
+//    },
+//    subtitle: {
+//        text:
+//            'Source: <a href="https://snl.no/Norge" target="_blank">SNL</a>',
+//        align: 'left'
+//    },
+//    tooltip: {
+//        useHTML: true,
+//        pointFormat:
+//            'The area of <b>{point.name}</b> is <b>{point.value} km<sup>' +
+//            '2</sup></b>'
+//    }
+//});
+
++ (AAOptions *)treemapWithLevelsData2 {
+    return AAOptions.new
+    .titleSet(AATitle.new
+              .textSet(@"Norwegian regions and counties by area")
+              .alignSet(AAChartAlignTypeLeft))
+    .subtitleSet(AASubtitle.new
+                    .textSet(@"Source: <a href=\"https://snl.no/Norge\" target=\"_blank\">SNL</a>".aa_toPureHTMLString)
+                    .alignSet(AAChartAlignTypeLeft))
+    .tooltipSet(AATooltip.new
+                .useHTMLSet(true)
+                .pointFormatSet(@"The area of <b>{point.name}</b> is <b>{point.value} km<sup>2</sup></b>".aa_toPureHTMLString))
+    .seriesSet(@[
+        AASeriesElement.new
+        .typeSet(AAChartTypeTreemap)
+//        .layoutAlgorithmSet(@"stripes")
+//        .alternateStartingDirectionSet(true)
+        .borderColorSet(AAColor.whiteColor)
+        .borderRadiusSet(@6)
+        .borderWidthSet(@2)
+        .dataLabelsSet(AADataLabels.new
+                          .styleSet(AAStyle.new
+                                    .colorSet(AAColor.blackColor)
+                                    .textOutlineSet(@"none")))
+        .levelsSet(@[
+            AALevelsElement.new
+            .levelSet(@1)
+            .layoutAlgorithmSet(@"sliceAndDice")
+            .dataLabelsSet(AADataLabels.new
+                           .enabledSet(true)
+                           .alignSet(AAChartAlignTypeLeft)
+                           .verticalAlignSet(AAChartVerticalAlignTypeTop)
+                           .styleSet(AAStyleColorSizeWeight(AAColor.blackColor, 15, AAChartFontWeightTypeBold)))
+                   ])
+        .dataSet(AAOptionsData.treemapWithLevels2Data)]);
+}
 
 + (AAOptions *)drilldownLargeDataTreemapChart {
     return AAOptions.new

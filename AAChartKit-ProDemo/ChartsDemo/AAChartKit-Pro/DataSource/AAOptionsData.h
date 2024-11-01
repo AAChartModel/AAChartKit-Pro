@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)lollipopData;
 + (NSArray *)tilemapData;
 + (NSArray *)treemapWithLevelsData;
++ (NSArray *)treemapWithLevels2Data;
 + (NSArray *)xrangeData;
 + (NSArray *)vectorData;
 + (NSArray *)bellcurveData;

@@ -59,7 +59,7 @@
         case 0: return [AAHeatOrTreeMapChartComposer heatmapChart];
         case 1: return [AAHeatOrTreeMapChartComposer treemapWithColorAxisData];
         case 2: return [AAHeatOrTreeMapChartComposer treemapWithLevelsData];
-        case 3: return [AAHeatOrTreeMapChartComposer drilldownLargeDataTreemapChart];
+        case 3: return [AAHeatOrTreeMapChartComposer treemapWithLevelsData2];
         case 4: return [AAHeatOrTreeMapChartComposer largeDataHeatmapChart];
         case 5: return [AAHeatOrTreeMapChartComposer simpleTilemapWithHexagonTileShape];
         case 6: return [AAHeatOrTreeMapChartComposer simpleTilemapWithCircleTileShape];
