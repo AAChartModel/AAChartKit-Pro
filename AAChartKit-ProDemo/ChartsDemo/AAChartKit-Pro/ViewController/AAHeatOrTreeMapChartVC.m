@@ -8,6 +8,7 @@
 
 #import "AAHeatOrTreeMapChartVC.h"
 #import "AAHeatOrTreeMapChartComposer.h"
+#import "AATreemapComposer.h"
 
 @implementation AAHeatOrTreeMapChartVC
 
@@ -57,9 +58,9 @@
 - (id)chartConfigurationWithSelectedIndex:(NSUInteger)selectedIndex {
     switch (selectedIndex) {
         case 0: return [AAHeatOrTreeMapChartComposer heatmapChart];
-        case 1: return [AAHeatOrTreeMapChartComposer treemapWithColorAxisData];
-        case 2: return [AAHeatOrTreeMapChartComposer treemapWithLevelsData];
-        case 3: return [AAHeatOrTreeMapChartComposer drilldownLargeDataTreemapChart];
+        case 1: return [AATreemapComposer treemapWithColorAxisData];
+        case 2: return [AATreemapComposer treemapWithLevelsData];
+        case 3: return [AATreemapComposer drilldownLargeDataTreemapChart];
         case 4: return [AAHeatOrTreeMapChartComposer largeDataHeatmapChart];
         case 5: return [AAHeatOrTreeMapChartComposer simpleTilemapWithHexagonTileShape];
         case 6: return [AAHeatOrTreeMapChartComposer simpleTilemapWithCircleTileShape];
@@ -77,7 +78,7 @@
         case 18: return [AAHeatOrTreeMapChartComposer invertedTreegraph];
         case 19: return [AAHeatOrTreeMapChartComposer treegraphWithBoxLayout];
         case 20: return [AAHeatOrTreeMapChartComposer calendarHeatmap];
-        case 21: return [AAHeatOrTreeMapChartComposer treemapWithLevelsData2];
+        case 21: return [AATreemapComposer treemapWithLevelsData2];
 
 
         default: return nil;
