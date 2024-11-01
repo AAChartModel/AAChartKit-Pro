@@ -186,7 +186,7 @@
                 .colsizeSet(@86400000)
                 .tooltipSet(AATooltip.new
                     .headerFormatSet(@"Temperature")
-//                    .pointFormatSet(@"{point.x:%e %b, %Y} {point.y}:00: {point.value} ℃")
+                    .pointFormatSet(@"{point.x:%e %b, %Y} {point.y}:00: {point.value} ℃")
             )
                 .turboThresholdSet(@1.7976931348623157e+308)
             ]);
@@ -286,13 +286,13 @@
             .headerFormatSet(@"")
             .backgroundColorSet(@"rgba(247,247,247,0.95)")
             .styleSet(AAStyle.new
-//                .widthSet(@170)
-//            .paddingSet(@10)
+                .widthSet(@170)
+            .paddingSet(@10)
             ))
         .plotOptionsSet(AAPlotOptions.new
             .seriesSet(AASeries.new
                 .keysSet(@[@"x", @"y", @"name", @"desc"])
-//                .tileShapeSet(AATileShapeTypeHexagon)
+                       .tileShapeSet(AAChartTileShapeTypeHexagon)
                 .dataLabelsSet(AADataLabels.new
                     .enabledSet(true)
                     .formatSet(@"{point.name}")
@@ -309,7 +309,7 @@
                 .colorSet(@"#7eb"),
             AASeriesElement.new
                 .nameSet(@"Steps")
-//                .colorByPointSet(true)
+                .colorByPointSet(@true)
                 .dataSet(AAOptionsData.simpleTilemapData)
         ]);
 }
@@ -427,11 +427,11 @@
             .yAxisSet(AAYAxis.new
                     .visibleSet(false))
             .legendSet(AALegend.new
-                    .enabledSet(true)
-//                    .layoutSet(AALegendLayoutTypeVertical)
-                    .alignSet(AAChartAlignTypeLeft)
-                    .ySet(@(-20))
-                    .floatingSet(true))
+                       .enabledSet(true)
+                       .layoutSet(AAChartLayoutTypeVertical)
+                       .alignSet(AAChartAlignTypeLeft)
+                       .ySet(@(-20))
+                       .floatingSet(true))
             .colorAxisSet(AAColorAxis.new
                     .dataClassesSet(@[
                         AADataClassesElement.new
@@ -464,7 +464,7 @@
                                     .formatSet(@"{point.iso-a3}")
                                     .colorSet(@"#000000")
                                     .styleSet(AAStyle.new
-//                                            .textOutlineSet(false)
+                                            .textOutlineSet(false)
                                     ))))
             .seriesSet(@[
                     AASeriesElement.new
@@ -829,7 +829,7 @@
 //                          .landmarkVerbositySet(@"one"))
         .tooltipSet(AATooltip.new
                     .enabledSet(true)
-//                    .outsideSet(true)
+                    .outsideSet(@true)
 //                    .zIndexSet(@20)
                     .headerFormatSet(@"")
                     .pointFormatSet(@"{#unless point.custom.empty}{point.date:%A, %b %e, %Y}{/unless}")
@@ -902,7 +902,7 @@
                         .colorSet(@"rgba(70, 70, 92, 1)")
                         .fontSizeSet(@"0.8rem")
                         .fontWeightSet(AAChartFontWeightTypeBold)
-//                        .opacitySet(@0.5)
+                        .opacitySet(@0.5)
                     )
                         .xSet(@1)
                         .ySet(@1)
