@@ -261,6 +261,8 @@
                 @"invertedTreegraphChart---倒置树图",
                 @"treegraphWithBoxLayoutChart---树图(盒子布局)",
                 @"calendarHeatmap---日历热力图",
+                @"treemapWithLevelsData2---包含等级的矩形树图2🌲",
+
             ],
 //            "BubbleChart | 气泡类型图表",
             @[
