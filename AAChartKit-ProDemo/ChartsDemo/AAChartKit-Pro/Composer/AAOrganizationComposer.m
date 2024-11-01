@@ -145,13 +145,20 @@
     //                                    .descriptionFormatSet(@"{add index 1}. {toNode.id} comes from {fromNode.id}")))
         .tooltipSet(AATooltip.new
                     .outsideSet(@true))
+
+        .plotOptionsSet(AAPlotOptions.new
+                        .organizationSet(AAOrganization.new
+                                         .hangingIndentTranslationSet(@"cumulative")
+                                         //Crimp a bit to avoid nodes overlapping lines
+                                         .hangingIndentSet(@10)))
+                                 
         .seriesSet(@[
             AASeriesElement.new
                 .nameSet(@"Germanic language tree")
                 .typeSet(AAChartTypeOrganization)
                 .keysSet(@[@"from", @"to"])
                 .nodeWidthSet(@40)
-//                .nodePaddingSet(@20)
+                .nodePaddingSet(@20)
                 .colorByPointSet(@false)
 //                .hangingIndentTranslationSet(@"cumulative")
             // Crimp a bit to avoid nodes overlapping lines

@@ -31,7 +31,6 @@
  */
 
 #import "AAPlotOptions.h"
-#import "AAPictorial.h"
 
 @implementation AAPlotOptions
 
@@ -45,9 +44,11 @@ AAPropSetFuncImplementation(AAPlotOptions, AAArea         *, area)
 AAPropSetFuncImplementation(AAPlotOptions, AAAreaspline   *, areaspline)
 AAPropSetFuncImplementation(AAPlotOptions, AAColumnrange  *, columnrange)
 AAPropSetFuncImplementation(AAPlotOptions, NSObject       *, arearange)
+
 AAPropSetFuncImplementation(AAPlotOptions, AAPackedbubble *, packedbubble)
 AAPropSetFuncImplementation(AAPlotOptions, AATreemap      *, treemap)
 AAPropSetFuncImplementation(AAPlotOptions, AASolidgauge   *, solidgauge)
 AAPropSetFuncImplementation(AAPlotOptions, AAPictorial    *, pictorial)
+AAPropSetFuncImplementation(AAPlotOptions, AAOrganization *, organization)
 
 @end

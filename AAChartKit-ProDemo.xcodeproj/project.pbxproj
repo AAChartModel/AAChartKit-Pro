@@ -53,6 +53,7 @@
 		8409E68C2CD38178000EFCF2 /* carnivoraPhylogenyNodesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8409E68B2CD38178000EFCF2 /* carnivoraPhylogenyNodesData.json */; };
 		8409E6952CD47621000EFCF2 /* AAOrganizationComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8409E6942CD47621000EFCF2 /* AAOrganizationComposer.m */; };
 		8409E6972CD47727000EFCF2 /* germanicLanguageTreeData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8409E6962CD47727000EFCF2 /* germanicLanguageTreeData.json */; };
+		8409E69A2CD47FE2000EFCF2 /* AAOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = 8409E6992CD47FE2000EFCF2 /* AAOrganization.m */; };
 		8441A6B226C21E53007EAAA7 /* AAOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6A826C21E52007EAAA7 /* AAOptions.m */; };
 		8441A6B326C21E53007EAAA7 /* AAChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6AA26C21E52007EAAA7 /* AAChartView.m */; };
 		8441A6B426C21E53007EAAA7 /* AAChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6AC26C21E52007EAAA7 /* AAChartModel.m */; };
@@ -216,6 +217,8 @@
 		8409E6932CD47621000EFCF2 /* AAOrganizationComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAOrganizationComposer.h; sourceTree = "<group>"; };
 		8409E6942CD47621000EFCF2 /* AAOrganizationComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAOrganizationComposer.m; sourceTree = "<group>"; };
 		8409E6962CD47727000EFCF2 /* germanicLanguageTreeData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = germanicLanguageTreeData.json; sourceTree = "<group>"; };
+		8409E6982CD47FE2000EFCF2 /* AAOrganization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAOrganization.h; sourceTree = "<group>"; };
+		8409E6992CD47FE2000EFCF2 /* AAOrganization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAOrganization.m; sourceTree = "<group>"; };
 		8441A6A826C21E52007EAAA7 /* AAOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAOptions.m; sourceTree = "<group>"; };
 		8441A6A926C21E52007EAAA7 /* AAGlobalMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAGlobalMacro.h; sourceTree = "<group>"; };
 		8441A6AA26C21E52007EAAA7 /* AAChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAChartView.m; sourceTree = "<group>"; };
@@ -790,6 +793,8 @@
 				84AA68B128A11E45009067AE /* AAHeatmap.m */,
 				84DFEABD2A2748A3004436BC /* AAPictorial.h */,
 				84DFEABE2A2748A3004436BC /* AAPictorial.m */,
+				8409E6982CD47FE2000EFCF2 /* AAOrganization.h */,
+				8409E6992CD47FE2000EFCF2 /* AAOrganization.m */,
 			);
 			path = AASeries;
 			sourceTree = "<group>";
@@ -1055,6 +1060,7 @@
 				27EB89E5249113B6007E6A6B /* AALevelsElement.m in Sources */,
 				8441A70226C21E6C007EAAA7 /* AADataLabels.m in Sources */,
 				8441A6B326C21E53007EAAA7 /* AAChartView.m in Sources */,
+				8409E69A2CD47FE2000EFCF2 /* AAOrganization.m in Sources */,
 				84AA68B528A120F9009067AE /* AAOptionsCSV.m in Sources */,
 				84AA68A328A104B4009067AE /* AASolidgaugeDataElement.m in Sources */,
 				8441A72626C21F0A007EAAA7 /* NSArray+toJSArray.m in Sources */,

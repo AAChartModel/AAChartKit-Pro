@@ -32,10 +32,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class AAColumn, AABar, AALine, AASpline, AAArea, AAAreaspline, AAPie, AAColumnrange, AASeries, AAPackedbubble, AATreemap, AASolidgauge, AAPictorial;
+//AAChartKit
+@class AAColumn, AABar, AALine, AASpline, AAArea, AAAreaspline, AAPie, AAColumnrange, AASeries;
+//AAChartKit-Pro
+@class AAPackedbubble, AATreemap, AASolidgauge, AAPictorial, AAOrganization;
 
 @interface AAPlotOptions : NSObject
 
+//Common
 AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAColumn       *, column)
 AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AALine         *, line)
 AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAPie          *, pie)
@@ -46,9 +50,12 @@ AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAArea         *, 
 AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAAreaspline   *, areaspline)
 AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAColumnrange  *, columnrange)
 AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, NSObject       *, arearange)
+
+//Pro
 AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAPackedbubble *, packedbubble)
 AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AATreemap      *, treemap)
 AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AASolidgauge   *, solidgauge)
 AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAPictorial    *, pictorial)
+AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAOrganization *, organization)
 
 @end

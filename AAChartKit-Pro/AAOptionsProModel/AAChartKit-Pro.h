@@ -23,5 +23,6 @@
 #import "AAParallelAxes.h"
 #import "AABulletDataElement.h"
 #import "AAPictorial.h"
+#import "AAOrganization.h"
 
 #endif /* AAChartKit_Pro_h */
