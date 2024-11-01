@@ -13,8 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AAHeatOrTreeMapChartComposer : NSObject
 
-+ (AAOptions *)heatmapChart;
-+ (AAOptions *)largeDataHeatmapChart;
+
 
 + (AAOptions *)simpleTilemapWithHexagonTileShape;
 + (AAOptions *)simpleTilemapWithCircleTileShape;
@@ -33,7 +32,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (AAOptions *)treegraph;
 + (AAOptions *)invertedTreegraph;
 + (AAOptions *)treegraphWithBoxLayout;
-+ (AAOptions *)calendarHeatmap;
 
 
 @end
