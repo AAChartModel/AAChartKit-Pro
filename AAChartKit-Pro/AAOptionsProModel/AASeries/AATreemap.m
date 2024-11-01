@@ -12,5 +12,6 @@
 
 AAPropSetFuncImplementation(AATreemap, NSString *, layoutAlgorithm)
 AAPropSetFuncImplementation(AATreemap, BOOL , allowTraversingTree)
+AAPropSetFuncImplementation(AATreemap, BOOL , alternateStartingDirection)
 
 @end

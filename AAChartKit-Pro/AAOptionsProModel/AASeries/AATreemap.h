@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 AAPropStatementAndPropSetFuncStatement(strong, AATreemap, NSString *, layoutAlgorithm)
 AAPropStatementAndPropSetFuncStatement(assign, AATreemap, BOOL , allowTraversingTree)
+AAPropStatementAndPropSetFuncStatement(assign, AATreemap, BOOL , alternateStartingDirection)
 
 @end
 

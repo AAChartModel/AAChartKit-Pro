@@ -151,6 +151,10 @@
     .tooltipSet(AATooltip.new
                 .useHTMLSet(true)
                 .pointFormatSet(@"The area of <b>{point.name}</b> is <b>{point.value} km<sup>2</sup></b>".aa_toPureHTMLString))
+    .plotOptionsSet(AAPlotOptions.new
+                    .treemapSet(AATreemap.new
+                                .alternateStartingDirectionSet(true)
+                                .layoutAlgorithmSet(@"squarified")))
     .seriesSet(@[
         AASeriesElement.new
         .typeSet(AAChartTypeTreemap)
