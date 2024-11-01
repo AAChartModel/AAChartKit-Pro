@@ -34,16 +34,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class AAMarker, AAAnimation, AAShadow, AADataLabels, AAEvents, AAStates, AAPoint;
+@class AAMarker, AAAnimation, AAShadow, AADataLabels, AAEvents, AAStates, AAPoint, AATooltip;
 
 ////The shape of the tiles in the tilemap. Possible values are hexagon, circle, diamond, and square. Defaults to hexagon.
-//public enum AAChartTileShapeType: String {
-//    case hexagon = "hexagon"
-//    case circle = "circle"
-//    case diamond = "diamond"
-//    case square = "square"
-//}
-
 typedef NSString *AAChartTileShapeType;
 
 static AAChartTileShapeType const AAChartTileShapeTypeHexagon = @"hexagon";
@@ -75,9 +68,8 @@ AAPropStatementAndPropSetFuncStatement(strong, AASeries, NSNumber     *, borderR
 AAPropStatementAndPropSetFuncStatement(strong, AASeries, NSNumber     *, borderRadiusTopRight)
 AAPropStatementAndPropSetFuncStatement(strong, AASeries, NSNumber     *, borderRadiusBottomLeft)
 AAPropStatementAndPropSetFuncStatement(strong, AASeries, NSNumber     *, borderRadiusBottomRight)
-//    public var tileShape: String?
 AAPropStatementAndPropSetFuncStatement(copy,   AASeries, AAChartTileShapeType, tileShape)
-
+AAPropStatementAndPropSetFuncStatement(strong, AASeries, AATooltip     *, tooltip)
 
 @end
 

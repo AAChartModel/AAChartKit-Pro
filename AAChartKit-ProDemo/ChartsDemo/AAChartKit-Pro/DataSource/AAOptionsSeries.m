@@ -30,6 +30,10 @@
     return [self getJsonDataWithJsonFileName:@"sankeyDiagramSeries"];
 }
 
++ (NSArray *)verticalSankeySeries {
+    return [self getJsonDataWithJsonFileName:@"verticalSankeySeries"];
+}
+
 + (id)getJsonDataWithJsonFileName:(NSString *)jsonFileName
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:jsonFileName ofType:@"json"];

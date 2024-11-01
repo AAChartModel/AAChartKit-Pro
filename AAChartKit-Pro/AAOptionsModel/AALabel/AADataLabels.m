@@ -71,12 +71,18 @@ AAPropSetFuncImplementation(AADataLabels, AATextPath *, textPath)
 AAPropSetFuncImplementation(AADataLabels, AATextPath *, linkTextPath)
 AAPropSetFuncImplementation(AADataLabels, NSNumber   *, padding) //When either the borderWidth or the backgroundColor is set, this is the padding within the box. Defaults to 5.
 AAPropSetFuncImplementation(AADataLabels, NSString   *, nodeFormat) //The format string specifying what to show for nodes in the sankey diagram. By default the nodeFormatter returns {point.name}. Defaults to undefined.
+//AAPropSetFuncImplementation(AADataLabels, NSString   *, parentNodeFormat)
 
 
 AAJSFuncTypePropSetFuncImplementation(AADataLabels, NSString *, formatter)
+AAJSFuncTypePropSetFuncImplementation(AADataLabels, NSString *, nodeFormatter)
 
 - (void)setFormatter:(NSString *)formatter {
     _formatter = [formatter aa_toPureJSString];
+}
+
+- (void)setNodeFormatter:(NSString *)nodeFormatter {
+    _nodeFormatter = [nodeFormatter aa_toPureJSString];
 }
 
 

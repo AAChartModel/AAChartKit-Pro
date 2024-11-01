@@ -119,7 +119,7 @@ AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, AATextPath *, textP
 AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, AATextPath *, linkTextPath)
 AAPropStatementAndPropSetFuncStatement(strong, AADataLabels, NSNumber   *, padding) //When either the borderWidth or the backgroundColor is set, this is the padding within the box. Defaults to 5.
 AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, nodeFormat) //The format string specifying what to show for nodes in the sankey diagram. By default the nodeFormatter returns {point.name}. Defaults to undefined.
-
+AAPropStatementAndPropSetFuncStatement(copy,   AADataLabels, NSString *, nodeFormatter)
 
 @end
 

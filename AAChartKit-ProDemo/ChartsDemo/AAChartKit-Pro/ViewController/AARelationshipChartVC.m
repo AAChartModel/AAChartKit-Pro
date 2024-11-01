@@ -32,6 +32,7 @@
         case  9: return [AARelationshipChartComposer carnivoraPhylogenyOrganizationChart];
         case 10: return [AAOrganizationComposer germanicLanguageTreeChart];
         case 11: return [AASankeyComposer sankeyDiagramChart];
+        case 12: return [AASankeyComposer verticalSankeyChart];
 
 
     }

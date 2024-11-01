@@ -75,7 +75,7 @@ AAPropSetFuncImplementation(AATooltip, NSNumber *, hideDelay) //提示框隐藏�
 AAPropSetFuncImplementation(AATooltip, AADateTimeLabelFormats  *, dateTimeLabelFormats)
 AAPropSetFuncImplementation(AATooltip, id        , outside)
 AAPropSetFuncImplementation(AATooltip, id        , split)
-
+AAPropSetFuncImplementation(AATooltip, NSString *, nodeFormat)
 
 AAJSFuncTypePropSetFuncImplementation(AATooltip, NSString *, formatter)
 AAJSFuncTypePropSetFuncImplementation(AATooltip, NSString *, pointFormatter)

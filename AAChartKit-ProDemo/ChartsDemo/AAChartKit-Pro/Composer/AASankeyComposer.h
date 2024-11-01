@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AASankeyComposer : NSObject
 
 + (AAOptions *)sankeyDiagramChart;
++ (AAOptions *)verticalSankeyChart;
 
 @end
 

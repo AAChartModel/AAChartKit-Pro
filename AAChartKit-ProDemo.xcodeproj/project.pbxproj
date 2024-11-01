@@ -56,6 +56,7 @@
 		8409E69A2CD47FE2000EFCF2 /* AAOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = 8409E6992CD47FE2000EFCF2 /* AAOrganization.m */; };
 		8409E69D2CD48544000EFCF2 /* AASankeyComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8409E69C2CD48544000EFCF2 /* AASankeyComposer.m */; };
 		8409E69F2CD485F5000EFCF2 /* sankeyDiagramSeries.json in Resources */ = {isa = PBXBuildFile; fileRef = 8409E69E2CD485F5000EFCF2 /* sankeyDiagramSeries.json */; };
+		8409E6A12CD489C9000EFCF2 /* verticalSankeySeries.json in Resources */ = {isa = PBXBuildFile; fileRef = 8409E6A02CD489C9000EFCF2 /* verticalSankeySeries.json */; };
 		8441A6B226C21E53007EAAA7 /* AAOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6A826C21E52007EAAA7 /* AAOptions.m */; };
 		8441A6B326C21E53007EAAA7 /* AAChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6AA26C21E52007EAAA7 /* AAChartView.m */; };
 		8441A6B426C21E53007EAAA7 /* AAChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6AC26C21E52007EAAA7 /* AAChartModel.m */; };
@@ -224,6 +225,7 @@
 		8409E69B2CD48544000EFCF2 /* AASankeyComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AASankeyComposer.h; sourceTree = "<group>"; };
 		8409E69C2CD48544000EFCF2 /* AASankeyComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AASankeyComposer.m; sourceTree = "<group>"; };
 		8409E69E2CD485F5000EFCF2 /* sankeyDiagramSeries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sankeyDiagramSeries.json; sourceTree = "<group>"; };
+		8409E6A02CD489C9000EFCF2 /* verticalSankeySeries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = verticalSankeySeries.json; sourceTree = "<group>"; };
 		8441A6A826C21E52007EAAA7 /* AAOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAOptions.m; sourceTree = "<group>"; };
 		8441A6A926C21E52007EAAA7 /* AAGlobalMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAGlobalMacro.h; sourceTree = "<group>"; };
 		8441A6AA26C21E52007EAAA7 /* AAChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAChartView.m; sourceTree = "<group>"; };
@@ -554,6 +556,7 @@
 		27EB8A8A2497C4E7007E6A6B /* SeriesJsonFiles */ = {
 			isa = PBXGroup;
 			children = (
+				8409E6A02CD489C9000EFCF2 /* verticalSankeySeries.json */,
 				8409E69E2CD485F5000EFCF2 /* sankeyDiagramSeries.json */,
 				84DFEAB02A27382C004436BC /* pictorial1Series.json */,
 				84DFEAAF2A27382C004436BC /* pictorial2Series.json */,
@@ -973,6 +976,7 @@
 				84A5690827FD664F00883553 /* arcdiagram2Data.json in Resources */,
 				84DEB8B128FADE1600BF9423 /* simpleDependencyWheelData.json in Resources */,
 				84DFEABC2A274784004436BC /* treegraphData.json in Resources */,
+				8409E6A12CD489C9000EFCF2 /* verticalSankeySeries.json in Resources */,
 				84D2B65E2978F9FF005BBA80 /* simpleTilemapData.json in Resources */,
 				27EB8A7E2497C007007E6A6B /* bigHeatmapData.json in Resources */,
 				27EB8A7A2497C007007E6A6B /* sankeyData.json in Resources */,

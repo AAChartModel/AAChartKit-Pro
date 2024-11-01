@@ -64,5 +64,6 @@ AAPropStatementAndPropSetFuncStatement(strong, AATooltip, NSNumber *, hideDelay)
 AAPropStatementAndPropSetFuncStatement(strong, AATooltip, AADateTimeLabelFormats  *, dateTimeLabelFormats)
 AAPropStatementAndPropSetFuncStatement(strong, AATooltip, id        , outside) 
 AAPropStatementAndPropSetFuncStatement(strong, AATooltip, id        , split)
+AAPropStatementAndPropSetFuncStatement(copy,   AATooltip, NSString *, nodeFormat)
 
 @end
