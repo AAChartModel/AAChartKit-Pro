@@ -38,6 +38,7 @@
 #import "AAColumnVariantChartVC.h"
 #import "AAHeatmapChartVC.h"
 #import "AATreemapChartVC.h"
+#import "AATreegraphChartVC.h"
 
 #define ColorWithRGB(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 #define AAGrayColor            [UIColor colorWithRed:245/255.0 green:246/255.0 blue:247/255.0 alpha:1.0]
@@ -191,6 +192,15 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
+            
+        case 7 : {
+            AATreegraphChartVC *vc = [[AATreegraphChartVC alloc]init];
+            vc.selectedIndex = indexPath.row;
+            vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+
         
         default:
             break;
@@ -349,7 +359,14 @@
                 @"treemapWithLevelsData2---包含等级的矩形树图2🌲",
                 @"drilldownLargeDataTreemapChart---可下钻的大数据量矩形树图🌲",
             ],
-
+//            case 0: return [AATreegraphChartComposer treegraph];
+//            case 1: return [AATreegraphChartComposer invertedTreegraph];
+//            case 2: return [AATreegraphChartComposer treegraphWithBoxLayout];
+             @[
+                 @"treegraphChart---树图",
+                 @"invertedTreegraphChart---倒置树图",
+                 @"treegraphWithBoxLayoutChart---树图(盒子布局)",
+             ],
             
         ];
     }
@@ -366,6 +383,7 @@
             @"MoreProType | 更多高级类型图表",
             @"HeatmapChart | 热力图",
             @"TreemapChart | 矩形树图",
+            @"TreegraphChart | 树图",
 
         ];
     }
