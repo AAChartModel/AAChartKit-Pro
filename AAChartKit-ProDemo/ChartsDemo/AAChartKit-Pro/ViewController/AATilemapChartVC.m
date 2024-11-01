@@ -7,10 +7,10 @@
 //
 
 #import "AATilemapChartVC.h"
-#import "AATilemapComposer.h"
-#import "AATreemapComposer.h"
-#import "AAHeatmapComposer.h"
-#import "AATreegraphComposer.h"
+#import "AATilemapChartComposer.h"
+#import "AATreemapChartComposer.h"
+#import "AAHeatmapChartComposer.h"
+#import "AATreegraphChartComposer.h"
 
 @implementation AATilemapChartVC
 
@@ -59,28 +59,28 @@
 
 - (id)chartConfigurationWithSelectedIndex:(NSUInteger)selectedIndex {
     switch (selectedIndex) {
-        case 0: return [AAHeatmapComposer heatmapChart];
-        case 1: return [AATreemapComposer treemapWithColorAxisData];
-        case 2: return [AATreemapComposer treemapWithLevelsData];
-        case 3: return [AATreemapComposer drilldownLargeDataTreemapChart];
-        case 4: return [AAHeatmapComposer largeDataHeatmapChart];
-        case 5: return [AATilemapComposer simpleTilemapWithHexagonTileShape];
-        case 6: return [AATilemapComposer simpleTilemapWithCircleTileShape];
-        case 7: return [AATilemapComposer simpleTilemapWithDiamondTileShape];
-        case 8: return [AATilemapComposer simpleTilemapWithSquareTileShape];
-        case 9: return [AATilemapComposer tilemapForAfricaWithHexagonTileShape];
-        case 10: return [AATilemapComposer tilemapForAfricaWithCircleTileShape];
-        case 11: return [AATilemapComposer tilemapForAfricaWithDiamondTileShape];
-        case 12: return [AATilemapComposer tilemapForAfricaWithSquareTileShape];
-        case 13: return [AATilemapComposer tilemapChartForAmericaWithHexagonTileShape];
-        case 14: return [AATilemapComposer tilemapChartForAmericaWithCircleTileShape];
-        case 15: return [AATilemapComposer tilemapChartForAmericaWithDiamondTileShape];
-        case 16: return [AATilemapComposer tilemapChartForAmericaWithSquareTileShape];
-        case 17: return [AATreegraphComposer treegraph];
-        case 18: return [AATreegraphComposer invertedTreegraph];
-        case 19: return [AATreegraphComposer treegraphWithBoxLayout];
-        case 20: return [AAHeatmapComposer calendarHeatmap];
-        case 21: return [AATreemapComposer treemapWithLevelsData2];
+        case 0: return [AAHeatmapChartComposer heatmapChart];
+        case 1: return [AATreemapChartComposer treemapWithColorAxisData];
+        case 2: return [AATreemapChartComposer treemapWithLevelsData];
+        case 3: return [AATreemapChartComposer drilldownLargeDataTreemapChart];
+        case 4: return [AAHeatmapChartComposer largeDataHeatmapChart];
+        case 5: return [AATilemapChartComposer simpleTilemapWithHexagonTileShape];
+        case 6: return [AATilemapChartComposer simpleTilemapWithCircleTileShape];
+        case 7: return [AATilemapChartComposer simpleTilemapWithDiamondTileShape];
+        case 8: return [AATilemapChartComposer simpleTilemapWithSquareTileShape];
+        case 9: return [AATilemapChartComposer tilemapForAfricaWithHexagonTileShape];
+        case 10: return [AATilemapChartComposer tilemapForAfricaWithCircleTileShape];
+        case 11: return [AATilemapChartComposer tilemapForAfricaWithDiamondTileShape];
+        case 12: return [AATilemapChartComposer tilemapForAfricaWithSquareTileShape];
+        case 13: return [AATilemapChartComposer tilemapChartForAmericaWithHexagonTileShape];
+        case 14: return [AATilemapChartComposer tilemapChartForAmericaWithCircleTileShape];
+        case 15: return [AATilemapChartComposer tilemapChartForAmericaWithDiamondTileShape];
+        case 16: return [AATilemapChartComposer tilemapChartForAmericaWithSquareTileShape];
+        case 17: return [AATreegraphChartComposer treegraph];
+        case 18: return [AATreegraphChartComposer invertedTreegraph];
+        case 19: return [AATreegraphChartComposer treegraphWithBoxLayout];
+        case 20: return [AAHeatmapChartComposer calendarHeatmap];
+        case 21: return [AATreemapChartComposer treemapWithLevelsData2];
 
 
         default: return nil;

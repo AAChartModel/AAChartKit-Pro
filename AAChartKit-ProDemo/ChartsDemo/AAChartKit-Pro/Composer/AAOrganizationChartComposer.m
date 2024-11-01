@@ -1,16 +1,16 @@
 //
-//  AAOrganizationComposer.m
+//  AAOrganizationChartComposer.m
 //  AAChartKit-ProDemo
 //
 //  Created by AnAn on 2024/11/1.
 //  Copyright © 2024 An An. All rights reserved.
 //
 
-#import "AAOrganizationComposer.h"
+#import "AAOrganizationChartComposer.h"
 #import "AAChartKit-Pro.h"
 #import "AAOptionsData.h"
 
-@implementation AAOrganizationComposer
+@implementation AAOrganizationChartComposer
 
 /**
  const colors = Highcharts.getOptions().colors;

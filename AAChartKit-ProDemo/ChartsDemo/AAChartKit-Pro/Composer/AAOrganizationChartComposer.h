@@ -1,5 +1,5 @@
 //
-//  AATreegraphComposer.h
+//  AAOrganizationChartComposer.h
 //  AAChartKit-ProDemo
 //
 //  Created by AnAn on 2024/11/1.
@@ -12,11 +12,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AATreegraphComposer : NSObject
+@interface AAOrganizationChartComposer : NSObject
 
-+ (AAOptions *)treegraph;
-+ (AAOptions *)invertedTreegraph;
-+ (AAOptions *)treegraphWithBoxLayout;
++ (AAOptions *)germanicLanguageTreeChart;
 
 @end
 

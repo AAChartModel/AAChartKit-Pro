@@ -1,5 +1,5 @@
 //
-//  AATreeOrHeatMapChartComposer.h
+//  AATilemapChartComposer.h
 //  AAChartKit-ProDemo
 //
 //  Created by AnAn on 2022/8/8.
@@ -11,7 +11,7 @@
 @class AAOptions;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AATilemapComposer : NSObject
+@interface AATilemapChartComposer : NSObject
 
 + (AAOptions *)simpleTilemapWithHexagonTileShape;
 + (AAOptions *)simpleTilemapWithCircleTileShape;

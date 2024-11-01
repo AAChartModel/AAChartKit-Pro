@@ -1,5 +1,5 @@
 //
-//  AAHeatmapComposer.h
+//  AATreegraphChartComposer.h
 //  AAChartKit-ProDemo
 //
 //  Created by AnAn on 2024/11/1.
@@ -12,11 +12,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AAHeatmapComposer : NSObject
+@interface AATreegraphChartComposer : NSObject
 
-+ (AAOptions *)heatmapChart;
-+ (AAOptions *)largeDataHeatmapChart;
-+ (AAOptions *)calendarHeatmap;
++ (AAOptions *)treegraph;
++ (AAOptions *)invertedTreegraph;
++ (AAOptions *)treegraphWithBoxLayout;
 
 @end
 

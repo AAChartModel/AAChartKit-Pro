@@ -1,18 +1,18 @@
 //
-//  AATreegraphComposer.m
+//  AATreegraphChartComposer.m
 //  AAChartKit-ProDemo
 //
 //  Created by AnAn on 2024/11/1.
 //  Copyright © 2024 An An. All rights reserved.
 //
 
-#import "AATreegraphComposer.h"
+#import "AATreegraphChartComposer.h"
 #import "AAChartKit-Pro.h"
 #import "AAOptionsCSV.h"
 #import "NSString+toPureJSString.h"
 #import "AAOptionsData.h"
 
-@implementation AATreegraphComposer
+@implementation AATreegraphChartComposer
 
 //configure tree graph chart options
 //{

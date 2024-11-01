@@ -1,18 +1,18 @@
 //
-//  AATreeOrHeatMapChartComposer.m
+//  AATilemapChartComposer.m
 //  AAChartKit-ProDemo
 //
 //  Created by AnAn on 2022/8/8.
 //  Copyright © 2022 An An. All rights reserved.
 //
 
-#import "AATilemapComposer.h"
+#import "AATilemapChartComposer.h"
 #import "AAChartKit-Pro.h"
 #import "AAOptionsCSV.h"
 #import "NSString+toPureJSString.h"
 #import "AAOptionsData.h"
 
-@implementation AATilemapComposer
+@implementation AATilemapChartComposer
 
 
 

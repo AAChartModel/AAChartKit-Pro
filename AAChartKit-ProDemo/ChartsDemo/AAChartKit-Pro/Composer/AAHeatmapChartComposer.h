@@ -1,5 +1,5 @@
 //
-//  AASankeyComposer.h
+//  AAHeatmapChartComposer.h
 //  AAChartKit-ProDemo
 //
 //  Created by AnAn on 2024/11/1.
@@ -12,10 +12,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AASankeyComposer : NSObject
+@interface AAHeatmapChartComposer : NSObject
 
-+ (AAOptions *)sankeyDiagramChart;
-+ (AAOptions *)verticalSankeyChart;
++ (AAOptions *)heatmapChart;
++ (AAOptions *)largeDataHeatmapChart;
++ (AAOptions *)calendarHeatmap;
 
 @end
 

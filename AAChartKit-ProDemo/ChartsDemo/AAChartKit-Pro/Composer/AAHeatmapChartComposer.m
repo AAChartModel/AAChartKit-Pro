@@ -1,18 +1,18 @@
 //
-//  AAHeatmapComposer.m
+//  AAHeatmapChartComposer.m
 //  AAChartKit-ProDemo
 //
 //  Created by AnAn on 2024/11/1.
 //  Copyright © 2024 An An. All rights reserved.
 //
 
-#import "AAHeatmapComposer.h"
+#import "AAHeatmapChartComposer.h"
 #import "AAChartKit-Pro.h"
 #import "AAOptionsCSV.h"
 #import "NSString+toPureJSString.h"
 #import "AAOptionsData.h"
 
-@implementation AAHeatmapComposer
+@implementation AAHeatmapChartComposer
 
 + (AAOptions *)heatmapChart {
     return AAOptions.new

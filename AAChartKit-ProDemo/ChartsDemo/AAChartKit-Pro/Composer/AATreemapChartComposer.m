@@ -1,17 +1,17 @@
 //
-//  AATreemapComposer.m
+//  AATreemapChartComposer.m
 //  AAChartKit-ProDemo
 //
 //  Created by AnAn on 2024/11/1.
 //  Copyright © 2024 An An. All rights reserved.
 //
 
-#import "AATreemapComposer.h"
+#import "AATreemapChartComposer.h"
 #import "AAChartKit-Pro.h"
 #import "NSString+toPureJSString.h"
 #import "AAOptionsData.h"
 
-@implementation AATreemapComposer
+@implementation AATreemapChartComposer
 
 + (AAOptions *)treemapWithColorAxisData {
     return AAOptions.new

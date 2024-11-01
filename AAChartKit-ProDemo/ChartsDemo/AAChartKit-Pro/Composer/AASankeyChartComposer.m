@@ -1,17 +1,17 @@
 //
-//  AASankeyComposer.m
+//  AASankeyChartComposer.m
 //  AAChartKit-ProDemo
 //
 //  Created by AnAn on 2024/11/1.
 //  Copyright © 2024 An An. All rights reserved.
 //
 
-#import "AASankeyComposer.h"
+#import "AASankeyChartComposer.h"
 #import "AAChartKit-Pro.h"
 #import "AAOptionsSeries.h"
 #import "NSString+toPureJSString.h"
 
-@implementation AASankeyComposer
+@implementation AASankeyChartComposer
 
 //Highcharts.chart('container', {
 //

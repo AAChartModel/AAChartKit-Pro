@@ -1,5 +1,5 @@
 //
-//  AATreemapComposer.h
+//  AATreemapChartComposer.h
 //  AAChartKit-ProDemo
 //
 //  Created by AnAn on 2024/11/1.
@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AATreemapComposer : NSObject
+@interface AATreemapChartComposer : NSObject
 
 + (AAOptions *)treemapWithColorAxisData;
 + (AAOptions *)treemapWithLevelsData;
