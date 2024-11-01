@@ -8,9 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class AAOptions;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AATreegraphComposer : NSObject
+
++ (AAOptions *)treegraph;
++ (AAOptions *)invertedTreegraph;
++ (AAOptions *)treegraphWithBoxLayout;
 
 @end
 

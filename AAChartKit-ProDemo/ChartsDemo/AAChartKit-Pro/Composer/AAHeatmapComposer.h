@@ -8,9 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class AAOptions;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AAHeatmapComposer : NSObject
+
++ (AAOptions *)heatmapChart;
++ (AAOptions *)largeDataHeatmapChart;
++ (AAOptions *)calendarHeatmap;
 
 @end
 

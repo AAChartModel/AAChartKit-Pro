@@ -9,6 +9,8 @@
 #import "AAHeatOrTreeMapChartVC.h"
 #import "AAHeatOrTreeMapChartComposer.h"
 #import "AATreemapComposer.h"
+#import "AAHeatmapComposer.h"
+#import "AATreegraphComposer.h"
 
 @implementation AAHeatOrTreeMapChartVC
 
@@ -57,11 +59,11 @@
 
 - (id)chartConfigurationWithSelectedIndex:(NSUInteger)selectedIndex {
     switch (selectedIndex) {
-        case 0: return [AAHeatOrTreeMapChartComposer heatmapChart];
+        case 0: return [AAHeatmapComposer heatmapChart];
         case 1: return [AATreemapComposer treemapWithColorAxisData];
         case 2: return [AATreemapComposer treemapWithLevelsData];
         case 3: return [AATreemapComposer drilldownLargeDataTreemapChart];
-        case 4: return [AAHeatOrTreeMapChartComposer largeDataHeatmapChart];
+        case 4: return [AAHeatmapComposer largeDataHeatmapChart];
         case 5: return [AAHeatOrTreeMapChartComposer simpleTilemapWithHexagonTileShape];
         case 6: return [AAHeatOrTreeMapChartComposer simpleTilemapWithCircleTileShape];
         case 7: return [AAHeatOrTreeMapChartComposer simpleTilemapWithDiamondTileShape];
@@ -74,10 +76,10 @@
         case 14: return [AAHeatOrTreeMapChartComposer tilemapChartForAmericaWithCircleTileShape];
         case 15: return [AAHeatOrTreeMapChartComposer tilemapChartForAmericaWithDiamondTileShape];
         case 16: return [AAHeatOrTreeMapChartComposer tilemapChartForAmericaWithSquareTileShape];
-        case 17: return [AAHeatOrTreeMapChartComposer treegraph];
-        case 18: return [AAHeatOrTreeMapChartComposer invertedTreegraph];
-        case 19: return [AAHeatOrTreeMapChartComposer treegraphWithBoxLayout];
-        case 20: return [AAHeatOrTreeMapChartComposer calendarHeatmap];
+        case 17: return [AATreegraphComposer treegraph];
+        case 18: return [AATreegraphComposer invertedTreegraph];
+        case 19: return [AATreegraphComposer treegraphWithBoxLayout];
+        case 20: return [AAHeatmapComposer calendarHeatmap];
         case 21: return [AATreemapComposer treemapWithLevelsData2];
 
 
