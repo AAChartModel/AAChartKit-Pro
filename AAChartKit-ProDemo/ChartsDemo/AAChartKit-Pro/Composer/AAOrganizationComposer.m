@@ -105,38 +105,9 @@
 + (AAOptions *)germanicLanguageTreeChart {
     NSArray *colors = @[@"#1e90ff", @"#ef476f", @"#ffd066", @"#04d69f", @"#25547c"];
     
-    NSArray *originalLeafsArr = @[
-        @"Bastarnisch", @"Brabantian", @"Burgundian", @"Crimean Gothic", @"Danish",
-        @"Dutch", @"English", @"Faroese", @"Flemish", @"Frisian", @"Gepidisch", @"Gothic",
-        @"Herulisch", @"(High) German", @"Hollandic", @"Icelandic", @"Limburgish",
-        @"Low German", @"Norwegian", @"Rhinelandic", @"Rugisch", @"Skirisch", @"Swedish",
-        @"Vandalic", @"Yiddish"
-    ];
-    
-    NSMutableArray *leafs = [NSMutableArray array];
-    for (NSString *leaf in originalLeafsArr) {
-        NSDictionary *leafDict = @{@"id":leaf, @"color":colors[0]};
-        [leafs addObject:leafDict];
-    }
-    
-    NSArray *hangingNodes = @[
-        @{
-            @"id":@"North Germanic",
-            @"layout":@"hanging",
-            @"offsetHorizontal":@(-15)},
-        @{
-            @"id":@"West Germanic",
-            @"layout":@"hanging"},
-        @{
-            @"id":@"East Germanic",
-            @"layout":@"hanging"}
-    ];
-    
-    NSArray *nodes = [hangingNodes arrayByAddingObjectsFromArray:leafs];
-    
-    AAOptions *options = AAOptions.new
+    return AAOptions.new
         .chartSet(AAChart.new
-//                  .heightSet(@1200)
+                  //                  .heightSet(@1200)
                   .invertedSet(true))
         .titleSet(AATitle.new
                   .textSet(@"The Germanic Language Tree"))
@@ -145,13 +116,13 @@
     //                                    .descriptionFormatSet(@"{add index 1}. {toNode.id} comes from {fromNode.id}")))
         .tooltipSet(AATooltip.new
                     .outsideSet(@true))
-
+    
         .plotOptionsSet(AAPlotOptions.new
                         .organizationSet(AAOrganization.new
                                          .hangingIndentTranslationSet(@"cumulative")
                                          //Crimp a bit to avoid nodes overlapping lines
                                          .hangingIndentSet(@10)))
-                                 
+    
         .seriesSet(@[
             AASeriesElement.new
                 .nameSet(@"Germanic language tree")
@@ -160,9 +131,9 @@
                 .nodeWidthSet(@40)
                 .nodePaddingSet(@20)
                 .colorByPointSet(@false)
-//                .hangingIndentTranslationSet(@"cumulative")
+            //                .hangingIndentTranslationSet(@"cumulative")
             // Crimp a bit to avoid nodes overlapping lines
-//                .hangingIndentSet(@10)
+            //                .hangingIndentSet(@10)
                 .levelsSet(@[
                     AALevelsElement.new
                         .levelSet(@0)
@@ -180,18 +151,39 @@
                         .levelSet(@4)
                         .colorSet(colors[4])
                 ])
-                .nodesSet(nodes)
+                .nodesSet(({
+                    NSArray *originalLeafsArr = @[
+                        @"Bastarnisch", @"Brabantian", @"Burgundian", @"Crimean Gothic", @"Danish",
+                        @"Dutch", @"English", @"Faroese", @"Flemish", @"Frisian", @"Gepidisch", @"Gothic",
+                        @"Herulisch", @"(High) German", @"Hollandic", @"Icelandic", @"Limburgish",
+                        @"Low German", @"Norwegian", @"Rhinelandic", @"Rugisch", @"Skirisch", @"Swedish",
+                        @"Vandalic", @"Yiddish"
+                    ];
+                    
+                    NSMutableArray *leafs = [NSMutableArray array];
+                    for (NSString *leaf in originalLeafsArr) {
+                        NSDictionary *leafDict = @{@"id":leaf, @"color":colors[0]};
+                        [leafs addObject:leafDict];
+                    }
+                    
+                    NSArray *hangingNodes = @[
+                        @{
+                            @"id":@"North Germanic",
+                            @"layout":@"hanging",
+                            @"offsetHorizontal":@(-15)},
+                        @{
+                            @"id":@"West Germanic",
+                            @"layout":@"hanging"},
+                        @{
+                            @"id":@"East Germanic",
+                            @"layout":@"hanging"}
+                    ];
+                    
+                    NSArray *nodes = [hangingNodes arrayByAddingObjectsFromArray:leafs];
+                    nodes;
+                }))
                 .dataSet(AAOptionsData.germanicLanguageTreeData)
-
         ]);
-    
-    return options;
-    
 }
-    
-        
-    
-
-    
 
 @end
