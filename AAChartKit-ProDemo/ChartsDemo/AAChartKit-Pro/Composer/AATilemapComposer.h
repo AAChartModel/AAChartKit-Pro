@@ -11,7 +11,7 @@
 @class AAOptions;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AAHeatOrTreeMapChartComposer : NSObject
+@interface AATilemapComposer : NSObject
 
 + (AAOptions *)simpleTilemapWithHexagonTileShape;
 + (AAOptions *)simpleTilemapWithCircleTileShape;

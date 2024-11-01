@@ -7,7 +7,7 @@
 //
 
 #import "AAHeatOrTreeMapChartVC.h"
-#import "AAHeatOrTreeMapChartComposer.h"
+#import "AATilemapComposer.h"
 #import "AATreemapComposer.h"
 #import "AAHeatmapComposer.h"
 #import "AATreegraphComposer.h"
@@ -64,18 +64,18 @@
         case 2: return [AATreemapComposer treemapWithLevelsData];
         case 3: return [AATreemapComposer drilldownLargeDataTreemapChart];
         case 4: return [AAHeatmapComposer largeDataHeatmapChart];
-        case 5: return [AAHeatOrTreeMapChartComposer simpleTilemapWithHexagonTileShape];
-        case 6: return [AAHeatOrTreeMapChartComposer simpleTilemapWithCircleTileShape];
-        case 7: return [AAHeatOrTreeMapChartComposer simpleTilemapWithDiamondTileShape];
-        case 8: return [AAHeatOrTreeMapChartComposer simpleTilemapWithSquareTileShape];
-        case 9: return [AAHeatOrTreeMapChartComposer tilemapForAfricaWithHexagonTileShape];
-        case 10: return [AAHeatOrTreeMapChartComposer tilemapForAfricaWithCircleTileShape];
-        case 11: return [AAHeatOrTreeMapChartComposer tilemapForAfricaWithDiamondTileShape];
-        case 12: return [AAHeatOrTreeMapChartComposer tilemapForAfricaWithSquareTileShape];
-        case 13: return [AAHeatOrTreeMapChartComposer tilemapChartForAmericaWithHexagonTileShape];
-        case 14: return [AAHeatOrTreeMapChartComposer tilemapChartForAmericaWithCircleTileShape];
-        case 15: return [AAHeatOrTreeMapChartComposer tilemapChartForAmericaWithDiamondTileShape];
-        case 16: return [AAHeatOrTreeMapChartComposer tilemapChartForAmericaWithSquareTileShape];
+        case 5: return [AATilemapComposer simpleTilemapWithHexagonTileShape];
+        case 6: return [AATilemapComposer simpleTilemapWithCircleTileShape];
+        case 7: return [AATilemapComposer simpleTilemapWithDiamondTileShape];
+        case 8: return [AATilemapComposer simpleTilemapWithSquareTileShape];
+        case 9: return [AATilemapComposer tilemapForAfricaWithHexagonTileShape];
+        case 10: return [AATilemapComposer tilemapForAfricaWithCircleTileShape];
+        case 11: return [AATilemapComposer tilemapForAfricaWithDiamondTileShape];
+        case 12: return [AATilemapComposer tilemapForAfricaWithSquareTileShape];
+        case 13: return [AATilemapComposer tilemapChartForAmericaWithHexagonTileShape];
+        case 14: return [AATilemapComposer tilemapChartForAmericaWithCircleTileShape];
+        case 15: return [AATilemapComposer tilemapChartForAmericaWithDiamondTileShape];
+        case 16: return [AATilemapComposer tilemapChartForAmericaWithSquareTileShape];
         case 17: return [AATreegraphComposer treegraph];
         case 18: return [AATreegraphComposer invertedTreegraph];
         case 19: return [AATreegraphComposer treegraphWithBoxLayout];

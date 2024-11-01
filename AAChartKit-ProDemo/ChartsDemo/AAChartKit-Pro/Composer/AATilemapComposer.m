@@ -6,13 +6,13 @@
 //  Copyright © 2022 An An. All rights reserved.
 //
 
-#import "AAHeatOrTreeMapChartComposer.h"
+#import "AATilemapComposer.h"
 #import "AAChartKit-Pro.h"
 #import "AAOptionsCSV.h"
 #import "NSString+toPureJSString.h"
 #import "AAOptionsData.h"
 
-@implementation AAHeatOrTreeMapChartComposer
+@implementation AATilemapComposer
 
 
 
