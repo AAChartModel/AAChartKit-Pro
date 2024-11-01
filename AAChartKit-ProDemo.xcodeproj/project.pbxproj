@@ -60,6 +60,7 @@
 		8409E6A32CD4B5A3000EFCF2 /* treemapWithLevels2Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 8409E6A22CD4B5A3000EFCF2 /* treemapWithLevels2Data.json */; };
 		8409E6A62CD4BF1A000EFCF2 /* AATreemapComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8409E6A52CD4BF1A000EFCF2 /* AATreemapComposer.m */; };
 		8409E6AC2CD4C0A1000EFCF2 /* AAHeatmapComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8409E6AB2CD4C0A1000EFCF2 /* AAHeatmapComposer.m */; };
+		8409E6AF2CD4C357000EFCF2 /* AATreegraphComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8409E6AE2CD4C357000EFCF2 /* AATreegraphComposer.m */; };
 		8441A6B226C21E53007EAAA7 /* AAOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6A826C21E52007EAAA7 /* AAOptions.m */; };
 		8441A6B326C21E53007EAAA7 /* AAChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6AA26C21E52007EAAA7 /* AAChartView.m */; };
 		8441A6B426C21E53007EAAA7 /* AAChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6AC26C21E52007EAAA7 /* AAChartModel.m */; };
@@ -234,6 +235,8 @@
 		8409E6A52CD4BF1A000EFCF2 /* AATreemapComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AATreemapComposer.m; sourceTree = "<group>"; };
 		8409E6AA2CD4C0A1000EFCF2 /* AAHeatmapComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAHeatmapComposer.h; sourceTree = "<group>"; };
 		8409E6AB2CD4C0A1000EFCF2 /* AAHeatmapComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAHeatmapComposer.m; sourceTree = "<group>"; };
+		8409E6AD2CD4C357000EFCF2 /* AATreegraphComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AATreegraphComposer.h; sourceTree = "<group>"; };
+		8409E6AE2CD4C357000EFCF2 /* AATreegraphComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AATreegraphComposer.m; sourceTree = "<group>"; };
 		8441A6A826C21E52007EAAA7 /* AAOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAOptions.m; sourceTree = "<group>"; };
 		8441A6A926C21E52007EAAA7 /* AAGlobalMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAGlobalMacro.h; sourceTree = "<group>"; };
 		8441A6AA26C21E52007EAAA7 /* AAChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAChartView.m; sourceTree = "<group>"; };
@@ -700,6 +703,8 @@
 				8409E6A52CD4BF1A000EFCF2 /* AATreemapComposer.m */,
 				8409E6AA2CD4C0A1000EFCF2 /* AAHeatmapComposer.h */,
 				8409E6AB2CD4C0A1000EFCF2 /* AAHeatmapComposer.m */,
+				8409E6AD2CD4C357000EFCF2 /* AATreegraphComposer.h */,
+				8409E6AE2CD4C357000EFCF2 /* AATreegraphComposer.m */,
 			);
 			path = Composer;
 			sourceTree = "<group>";
@@ -1060,6 +1065,7 @@
 				84FE7BB726AED3D000B68A56 /* AABaseChartVC.m in Sources */,
 				84DFEB772A2882ED004436BC /* AAArea.m in Sources */,
 				84AA68AF28A11A6E009067AE /* AAData.m in Sources */,
+				8409E6AF2CD4C357000EFCF2 /* AATreegraphComposer.m in Sources */,
 				84DFEB7C2A2882ED004436BC /* AASeries.m in Sources */,
 				84B13F4528A0B5CF007356C6 /* AAHeatOrTreeMapChartVC.m in Sources */,
 				84B13F4828A0B66B007356C6 /* AARelationshipChartComposer.m in Sources */,
