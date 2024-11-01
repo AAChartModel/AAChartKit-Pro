@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AAHeatOrTreeMapChartComposer : NSObject
 
-
-
 + (AAOptions *)simpleTilemapWithHexagonTileShape;
 + (AAOptions *)simpleTilemapWithCircleTileShape;
 + (AAOptions *)simpleTilemapWithDiamondTileShape;
@@ -29,10 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (AAOptions *)tilemapChartForAmericaWithCircleTileShape;
 + (AAOptions *)tilemapChartForAmericaWithDiamondTileShape;
 + (AAOptions *)tilemapChartForAmericaWithSquareTileShape;
-+ (AAOptions *)treegraph;
-+ (AAOptions *)invertedTreegraph;
-+ (AAOptions *)treegraphWithBoxLayout;
-
 
 @end
 
