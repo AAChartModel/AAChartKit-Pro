@@ -32,7 +32,7 @@
 
 #import "FirstViewController.h"
 #import "ChartProVC.h"
-#import "AAHeatOrTreeMapChartVC.h"
+#import "AATilemapChartVC.h"
 #import "AARelationshipChartVC.h"
 #import "AABubbleChartVC.h"
 #import "AAColumnVariantChartVC.h"
@@ -143,7 +143,7 @@
             break;
             
         case 1 : {
-            AAHeatOrTreeMapChartVC *vc = [[AAHeatOrTreeMapChartVC alloc]init];
+            AATilemapChartVC *vc = [[AATilemapChartVC alloc]init];
             vc.selectedIndex = indexPath.row;
             vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
             [self.navigationController pushViewController:vc animated:YES];

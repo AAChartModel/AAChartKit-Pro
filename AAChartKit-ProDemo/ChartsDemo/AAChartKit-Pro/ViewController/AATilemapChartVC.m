@@ -6,13 +6,13 @@
 //  Copyright © 2022 An An. All rights reserved.
 //
 
-#import "AAHeatOrTreeMapChartVC.h"
+#import "AATilemapChartVC.h"
 #import "AATilemapComposer.h"
 #import "AATreemapComposer.h"
 #import "AAHeatmapComposer.h"
 #import "AATreegraphComposer.h"
 
-@implementation AAHeatOrTreeMapChartVC
+@implementation AATilemapChartVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];

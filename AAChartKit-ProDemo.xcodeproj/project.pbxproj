@@ -110,7 +110,7 @@
 		84AA68BD28A208FE009067AE /* AABulletDataElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AA68BC28A208FE009067AE /* AABulletDataElement.m */; };
 		84B13EE72897A090007356C6 /* AAItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13EE62897A090007356C6 /* AAItem.m */; };
 		84B13F4028A0AFF7007356C6 /* AATilemapComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13F3F28A0AFF7007356C6 /* AATilemapComposer.m */; };
-		84B13F4528A0B5CF007356C6 /* AAHeatOrTreeMapChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13F4428A0B5CF007356C6 /* AAHeatOrTreeMapChartVC.m */; };
+		84B13F4528A0B5CF007356C6 /* AATilemapChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13F4428A0B5CF007356C6 /* AATilemapChartVC.m */; };
 		84B13F4828A0B66B007356C6 /* AARelationshipChartComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13F4728A0B66B007356C6 /* AARelationshipChartComposer.m */; };
 		84B13F4B28A0B869007356C6 /* AABubbleChartComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13F4A28A0B869007356C6 /* AABubbleChartComposer.m */; };
 		84B13F4E28A0BA26007356C6 /* AARelationshipChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13F4D28A0BA26007356C6 /* AARelationshipChartVC.m */; };
@@ -332,8 +332,8 @@
 		84B13EE62897A090007356C6 /* AAItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAItem.m; sourceTree = "<group>"; };
 		84B13F3E28A0AFF7007356C6 /* AATilemapComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AATilemapComposer.h; sourceTree = "<group>"; };
 		84B13F3F28A0AFF7007356C6 /* AATilemapComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AATilemapComposer.m; sourceTree = "<group>"; };
-		84B13F4328A0B5CF007356C6 /* AAHeatOrTreeMapChartVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAHeatOrTreeMapChartVC.h; sourceTree = "<group>"; };
-		84B13F4428A0B5CF007356C6 /* AAHeatOrTreeMapChartVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAHeatOrTreeMapChartVC.m; sourceTree = "<group>"; };
+		84B13F4328A0B5CF007356C6 /* AATilemapChartVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AATilemapChartVC.h; sourceTree = "<group>"; };
+		84B13F4428A0B5CF007356C6 /* AATilemapChartVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AATilemapChartVC.m; sourceTree = "<group>"; };
 		84B13F4628A0B66B007356C6 /* AARelationshipChartComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AARelationshipChartComposer.h; sourceTree = "<group>"; };
 		84B13F4728A0B66B007356C6 /* AARelationshipChartComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AARelationshipChartComposer.m; sourceTree = "<group>"; };
 		84B13F4928A0B869007356C6 /* AABubbleChartComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AABubbleChartComposer.h; sourceTree = "<group>"; };
@@ -688,8 +688,6 @@
 			children = (
 				84B13F4628A0B66B007356C6 /* AARelationshipChartComposer.h */,
 				84B13F4728A0B66B007356C6 /* AARelationshipChartComposer.m */,
-				84B13F3E28A0AFF7007356C6 /* AATilemapComposer.h */,
-				84B13F3F28A0AFF7007356C6 /* AATilemapComposer.m */,
 				84B13F4928A0B869007356C6 /* AABubbleChartComposer.h */,
 				84B13F4A28A0B869007356C6 /* AABubbleChartComposer.m */,
 				84B13F5428A0E028007356C6 /* AAColumnVariantChartComposer.h */,
@@ -703,6 +701,8 @@
 				8409E6AB2CD4C0A1000EFCF2 /* AAHeatmapComposer.m */,
 				8409E6A42CD4BF1A000EFCF2 /* AATreemapComposer.h */,
 				8409E6A52CD4BF1A000EFCF2 /* AATreemapComposer.m */,
+				84B13F3E28A0AFF7007356C6 /* AATilemapComposer.h */,
+				84B13F3F28A0AFF7007356C6 /* AATilemapComposer.m */,
 				8409E6AD2CD4C357000EFCF2 /* AATreegraphComposer.h */,
 				8409E6AE2CD4C357000EFCF2 /* AATreegraphComposer.m */,
 			);
@@ -716,8 +716,8 @@
 				84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */,
 				84B13F4C28A0BA26007356C6 /* AARelationshipChartVC.h */,
 				84B13F4D28A0BA26007356C6 /* AARelationshipChartVC.m */,
-				84B13F4328A0B5CF007356C6 /* AAHeatOrTreeMapChartVC.h */,
-				84B13F4428A0B5CF007356C6 /* AAHeatOrTreeMapChartVC.m */,
+				84B13F4328A0B5CF007356C6 /* AATilemapChartVC.h */,
+				84B13F4428A0B5CF007356C6 /* AATilemapChartVC.m */,
 				84B13F4F28A0BA3A007356C6 /* AABubbleChartVC.h */,
 				84B13F5028A0BA3A007356C6 /* AABubbleChartVC.m */,
 				84AA689E28A0E45D009067AE /* AAColumnVariantChartVC.h */,
@@ -1067,7 +1067,7 @@
 				84AA68AF28A11A6E009067AE /* AAData.m in Sources */,
 				8409E6AF2CD4C357000EFCF2 /* AATreegraphComposer.m in Sources */,
 				84DFEB7C2A2882ED004436BC /* AASeries.m in Sources */,
-				84B13F4528A0B5CF007356C6 /* AAHeatOrTreeMapChartVC.m in Sources */,
+				84B13F4528A0B5CF007356C6 /* AATilemapChartVC.m in Sources */,
 				84B13F4828A0B66B007356C6 /* AARelationshipChartComposer.m in Sources */,
 				84DFEB7E2A2882ED004436BC /* AASpline.m in Sources */,
 				8441A70026C21E6C007EAAA7 /* AAPlotLinesElement.m in Sources */,
