@@ -35,6 +35,7 @@
 @interface NSString (pureJSString)
 
 - (NSString *)aa_toPureJSString;
+- (NSString *)aa_toPureHTMLString;
 
 @end
 

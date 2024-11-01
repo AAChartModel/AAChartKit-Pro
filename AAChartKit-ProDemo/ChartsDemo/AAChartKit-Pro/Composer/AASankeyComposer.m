@@ -9,6 +9,7 @@
 #import "AASankeyComposer.h"
 #import "AAChartKit-Pro.h"
 #import "AAOptionsSeries.h"
+#import "NSString+toPureJSString.h"
 
 @implementation AASankeyComposer
 
@@ -42,8 +43,8 @@
     return AAOptions.new
         .titleSet(AATitle.new
                   .textSet(@"Estimated US Energy Consumption in 2022"))
-//        .subtitleSet(AASubtitle.new
-//                     .textSet(@"Source: <a href='https://www.llnl.gov/'> Lawrence Livermore National Laboratory</a>"))
+            .subtitleSet(AASubtitle.new
+                         .textSet(@"Source: <a href='https://www.llnl.gov/'> Lawrence Livermore National Laboratory</a>".aa_toPureHTMLString))
     //    .accessibilitySet(AAAccessibility.new
     //                        .pointSet(AAPoint.new
     //                                    .valueDescriptionFormatSet(@"{index}. {point.from} to {point.to}, {point.weight}.")
@@ -52,8 +53,7 @@
         .tooltipSet(AATooltip.new
                     .headerFormatSet(@"null")
                     .pointFormatSet(@"{point.fromNode.name} \u2192 {point.toNode.name}: {point.weight:.2f} quads")
-//                    .nodeFormatSet(@"{point.name}: {point.sum:.2f} quads")
-                    )
+                    .nodeFormatSet(@"{point.name}: {point.sum:.2f} quads"))
         .seriesSet(AAOptionsSeries.sankeyDiagramSeries)
     ;
 }
@@ -118,58 +118,46 @@
 + (AAOptions *)verticalSankeyChart {
     return AAOptions.new
         .chartSet(AAChart.new
-                    .typeSet(@"sankey")
-                    .invertedSet(true)
-//                    .heightSet(@1000)
-                    )
-            .titleSet(AATitle.new
-                    .textSet(@"Evaluating the energy consumed for water use in the United States")
-                    .alignSet(@"left")
-                    )
-            .subtitleSet(AASubtitle.new
-//                         .textSet(@"Data source: <a href='https://iopscience.iop.org/article/10.1088/1748-9326/7/3/034034/pdf'>The University of Texas at Austin</a>")
-                         .alignSet(@"left")
-                         )
-//            .accessibilitySet(AAAccessibility.new
-//                            .pointSet(AAPoint.new
-//                                        .valueDescriptionFormatSet(@"{index}. {point.from} to {point.to}, {point.weight}.")
-//                                        )
-//                            )
-            .plotOptionsSet(AAPlotOptions.new
-                            .seriesSet(AASeries.new
-                                     .statesSet(AAStates.new
-                                                .inactiveSet(AAInactive.new
-                                                             .enabledSet(false)
-                                                             )
-                                                )
-                                     .tooltipSet(AATooltip.new
-                                                 .nodeFormatSet(@"{point.name}: <b>{point.sum} quads</b><br/>")
-                                                 )
-                                       .dataLabelsSet(AADataLabels.new
-                                                      .nodeFormatterSet(@AAJSFunc((function() {
-                                                          const maxLetters = this.point.shapeArgs.height / 8,
-                                                          name = this.point.name,
-                                                          firstWord = name.slice(0, maxLetters);
-                                                          
-                                                          if (firstWord.length >= name.length) {
-                                                              return firstWord.toUpperCase();
-                                                          }
-                                                          return name.toUpperCase();
-                                                      })
-                                                                                
-                                                                          ))
-                                                      .styleSet(AAStyle.new
-                                                                .textOutlineSet(@"none")
-                                                                .colorSet(@"#4a4a4a")
-                                                                )
-                                                      )
-                                     )
-                            )
-            .tooltipSet(AATooltip.new
-                        .valueSuffixSet(@"quads")
-                        )
-            .seriesSet(AAOptionsSeries.verticalSankeySeries)
-        ;
+                  .typeSet(AAChartTypeSankey)
+                  .invertedSet(true)
+                  //                    .heightSet(@1000)
+                  )
+        .titleSet(AATitle.new
+                  .textSet(@"Evaluating the energy consumed for water use in the United States")
+                  .alignSet(AAChartAlignTypeLeft))
+        .subtitleSet(AASubtitle.new
+                     .textSet(@"Data source: <a href='https://iopscience.iop.org/article/10.1088/1748-9326/7/3/034034/pdf'>The University of Texas at Austin</a>".aa_toPureHTMLString)
+                     .alignSet(AAChartAlignTypeLeft))
+    //            .accessibilitySet(AAAccessibility.new
+    //                            .pointSet(AAPoint.new
+    //                                        .valueDescriptionFormatSet(@"{index}. {point.from} to {point.to}, {point.weight}.")
+    //                                        )
+    //                            )
+        .plotOptionsSet(AAPlotOptions.new
+                        .seriesSet(AASeries.new
+                                   .statesSet(AAStates.new
+                                              .inactiveSet(AAInactive.new
+                                                           .enabledSet(false)))
+                                   .tooltipSet(AATooltip.new
+                                               .nodeFormatSet(@"{point.name}: <b>{point.sum} quads</b><br/>"))
+                                   .dataLabelsSet(AADataLabels.new
+                                                  .nodeFormatterSet(@AAJSFunc((function() {
+                                                      const maxLetters = this.point.shapeArgs.height / 8,
+                                                      name = this.point.name,
+                                                      firstWord = name.slice(0, maxLetters);
+                                                      
+                                                      if (firstWord.length >= name.length) {
+                                                          return firstWord.toUpperCase();
+                                                      }
+                                                      return name.toUpperCase();
+                                                  })))
+                                                  .styleSet(AAStyle.new
+                                                            .textOutlineSet(@"none")
+                                                            .colorSet(@"#4a4a4a")))))
+        .tooltipSet(AATooltip.new
+                    .valueSuffixSet(@"quads"))
+        .seriesSet(AAOptionsSeries.verticalSankeySeries)
+    ;
 }
 
 
