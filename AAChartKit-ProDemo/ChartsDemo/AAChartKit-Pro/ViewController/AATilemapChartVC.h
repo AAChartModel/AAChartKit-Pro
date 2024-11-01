@@ -6,7 +6,6 @@
 //  Copyright © 2022 An An. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "AABaseChartVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
