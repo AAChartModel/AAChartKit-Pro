@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)pictorial2Series;
 + (NSArray *)packedbubbleSeries;
 + (NSArray *)streamgraphSeries;
++ (NSArray *)sankeyDiagramSeries;
 
 @end
 

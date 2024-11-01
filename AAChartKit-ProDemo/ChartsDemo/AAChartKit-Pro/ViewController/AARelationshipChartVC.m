@@ -9,6 +9,7 @@
 #import "AARelationshipChartVC.h"
 #import "AARelationshipChartComposer.h"
 #import "AAOrganizationComposer.h"
+#import "AASankeyComposer.h"
 
 @implementation AARelationshipChartVC
 
@@ -30,6 +31,8 @@
         case  8: return [AARelationshipChartComposer neuralNetworkChart];
         case  9: return [AARelationshipChartComposer carnivoraPhylogenyOrganizationChart];
         case 10: return [AAOrganizationComposer germanicLanguageTreeChart];
+        case 11: return [AASankeyComposer sankeyDiagramChart];
+
 
     }
     return nil;

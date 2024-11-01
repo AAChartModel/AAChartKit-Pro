@@ -26,6 +26,10 @@
     return [self getJsonDataWithJsonFileName:@"streamgraphSeries"];
 }
 
++ (NSArray *)sankeyDiagramSeries {
+    return [self getJsonDataWithJsonFileName:@"sankeyDiagramSeries"];
+}
+
 + (id)getJsonDataWithJsonFileName:(NSString *)jsonFileName
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:jsonFileName ofType:@"json"];

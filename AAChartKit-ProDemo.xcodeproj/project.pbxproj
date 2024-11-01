@@ -54,6 +54,8 @@
 		8409E6952CD47621000EFCF2 /* AAOrganizationComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8409E6942CD47621000EFCF2 /* AAOrganizationComposer.m */; };
 		8409E6972CD47727000EFCF2 /* germanicLanguageTreeData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8409E6962CD47727000EFCF2 /* germanicLanguageTreeData.json */; };
 		8409E69A2CD47FE2000EFCF2 /* AAOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = 8409E6992CD47FE2000EFCF2 /* AAOrganization.m */; };
+		8409E69D2CD48544000EFCF2 /* AASankeyComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8409E69C2CD48544000EFCF2 /* AASankeyComposer.m */; };
+		8409E69F2CD485F5000EFCF2 /* sankeyDiagramSeries.json in Resources */ = {isa = PBXBuildFile; fileRef = 8409E69E2CD485F5000EFCF2 /* sankeyDiagramSeries.json */; };
 		8441A6B226C21E53007EAAA7 /* AAOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6A826C21E52007EAAA7 /* AAOptions.m */; };
 		8441A6B326C21E53007EAAA7 /* AAChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6AA26C21E52007EAAA7 /* AAChartView.m */; };
 		8441A6B426C21E53007EAAA7 /* AAChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6AC26C21E52007EAAA7 /* AAChartModel.m */; };
@@ -219,6 +221,9 @@
 		8409E6962CD47727000EFCF2 /* germanicLanguageTreeData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = germanicLanguageTreeData.json; sourceTree = "<group>"; };
 		8409E6982CD47FE2000EFCF2 /* AAOrganization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAOrganization.h; sourceTree = "<group>"; };
 		8409E6992CD47FE2000EFCF2 /* AAOrganization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAOrganization.m; sourceTree = "<group>"; };
+		8409E69B2CD48544000EFCF2 /* AASankeyComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AASankeyComposer.h; sourceTree = "<group>"; };
+		8409E69C2CD48544000EFCF2 /* AASankeyComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AASankeyComposer.m; sourceTree = "<group>"; };
+		8409E69E2CD485F5000EFCF2 /* sankeyDiagramSeries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sankeyDiagramSeries.json; sourceTree = "<group>"; };
 		8441A6A826C21E52007EAAA7 /* AAOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAOptions.m; sourceTree = "<group>"; };
 		8441A6A926C21E52007EAAA7 /* AAGlobalMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAGlobalMacro.h; sourceTree = "<group>"; };
 		8441A6AA26C21E52007EAAA7 /* AAChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAChartView.m; sourceTree = "<group>"; };
@@ -549,6 +554,7 @@
 		27EB8A8A2497C4E7007E6A6B /* SeriesJsonFiles */ = {
 			isa = PBXGroup;
 			children = (
+				8409E69E2CD485F5000EFCF2 /* sankeyDiagramSeries.json */,
 				84DFEAB02A27382C004436BC /* pictorial1Series.json */,
 				84DFEAAF2A27382C004436BC /* pictorial2Series.json */,
 				27EB8A862497C352007E6A6B /* streamgraphSeries.json */,
@@ -676,6 +682,8 @@
 				84DFEAB32A274158004436BC /* AAPictorialPaths.h */,
 				8409E6932CD47621000EFCF2 /* AAOrganizationComposer.h */,
 				8409E6942CD47621000EFCF2 /* AAOrganizationComposer.m */,
+				8409E69B2CD48544000EFCF2 /* AASankeyComposer.h */,
+				8409E69C2CD48544000EFCF2 /* AASankeyComposer.m */,
 			);
 			path = Composer;
 			sourceTree = "<group>";
@@ -971,6 +979,7 @@
 				7172A3E61E763EA6000D5B99 /* LaunchScreen.storyboard in Resources */,
 				8409E6972CD47727000EFCF2 /* germanicLanguageTreeData.json in Resources */,
 				7172A3E31E763EA6000D5B99 /* Assets.xcassets in Resources */,
+				8409E69F2CD485F5000EFCF2 /* sankeyDiagramSeries.json in Resources */,
 				8492D9A02C7499DC007EB8D0 /* calendarHeatmapData.json in Resources */,
 				8409E68C2CD38178000EFCF2 /* carnivoraPhylogenyNodesData.json in Resources */,
 				84A5690C27FD6EB300883553 /* flameData.json in Resources */,
@@ -1038,6 +1047,7 @@
 				84B13F4828A0B66B007356C6 /* AARelationshipChartComposer.m in Sources */,
 				84DFEB7E2A2882ED004436BC /* AASpline.m in Sources */,
 				8441A70026C21E6C007EAAA7 /* AAPlotLinesElement.m in Sources */,
+				8409E69D2CD48544000EFCF2 /* AASankeyComposer.m in Sources */,
 				8441A72026C21F02007EAAA7 /* AAGradientColor.m in Sources */,
 				27EB8A832497C03A007E6A6B /* AAOptionsData.m in Sources */,
 				84AA68B228A11E45009067AE /* AAHeatmap.m in Sources */,
