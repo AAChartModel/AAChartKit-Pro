@@ -37,6 +37,7 @@
 #import "AABubbleChartVC.h"
 #import "AAColumnVariantChartVC.h"
 #import "AAHeatmapChartVC.h"
+#import "AATreemapChartVC.h"
 
 #define ColorWithRGB(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 #define AAGrayColor            [UIColor colorWithRed:245/255.0 green:246/255.0 blue:247/255.0 alpha:1.0]
@@ -182,7 +183,14 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-            
+         
+        case 6 : {
+            AATreemapChartVC *vc = [[AATreemapChartVC alloc]init];
+            vc.selectedIndex = indexPath.row;
+            vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
         
         default:
             break;
@@ -331,6 +339,17 @@
                 @"largeDataHeatmapChart---大数据量热力图🌡",
                 @"calendarHeatmap---日历热力图",
             ],
+//            case 0: return [AATreemapChartComposer treemapWithColorAxisData];
+//            case 1: return [AATreemapChartComposer treemapWithLevelsData];
+//            case 2: return [AATreemapChartComposer treemapWithLevelsData2];
+//            case 3: return [AATreemapChartComposer drilldownLargeDataTreemapChart];
+            @[
+                @"treemapWithColorAxisData---包含色彩轴的矩形树图🌲",
+                @"treemapWithLevelsData---包含等级的矩形树图🌲",
+                @"treemapWithLevelsData2---包含等级的矩形树图2🌲",
+                @"drilldownLargeDataTreemapChart---可下钻的大数据量矩形树图🌲",
+            ],
+
             
         ];
     }
@@ -346,6 +365,7 @@
             @"ColumnVariantChart | 柱形图(变体)类型图表",
             @"MoreProType | 更多高级类型图表",
             @"HeatmapChart | 热力图",
+            @"TreemapChart | 矩形树图",
 
         ];
     }
