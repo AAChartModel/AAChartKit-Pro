@@ -228,6 +228,7 @@
                 @"simpleDependencyWheelChart---简单的和弦图🎵",
                 @"neuralNetworkChart---神经网络图",
                 @"carnivoraPhylogenyOrganizationChart---食肉目动物系统发育组织图",
+                @"germanicLanguageTreeChart---日耳曼语系树图",
             ],
 //            "HeatOrTreeMapChart | 热力或树形类型图表",
             @[

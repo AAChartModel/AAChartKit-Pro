@@ -191,6 +191,10 @@
     return [self getJsonDataWithJsonFileName:@"treegraphData"];
 }
 
++ (NSArray *)germanicLanguageTreeData {
+    return [self getJsonDataWithJsonFileName:@"germanicLanguageTreeData"];
+}
+
 + (NSArray *)calendarHeatmapData {
     NSArray *originalDataArr = [self getJsonDataWithJsonFileName:@"calendarHeatmapData"];
     NSArray *chartData = generateChartData(originalDataArr);
