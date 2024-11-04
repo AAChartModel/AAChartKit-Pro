@@ -8,8 +8,6 @@
 
 #import "AATreegraphChartComposer.h"
 #import "AAChartKit-Pro.h"
-#import "AAOptionsCSV.h"
-#import "NSString+toPureJSString.h"
 #import "AAOptionsData.h"
 
 @implementation AATreegraphChartComposer
