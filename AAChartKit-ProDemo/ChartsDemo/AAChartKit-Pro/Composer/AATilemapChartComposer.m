@@ -8,14 +8,9 @@
 
 #import "AATilemapChartComposer.h"
 #import "AAChartKit-Pro.h"
-#import "AAOptionsCSV.h"
-#import "NSString+toPureJSString.h"
 #import "AAOptionsData.h"
 
 @implementation AATilemapChartComposer
-
-
-
 
 //    static func simpleTilemapWithHexagonTileShape() -> AAOptions {
 //        AAOptions()
@@ -112,7 +107,7 @@
             .backgroundColorSet(@"rgba(247,247,247,0.95)")
             .styleSet(AAStyle.new
                 .widthSet(@170)
-            .paddingSet(@10)
+            .paddingSet((id)@10)
             ))
         .plotOptionsSet(AAPlotOptions.new
             .seriesSet(AASeries.new
@@ -432,9 +427,5 @@
             .tileShapeSet(AAChartTileShapeTypeSquare);
     return aaOptions;
 }
-
-
-
-
 
 @end
