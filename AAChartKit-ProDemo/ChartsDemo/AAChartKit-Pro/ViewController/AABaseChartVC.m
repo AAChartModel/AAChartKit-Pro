@@ -84,6 +84,11 @@
     } else {
         // Fallback on earlier versions
     }
+    if (@available(macCatalyst 16.4, iOS 16.4, *)) {
+        self.aaChartView.inspectable = YES;
+    } else {
+        // Fallback on earlier versions
+    }
     [self.view addSubview:self.aaChartView];
     
     AAAnimation *aaAnimation = AAAnimation.new
