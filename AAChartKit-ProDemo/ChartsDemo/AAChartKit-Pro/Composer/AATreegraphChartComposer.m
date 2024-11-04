@@ -14,68 +14,69 @@
 
 @implementation AATreegraphChartComposer
 
+/**
 //configure tree graph chart options
-//{
-//    chart: {
-//        inverted: true,
-//        marginBottom: 170
-//    },
-//    title: {
-//        text: 'Inverted treegraph',
-//        align: 'left'
-//    },
-//    series: [
-//        {
-//            type: 'treegraph',
-//            data,
-//            tooltip: {
-//                pointFormat: '{point.name}'
-//            },
-//            dataLabels: {
-//                pointFormat: '{point.name}',
-//                style: {
-//                    whiteSpace: 'nowrap',
-//                    color: '#000000',
-//                    textOutline: '3px contrast'
-//                },
-//                crop: false
-//            },
-//            marker: {
-//                radius: 6
-//            },
-//            levels: [
-//                {
-//                    level: 1,
-//                    dataLabels: {
-//                        align: 'left',
-//                        x: 20
-//                    }
-//                },
-//                {
-//                    level: 2,
-//                    colorByPoint: true,
-//                    dataLabels: {
-//                        verticalAlign: 'bottom',
-//                        y: -20
-//                    }
-//                },
-//                {
-//                    level: 3,
-//                    colorVariation: {
-//                        key: 'brightness',
-//                        to: -0.5
-//                    },
-//                    dataLabels: {
-//                        align: 'left',
-//                        rotation: 90,
-//                        y: 20
-//                    }
-//                }
-//            ]
-//        }
-//    ]
-//}
-
+{
+    chart: {
+        inverted: true,
+        marginBottom: 170
+    },
+    title: {
+        text: 'Inverted treegraph',
+        align: 'left'
+    },
+    series: [
+        {
+            type: 'treegraph',
+            data,
+            tooltip: {
+                pointFormat: '{point.name}'
+            },
+            dataLabels: {
+                pointFormat: '{point.name}',
+                style: {
+                    whiteSpace: 'nowrap',
+                    color: '#000000',
+                    textOutline: '3px contrast'
+                },
+                crop: false
+            },
+            marker: {
+                radius: 6
+            },
+            levels: [
+                {
+                    level: 1,
+                    dataLabels: {
+                        align: 'left',
+                        x: 20
+                    }
+                },
+                {
+                    level: 2,
+                    colorByPoint: true,
+                    dataLabels: {
+                        verticalAlign: 'bottom',
+                        y: -20
+                    }
+                },
+                {
+                    level: 3,
+                    colorVariation: {
+                        key: 'brightness',
+                        to: -0.5
+                    },
+                    dataLabels: {
+                        align: 'left',
+                        rotation: 90,
+                        y: 20
+                    }
+                }
+            ]
+        }
+    ]
+}
+*/
 + (AAOptions *)treegraph {
     AAOptions *aaOptions = [self invertedTreegraph];
     aaOptions.chart.inverted = false;
@@ -97,9 +98,9 @@
         .tooltipSet(AATooltip.new
                     .pointFormatSet(@"{point.name}"))
         .dataLabelsSet(AADataLabels.new
-//                       .pointFormatSet(@"{point.name}")
+                       .formatSet(@"{point.name}")
                        .styleSet(AAStyle.new
-//                                 .whiteSpaceSet(AAChartWhiteSpaceTypeNowrap)
+                                 .whiteSpaceSet(@"nowrap")
                                  .colorSet(@"#000000")
                                  .textOutlineSet(@"3px contrast"))
                        .cropSet(false))
@@ -130,56 +131,58 @@
     ]);
 }
 
-//{
-//    title: {
-//        text: 'Treegraph with box layout'
-//    },
-//    series: [
-//        {
-//            type: 'treegraph',
-//            data,
-//            tooltip: {
-//                pointFormat: '{point.name}'
-//            },
-//            marker: {
-//                symbol: 'rect',
-//                width: '25%'
-//            },
-//            borderRadius: 10,
-//            dataLabels: {
-//                pointFormat: '{point.name}',
-//                style: {
-//                    whiteSpace: 'nowrap'
-//                }
-//            },
-//            levels: [
-//                {
-//                    level: 1,
-//                    levelIsConstant: false
-//                },
-//                {
-//                    level: 2,
-//                    colorByPoint: true
-//                },
-//                {
-//                    level: 3,
-//                    colorVariation: {
-//                        key: 'brightness',
-//                        to: -0.5
-//                    }
-//                },
-//                {
-//                    level: 4,
-//                    colorVariation: {
-//                        key: 'brightness',
-//                        to: 0.5
-//                    }
-//                }
-//            ]
-//        }
-//    ]
-//}
 
+/**
+{
+    title: {
+        text: 'Treegraph with box layout'
+    },
+    series: [
+        {
+            type: 'treegraph',
+            data,
+            tooltip: {
+                pointFormat: '{point.name}'
+            },
+            marker: {
+                symbol: 'rect',
+                width: '25%'
+            },
+            borderRadius: 10,
+            dataLabels: {
+                pointFormat: '{point.name}',
+                style: {
+                    whiteSpace: 'nowrap'
+                }
+            },
+            levels: [
+                {
+                    level: 1,
+                    levelIsConstant: false
+                },
+                {
+                    level: 2,
+                    colorByPoint: true
+                },
+                {
+                    level: 3,
+                    colorVariation: {
+                        key: 'brightness',
+                        to: -0.5
+                    }
+                },
+                {
+                    level: 4,
+                    colorVariation: {
+                        key: 'brightness',
+                        to: 0.5
+                    }
+                }
+            ]
+        }
+    ]
+}
+*/
 + (AAOptions *)treegraphWithBoxLayout {
     return AAOptions.new
     .titleSet(AATitle.new
@@ -195,9 +198,9 @@
                    .widthSet((id)@"25%"))
         .borderRadiusSet(@10)
         .dataLabelsSet(AADataLabels.new
-//                       .pointFormatSet(@"{point.name}")
+                       .formatSet(@"{point.name}")
                        .styleSet(AAStyle.new
-//                                 .whiteSpaceSet(AAChartWhiteSpaceTypeNowrap)
+                                 .whiteSpaceSet(@"nowrap")
                        ))
         .levelsSet(@[
             AALevelsElement.new
