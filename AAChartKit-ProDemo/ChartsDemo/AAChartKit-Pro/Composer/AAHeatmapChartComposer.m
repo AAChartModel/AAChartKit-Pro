@@ -62,7 +62,7 @@
     NSString *csvStr = AAOptionsCSV.csvData[@"csv"];
     return AAOptions.new
         .dataSet(AAData.new
-                 .csvSet([self aa_toPureJSString2WithString:csvStr])
+                 .csvSet(csvStr.aa_toPureCSVString)
                  .parsedSet(@AAJSFunc(function () {
                      start = +new Date();
                  })))
@@ -223,22 +223,6 @@
         ]);
     
     return aaOptions;
-}
-
-+ (NSString *)aa_toPureJSString2WithString:(NSString *)string {
-    //https://stackoverflow.com/questions/34334232/why-does-function-not-work-but-function-does-chrome-devtools-node
-    NSString *pureJSStr = [NSString stringWithFormat:@"(%@)",string];
-    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"'" withString:@"\""];
-    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\0" withString:@""];
-//    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
-    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
-    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\r" withString:@"\\r"];
-    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\f" withString:@"\\f"];
-    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\u2028" withString:@"\\u2028"];
-    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\u2029" withString:@"\\u2029"];
-    return pureJSStr;
 }
 
 @end

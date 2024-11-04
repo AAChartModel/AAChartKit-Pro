@@ -36,6 +36,7 @@
 
 - (NSString *)aa_toPureJSString;
 - (NSString *)aa_toPureHTMLString;
+- (NSString *)aa_toPureCSVString;
 
 @end
 
