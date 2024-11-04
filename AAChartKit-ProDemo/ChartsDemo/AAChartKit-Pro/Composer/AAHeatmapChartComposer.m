@@ -86,7 +86,7 @@
                 .xSet(@5)
                 .ySet(@14)
                 .formatSet(@"{value:%B}"))
-//            .showLastLabelSet(false)
+            .showLastLabelSet(@false)
             .tickLengthSet(@16))
         .yAxisSet(AAYAxis.new
             .titleSet(AAAxisTitle.new
@@ -146,7 +146,7 @@
 //                    .zIndexSet(@20)
                     .headerFormatSet(@"")
                     .pointFormatSet(@"{#unless point.custom.empty}{point.date:%A, %b %e, %Y}{/unless}")
-//                    .nullFormatSet(@"No data")
+                    .nullFormatSet(@"No data")
                     )
         .xAxisSet(AAXAxis.new
                   .categoriesSet(@[@"Sunday", @"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday"])
@@ -158,7 +158,7 @@
                              .rotationSet(@0)
                              .ySet(@20)
                              .styleSet(AAStyle.new
-//                                       .textTransformSet(AAChartTitleAlignTypeUppercase)
+                                       .textTransformSet(@"uppercase")
                                        .fontWeightSet(AAChartFontWeightTypeBold)))
 //                  .accessibilitySet(AAAccessibility.new
 //                                    .descriptionSet(@"weekdays")

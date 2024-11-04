@@ -59,6 +59,7 @@ AAPropSetFuncImplementation(AAStyle, NSString *, top)
 AAPropSetFuncImplementation(AAStyle, NSString *, transition)
 AAPropSetFuncImplementation(AAStyle, NSString *, whiteSpace)
 AAPropSetFuncImplementation(AAStyle, NSNumber *, width)
+AAPropSetFuncImplementation(AAStyle, NSString *, textTransform)
 
 + (AAStyle *)styleWithColor:(NSString *)color {
     return [self styleWithColor:color

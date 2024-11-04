@@ -50,6 +50,8 @@ AAPropStatementAndPropSetFuncStatement(copy,   AATooltip, NSString *, headerForm
 AAPropStatementAndPropSetFuncStatement(copy,   AATooltip, NSString *, pointFormat)
 AAPropStatementAndPropSetFuncStatement(copy,   AATooltip, NSString *, pointFormatter)
 AAPropStatementAndPropSetFuncStatement(copy,   AATooltip, NSString *, footerFormat) 
+AAPropStatementAndPropSetFuncStatement(copy,   AATooltip, NSString *, nullFormat)
+AAPropStatementAndPropSetFuncStatement(copy,   AATooltip, NSString *, nullFormatter)
 AAPropStatementAndPropSetFuncStatement(strong, AATooltip, NSNumber *, valueDecimals) //设置取值精确到小数点后几位
 AAPropStatementAndPropSetFuncStatement(copy,   AATooltip, NSString *, shape)
 AAPropStatementAndPropSetFuncStatement(assign, AATooltip, BOOL,       shared)

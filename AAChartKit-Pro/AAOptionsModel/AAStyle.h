@@ -60,6 +60,7 @@ AAPropStatementAndPropSetFuncStatement(copy,   AAStyle, NSString *, top)
 AAPropStatementAndPropSetFuncStatement(copy,   AAStyle, NSString *, transition)
 AAPropStatementAndPropSetFuncStatement(copy,   AAStyle, NSString *, whiteSpace)
 AAPropStatementAndPropSetFuncStatement(strong, AAStyle, NSNumber *, width)
+AAPropStatementAndPropSetFuncStatement(copy,   AAStyle, NSString *, textTransform)
 
 + (AAStyle *)styleWithColor:(NSString *)color;
 
