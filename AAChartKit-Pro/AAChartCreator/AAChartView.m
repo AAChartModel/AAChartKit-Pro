@@ -407,15 +407,15 @@ WKScriptMessageHandler
 }
 
 - (void)configurePlotOptionsSeriesPointEventsWithAAOptions:(AAOptions *)aaOptions {
-    if (aaOptions.plotOptions == nil) {
-        aaOptions.plotOptions = AAPlotOptions.new.seriesSet(AASeries.new.pointSet(AAPoint.new.eventsSet(AAPointEvents.new)));
-    } else if (aaOptions.plotOptions.series == nil) {
-        aaOptions.plotOptions.series = AASeries.new.pointSet(AAPoint.new.eventsSet(AAPointEvents.new));
-    } else if (aaOptions.plotOptions.series.point == nil) {
-        aaOptions.plotOptions.series.point = AAPoint.new.eventsSet(AAPointEvents.new);
-    } else if (aaOptions.plotOptions.series.point.events == nil) {
-        aaOptions.plotOptions.series.point.events = AAPointEvents.new;
-    }
+//    if (aaOptions.plotOptions == nil) {
+//        aaOptions.plotOptions = AAPlotOptions.new.seriesSet(AASeries.new.pointSet(AAPoint.new.eventsSet(AAPointEvents.new)));
+//    } else if (aaOptions.plotOptions.series == nil) {
+//        aaOptions.plotOptions.series = AASeries.new.pointSet(AAPoint.new.eventsSet(AAPointEvents.new));
+//    } else if (aaOptions.plotOptions.series.point == nil) {
+//        aaOptions.plotOptions.series.point = AAPoint.new.eventsSet(AAPointEvents.new);
+//    } else if (aaOptions.plotOptions.series.point.events == nil) {
+//        aaOptions.plotOptions.series.point.events = AAPointEvents.new;
+//    }
 }
 
 - (void)configureTheOptionsJsonStringWithAAOptions:(AAOptions *)aaOptions {
@@ -424,11 +424,11 @@ WKScriptMessageHandler
     }
     
     if (_clickEventEnabled == true) {
-        aaOptions.clickEventEnabled = true;
+//        aaOptions.clickEventEnabled = true;
         [self configurePlotOptionsSeriesPointEventsWithAAOptions:aaOptions];
     }
     if (_mouseOverEventEnabled == true) {
-        aaOptions.touchEventEnabled = true;
+//        aaOptions.touchEventEnabled = true;
         if (_clickEventEnabled == false) {//避免重复调用配置方法
             [self configurePlotOptionsSeriesPointEventsWithAAOptions:aaOptions];
         }
@@ -486,7 +486,42 @@ WKScriptMessageHandler
 
 #pragma mark - WKNavigationDelegate
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    [self drawChart];
+// // 加载 Highcharts 插件脚本
+//    if let path = Bundle.main.path(forResource: "highcharts-more", ofType: "js") {
+//        do {
+//            let jsString = try String(contentsOfFile: path, encoding: .utf8)
+//            webView.evaluateJavaScript(jsString) { (result, error) in
+//                if let error = error {
+//                    print("Error loading plugin script: \(error)")
+//                } else {
+//                    print("Plugin script loaded successfully")
+//                }
+//            }
+//        } catch {
+//            print("Failed to load plugin script: \(error)")
+//        }
+//    }
+    //加载 Highcharts 插件脚本
+    NSString *path = [self.pluginsArray objectAtIndex:0];
+    if (path) {
+        NSError *error;
+        NSString *jsString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+        if (error) {
+            AADetailLog(@"❌❌❌ Failed to load plugin script: %@", error);
+        } else {
+            [webView evaluateJavaScript:jsString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+                if (error) {
+                    AADetailLog(@"❌❌❌ Error loading plugin script: %@", error);
+                } else {
+                    AADetailLog(@"✅✅✅ Plugin script loaded successfully");
+                    [self drawChart];
+                }
+            }];
+        }
+    } else {
+        [self drawChart];
+    }
+    
     if (self.didFinishLoadBlock) {
         self.didFinishLoadBlock(self);
         return;

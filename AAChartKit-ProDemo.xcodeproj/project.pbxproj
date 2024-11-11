@@ -121,6 +121,10 @@
 		84B13F5628A0E028007356C6 /* AAColumnVariantChartComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13F5528A0E028007356C6 /* AAColumnVariantChartComposer.m */; };
 		84D2B65D2978F9FF005BBA80 /* tilemapForAfricaData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84D2B65B2978F9FF005BBA80 /* tilemapForAfricaData.json */; };
 		84D2B65E2978F9FF005BBA80 /* simpleTilemapData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84D2B65C2978F9FF005BBA80 /* simpleTilemapData.json */; };
+		84D9045A2CE1A0FF00F75AFF /* AABoost.js in Resources */ = {isa = PBXBuildFile; fileRef = 84D904592CE1A0FF00F75AFF /* AABoost.js */; };
+		84D9045D2CE1A33400F75AFF /* AABoost.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D9045C2CE1A33400F75AFF /* AABoost.m */; };
+		84D904602CE1A44900F75AFF /* AABoostChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D9045F2CE1A44900F75AFF /* AABoostChartVC.m */; };
+		84D904632CE1A84100F75AFF /* AABoostOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D904622CE1A84100F75AFF /* AABoostOptions.m */; };
 		84DEB8AD28FADCDA00BF9423 /* volinPlotElement1Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84DEB8AC28FADCDA00BF9423 /* volinPlotElement1Data.json */; };
 		84DEB8AF28FADD3A00BF9423 /* volinPlotElement2Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84DEB8AE28FADD3A00BF9423 /* volinPlotElement2Data.json */; };
 		84DEB8B128FADE1600BF9423 /* simpleDependencyWheelData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84DEB8B028FADE1600BF9423 /* simpleDependencyWheelData.json */; };
@@ -356,6 +360,13 @@
 		84B13F5528A0E028007356C6 /* AAColumnVariantChartComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAColumnVariantChartComposer.m; sourceTree = "<group>"; };
 		84D2B65B2978F9FF005BBA80 /* tilemapForAfricaData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tilemapForAfricaData.json; sourceTree = "<group>"; };
 		84D2B65C2978F9FF005BBA80 /* simpleTilemapData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = simpleTilemapData.json; sourceTree = "<group>"; };
+		84D904592CE1A0FF00F75AFF /* AABoost.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AABoost.js; sourceTree = "<group>"; };
+		84D9045B2CE1A33400F75AFF /* AABoost.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AABoost.h; sourceTree = "<group>"; };
+		84D9045C2CE1A33400F75AFF /* AABoost.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AABoost.m; sourceTree = "<group>"; };
+		84D9045E2CE1A44900F75AFF /* AABoostChartVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AABoostChartVC.h; sourceTree = "<group>"; };
+		84D9045F2CE1A44900F75AFF /* AABoostChartVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AABoostChartVC.m; sourceTree = "<group>"; };
+		84D904612CE1A84100F75AFF /* AABoostOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AABoostOptions.h; sourceTree = "<group>"; };
+		84D904622CE1A84100F75AFF /* AABoostOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AABoostOptions.m; sourceTree = "<group>"; };
 		84DEB8AC28FADCDA00BF9423 /* volinPlotElement1Data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = volinPlotElement1Data.json; sourceTree = "<group>"; };
 		84DEB8AE28FADD3A00BF9423 /* volinPlotElement2Data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = volinPlotElement2Data.json; sourceTree = "<group>"; };
 		84DEB8B028FADE1600BF9423 /* simpleDependencyWheelData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = simpleDependencyWheelData.json; sourceTree = "<group>"; };
@@ -590,6 +601,7 @@
 		713F54341E7B71C000D506C7 /* ChartsDemo */ = {
 			isa = PBXGroup;
 			children = (
+				84D904562CE1A08E00F75AFF /* AAPlugins */,
 				713F54371E7B71C000D506C7 /* FirstViewController.h */,
 				713F54381E7B71C000D506C7 /* FirstViewController.m */,
 				27EB8A222495C1F2007E6A6B /* AAChartKit-Pro */,
@@ -756,6 +768,20 @@
 				27EB8A1C249276DF007E6A6B /* DataJsonFiles */,
 			);
 			path = DataSource;
+			sourceTree = "<group>";
+		};
+		84D904562CE1A08E00F75AFF /* AAPlugins */ = {
+			isa = PBXGroup;
+			children = (
+				84D904592CE1A0FF00F75AFF /* AABoost.js */,
+				84D9045B2CE1A33400F75AFF /* AABoost.h */,
+				84D9045C2CE1A33400F75AFF /* AABoost.m */,
+				84D9045E2CE1A44900F75AFF /* AABoostChartVC.h */,
+				84D9045F2CE1A44900F75AFF /* AABoostChartVC.m */,
+				84D904612CE1A84100F75AFF /* AABoostOptions.h */,
+				84D904622CE1A84100F75AFF /* AABoostOptions.m */,
+			);
+			path = AAPlugins;
 			sourceTree = "<group>";
 		};
 		84DFEB3A2A2882BD004436BC /* AASeries */ = {
@@ -1006,6 +1032,7 @@
 				27EB8A7B2497C007007E6A6B /* tilemapData.json in Resources */,
 				27EB8A95249B8AA3007E6A6B /* windbarbData.json in Resources */,
 				1E66D1FB210AF4ED007EAB8C /* AAJSFiles.bundle in Resources */,
+				84D9045A2CE1A0FF00F75AFF /* AABoost.js in Resources */,
 				27EB8A702497C007007E6A6B /* columnpyramidData.json in Resources */,
 				84A5690827FD664F00883553 /* arcdiagram2Data.json in Resources */,
 				84DEB8B128FADE1600BF9423 /* simpleDependencyWheelData.json in Resources */,
@@ -1058,6 +1085,7 @@
 				8441A70A26C21E6C007EAAA7 /* AALineStyle.m in Sources */,
 				84DFEB802A2882ED004436BC /* AAColumn.m in Sources */,
 				84DFEAC22A284596004436BC /* AAPattern.m in Sources */,
+				84D904602CE1A44900F75AFF /* AABoostChartVC.m in Sources */,
 				8409E6B22CD4C8AD000EFCF2 /* AAHeatmapChartVC.m in Sources */,
 				8441A70326C21E6C007EAAA7 /* AAPlotOptions.m in Sources */,
 				84AA68A928A10B2F009067AE /* AASolidgauge.m in Sources */,
@@ -1103,6 +1131,7 @@
 				84AA68B828A1FD61009067AE /* AAParallelAxes.m in Sources */,
 				8441A6B526C21E53007EAAA7 /* AASeriesElement.m in Sources */,
 				8441A70E26C21E6C007EAAA7 /* AAPlotBandsElement.m in Sources */,
+				84D904632CE1A84100F75AFF /* AABoostOptions.m in Sources */,
 				8441A71026C21E6C007EAAA7 /* AATooltip.m in Sources */,
 				84B13F5628A0E028007356C6 /* AAColumnVariantChartComposer.m in Sources */,
 				84AA68BD28A208FE009067AE /* AABulletDataElement.m in Sources */,
@@ -1115,6 +1144,7 @@
 				8441A6B326C21E53007EAAA7 /* AAChartView.m in Sources */,
 				8409E69A2CD47FE2000EFCF2 /* AAOrganization.m in Sources */,
 				84AA68B528A120F9009067AE /* AAOptionsCSV.m in Sources */,
+				84D9045D2CE1A33400F75AFF /* AABoost.m in Sources */,
 				84AA68A328A104B4009067AE /* AASolidgaugeDataElement.m in Sources */,
 				8441A72626C21F0A007EAAA7 /* NSArray+toJSArray.m in Sources */,
 				27EB89EF2491C3A0007E6A6B /* AAChartTypePro.m in Sources */,

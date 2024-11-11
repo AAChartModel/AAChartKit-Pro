@@ -126,6 +126,9 @@ typedef void(^AADidReceiveScriptMessageBlock)(AAChartView *aaChartView, WKScript
 /// The block method that did receive JavaScript event Message
 @property (nonatomic, copy) AADidReceiveScriptMessageBlock didReceiveScriptMessageBlock;
 
+//声明一个插件的数组
+@property (nonatomic, strong) NSArray *pluginsArray;
+
 
 /// Chart view finish loading event handler
 /// @param handler event handler
