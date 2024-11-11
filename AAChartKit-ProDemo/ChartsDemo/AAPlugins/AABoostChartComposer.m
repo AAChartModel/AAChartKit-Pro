@@ -111,10 +111,38 @@ static NSString * const kBoostKey = @"boost";
     return arr;
 }
 
+
+NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
+    NSMutableArray<NSArray<NSNumber *> *> *arr = [NSMutableArray arrayWithCapacity:n];
+    double a, b, c, spike;
+    
+    for (NSUInteger i = 0; i < n; i++) {
+        if (i % 100 == 0) {
+            a = 2 * arc4random_uniform(1000000) / 1000000.0;
+        }
+        if (i % 1000 == 0) {
+            b = 2 * arc4random_uniform(1000000) / 1000000.0;
+        }
+        if (i % 10000 == 0) {
+            c = 2 * arc4random_uniform(1000000) / 1000000.0;
+        }
+        if (i % 50000 == 0) {
+            spike = 10;
+        } else {
+            spike = 0;
+        }
+        
+        double value = 2 * sin(i / 100.0) + a + b + c + spike + (arc4random_uniform(1000000) / 1000000.0);
+        [arr addObject:@[@(i), @(value)]];
+    }
+    
+    return [arr copy];
+}
+
 //配置 AAOptions 实例对象
 + (NSDictionary *)lineChart {
-    NSNumber *n = @500000;
-    NSArray *data = [self getLineChartData:n];
+    NSUInteger n = 500000;
+    NSArray *data = getData(n);
     
     AAOptions *aaOptions = AAOptions.new
 //        .boostSet(AABoost.new
@@ -125,7 +153,7 @@ static NSString * const kBoostKey = @"boost";
                   .panningSet(true)
                   .panKeySet(@"shift"))
         .titleSet(AATitle.new
-                  .textSet([NSString stringWithFormat:@"Highcharts drawing %@ points", n]))
+                  .textSet([NSString stringWithFormat:@"Highcharts drawing %ld points", n]))
         .subtitleSet(AASubtitle.new
                      .textSet(@"Using the Boost module"))
         .tooltipSet(AATooltip.new
@@ -146,8 +174,8 @@ static NSString * const kBoostKey = @"boost";
 }
     
 + (NSDictionary *)areaChart {
-    NSNumber *n = @500000;
-    NSArray *data = [self getLineChartData:n];
+    NSUInteger n = 500000;
+    NSArray *data = getData(n);
     
     AAOptions *aaOptions = AAOptions.new
 //        .boostSet(AABoost.new
@@ -159,7 +187,7 @@ static NSString * const kBoostKey = @"boost";
                   .panningSet(true)
                   .panKeySet(@"shift"))
         .titleSet(AATitle.new
-                  .textSet([NSString stringWithFormat:@"Highcharts drawing %@ points", n]))
+                  .textSet([NSString stringWithFormat:@"Highcharts drawing %ld points", n]))
         .subtitleSet(AASubtitle.new
                      .textSet(@"Using the Boost module"))
         .tooltipSet(AATooltip.new
@@ -180,8 +208,8 @@ static NSString * const kBoostKey = @"boost";
 }
 
 + (NSDictionary *)columnChart {
-    NSNumber *n = @500000;
-    NSArray *data = [self getLineChartData:n];
+    NSUInteger n = 500000;
+    NSArray *data = getData(n);
     
     AAOptions *aaOptions = AAOptions.new
 //        .boostSet(AABoost.new
@@ -193,7 +221,7 @@ static NSString * const kBoostKey = @"boost";
                   .panningSet(true)
                   .panKeySet(@"shift"))
         .titleSet(AATitle.new
-                  .textSet([NSString stringWithFormat:@"Highcharts drawing %@ points", n]))
+                  .textSet([NSString stringWithFormat:@"Highcharts drawing %ld points", n]))
         .subtitleSet(AASubtitle.new
                      .textSet(@"Using the Boost module"))
         .tooltipSet(AATooltip.new
@@ -202,7 +230,7 @@ static NSString * const kBoostKey = @"boost";
             AASeriesElement.new
                 .dataSet(data)
                 .lineWidthSet(@0.5)
-                .colorSet(AAColor.yellowColor)
+                .colorSet(AAColor.purpleColor)
         ]);
     
     NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
@@ -647,38 +675,67 @@ static NSString * const kBoostKey = @"boost";
  */
 
 //生成 areaRangeChartData 数组
-+ (NSArray *)getAreaRangeChartData:(NSInteger)n {
-    NSMutableArray *arr = [NSMutableArray array];
-    CGFloat a, b, c, low, spike;
-    for (NSInteger i = 0; i < n; i = i + 1) {
+//+ (NSArray *)getAreaRangeChartData:(NSInteger)n {
+//    NSMutableArray *arr = [NSMutableArray array];
+//    CGFloat a, b, c, low, spike;
+//    for (NSInteger i = 0; i < n; i = i + 1) {
+//        if (i % 100 == 0) {
+//            a = 2 * (float)arc4random_uniform(100);
+//        }
+//        if (i % 1000 == 0) {
+//            b = 2 * (float)arc4random_uniform(100);
+//        }
+//        if (i % 10000 == 0) {
+//            c = 2 * (float)arc4random_uniform(100);
+//        }
+//        if (i % 50000 == 0) {
+//            spike = 10;
+//        } else {
+//            spike = 0;
+//        }
+//        low = 2 * sin(i / 100) + a + b + c + spike + (float)arc4random_uniform(100);
+//        [arr addObject:@[
+//            @(i),
+//            @(low),
+//            @(low + 5 + 5 * (float)arc4random_uniform(100))
+//        ]];
+//    }
+//    return arr;
+//}
+
+NSArray<NSArray<NSNumber *> *> *getAreaRangeChartData(NSUInteger n) {
+    NSMutableArray<NSArray<NSNumber *> *> *arr = [NSMutableArray arrayWithCapacity:n];
+    double a, b, c, low, spike;
+
+    for (NSUInteger i = 0; i < n; i++) {
         if (i % 100 == 0) {
-            a = 2 * (float)arc4random_uniform(100);
+            a = 2 * arc4random_uniform(UINT32_MAX) / (double)UINT32_MAX;
         }
         if (i % 1000 == 0) {
-            b = 2 * (float)arc4random_uniform(100);
+            b = 2 * arc4random_uniform(UINT32_MAX) / (double)UINT32_MAX;
         }
         if (i % 10000 == 0) {
-            c = 2 * (float)arc4random_uniform(100);
+            c = 2 * arc4random_uniform(UINT32_MAX) / (double)UINT32_MAX;
         }
         if (i % 50000 == 0) {
             spike = 10;
         } else {
             spike = 0;
         }
-        low = 2 * sin(i / 100) + a + b + c + spike + (float)arc4random_uniform(100);
-        [arr addObject:@[
-            @(i),
-            @(low),
-            @(low + 5 + 5 * (float)arc4random_uniform(100))
-        ]];
+        
+        low = 2 * sin(i / 100.0) + a + b + c + spike + (arc4random_uniform(UINT32_MAX) / (double)UINT32_MAX);
+        double high = low + 5 + 5 * (arc4random_uniform(UINT32_MAX) / (double)UINT32_MAX);
+
+        [arr addObject:@[@(i), @(low), @(high)]];
     }
-    return arr;
+
+    return [arr copy];
 }
 
 //配置 AAOptions 实例对象
 + (NSDictionary *)areaRangeChart {
     NSInteger n = 500000;
-    NSArray *data = [self getAreaRangeChartData:n];
+    NSArray *data = getAreaRangeChartData(n);
     
     AAOptions *aaOptions = AAOptions.new
     .chartSet(AAChart.new
@@ -715,8 +772,8 @@ static NSString * const kBoostKey = @"boost";
 //配置 AAOptions 实例对象
 + (NSDictionary *)columnRangeChart {
     NSInteger n = 500000;
-    NSArray *data = [self getAreaRangeChartData:n];
-    
+    NSArray *data = getAreaRangeChartData(n);
+
     AAOptions *aaOptions = AAOptions.new
     .chartSet(AAChart.new
               .typeSet(AAChartTypeColumnrange)
@@ -996,10 +1053,10 @@ static NSString * const kBoostKey = @"boost";
                              .stackingSet(AAChartStackingTypeNormal)))
     .seriesSet(@[
         AASeriesElement.new
-        .dataSet([self getLineChartData:@25000])
+        .dataSet(getData(25000))
         .colorSet(AAColor.redColor),
         AASeriesElement.new
-        .dataSet([self getLineChartData:@25000])
+        .dataSet(getData(25000))
         .colorSet(AAColor.greenColor)
     ]);
     
@@ -1032,10 +1089,10 @@ static NSString * const kBoostKey = @"boost";
                              .stackingSet(AAChartStackingTypeNormal)))
     .seriesSet(@[
         AASeriesElement.new
-        .dataSet([self getLineChartData:@25000])
+        .dataSet(getData(25000))
         .colorSet(AAColor.redColor),
         AASeriesElement.new
-        .dataSet([self getLineChartData:@25000])
+        .dataSet(getData(25000))
         .colorSet(AAColor.greenColor)
     ]);
     
