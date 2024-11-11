@@ -9,6 +9,7 @@
 #import "AABoostChartVC.h"
 #import "AABoostOptions.h"
 #import "AABoostChartComposer.h"
+#import "AAOptions+boost.h"
 
 static NSString * const kBoostPath = @"https://code.highcharts.com/modules/boost.js";
 
@@ -30,7 +31,10 @@ static NSString * const kBoostPath = @"https://code.highcharts.com/modules/boost
     //⚠️ 这里打断点虽然看不到 boost 属性, 但是转换成 json 之后就能看到了
     //PS: 为什么看不到? 因为 boost 是一个动态属性, 通过 runtime 关联对象添加的
     //如果在控制台打印 aaOptions  JSON 看不到 boost 属性, 在控制台搜索 boost 关键字也搜索不到, 其实只是因为数据太长, 控制台没有完全展示而已
+    AABoost *boost = aaOptions.boost;
+    NSLog(@"🚀🚀🚀 查看 boost 属性是否正常: %@",boost.toDic);
     [self.aaChartView aa_drawChartWithOptions:aaOptions];
+    
 }
 
 - (id)chartConfigurationWithSelectedIndex:(NSUInteger)selectedIndex {
