@@ -385,6 +385,8 @@
             //            + (NSDictionary *)areaRangeChart;
             //            + (NSDictionary *)columnRangeChart;
             //+ (NSDictionary *)bubbleChart
+            //+ (NSDictionary *)heatmapChart
+
             
             @[
                 @"lineChart---折线图",
@@ -395,6 +397,7 @@
                 @"areaRangeChart---区域范围图",
                 @"columnRangeChart---柱形范围图",
                 @"bubbleChart---气泡图",
+                @"heatMapChart---热力图",
             ],
             
         ];

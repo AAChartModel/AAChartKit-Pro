@@ -8,6 +8,7 @@
 
 #import "AABoostChartComposer.h"
 #import "AAChartKit-Pro.h"
+#import "AAHeatmapChartComposer.h"
 
 @implementation AABoostChartComposer
 
@@ -860,6 +861,14 @@
                     .pointFormatSet(@"[{point.x:.1f}, {point.y:.1f}]"))
     ]);
     
+    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
+    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
+    return mutableDic;
+}
+
++ (NSDictionary *)heatMapChart {
+    AAOptions *aaOptions = [AAHeatmapChartComposer largeDataHeatmapChart];
     NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
     NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
     mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
