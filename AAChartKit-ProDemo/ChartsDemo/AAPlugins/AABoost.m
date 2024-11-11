@@ -7,7 +7,7 @@
 //
 
 #import "AABoost.h"
-
+#import "AAChartView.h"
 /**
  AAPropStatementAndPropSetFuncStatement(assign, AABoost, BOOL, allowForce)
  AAPropStatementAndPropSetFuncStatement(assign, AABoost, BOOL, enabled)
@@ -34,13 +34,18 @@
 
 @implementation AABoost
 
-AAPropSetFuncImplementation(AABoost, BOOL, allowForce)
-AAPropSetFuncImplementation(AABoost, BOOL, enabled)
-AAPropSetFuncImplementation(AABoost, BOOL, useGPUTranslations)
-AAPropSetFuncImplementation(AABoost, BOOL, usePreallocated)
+AAPropSetFuncImplementation(AABoost, id, allowForce)
+AAPropSetFuncImplementation(AABoost, id, enabled)
+AAPropSetFuncImplementation(AABoost, id, useGPUTranslations)
+AAPropSetFuncImplementation(AABoost, id, usePreallocated)
 AAPropSetFuncImplementation(AABoost, NSNumber *, pixelRatio)
 AAPropSetFuncImplementation(AABoost, NSNumber *, seriesThreshold)
 AAPropSetFuncImplementation(AABoost, AADebug  *, debug)
+
+- (NSDictionary *)toDic {
+    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:self];
+    return jsonDic;
+}
 
 @end
 

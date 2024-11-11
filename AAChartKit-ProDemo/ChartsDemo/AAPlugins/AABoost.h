@@ -33,13 +33,15 @@ NS_ASSUME_NONNULL_BEGIN
  }
  */
 
-AAPropStatementAndPropSetFuncStatement(assign, AABoost, BOOL, allowForce)
-AAPropStatementAndPropSetFuncStatement(assign, AABoost, BOOL, enabled)
-AAPropStatementAndPropSetFuncStatement(assign, AABoost, BOOL, useGPUTranslations)
-AAPropStatementAndPropSetFuncStatement(assign, AABoost, BOOL, usePreallocated)
+AAPropStatementAndPropSetFuncStatement(strong, AABoost, id, allowForce)
+AAPropStatementAndPropSetFuncStatement(strong, AABoost, id, enabled)
+AAPropStatementAndPropSetFuncStatement(strong, AABoost, id, useGPUTranslations)
+AAPropStatementAndPropSetFuncStatement(strong, AABoost, id, usePreallocated)
 AAPropStatementAndPropSetFuncStatement(strong, AABoost, NSNumber *, pixelRatio)
 AAPropStatementAndPropSetFuncStatement(strong, AABoost, NSNumber *, seriesThreshold)
 AAPropStatementAndPropSetFuncStatement(strong, AABoost, AADebug  *, debug)
+
+- (NSDictionary *)toDic;
 
 @end
 

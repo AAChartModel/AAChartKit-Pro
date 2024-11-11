@@ -9,6 +9,9 @@
 #import "AABoostChartComposer.h"
 #import "AAChartKit-Pro.h"
 #import "AAHeatmapChartComposer.h"
+#import "AABoost.h"
+
+static NSString * const kBoostKey = @"boost";
 
 @implementation AABoostChartComposer
 
@@ -115,7 +118,7 @@
     
     AAOptions *aaOptions = AAOptions.new
 //        .boostSet(AABoost.new
-//                  .useGPUTranslationsSet(true))
+//                  .useGPUTranslationsSet(@true))
         .chartSet(AAChart.new
                   //              .zoomTypeSet(AAChartZoomTypeX)
                   .pinchTypeSet(AAChartZoomTypeX)
@@ -136,7 +139,9 @@
     
     NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
     NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
+    mutableDic[kBoostKey] = AABoost.new
+        .useGPUTranslationsSet(@true)
+        .toDic;
     return mutableDic;
 }
     
@@ -146,7 +151,7 @@
     
     AAOptions *aaOptions = AAOptions.new
 //        .boostSet(AABoost.new
-//                  .useGPUTranslationsSet(true))
+//                  .useGPUTranslationsSet(@true))
         .chartSet(AAChart.new
                   .typeSet(AAChartTypeArea)
                   //              .zoomTypeSet(AAChartZoomTypeX)
@@ -168,7 +173,9 @@
     
     NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
     NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
+    mutableDic[kBoostKey] = AABoost.new
+        .useGPUTranslationsSet(@true)
+        .toDic;
     return mutableDic;
 }
 
@@ -178,7 +185,7 @@
     
     AAOptions *aaOptions = AAOptions.new
 //        .boostSet(AABoost.new
-//                  .useGPUTranslationsSet(true))
+//                  .useGPUTranslationsSet(@true))
         .chartSet(AAChart.new
                   .typeSet(AAChartTypeColumn)
                   //              .zoomTypeSet(AAChartZoomTypeX)
@@ -200,7 +207,9 @@
     
     NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
     NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
+    mutableDic[kBoostKey] = AABoost.new
+        .useGPUTranslationsSet(@true)
+        .toDic;
     return mutableDic;
 }
 
@@ -364,7 +373,7 @@
     .legendSet(AALegend.new
                .enabledSet(false))
 //    .boostSet(AABoost.new
-//              .useGPUTranslationsSet(true))
+//              .useGPUTranslationsSet(@true))
     .xAxisSet(AAXAxis.new
               .minSet(@0)
               .maxSet(@120)
@@ -383,7 +392,9 @@
     
     NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
     NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
+    mutableDic[kBoostKey] = AABoost.new
+        .useGPUTranslationsSet(@true)
+        .toDic;
     return jsonDic;
 }
 
@@ -481,7 +492,7 @@
 //              .heightSet(@"100%")
               )
 //    .boostSet(AABoost.new
-//              .useGPUTranslationsSet(true)
+//              .useGPUTranslationsSet(@true)
 //              .usePreAllocatedSet(true))
 //    .xAxisSet(AAXAxis.new
 //              .minSet(@0)
@@ -513,11 +524,17 @@
     
     NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
     NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-//    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
-    mutableDic[@"boost"] = @{
-        @"useGPUTranslations": @YES,
-        @"usePreAllocated": @YES
-    };
+//    mutableDic[kBoostKey] = @{@"useGPUTranslations": @YES};
+//    mutableDic[kBoostKey] = @{
+//        @"useGPUTranslations": @YES,
+//        @"usePreAllocated": @YES
+//    };
+    mutableDic[kBoostKey] = AABoost.new
+        .useGPUTranslationsSet(@true)
+        .usePreallocatedSet(@true)
+//        .usePreAllocatedSet(true)
+        .toDic
+    ;
     /**
      xAxis: {
              min: 0,
@@ -671,7 +688,7 @@
                 .panningSet(true)
                 .panKeySet(@"shift"))
 //    .boostSet(AABoost.new
-//              .useGPUTranslationsSet(true))
+//              .useGPUTranslationsSet(@true))
     .titleSet(AATitle.new
               .textSet([NSString stringWithFormat:@"Highcharts drawing %ld points", n]))
     .xAxisSet(AAXAxis.new
@@ -689,7 +706,9 @@
     
     NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
     NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
+    mutableDic[kBoostKey] = AABoost.new
+        .useGPUTranslationsSet(@true)
+        .toDic;
     return mutableDic;
 }
 
@@ -706,7 +725,7 @@
                 .panningSet(true)
                 .panKeySet(@"shift"))
 //    .boostSet(AABoost.new
-//              .useGPUTranslationsSet(true))
+//              .useGPUTranslationsSet(@true))
     .titleSet(AATitle.new
               .textSet([NSString stringWithFormat:@"Highcharts drawing %ld points", n]))
     .xAxisSet(AAXAxis.new
@@ -724,7 +743,9 @@
     
     NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
     NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
+    mutableDic[kBoostKey] = AABoost.new
+        .useGPUTranslationsSet(@true)
+        .toDic;
     return mutableDic;
 }
 
@@ -841,7 +862,7 @@
     .legendSet(AALegend.new
                 .enabledSet(false))
 //    .boostSet(AABoost.new
-//              .useGPUTranslationsSet(true)
+//              .useGPUTranslationsSet(@true)
 //              .usePreallocatedSet(true))
     .plotOptionsSet(AAPlotOptions.new
                     .bubbleSet(AABubble.new
@@ -863,7 +884,9 @@
     
     NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
     NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
+    mutableDic[kBoostKey] = AABoost.new
+        .useGPUTranslationsSet(@true)
+        .toDic;
     return mutableDic;
 }
 
@@ -871,7 +894,9 @@
     AAOptions *aaOptions = [AAHeatmapChartComposer largeDataHeatmapChart];
     NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
     NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
+    mutableDic[kBoostKey] = AABoost.new
+        .useGPUTranslationsSet(@true)
+        .toDic;
     return mutableDic;
 }
 
@@ -959,7 +984,7 @@
                 .pinchTypeSet(AAChartZoomTypeX)
               )
 //    .boostSet(AABoost.new
-//              .useGPUTranslationsSet(true))
+//              .useGPUTranslationsSet(@true))
     .titleSet(AATitle.new
               .textSet(@"Highcharts drawing 50000 points"))
     .subtitleSet(AASubtitle.new
@@ -980,7 +1005,9 @@
     
     NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
     NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
+    mutableDic[kBoostKey] = AABoost.new
+        .useGPUTranslationsSet(@true)
+        .toDic;
     return mutableDic;
 }
 
@@ -993,7 +1020,7 @@
                 .pinchTypeSet(AAChartZoomTypeX)
               )
 //    .boostSet(AABoost.new
-//              .useGPUTranslationsSet(true))
+//              .useGPUTranslationsSet(@true))
     .titleSet(AATitle.new
               .textSet(@"Highcharts drawing 50000 points"))
     .subtitleSet(AASubtitle.new
@@ -1014,7 +1041,9 @@
     
     NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
     NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
+    mutableDic[kBoostKey] = AABoost.new
+        .useGPUTranslationsSet(@true)
+        .toDic;
     return mutableDic;
 }
 
