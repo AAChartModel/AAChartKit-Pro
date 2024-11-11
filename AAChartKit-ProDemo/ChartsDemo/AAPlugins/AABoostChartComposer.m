@@ -727,4 +727,143 @@
     return mutableDic;
 }
 
+/**
+ // Prepare the data
+ const data = [],
+     n = 50000;
+
+ for (let i = 0; i < n; i += 1) {
+     data.push([
+         Math.pow(Math.random(), 2) * 100,
+         Math.pow(Math.random(), 2) * 100,
+         Math.pow(Math.random(), 2) * 100
+     ]);
+ }
+
+ if (!Highcharts.Series.prototype.renderCanvas) {
+     throw 'Module not loaded';
+ }
+
+ console.time('bubble');
+ Highcharts.chart('container', {
+
+     chart: {
+         zooming: {
+             type: 'xy'
+         }
+     },
+
+     xAxis: {
+         gridLineWidth: 1,
+         minPadding: 0,
+         maxPadding: 0,
+         startOnTick: false,
+         endOnTick: false
+     },
+
+     yAxis: {
+         minPadding: 0,
+         maxPadding: 0,
+         startOnTick: false,
+         endOnTick: false
+     },
+
+     title: {
+         text: 'Bubble chart with ' +
+             Highcharts.numberFormat(data.length, 0, ' ') + ' points'
+     },
+
+     legend: {
+         enabled: false
+     },
+
+     boost: {
+         useGPUTranslations: true,
+         usePreallocated: true
+     },
+
+     series: [{
+         type: 'bubble',
+         boostBlending: 'alpha',
+         color: 'rgb(152, 0, 67)',
+         fillOpacity: 0.1,
+         data: data,
+         minSize: 1,
+         maxSize: 10,
+         tooltip: {
+             followPointer: false,
+             pointFormat: '[{point.x:.1f}, {point.y:.1f}]'
+         }
+     }]
+
+ });
+ console.timeEnd('bubble');
+ */
+
+//生成 bubbleChartData 数组
++ (NSArray *)getBubbleChartData:(NSInteger)n {
+    NSMutableArray *arr = [NSMutableArray array];
+    for (NSInteger i = 0; i < n; i += 1) {
+        [arr addObject:@[
+            @(powf((float)arc4random_uniform(100), 2) * 100),
+            @(powf((float)arc4random_uniform(100), 2) * 100),
+            @(powf((float)arc4random_uniform(100), 2) * 100)
+        ]];
+    }
+    return arr;
+}
+
+//配置 AAOptions 实例对象
++ (NSDictionary *)bubbleChart {
+    NSInteger n = 50000;
+    NSArray *data = [self getBubbleChartData:n];
+    
+    AAOptions *aaOptions = AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(AAChartTypeBubble)
+//              .zoomTypeSet(AAChartZoomTypeXY)
+                .pinchTypeSet(AAChartZoomTypeXY)
+              )
+    .xAxisSet(AAXAxis.new
+                .gridLineWidthSet(@1)
+                .minPaddingSet(@0)
+                .maxPaddingSet(@0)
+                .startOnTickSet(false)
+                .endOnTickSet(false))
+    .yAxisSet(AAYAxis.new
+                .minPaddingSet(@0)
+                .maxPaddingSet(@0)
+                .startOnTickSet(false)
+                .endOnTickSet(false))
+    .titleSet(AATitle.new
+                .textSet([NSString stringWithFormat:@"Bubble chart with %ld points", (long)data.count]))
+    .legendSet(AALegend.new
+                .enabledSet(false))
+//    .boostSet(AABoost.new
+//              .useGPUTranslationsSet(true)
+//              .usePreallocatedSet(true))
+    .plotOptionsSet(AAPlotOptions.new
+                    .bubbleSet(AABubble.new
+                               .minSizeSet(@1)
+                               .maxSizeSet(@10)))
+    .seriesSet(@[
+        AASeriesElement.new
+        .typeSet(AAChartTypeBubble)
+//        .boostBlendingSet(AAChartBoostBlendingAlpha)
+        .colorSet(@"rgb(152, 0, 67)")
+        .fillOpacitySet(@0.1)
+        .dataSet(data)
+//        .minSizeSet(@1)
+//        .maxSizeSet(@10)
+        .tooltipSet(AATooltip.new
+                    .followPointerSet(false)
+                    .pointFormatSet(@"[{point.x:.1f}, {point.y:.1f}]"))
+    ]);
+    
+    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
+    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
+    return mutableDic;
+}
+
 @end

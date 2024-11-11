@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSDictionary *)scatterChartOptions;
 + (NSDictionary *)areaRangeChart;
 + (NSDictionary *)columnRangeChart;
++ (NSDictionary *)bubbleChart;
 
 @end
 

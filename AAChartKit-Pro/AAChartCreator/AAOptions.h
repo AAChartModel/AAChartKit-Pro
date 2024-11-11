@@ -67,6 +67,7 @@
 #import "AALang.h"
 #import "AADateTimeLabelFormats.h"
 #import "AALineStyle.h"
+#import "AABubble.h"
 
 
 #import "AAColorAxis.h"

@@ -384,6 +384,7 @@
             //            + (NSDictionary *)scatterChartOptions;
             //            + (NSDictionary *)areaRangeChart;
             //            + (NSDictionary *)columnRangeChart;
+            //+ (NSDictionary *)bubbleChart
             
             @[
                 @"lineChart---折线图",
@@ -393,6 +394,7 @@
                 @"scatterChartOptions---散点图",
                 @"areaRangeChart---区域范围图",
                 @"columnRangeChart---柱形范围图",
+                @"bubbleChart---气泡图",
             ],
             
         ];

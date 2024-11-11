@@ -33,7 +33,7 @@
 #import <Foundation/Foundation.h>
 
 //AAChartKit
-@class AAColumn, AABar, AALine, AASpline, AAArea, AAAreaspline, AAPie, AAColumnrange, AASeries;
+@class AAColumn, AABar, AALine, AASpline, AAArea, AAAreaspline, AAPie, AAColumnrange, AASeries, AABubble;
 //AAChartKit-Pro
 @class AAPackedbubble, AATreemap, AASolidgauge, AAPictorial, AAOrganization;
 
@@ -50,6 +50,7 @@ AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAArea         *, 
 AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAAreaspline   *, areaspline)
 AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAColumnrange  *, columnrange)
 AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, NSObject       *, arearange)
+AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AABubble       *, bubble)
 
 //Pro
 AAPropStatementAndPropSetFuncStatement(strong, AAPlotOptions, AAPackedbubble *, packedbubble)
