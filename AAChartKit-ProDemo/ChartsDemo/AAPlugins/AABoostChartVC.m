@@ -8,6 +8,7 @@
 
 #import "AABoostChartVC.h"
 #import "AABoostOptions.h"
+#import "AABoostChartComposer.h"
 
 static NSString * const kBoostPath = @"https://code.highcharts.com/modules/boost.js";
 
@@ -24,10 +25,8 @@ static NSString * const kBoostPath = @"https://code.highcharts.com/modules/boost
     self.aaChartView.pluginsArray = @[jsPath];
     
     AAOptions *aaOptions = [self configureChartOptions];
-    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
-    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-//    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
-    [self.aaChartView aa_drawChartWithOptions:mutableDic];
+    NSDictionary *jsonDic = [AABoostChartComposer scatterChartOptions];
+    [self.aaChartView aa_drawChartWithOptions:jsonDic];
 }
 
 /**
@@ -127,11 +126,11 @@ static NSString * const kBoostPath = @"https://code.highcharts.com/modules/boost
 }
 
 //配置 AAOptions 实例对象
-- (AAOptions *)configureChartOptions {
+- (NSDictionary *)configureChartOptions {
     NSNumber *n = @500000;
     NSArray *data = [self getData:n];
     
-    return AAOptions.new
+    AAOptions *aaOptions = AAOptions.new
 //        .boostSet(AABoost.new
 //                  .useGPUTranslationsSet(true))
         .chartSet(AAChart.new
@@ -150,6 +149,11 @@ static NSString * const kBoostPath = @"https://code.highcharts.com/modules/boost
                 .dataSet(data)
                 .lineWidthSet(@0.5)
         ]);
+    
+    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
+    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
+    return mutableDic;
 }
     
 
