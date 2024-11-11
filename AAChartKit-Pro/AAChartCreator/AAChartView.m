@@ -486,41 +486,7 @@ WKScriptMessageHandler
 
 #pragma mark - WKNavigationDelegate
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-// // 加载 Highcharts 插件脚本
-//    if let path = Bundle.main.path(forResource: "highcharts-more", ofType: "js") {
-//        do {
-//            let jsString = try String(contentsOfFile: path, encoding: .utf8)
-//            webView.evaluateJavaScript(jsString) { (result, error) in
-//                if let error = error {
-//                    print("Error loading plugin script: \(error)")
-//                } else {
-//                    print("Plugin script loaded successfully")
-//                }
-//            }
-//        } catch {
-//            print("Failed to load plugin script: \(error)")
-//        }
-//    }
-    //加载 Highcharts 插件脚本
-    NSString *path = [self.pluginsArray objectAtIndex:0];
-    if (path) {
-        NSError *error;
-        NSString *jsString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
-        if (error) {
-            AADetailLog(@"❌❌❌ Failed to load plugin script: %@", error);
-        } else {
-            [webView evaluateJavaScript:jsString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-                if (error) {
-                    AADetailLog(@"❌❌❌ Error loading plugin script: %@", error);
-                } else {
-                    AADetailLog(@"✅✅✅ Plugin script loaded successfully");
-                    [self drawChart];
-                }
-            }];
-        }
-    } else {
-        [self drawChart];
-    }
+    [self loadAllPluginsAndDrawChart];
     
     if (self.didFinishLoadBlock) {
         self.didFinishLoadBlock(self);
@@ -531,6 +497,50 @@ WKScriptMessageHandler
             [self.delegate aaChartViewDidFinishLoad:self];
         }
     }
+}
+
+- (void)loadScriptsFromArray:(NSArray *)scriptsArray index:(NSUInteger)index completion:(void (^)(BOOL success))completion {
+    if (index >= scriptsArray.count) {
+        // 所有脚本已加载完成
+        AADetailLog(@"✅✅✅ All plugin scripts loaded successfully");
+        completion(YES);
+        return;
+    }
+
+    NSString *path = [scriptsArray objectAtIndex:index];
+    NSError *error;
+    NSString *jsString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+
+    if (error) {
+        AADetailLog(@"❌❌❌ Failed to load plugin script at index %lu: %@", (unsigned long)index, error);
+        completion(NO); // 或者可以选择忽略错误并继续加载下一个脚本
+        return;
+    }
+
+    [self evaluateJavaScript:jsString completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        if (error) {
+            AADetailLog(@"❌❌❌ Error loading plugin script at index %lu: %@", (unsigned long)index, error);
+            completion(NO); // 或者可以选择忽略错误并继续加载下一个脚本
+        } else {
+            AADetailLog(@"✅✅✅ Plugin script at index %lu loaded successfully", (unsigned long)index);
+            [self loadScriptsFromArray:scriptsArray index:index + 1 completion:completion];
+        }
+    }];
+}
+
+- (void)loadAllPluginsAndDrawChart {
+    if (self.pluginsArray.count == 0) {
+        [self drawChart];
+        return;
+    }
+    
+    [self loadScriptsFromArray:self.pluginsArray index:0 completion:^(BOOL success) {
+        if (success) {
+            [self drawChart];
+        } else {
+            AADetailLog(@"❌❌❌ Failed to load one or more plugin scripts.");
+        }
+    }];
 }
 
 - (void)drawChart {
