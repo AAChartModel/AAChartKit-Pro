@@ -875,4 +875,147 @@
     return mutableDic;
 }
 
+/**
+ function getData(n) {
+     const arr = [];
+     let a,
+         b,
+         c,
+         spike;
+     for (let i = 0; i < n; i = i + 1) {
+         if (i % 100 === 0) {
+             a = 2 * Math.random();
+         }
+         if (i % 1000 === 0) {
+             b = 2 * Math.random();
+         }
+         if (i % 10000 === 0) {
+             c = 2 * Math.random();
+         }
+         if (i % 50000 === 0) {
+             spike = 10;
+         } else {
+             spike = 0;
+         }
+         arr.push([
+             i,
+             2 * Math.sin(i / 100) + a + b + c + spike + Math.random()
+         ]);
+     }
+     return arr;
+ }
+ const data1 = getData(25000),
+     data2 = getData(25000);
+
+ console.time('area');
+ Highcharts.chart('container', {
+
+     chart: {
+         type: 'area',
+         zooming: {
+             type: 'x'
+         }
+     },
+
+     boost: {
+         useGPUTranslations: true
+     },
+
+     title: {
+         text: 'Highcharts drawing ' + (data1.length + data2.length) + ' points'
+     },
+
+     subtitle: {
+         text: 'Using the Boost module'
+     },
+
+     tooltip: {
+         valueDecimals: 2
+     },
+
+     plotOptions: {
+         area: {
+             stacking: true
+         }
+     },
+
+     series: [{
+         data: data1
+     }, {
+         data: data2
+     }]
+
+ });
+ console.timeEnd('area');
+
+ */
+
+//配置堆积面积图
++ (NSDictionary *)stackingAreaChart {
+    AAOptions *aaOptions = AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(AAChartTypeArea)
+//              .zoomTypeSet(AAChartZoomTypeX)
+                .pinchTypeSet(AAChartZoomTypeX)
+              )
+//    .boostSet(AABoost.new
+//              .useGPUTranslationsSet(true))
+    .titleSet(AATitle.new
+              .textSet(@"Highcharts drawing 50000 points"))
+    .subtitleSet(AASubtitle.new
+                 .textSet(@"Using the Boost module"))
+    .tooltipSet(AATooltip.new
+                .valueDecimalsSet(@2))
+    .plotOptionsSet(AAPlotOptions.new
+                    .seriesSet(AASeries.new
+                             .stackingSet(AAChartStackingTypeNormal)))
+    .seriesSet(@[
+        AASeriesElement.new
+        .dataSet([self getLineChartData:@25000])
+        .colorSet(AAColor.redColor),
+        AASeriesElement.new
+        .dataSet([self getLineChartData:@25000])
+        .colorSet(AAColor.greenColor)
+    ]);
+    
+    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
+    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
+    return mutableDic;
+}
+
+//配置堆积柱形图
++ (NSDictionary *)stackingColumnChart {
+    AAOptions *aaOptions = AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(AAChartTypeColumn)
+//              .zoomTypeSet(AAChartZoomTypeX)
+                .pinchTypeSet(AAChartZoomTypeX)
+              )
+//    .boostSet(AABoost.new
+//              .useGPUTranslationsSet(true))
+    .titleSet(AATitle.new
+              .textSet(@"Highcharts drawing 50000 points"))
+    .subtitleSet(AASubtitle.new
+                 .textSet(@"Using the Boost module"))
+    .tooltipSet(AATooltip.new
+                .valueDecimalsSet(@2))
+    .plotOptionsSet(AAPlotOptions.new
+                    .seriesSet(AASeries.new
+                             .stackingSet(AAChartStackingTypeNormal)))
+    .seriesSet(@[
+        AASeriesElement.new
+        .dataSet([self getLineChartData:@25000])
+        .colorSet(AAColor.redColor),
+        AASeriesElement.new
+        .dataSet([self getLineChartData:@25000])
+        .colorSet(AAColor.greenColor)
+    ]);
+    
+    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
+    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
+    return mutableDic;
+}
+
 @end

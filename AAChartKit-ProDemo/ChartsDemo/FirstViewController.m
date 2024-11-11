@@ -386,6 +386,9 @@
             //            + (NSDictionary *)columnRangeChart;
             //+ (NSDictionary *)bubbleChart
             //+ (NSDictionary *)heatmapChart
+            //+ (NSDictionary *)stackingAreaChart;
+//            + (NSDictionary *)stackingColumnChart;
+
 
             
             @[
@@ -398,6 +401,8 @@
                 @"columnRangeChart---柱形范围图",
                 @"bubbleChart---气泡图",
                 @"heatMapChart---热力图",
+                @"stackingAreaChart---堆积区域填充图",
+                @"stackingColumnChart---堆积柱形图",
             ],
             
         ];

@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSDictionary *)columnRangeChart;
 + (NSDictionary *)bubbleChart;
 + (NSDictionary *)heatMapChart;
++ (NSDictionary *)stackingAreaChart;
++ (NSDictionary *)stackingColumnChart;
 
 @end
 

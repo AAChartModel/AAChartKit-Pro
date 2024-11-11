@@ -607,10 +607,10 @@
 		713F54341E7B71C000D506C7 /* ChartsDemo */ = {
 			isa = PBXGroup;
 			children = (
-				84D904562CE1A08E00F75AFF /* AAPlugins */,
 				713F54371E7B71C000D506C7 /* FirstViewController.h */,
 				713F54381E7B71C000D506C7 /* FirstViewController.m */,
 				27EB8A222495C1F2007E6A6B /* AAChartKit-Pro */,
+				84D904562CE1A08E00F75AFF /* AAPlugins */,
 			);
 			path = ChartsDemo;
 			sourceTree = "<group>";

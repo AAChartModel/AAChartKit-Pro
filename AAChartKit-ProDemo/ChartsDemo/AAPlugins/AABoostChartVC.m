@@ -41,6 +41,9 @@ static NSString * const kBoostPath = @"https://code.highcharts.com/modules/boost
 //            + (NSDictionary *)columnRangeChart;
 //            + (NSDictionary *)bubbleChart;
 //            + (NSDictionary *)heatmapChart
+//            + (NSDictionary *)stackingAreaChart;
+//            + (NSDictionary *)stackingColumnChart;
+
 
         case 0: return [AABoostChartComposer lineChart];
         case 1: return [AABoostChartComposer areaChart];
@@ -51,6 +54,8 @@ static NSString * const kBoostPath = @"https://code.highcharts.com/modules/boost
         case 6: return [AABoostChartComposer columnRangeChart];
         case 7: return [AABoostChartComposer bubbleChart];
         case 8: return [AABoostChartComposer heatMapChart];
+        case 9: return [AABoostChartComposer stackingAreaChart];
+        case 10: return [AABoostChartComposer stackingColumnChart];
 
 
     }
