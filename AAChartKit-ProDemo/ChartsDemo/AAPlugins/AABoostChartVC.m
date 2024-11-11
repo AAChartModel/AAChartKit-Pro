@@ -7,7 +7,6 @@
 //
 
 #import "AABoostChartVC.h"
-#import "AABoostOptions.h"
 #import "AABoostChartComposer.h"
 #import "AAOptions+boost.h"
 
