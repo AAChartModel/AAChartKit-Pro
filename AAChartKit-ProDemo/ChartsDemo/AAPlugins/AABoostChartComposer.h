@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AABoostChartComposer : NSObject
 
 + (NSDictionary *)lineChart;
++ (NSDictionary *)areaChart;
++ (NSDictionary *)columnChart;
 + (NSDictionary *)lineChartWithHundredsOfSeries;
 + (NSDictionary *)scatterChartOptions;
 

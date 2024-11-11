@@ -130,6 +130,7 @@
             AASeriesElement.new
                 .dataSet(data)
                 .lineWidthSet(@0.5)
+                .colorSet(AAColor.redColor)
         ]);
     
     NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
@@ -138,6 +139,69 @@
     return mutableDic;
 }
     
++ (NSDictionary *)areaChart {
+    NSNumber *n = @500000;
+    NSArray *data = [self getLineChartData:n];
+    
+    AAOptions *aaOptions = AAOptions.new
+//        .boostSet(AABoost.new
+//                  .useGPUTranslationsSet(true))
+        .chartSet(AAChart.new
+                  .typeSet(AAChartTypeArea)
+                  //              .zoomTypeSet(AAChartZoomTypeX)
+                  .pinchTypeSet(AAChartZoomTypeX)
+                  .panningSet(true)
+                  .panKeySet(@"shift"))
+        .titleSet(AATitle.new
+                  .textSet([NSString stringWithFormat:@"Highcharts drawing %@ points", n]))
+        .subtitleSet(AASubtitle.new
+                     .textSet(@"Using the Boost module"))
+        .tooltipSet(AATooltip.new
+                    .valueDecimalsSet(@2))
+        .seriesSet(@[
+            AASeriesElement.new
+                .dataSet(data)
+                .lineWidthSet(@0.5)
+                .colorSet(AAColor.greenColor)
+        ]);
+    
+    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
+    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
+    return mutableDic;
+}
+
++ (NSDictionary *)columnChart {
+    NSNumber *n = @500000;
+    NSArray *data = [self getLineChartData:n];
+    
+    AAOptions *aaOptions = AAOptions.new
+//        .boostSet(AABoost.new
+//                  .useGPUTranslationsSet(true))
+        .chartSet(AAChart.new
+                  .typeSet(AAChartTypeColumn)
+                  //              .zoomTypeSet(AAChartZoomTypeX)
+                  .pinchTypeSet(AAChartZoomTypeX)
+                  .panningSet(true)
+                  .panKeySet(@"shift"))
+        .titleSet(AATitle.new
+                  .textSet([NSString stringWithFormat:@"Highcharts drawing %@ points", n]))
+        .subtitleSet(AASubtitle.new
+                     .textSet(@"Using the Boost module"))
+        .tooltipSet(AATooltip.new
+                    .valueDecimalsSet(@2))
+        .seriesSet(@[
+            AASeriesElement.new
+                .dataSet(data)
+                .lineWidthSet(@0.5)
+                .colorSet(AAColor.yellowColor)
+        ]);
+    
+    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
+    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
+    return mutableDic;
+}
 
 /**
  function getData(n) {
@@ -487,5 +551,7 @@
 //    };
     return mutableDic;
 }
+
+
 
 @end
