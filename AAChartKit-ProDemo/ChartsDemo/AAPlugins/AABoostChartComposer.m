@@ -10,6 +10,7 @@
 #import "AAChartKit-Pro.h"
 #import "AAHeatmapChartComposer.h"
 #import "AABoost.h"
+#import "AAOptions+boost.h"
 
 static NSString * const kBoostKey = @"boost";
 
@@ -145,8 +146,8 @@ NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
     NSArray *data = getData(n);
     
     AAOptions *aaOptions = AAOptions.new
-//        .boostSet(AABoost.new
-//                  .useGPUTranslationsSet(@true))
+        .boostSet(AABoost.new
+                  .useGPUTranslationsSet(@true))
         .chartSet(AAChart.new
                   //              .zoomTypeSet(AAChartZoomTypeX)
                   .pinchTypeSet(AAChartZoomTypeX)
@@ -165,15 +166,23 @@ NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
                 .colorSet(AAColor.redColor)
         ]);
     
-    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
-    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[kBoostKey] = AABoost.new
-        .useGPUTranslationsSet(@true)
-        .toDic;
-    return mutableDic;
+//    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+//    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
+//    mutableDic[kBoostKey] = AABoost.new
+//        .useGPUTranslationsSet(@true)
+//        .toDic;
+//    return mutableDic;
+
+//    aaOptions.boost = AABoost.new
+//        .useGPUTranslationsSet(@true);
+    
+        NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+    NSLog(@"jsonDic %@", jsonDic);
+
+    return aaOptions;
 }
     
-+ (NSDictionary *)areaChart {
++ (AAOptions *)areaChart {
     NSUInteger n = 500000;
     NSArray *data = getData(n);
     
@@ -207,7 +216,7 @@ NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
     return mutableDic;
 }
 
-+ (NSDictionary *)columnChart {
++ (AAOptions *)columnChart {
     NSUInteger n = 500000;
     NSArray *data = getData(n);
     
@@ -232,13 +241,13 @@ NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
                 .lineWidthSet(@0.5)
                 .colorSet(AAColor.purpleColor)
         ]);
-    
-    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
-    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[kBoostKey] = AABoost.new
-        .useGPUTranslationsSet(@true)
-        .toDic;
-    return mutableDic;
+//    
+//    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+//    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
+//    mutableDic[kBoostKey] = AABoost.new
+//        .useGPUTranslationsSet(@true)
+//        .toDic;
+    return aaOptions;
 }
 
 /**
@@ -386,7 +395,7 @@ NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
 }
 
 //配置 AAOptions 实例对象
-+ (NSDictionary *)lineChartWithHundredsOfSeries {
++ (AAOptions *)lineChartWithHundredsOfSeries {
     NSInteger n = 1000;
     NSInteger s = 600;
     NSArray *series = [self getSeries:n s:s];
@@ -418,12 +427,13 @@ NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
                 .valueDecimalsSet(@2))
     .seriesSet(series);
     
-    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
-    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[kBoostKey] = AABoost.new
-        .useGPUTranslationsSet(@true)
-        .toDic;
-    return jsonDic;
+//    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+//    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
+//    mutableDic[kBoostKey] = AABoost.new
+//        .useGPUTranslationsSet(@true)
+//        .toDic;
+    return aaOptions;
+;
 }
 
 
@@ -503,7 +513,7 @@ NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
  */
 
 //配置 AAOptions 实例对象
-+ (NSDictionary *)scatterChartOptions {
++ (AAOptions *)scatterChartOptions {
     NSMutableArray *data = [NSMutableArray array];
     NSInteger n = 1000000;
     for (NSInteger i = 0; i < n; i += 1) {
@@ -519,9 +529,9 @@ NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
               .pinchTypeSet(AAChartZoomTypeXY)
 //              .heightSet(@"100%")
               )
-//    .boostSet(AABoost.new
-//              .useGPUTranslationsSet(@true)
-//              .usePreAllocatedSet(true))
+    .boostSet(AABoost.new
+              .useGPUTranslationsSet(@true)
+              .usePreallocatedSet(@true))
 //    .xAxisSet(AAXAxis.new
 //              .minSet(@0)
 //              .maxSet(@100)
@@ -557,12 +567,12 @@ NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
 //        @"useGPUTranslations": @YES,
 //        @"usePreAllocated": @YES
 //    };
-    mutableDic[kBoostKey] = AABoost.new
-        .useGPUTranslationsSet(@true)
-        .usePreallocatedSet(@true)
-//        .usePreAllocatedSet(true)
-        .toDic
-    ;
+//    mutableDic[kBoostKey] = AABoost.new
+//        .useGPUTranslationsSet(@true)
+//        .usePreallocatedSet(@true)
+////        .usePreAllocatedSet(true)
+//        .toDic
+//    ;
     /**
      xAxis: {
              min: 0,
@@ -595,7 +605,7 @@ NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
 //            @"text": @""
 //        }
 //    };
-    return mutableDic;
+    return aaOptions;
 }
 
 /**
@@ -733,7 +743,7 @@ NSArray<NSArray<NSNumber *> *> *getAreaRangeChartData(NSUInteger n) {
 }
 
 //配置 AAOptions 实例对象
-+ (NSDictionary *)areaRangeChart {
++ (AAOptions *)areaRangeChart {
     NSInteger n = 500000;
     NSArray *data = getAreaRangeChartData(n);
     
@@ -744,8 +754,8 @@ NSArray<NSArray<NSNumber *> *> *getAreaRangeChartData(NSUInteger n) {
                 .pinchTypeSet(AAChartZoomTypeX)
                 .panningSet(true)
                 .panKeySet(@"shift"))
-//    .boostSet(AABoost.new
-//              .useGPUTranslationsSet(@true))
+    .boostSet(AABoost.new
+              .useGPUTranslationsSet(@true))
     .titleSet(AATitle.new
               .textSet([NSString stringWithFormat:@"Highcharts drawing %ld points", n]))
     .xAxisSet(AAXAxis.new
@@ -761,16 +771,16 @@ NSArray<NSArray<NSNumber *> *> *getAreaRangeChartData(NSUInteger n) {
         .colorSet(AAColor.redColor)
     ]);
     
-    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
-    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[kBoostKey] = AABoost.new
-        .useGPUTranslationsSet(@true)
-        .toDic;
-    return mutableDic;
+//    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+//    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
+//    mutableDic[kBoostKey] = AABoost.new
+//        .useGPUTranslationsSet(@true)
+//        .toDic;
+    return aaOptions;
 }
 
 //配置 AAOptions 实例对象
-+ (NSDictionary *)columnRangeChart {
++ (AAOptions *)columnRangeChart {
     NSInteger n = 500000;
     NSArray *data = getAreaRangeChartData(n);
 
@@ -781,8 +791,8 @@ NSArray<NSArray<NSNumber *> *> *getAreaRangeChartData(NSUInteger n) {
                 .pinchTypeSet(AAChartZoomTypeX)
                 .panningSet(true)
                 .panKeySet(@"shift"))
-//    .boostSet(AABoost.new
-//              .useGPUTranslationsSet(@true))
+    .boostSet(AABoost.new
+              .useGPUTranslationsSet(@true))
     .titleSet(AATitle.new
               .textSet([NSString stringWithFormat:@"Highcharts drawing %ld points", n]))
     .xAxisSet(AAXAxis.new
@@ -798,12 +808,12 @@ NSArray<NSArray<NSNumber *> *> *getAreaRangeChartData(NSUInteger n) {
         .colorSet(AAColor.greenColor)
     ]);
     
-    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
-    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[kBoostKey] = AABoost.new
-        .useGPUTranslationsSet(@true)
-        .toDic;
-    return mutableDic;
+//    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+//    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
+//    mutableDic[kBoostKey] = AABoost.new
+//        .useGPUTranslationsSet(@true)
+//        .toDic;
+    return aaOptions;
 }
 
 /**
@@ -893,7 +903,7 @@ NSArray<NSArray<NSNumber *> *> *getAreaRangeChartData(NSUInteger n) {
 }
 
 //配置 AAOptions 实例对象
-+ (NSDictionary *)bubbleChart {
++ (AAOptions *)bubbleChart {
     NSInteger n = 50000;
     NSArray *data = [self getBubbleChartData:n];
     
@@ -918,9 +928,9 @@ NSArray<NSArray<NSNumber *> *> *getAreaRangeChartData(NSUInteger n) {
                 .textSet([NSString stringWithFormat:@"Bubble chart with %ld points", (long)data.count]))
     .legendSet(AALegend.new
                 .enabledSet(false))
-//    .boostSet(AABoost.new
-//              .useGPUTranslationsSet(@true)
-//              .usePreallocatedSet(true))
+    .boostSet(AABoost.new
+              .useGPUTranslationsSet(@true)
+              .usePreallocatedSet(@true))
     .plotOptionsSet(AAPlotOptions.new
                     .bubbleSet(AABubble.new
                                .minSizeSet(@1)
@@ -939,22 +949,24 @@ NSArray<NSArray<NSNumber *> *> *getAreaRangeChartData(NSUInteger n) {
                     .pointFormatSet(@"[{point.x:.1f}, {point.y:.1f}]"))
     ]);
     
-    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
-    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[kBoostKey] = AABoost.new
-        .useGPUTranslationsSet(@true)
-        .toDic;
-    return mutableDic;
+//    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+//    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
+//    mutableDic[kBoostKey] = AABoost.new
+//        .useGPUTranslationsSet(@true)
+//        .toDic;
+    return aaOptions;
 }
 
-+ (NSDictionary *)heatMapChart {
++ (AAOptions *)heatMapChart {
     AAOptions *aaOptions = [AAHeatmapChartComposer largeDataHeatmapChart];
-    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
-    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[kBoostKey] = AABoost.new
-        .useGPUTranslationsSet(@true)
-        .toDic;
-    return mutableDic;
+//    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+//    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
+//    mutableDic[kBoostKey] = AABoost.new
+//        .useGPUTranslationsSet(@true)
+//        .toDic;
+    aaOptions.boostSet(AABoost.new
+                       .useGPUTranslationsSet(@true));
+    return aaOptions;
 }
 
 /**
@@ -1033,15 +1045,15 @@ NSArray<NSArray<NSNumber *> *> *getAreaRangeChartData(NSUInteger n) {
  */
 
 //配置堆积面积图
-+ (NSDictionary *)stackingAreaChart {
++ (AAOptions *)stackingAreaChart {
     AAOptions *aaOptions = AAOptions.new
     .chartSet(AAChart.new
               .typeSet(AAChartTypeArea)
 //              .zoomTypeSet(AAChartZoomTypeX)
                 .pinchTypeSet(AAChartZoomTypeX)
               )
-//    .boostSet(AABoost.new
-//              .useGPUTranslationsSet(@true))
+    .boostSet(AABoost.new
+              .useGPUTranslationsSet(@true))
     .titleSet(AATitle.new
               .textSet(@"Highcharts drawing 50000 points"))
     .subtitleSet(AASubtitle.new
@@ -1060,24 +1072,24 @@ NSArray<NSArray<NSNumber *> *> *getAreaRangeChartData(NSUInteger n) {
         .colorSet(AAColor.greenColor)
     ]);
     
-    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
-    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[kBoostKey] = AABoost.new
-        .useGPUTranslationsSet(@true)
-        .toDic;
-    return mutableDic;
+//    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+//    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
+//    mutableDic[kBoostKey] = AABoost.new
+//        .useGPUTranslationsSet(@true)
+//        .toDic;
+    return aaOptions;
 }
 
 //配置堆积柱形图
-+ (NSDictionary *)stackingColumnChart {
++ (AAOptions *)stackingColumnChart {
     AAOptions *aaOptions = AAOptions.new
     .chartSet(AAChart.new
               .typeSet(AAChartTypeColumn)
 //              .zoomTypeSet(AAChartZoomTypeX)
                 .pinchTypeSet(AAChartZoomTypeX)
               )
-//    .boostSet(AABoost.new
-//              .useGPUTranslationsSet(@true))
+    .boostSet(AABoost.new
+              .useGPUTranslationsSet(@true))
     .titleSet(AATitle.new
               .textSet(@"Highcharts drawing 50000 points"))
     .subtitleSet(AASubtitle.new
@@ -1096,12 +1108,12 @@ NSArray<NSArray<NSNumber *> *> *getAreaRangeChartData(NSUInteger n) {
         .colorSet(AAColor.greenColor)
     ]);
     
-    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
-    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[kBoostKey] = AABoost.new
-        .useGPUTranslationsSet(@true)
-        .toDic;
-    return mutableDic;
+//    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+//    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
+//    mutableDic[kBoostKey] = AABoost.new
+//        .useGPUTranslationsSet(@true)
+//        .toDic;
+    return aaOptions;
 }
 
 @end

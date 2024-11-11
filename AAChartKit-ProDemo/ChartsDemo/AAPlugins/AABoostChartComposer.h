@@ -8,21 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
+@class AAOptions;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AABoostChartComposer : NSObject
 
-+ (NSDictionary *)lineChart;
-+ (NSDictionary *)areaChart;
-+ (NSDictionary *)columnChart;
-+ (NSDictionary *)lineChartWithHundredsOfSeries;
-+ (NSDictionary *)scatterChartOptions;
-+ (NSDictionary *)areaRangeChart;
-+ (NSDictionary *)columnRangeChart;
-+ (NSDictionary *)bubbleChart;
-+ (NSDictionary *)heatMapChart;
-+ (NSDictionary *)stackingAreaChart;
-+ (NSDictionary *)stackingColumnChart;
++ (AAOptions *)lineChart;
++ (AAOptions *)areaChart;
++ (AAOptions *)columnChart;
++ (AAOptions *)lineChartWithHundredsOfSeries;
++ (AAOptions *)scatterChartOptions;
++ (AAOptions *)areaRangeChart;
++ (AAOptions *)columnRangeChart;
++ (AAOptions *)bubbleChart;
++ (AAOptions *)heatMapChart;
++ (AAOptions *)stackingAreaChart;
++ (AAOptions *)stackingColumnChart;
 
 @end
 

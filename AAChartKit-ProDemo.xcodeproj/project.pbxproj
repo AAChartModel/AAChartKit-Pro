@@ -127,6 +127,7 @@
 		84D904632CE1A84100F75AFF /* AABoostOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D904622CE1A84100F75AFF /* AABoostOptions.m */; };
 		84D904662CE1AEEA00F75AFF /* AABoostChartComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D904652CE1AEEA00F75AFF /* AABoostChartComposer.m */; };
 		84D904692CE1DCE600F75AFF /* AABubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D904682CE1DCE600F75AFF /* AABubble.m */; };
+		84D9046C2CE1F86F00F75AFF /* AAOptions+boost.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D9046B2CE1F86F00F75AFF /* AAOptions+boost.m */; };
 		84DEB8AD28FADCDA00BF9423 /* volinPlotElement1Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84DEB8AC28FADCDA00BF9423 /* volinPlotElement1Data.json */; };
 		84DEB8AF28FADD3A00BF9423 /* volinPlotElement2Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84DEB8AE28FADD3A00BF9423 /* volinPlotElement2Data.json */; };
 		84DEB8B128FADE1600BF9423 /* simpleDependencyWheelData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84DEB8B028FADE1600BF9423 /* simpleDependencyWheelData.json */; };
@@ -373,6 +374,8 @@
 		84D904652CE1AEEA00F75AFF /* AABoostChartComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AABoostChartComposer.m; sourceTree = "<group>"; };
 		84D904672CE1DCE600F75AFF /* AABubble.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AABubble.h; sourceTree = "<group>"; };
 		84D904682CE1DCE600F75AFF /* AABubble.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AABubble.m; sourceTree = "<group>"; };
+		84D9046A2CE1F86F00F75AFF /* AAOptions+boost.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AAOptions+boost.h"; sourceTree = "<group>"; };
+		84D9046B2CE1F86F00F75AFF /* AAOptions+boost.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AAOptions+boost.m"; sourceTree = "<group>"; };
 		84DEB8AC28FADCDA00BF9423 /* volinPlotElement1Data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = volinPlotElement1Data.json; sourceTree = "<group>"; };
 		84DEB8AE28FADD3A00BF9423 /* volinPlotElement2Data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = volinPlotElement2Data.json; sourceTree = "<group>"; };
 		84DEB8B028FADE1600BF9423 /* simpleDependencyWheelData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = simpleDependencyWheelData.json; sourceTree = "<group>"; };
@@ -788,6 +791,8 @@
 				84D904652CE1AEEA00F75AFF /* AABoostChartComposer.m */,
 				84D904612CE1A84100F75AFF /* AABoostOptions.h */,
 				84D904622CE1A84100F75AFF /* AABoostOptions.m */,
+				84D9046A2CE1F86F00F75AFF /* AAOptions+boost.h */,
+				84D9046B2CE1F86F00F75AFF /* AAOptions+boost.m */,
 			);
 			path = AAPlugins;
 			sourceTree = "<group>";
@@ -1128,6 +1133,7 @@
 				84DFEB7E2A2882ED004436BC /* AASpline.m in Sources */,
 				8441A70026C21E6C007EAAA7 /* AAPlotLinesElement.m in Sources */,
 				8409E69D2CD48544000EFCF2 /* AASankeyChartComposer.m in Sources */,
+				84D9046C2CE1F86F00F75AFF /* AAOptions+boost.m in Sources */,
 				8441A72026C21F02007EAAA7 /* AAGradientColor.m in Sources */,
 				27EB8A832497C03A007E6A6B /* AAOptionsData.m in Sources */,
 				84AA68B228A11E45009067AE /* AAHeatmap.m in Sources */,
