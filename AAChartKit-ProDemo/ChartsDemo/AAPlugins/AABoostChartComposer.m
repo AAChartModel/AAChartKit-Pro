@@ -207,13 +207,13 @@ NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
                 .lineWidthSet(@0.5)
                 .colorSet(AAColor.greenColor)
         ]);
-    
-    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
-    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
-    mutableDic[kBoostKey] = AABoost.new
-        .useGPUTranslationsSet(@true)
-        .toDic;
-    return mutableDic;
+//    
+//    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+//    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
+//    mutableDic[kBoostKey] = AABoost.new
+//        .useGPUTranslationsSet(@true)
+//        .toDic;
+    return aaOptions;
 }
 
 + (AAOptions *)columnChart {
