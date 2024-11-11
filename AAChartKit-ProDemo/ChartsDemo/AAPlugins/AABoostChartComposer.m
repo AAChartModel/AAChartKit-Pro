@@ -12,6 +12,190 @@
 @implementation AABoostChartComposer
 
 /**
+ function getData(n) {
+     const arr = [];
+     let a,
+         b,
+         c,
+         spike;
+     for (let i = 0; i < n; i = i + 1) {
+         if (i % 100 === 0) {
+             a = 2 * Math.random();
+         }
+         if (i % 1000 === 0) {
+             b = 2 * Math.random();
+         }
+         if (i % 10000 === 0) {
+             c = 2 * Math.random();
+         }
+         if (i % 50000 === 0) {
+             spike = 0;
+         } else {
+             spike = 0;
+         }
+         arr.push([
+             i,
+             2 * Math.sin(i / 100) + a + b + c + spike + Math.random()
+         ]);
+     }
+     return arr;
+ }
+
+ function getSeries(n, s) {
+     let i = 0;
+     const r = [];
+
+     for (; i < s; i++) {
+         r.push({
+             data: getData(n),
+             lineWidth: 2,
+             boostThreshold: 1
+         });
+     }
+
+     return r;
+ }
+
+ const n = 1000,
+     s = 600,
+     series = getSeries(n, s);
+
+
+ console.time('line');
+ Highcharts.chart('container', {
+
+     chart: {
+         zooming: {
+             type: 'x'
+         }
+     },
+
+     title: {
+         text:
+             'Highcharts drawing ' + (n * s) + ' points across ' + s + ' series'
+     },
+
+     legend: {
+         enabled: false
+     },
+
+     boost: {
+         useGPUTranslations: true
+     },
+
+     xAxis: {
+         min: 0,
+         max: 120,
+         ordinal: false
+     },
+
+     navigator: {
+         xAxis: {
+             ordinal: false,
+             min: 0,
+             max: 10
+         }
+     },
+
+     // yAxis: {
+     //     min: 0,
+     //     max: 8
+     // },
+
+     subtitle: {
+         text: 'Using the Boost module'
+     },
+
+     tooltip: {
+         valueDecimals: 2
+     },
+
+     series: series
+
+ });
+ console.timeEnd('line');
+ */
+//生成 data 数组
++ (NSArray *)getData:(NSInteger)n {
+    NSMutableArray *arr = [NSMutableArray array];
+    CGFloat a, b, c, spike;
+    for (NSInteger i = 0; i < n; i = i + 1) {
+        if (i % 100 == 0) {
+            a = 2 * (float)arc4random_uniform(100);
+        }
+        if (i % 1000 == 0) {
+            b = 2 * (float)arc4random_uniform(100);
+        }
+        if (i % 10000 == 0) {
+            c = 2 * (float)arc4random_uniform(100);
+        }
+        if (i % 50000 == 0) {
+            spike = 0;
+        } else {
+            spike = 0;
+        }
+        [arr addObject:@[
+            @(i),
+            @(2 * sin(i / 100) + a + b + c + spike + (float)arc4random_uniform(100))
+        ]];
+    }
+    return arr;
+}
+
+//生成 series 数组
++ (NSArray *)getSeries:(NSInteger)n s:(NSInteger)s {
+    NSMutableArray *r = [NSMutableArray array];
+    for (NSInteger i = 0; i < s; i++) {
+        [r addObject:@{
+            @"data": [self getData:n],
+            @"lineWidth": @2,
+            @"boostThreshold": @1
+        }];
+    }
+    return r;
+}
+
+//配置 AAOptions 实例对象
++ (NSDictionary *)lineChartWithHundredsOfSeries {
+    NSInteger n = 1000;
+    NSInteger s = 600;
+    NSArray *series = [self getSeries:n s:s];
+    
+    AAOptions *aaOptions = AAOptions.new
+    .chartSet(AAChart.new
+//              .zoomTypeSet(AAChartZoomTypeX)
+              .pinchTypeSet(AAChartZoomTypeX)
+              )
+    .titleSet(AATitle.new
+              .textSet([NSString stringWithFormat:@"Highcharts drawing %ld points across %ld series", n * s, s]))
+    .legendSet(AALegend.new
+               .enabledSet(false))
+//    .boostSet(AABoost.new
+//              .useGPUTranslationsSet(true))
+    .xAxisSet(AAXAxis.new
+              .minSet(@0)
+              .maxSet(@120)
+//              .ordinalSet(false)
+              )
+//    .navigatorSet(AANavigator.new
+//                  .xAxisSet(AAXAxis.new
+//                            .ordinalSet(false)
+//                            .minSet(@0)
+//                            .maxSet(@10)))
+    .subtitleSet(AASubtitle.new
+                 .textSet(@"Using the Boost module"))
+    .tooltipSet(AATooltip.new
+                .valueDecimalsSet(@2))
+    .seriesSet(series);
+    
+    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
+    mutableDic[@"boost"] = @{@"useGPUTranslations": @YES};
+    return jsonDic;
+}
+
+
+/**
  // Prepare the data
  const data = [],
      n = 1000000;
