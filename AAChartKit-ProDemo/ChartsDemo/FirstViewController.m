@@ -382,6 +382,8 @@
       //            + (NSDictionary *)columnChart;
             //            + (NSDictionary *)lineChartWithHundredsOfSeries;
             //            + (NSDictionary *)scatterChartOptions;
+            //            + (NSDictionary *)areaRangeChart;
+            //            + (NSDictionary *)columnRangeChart;
             
             @[
                 @"lineChart---折线图",
@@ -389,6 +391,8 @@
                 @"columnChart---柱形图",
                 @"lineChartWithHundredsOfSeries---百个数据集的折线图",
                 @"scatterChartOptions---散点图",
+                @"areaRangeChart---区域范围图",
+                @"columnRangeChart---柱形范围图",
             ],
             
         ];

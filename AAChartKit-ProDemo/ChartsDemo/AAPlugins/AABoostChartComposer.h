@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSDictionary *)columnChart;
 + (NSDictionary *)lineChartWithHundredsOfSeries;
 + (NSDictionary *)scatterChartOptions;
++ (NSDictionary *)areaRangeChart;
++ (NSDictionary *)columnRangeChart;
 
 @end
 
