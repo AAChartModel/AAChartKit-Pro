@@ -377,8 +377,14 @@
                  @"treegraphWithBoxLayoutChart---树图(盒子布局)",
              ],
             
+            //            + (NSDictionary *)lineChart;
+            //            + (NSDictionary *)lineChartWithHundredsOfSeries;
+            //            + (NSDictionary *)scatterChartOptions;
+            
             @[
-                @"boostChart---加速图表",
+                @"lineChart---折线图",
+                @"lineChartWithHundredsOfSeries---百个数据集的折线图",
+                @"scatterChartOptions---散点图",
             ],
             
         ];
