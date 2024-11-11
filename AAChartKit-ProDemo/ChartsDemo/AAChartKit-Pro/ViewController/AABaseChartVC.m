@@ -206,6 +206,8 @@
     } else if ([chartConfiguration isKindOfClass:AAOptions.class]) {
         [self configureChartOptions:chartConfiguration];
         [self.aaChartView aa_refreshChartWithOptions:chartConfiguration];
+    } else {
+        [self.aaChartView aa_refreshChartWithOptions:chartConfiguration];
     }
 }
 
