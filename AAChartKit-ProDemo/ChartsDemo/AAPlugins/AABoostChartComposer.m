@@ -9,10 +9,7 @@
 #import "AABoostChartComposer.h"
 #import "AAChartKit-Pro.h"
 #import "AAHeatmapChartComposer.h"
-#import "AABoost.h"
 #import "AAOptions+boost.h"
-
-static NSString * const kBoostKey = @"boost";
 
 @implementation AABoostChartComposer
 
@@ -85,37 +82,9 @@ static NSString * const kBoostKey = @"boost";
  console.timeEnd('line');
 
  */
-
-+ (NSArray *)getLineChartData:(NSNumber *)n {
-    NSMutableArray *arr = [NSMutableArray array];
-    NSNumber *a;
-    NSNumber *b;
-    NSNumber *c;
-    NSNumber *spike;
-    for (NSInteger i = 0; i < n.integerValue; i = i + 1) {
-        if (i % 100 == 0) {
-            a = @(2 * arc4random_uniform(100) / 100);
-        }
-        if (i % 1000 == 0) {
-            b = @(2 * arc4random_uniform(100) / 100);
-        }
-        if (i % 10000 == 0) {
-            c = @(2 * arc4random_uniform(100) / 100);
-        }
-        if (i % 50000 == 0) {
-            spike = @10;
-        } else {
-            spike = @0;
-        }
-        [arr addObject:@[@(i), @(2 * sin(i / 100) + a.doubleValue + b.doubleValue + c.doubleValue + spike.doubleValue + arc4random_uniform(100) / 100)]];
-    }
-    return arr;
-}
-
-
 NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
     NSMutableArray<NSArray<NSNumber *> *> *arr = [NSMutableArray arrayWithCapacity:n];
-    double a, b, c, spike;
+    double a = 0.0, b = 0.0, c = 0.0, spike;
     
     for (NSUInteger i = 0; i < n; i++) {
         if (i % 100 == 0) {
@@ -141,7 +110,7 @@ NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
 }
 
 //配置 AAOptions 实例对象
-+ (NSDictionary *)lineChart {
++ (AAOptions *)lineChart {
     NSUInteger n = 500000;
     NSArray *data = getData(n);
     
@@ -357,7 +326,7 @@ NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
 //生成 data 数组
 + (NSArray *)getData:(NSInteger)n {
     NSMutableArray *arr = [NSMutableArray array];
-    CGFloat a, b, c, spike;
+    CGFloat a = 0.0, b = 0.0, c = 0.0, spike;
     for (NSInteger i = 0; i < n; i = i + 1) {
         if (i % 100 == 0) {
             a = 2 * (float)arc4random_uniform(100);
@@ -560,8 +529,8 @@ NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
                     .pointFormatSet(@"[{point.x:.1f}, {point.y:.1f}]"))
     ]);
     
-    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
-    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
+//    NSDictionary *jsonDic = [AAJsonConverter dictionaryWithObjectInstance:aaOptions];
+//    NSMutableDictionary *mutableDic = [jsonDic mutableCopy];
 //    mutableDic[kBoostKey] = @{@"useGPUTranslations": @YES};
 //    mutableDic[kBoostKey] = @{
 //        @"useGPUTranslations": @YES,
@@ -715,7 +684,7 @@ NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
 
 NSArray<NSArray<NSNumber *> *> *getAreaRangeChartData(NSUInteger n) {
     NSMutableArray<NSArray<NSNumber *> *> *arr = [NSMutableArray arrayWithCapacity:n];
-    double a, b, c, low, spike;
+    double a = 0.0, b = 0.0, c = 0.0, low, spike;
 
     for (NSUInteger i = 0; i < n; i++) {
         if (i % 100 == 0) {
