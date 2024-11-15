@@ -63,5 +63,7 @@ AAPropSetFuncImplementation(AAZAxis, NSNumber *, min)
 AAPropSetFuncImplementation(AAZAxis, NSNumber *, max)
 AAPropSetFuncImplementation(AAZAxis, NSArray  *, categories)
 AAPropSetFuncImplementation(AAZAxis, AALabels *, labels)
+//showFirstLabel
+AAPropSetFuncImplementation(AAZAxis, BOOL      , showFirstLabel)
 
 @end

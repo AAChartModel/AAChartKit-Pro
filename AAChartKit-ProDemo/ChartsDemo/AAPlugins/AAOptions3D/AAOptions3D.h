@@ -66,6 +66,8 @@ AAPropStatementAndPropSetFuncStatement(strong, AAZAxis, NSNumber *, min)
 AAPropStatementAndPropSetFuncStatement(strong, AAZAxis, NSNumber *, max)
 AAPropStatementAndPropSetFuncStatement(strong, AAZAxis, NSArray  *, categories)
 AAPropStatementAndPropSetFuncStatement(strong, AAZAxis, AALabels *, labels)
+//showFirstLabel
+AAPropStatementAndPropSetFuncStatement(assign, AAZAxis, BOOL, showFirstLabel)
 
 @end
 
