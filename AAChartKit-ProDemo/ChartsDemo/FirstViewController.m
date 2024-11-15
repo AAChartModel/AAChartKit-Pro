@@ -427,9 +427,11 @@
                 @"columnChart---柱形图",
             ],
             //+ (AAOptions *)_3DColumnWithStackingAndGrouping;
+            //+ (AAOptions *)_3DAreaChart;
             //+ (AAOptions *)_3DScatterChart;
             @[
                 @"_3DColumnWithStackingAndGrouping---3D堆积柱形图",
+                @"_3DAreaChart---3D区域填充图",
                 @"_3DScatterChart---3D散点图",
             ],
             

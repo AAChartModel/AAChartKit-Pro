@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AAOptions3DChartComposer : NSObject
 
 + (AAOptions *)_3DColumnWithStackingAndGrouping;
++ (AAOptions *)_3DAreaChart;
 + (AAOptions *)_3DScatterChart;
 
 @end
