@@ -261,6 +261,19 @@ static NSString * const AAChartTypeScatter3d = @"scatter3d";
         ])
     ]);
 }
+
++ (AAOptions *)_3DBarWithStackingRandomData {
+    AAOptions *options = [self _3DColumnWithStackingRandomData];
+    options.chart.type = AAChartTypeBar;
+    return options;
+}
+
++ (AAOptions *)_3DBarWithStackingAndGrouping {
+    AAOptions *options = [self _3DColumnWithStackingAndGrouping];
+    options.chart.type = AAChartTypeBar;
+    return options;
+}
+
 /**
  // Data retrieved from https://yearbook.enerdata.net/electricity/world-electricity-production-statistics.html
  Highcharts.chart('container', {

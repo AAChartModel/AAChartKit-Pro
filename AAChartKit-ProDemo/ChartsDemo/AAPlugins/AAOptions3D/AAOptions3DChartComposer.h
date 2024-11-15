@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (AAOptions *)_3DColumnWithStackingRandomData;
 + (AAOptions *)_3DColumnWithStackingAndGrouping;
++ (AAOptions *)_3DBarWithStackingRandomData;
++ (AAOptions *)_3DBarWithStackingAndGrouping;
 + (AAOptions *)_3DAreaChart;
 + (AAOptions *)_3DScatterChart;
 

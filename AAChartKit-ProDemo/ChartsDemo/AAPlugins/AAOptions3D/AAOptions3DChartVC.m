@@ -45,12 +45,16 @@
     switch (self.selectedIndex) {
 //+ (AAOptions *)_3DColumnWithStackingRandomData;
 //+ (AAOptions *)_3DColumnWithStackingAndGrouping;
+//            + (AAOptions *)_3DBarWithStackingRandomData;
+//            + (AAOptions *)_3DBarWithStackingAndGrouping;
 //+ (AAOptions *)_3DAreaChart;
 //+ (AAOptions *)_3DScatterChart;
         case 0: return [AAOptions3DChartComposer _3DColumnWithStackingRandomData];
         case 1: return [AAOptions3DChartComposer _3DColumnWithStackingAndGrouping];
-        case 2: return [AAOptions3DChartComposer _3DAreaChart];
-        case 3: return [AAOptions3DChartComposer _3DScatterChart];
+        case 2: return [AAOptions3DChartComposer _3DBarWithStackingRandomData];
+        case 3: return [AAOptions3DChartComposer _3DBarWithStackingAndGrouping];
+        case 4: return [AAOptions3DChartComposer _3DAreaChart];
+        case 5: return [AAOptions3DChartComposer _3DScatterChart];
        
 
 
