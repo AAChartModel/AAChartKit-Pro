@@ -10,6 +10,7 @@
 #import "AAChartKit-Pro.h"
 #import "AAChart+Options3D.h"
 #import "AAOptions+ZAxis.h"
+#import "AASeries+Depth.h"
 
 static NSString * const AAChartTypeScatter3d = @"scatter3d";
 
@@ -150,18 +151,18 @@ static NSString * const AAChartTypeScatter3d = @"scatter3d";
                          )
               )
     .plotOptionsSet(AAPlotOptions.new
-//                    .seriesSet(AASeries.new
-////                               .groupZPaddingSet(@10)
-////                               .depthSet(@100)
-////                               .groupPaddingSet(@0)
-////                               .groupingSet(false)
-//                               )
-                    .columnSet((id)@{
-                        @"groupZPadding": @10,
-                        @"depth": @100,
-                        @"groupPadding": @0,
-                        @"grouping": @false,
-                        })
+                    .seriesSet(AASeries.new
+                               .groupZPaddingSet(@10)
+                               .depthSet(@100)
+                               .groupPaddingSet(@0)
+                               .groupingSet(false)
+                               )
+//                    .columnSet((id)@{
+//                        @"groupZPadding": @10,
+//                        @"depth": @100,
+//                        @"groupPadding": @0,
+//                        @"grouping": @false,
+//                        })
                     )
     .seriesSet(@[
         AASeriesElement.new
