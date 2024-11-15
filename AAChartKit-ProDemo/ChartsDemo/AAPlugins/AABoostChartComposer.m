@@ -122,6 +122,7 @@ NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
                   .pinchTypeSet(AAChartZoomTypeX)
                   .panningSet(true)
                   .panKeySet(@"shift"))
+        .colorsSet(@[AAColor.redColor])
         .titleSet(AATitle.new
                   .textSet([NSString stringWithFormat:@"Highcharts drawing %ld points", n]))
         .subtitleSet(AASubtitle.new
@@ -132,7 +133,6 @@ NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
             AASeriesElement.new
                 .dataSet(data)
                 .lineWidthSet(@0.5)
-                .colorSet(AAColor.redColor)
         ]);
 
     return aaOptions;
@@ -141,12 +141,14 @@ NSArray<NSArray<NSNumber *> *> *getData(NSUInteger n) {
 + (AAOptions *)areaChart {
     AAOptions *aaOptions = [self lineChart];
     aaOptions.chart.type = AAChartTypeArea;
+    aaOptions.colors = @[AAColor.greenColor];
     return aaOptions;
 }
 
 + (AAOptions *)columnChart {
     AAOptions *aaOptions = [self lineChart];
     aaOptions.chart.type = AAChartTypeColumn;
+    aaOptions.colors = @[AAColor.blueColor];
     return aaOptions;
 }
 
@@ -585,10 +587,10 @@ NSArray<NSArray<NSNumber *> *> *getAreaRangeChartData(NSUInteger n) {
                  .textSet(@"Using the Boost module"))
     .tooltipSet(AATooltip.new
                 .valueDecimalsSet(@2))
+    .colorsSet(@[AAColor.redColor])
     .seriesSet(@[
         AASeriesElement.new
         .dataSet(data)
-        .colorSet(AAColor.redColor)
     ]);
  
     return aaOptions;
@@ -598,6 +600,7 @@ NSArray<NSArray<NSNumber *> *> *getAreaRangeChartData(NSUInteger n) {
 + (AAOptions *)columnRangeChart {
     AAOptions *aaOptions = [self areaRangeChart];
     aaOptions.chart.type = AAChartTypeColumnrange;
+    aaOptions.colors = @[AAColor.yellowColor];
     return aaOptions;
 }
 
@@ -837,14 +840,16 @@ NSArray<NSArray<NSNumber *> *> *getAreaRangeChartData(NSUInteger n) {
                 .valueDecimalsSet(@2))
     .plotOptionsSet(AAPlotOptions.new
                     .seriesSet(AASeries.new
-                             .stackingSet(AAChartStackingTypeNormal)))
+                             .stackingSet(AAChartStackingTypePercent)))
+    .colorsSet(@[
+        AAColor.redColor,
+        AAColor.yellowColor
+    ])
     .seriesSet(@[
         AASeriesElement.new
-        .dataSet(getData(25000))
-        .colorSet(AAColor.redColor),
+        .dataSet(getData(25000)),
         AASeriesElement.new
         .dataSet(getData(25000))
-        .colorSet(AAColor.greenColor)
     ]);
 
     return aaOptions;
@@ -854,6 +859,10 @@ NSArray<NSArray<NSNumber *> *> *getAreaRangeChartData(NSUInteger n) {
 + (AAOptions *)stackingColumnChart {
     AAOptions *aaOptions = [self stackingAreaChart];
     aaOptions.chart.typeSet(AAChartTypeColumn);
+    aaOptions.colors = @[
+        AAColor.greenColor,
+        AAColor.purpleColor
+    ];
     return aaOptions;
 }
 
