@@ -94,6 +94,11 @@
 		8441A72026C21F02007EAAA7 /* AAGradientColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A71E26C21F02007EAAA7 /* AAGradientColor.m */; };
 		8441A72626C21F0A007EAAA7 /* NSArray+toJSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A72426C21F0A007EAAA7 /* NSArray+toJSArray.m */; };
 		8441A72726C21F0A007EAAA7 /* NSString+toPureJSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A72526C21F0A007EAAA7 /* NSString+toPureJSString.m */; };
+		84526DC62CE71D7100EB2563 /* AADrilldown.js in Resources */ = {isa = PBXBuildFile; fileRef = 84526DC52CE71D7100EB2563 /* AADrilldown.js */; };
+		84526DC92CE71DB900EB2563 /* AADrilldown.m in Sources */ = {isa = PBXBuildFile; fileRef = 84526DC82CE71DB900EB2563 /* AADrilldown.m */; };
+		84526DCC2CE71F5700EB2563 /* AADrilldownChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84526DCB2CE71F5700EB2563 /* AADrilldownChartVC.m */; };
+		84526DCF2CE71FB100EB2563 /* AADrilldownChartComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84526DCE2CE71FB100EB2563 /* AADrilldownChartComposer.m */; };
+		84526DD52CE7218300EB2563 /* AAOptions+Drilldown.m in Sources */ = {isa = PBXBuildFile; fileRef = 84526DD42CE7218300EB2563 /* AAOptions+Drilldown.m */; };
 		8492D9A02C7499DC007EB8D0 /* calendarHeatmapData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8492D99F2C7499DC007EB8D0 /* calendarHeatmapData.json */; };
 		84A5690027FD48E900883553 /* organizationData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A568FF27FD48E900883553 /* organizationData.json */; };
 		84A5690227FD496600883553 /* organizationNodesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690127FD496600883553 /* organizationNodesData.json */; };
@@ -316,6 +321,15 @@
 		8441A72326C21F0A007EAAA7 /* NSString+toPureJSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+toPureJSString.h"; sourceTree = "<group>"; };
 		8441A72426C21F0A007EAAA7 /* NSArray+toJSArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+toJSArray.m"; sourceTree = "<group>"; };
 		8441A72526C21F0A007EAAA7 /* NSString+toPureJSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+toPureJSString.m"; sourceTree = "<group>"; };
+		84526DC52CE71D7100EB2563 /* AADrilldown.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AADrilldown.js; sourceTree = "<group>"; };
+		84526DC72CE71DB900EB2563 /* AADrilldown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AADrilldown.h; sourceTree = "<group>"; };
+		84526DC82CE71DB900EB2563 /* AADrilldown.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AADrilldown.m; sourceTree = "<group>"; };
+		84526DCA2CE71F5700EB2563 /* AADrilldownChartVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AADrilldownChartVC.h; sourceTree = "<group>"; };
+		84526DCB2CE71F5700EB2563 /* AADrilldownChartVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AADrilldownChartVC.m; sourceTree = "<group>"; };
+		84526DCD2CE71FB100EB2563 /* AADrilldownChartComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AADrilldownChartComposer.h; sourceTree = "<group>"; };
+		84526DCE2CE71FB100EB2563 /* AADrilldownChartComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AADrilldownChartComposer.m; sourceTree = "<group>"; };
+		84526DD32CE7218300EB2563 /* AAOptions+Drilldown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AAOptions+Drilldown.h"; sourceTree = "<group>"; };
+		84526DD42CE7218300EB2563 /* AAOptions+Drilldown.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AAOptions+Drilldown.m"; sourceTree = "<group>"; };
 		8492D99E2C7498B8007EB8D0 /* AAChartKit-ProDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "AAChartKit-ProDemo.entitlements"; sourceTree = "<group>"; };
 		8492D99F2C7499DC007EB8D0 /* calendarHeatmapData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = calendarHeatmapData.json; sourceTree = "<group>"; };
 		84A568FF27FD48E900883553 /* organizationData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = organizationData.json; sourceTree = "<group>"; };
@@ -726,6 +740,22 @@
 			path = AABoost;
 			sourceTree = "<group>";
 		};
+		84526DC42CE71C6400EB2563 /* AADrilldown */ = {
+			isa = PBXGroup;
+			children = (
+				84526DC52CE71D7100EB2563 /* AADrilldown.js */,
+				84526DC72CE71DB900EB2563 /* AADrilldown.h */,
+				84526DC82CE71DB900EB2563 /* AADrilldown.m */,
+				84526DCA2CE71F5700EB2563 /* AADrilldownChartVC.h */,
+				84526DCB2CE71F5700EB2563 /* AADrilldownChartVC.m */,
+				84526DCD2CE71FB100EB2563 /* AADrilldownChartComposer.h */,
+				84526DCE2CE71FB100EB2563 /* AADrilldownChartComposer.m */,
+				84526DD32CE7218300EB2563 /* AAOptions+Drilldown.h */,
+				84526DD42CE7218300EB2563 /* AAOptions+Drilldown.m */,
+			);
+			path = AADrilldown;
+			sourceTree = "<group>";
+		};
 		84B13F4128A0B018007356C6 /* Composer */ = {
 			isa = PBXGroup;
 			children = (
@@ -796,6 +826,7 @@
 			isa = PBXGroup;
 			children = (
 				84526DC22CE71C2B00EB2563 /* AABoost */,
+				84526DC42CE71C6400EB2563 /* AADrilldown */,
 			);
 			path = AAPlugins;
 			sourceTree = "<group>";
@@ -1022,6 +1053,7 @@
 				27EB8A7C2497C007007E6A6B /* drilldownTreemapData.json in Resources */,
 				27EB8A792497C007007E6A6B /* vennData.json in Resources */,
 				27EB8A712497C007007E6A6B /* variwideData.json in Resources */,
+				84526DC62CE71D7100EB2563 /* AADrilldown.js in Resources */,
 				27EB8A8F249B804C007E6A6B /* bellcurveData.json in Resources */,
 				84A5690027FD48E900883553 /* organizationData.json in Resources */,
 				27EB8A722497C007007E6A6B /* treemapWithLevelsData.json in Resources */,
@@ -1104,6 +1136,7 @@
 				8441A70A26C21E6C007EAAA7 /* AALineStyle.m in Sources */,
 				84DFEB802A2882ED004436BC /* AAColumn.m in Sources */,
 				84DFEAC22A284596004436BC /* AAPattern.m in Sources */,
+				84526DCF2CE71FB100EB2563 /* AADrilldownChartComposer.m in Sources */,
 				84D904602CE1A44900F75AFF /* AABoostChartVC.m in Sources */,
 				8409E6B22CD4C8AD000EFCF2 /* AAHeatmapChartVC.m in Sources */,
 				8441A70326C21E6C007EAAA7 /* AAPlotOptions.m in Sources */,
@@ -1126,6 +1159,7 @@
 				8441A6FD26C21E6C007EAAA7 /* AAStyle.m in Sources */,
 				8441A70826C21E6C007EAAA7 /* AAAnimation.m in Sources */,
 				8441A6FA26C21E6C007EAAA7 /* AALegend.m in Sources */,
+				84526DD52CE7218300EB2563 /* AAOptions+Drilldown.m in Sources */,
 				84FE7BB726AED3D000B68A56 /* AABaseChartVC.m in Sources */,
 				84DFEB772A2882ED004436BC /* AAArea.m in Sources */,
 				84AA68AF28A11A6E009067AE /* AAData.m in Sources */,
@@ -1141,10 +1175,12 @@
 				27EB8A832497C03A007E6A6B /* AAOptionsData.m in Sources */,
 				84AA68B228A11E45009067AE /* AAHeatmap.m in Sources */,
 				8441A6B426C21E53007EAAA7 /* AAChartModel.m in Sources */,
+				84526DC92CE71DB900EB2563 /* AADrilldown.m in Sources */,
 				8441A6F726C21E6C007EAAA7 /* AAStates.m in Sources */,
 				27EB89EB24912A2F007E6A6B /* AALayoutAlgorithm.m in Sources */,
 				8441A72726C21F0A007EAAA7 /* NSString+toPureJSString.m in Sources */,
 				84DFEB7A2A2882ED004436BC /* AAAreaspline.m in Sources */,
+				84526DCC2CE71F5700EB2563 /* AADrilldownChartVC.m in Sources */,
 				27EB8A1F24927BE8007E6A6B /* AATreemap.m in Sources */,
 				8409E6AC2CD4C0A1000EFCF2 /* AAHeatmapChartComposer.m in Sources */,
 				84AA68A028A0E45D009067AE /* AAColumnVariantChartVC.m in Sources */,

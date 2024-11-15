@@ -37,7 +37,7 @@ static NSString * const kBoostPath = @"https://code.highcharts.com/modules/boost
     //https://code.highcharts.com/{version}/modules/boost.js
     //https://code.highcharts.com/9.3.2/modules/boost.js
     //<script src="https://code.highcharts.com/modules/drilldown.js"></script>
-
+    //https://code.highcharts.com/11.0.1/modules/drilldown.js
     
 }
 

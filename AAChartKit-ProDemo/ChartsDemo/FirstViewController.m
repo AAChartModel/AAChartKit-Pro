@@ -40,6 +40,7 @@
 #import "AATreemapChartVC.h"
 #import "AATreegraphChartVC.h"
 #import "AABoostChartVC.h"
+#import "AADrilldownChartVC.h"
 
 #define ColorWithRGB(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 #define AAGrayColor            [UIColor colorWithRed:245/255.0 green:246/255.0 blue:247/255.0 alpha:1.0]
@@ -204,6 +205,14 @@
             
         case 8 : {
             AABoostChartVC *vc = [[AABoostChartVC alloc]init];
+            vc.selectedIndex = indexPath.row;
+            vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        case 9 : {
+            AADrilldownChartVC *vc = [[AADrilldownChartVC alloc]init];
             vc.selectedIndex = indexPath.row;
             vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
             [self.navigationController pushViewController:vc animated:YES];
@@ -405,6 +414,10 @@
                 @"stackingColumnChart---堆积柱形图",
             ],
             
+            @[
+                @"columnChart---柱形图",
+            ],
+            
         ];
     }
     return _chartTypeNameArr;
@@ -422,6 +435,7 @@
             @"TreemapChart | 矩形树图",
             @"TreegraphChart | 树图",
             @"BoostChart | 加速图表",
+            @"DrilldownChart | 下钻图表",
 
         ];
     }
