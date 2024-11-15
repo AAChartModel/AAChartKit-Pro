@@ -228,7 +228,7 @@ static NSString * const AAChartTypeScatter3d = @"scatter3d";
                     )
     .seriesSet(@[
         AASeriesElement.new
-        .stackSet(@0)
+        .stackSet((id)@0)
         .dataSet(@[
             @{@"x": @0, @"y": @(arc4random_uniform(11))},
             @{@"x": @1, @"y": @(arc4random_uniform(11))},
@@ -236,7 +236,7 @@ static NSString * const AAChartTypeScatter3d = @"scatter3d";
             @{@"x": @3, @"y": @(arc4random_uniform(11))}
         ]),
         AASeriesElement.new
-        .stackSet(@1)
+        .stackSet((id)@1)
         .dataSet(@[
             @{@"x": @0, @"y": @(arc4random_uniform(11))},
             @{@"x": @1, @"y": @(arc4random_uniform(11))},
@@ -244,7 +244,7 @@ static NSString * const AAChartTypeScatter3d = @"scatter3d";
             @{@"x": @3, @"y": @(arc4random_uniform(11))}
         ]),
         AASeriesElement.new
-        .stackSet(@2)
+        .stackSet((id)@2)
         .dataSet(@[
             @{@"x": @0, @"y": @(arc4random_uniform(11))},
             @{@"x": @1, @"y": @(arc4random_uniform(11))},
@@ -252,7 +252,7 @@ static NSString * const AAChartTypeScatter3d = @"scatter3d";
             @{@"x": @3, @"y": @(arc4random_uniform(11))}
         ]),
         AASeriesElement.new
-        .stackSet(@3)
+        .stackSet((id)@3)
         .dataSet(@[
             @{@"x": @0, @"y": @(arc4random_uniform(11))},
             @{@"x": @1, @"y": @(arc4random_uniform(11))},
@@ -378,7 +378,7 @@ static NSString * const AAChartTypeScatter3d = @"scatter3d";
     .yAxisSet(AAYAxis.new
               .allowDecimalsSet(false)
               .minSet(@0)
-              .titleSet(AATitle.new
+              .titleSet(AAAxisTitle.new
                         .textSet(@"TWh")
 //                        .skew3dSet(true)
                         .styleSet(AAStyle.new
@@ -634,16 +634,16 @@ static NSString * const AAChartTypeScatter3d = @"scatter3d";
 //                               )
 //             )
     .yAxisSet(AAYAxis.new
-              .titleSet(AATitle.new
+              .titleSet(AAAxisTitle.new
                         .textSet(@"Height Above Sea Level")
                         .xSet(@-40)
                         )
               .labelsSet(AALabels.new
-//                         .formatSet(@"{value:,.0f} MAMSL")
+                         .formatSet(@"{value:,.0f} MAMSL")
                          )
               .gridLineDashStyleSet(AAChartLineDashStyleTypeDash)
               )
-    .xAxisSet(@[
+    .xAxisSet((id)@[
         AAXAxis.new
             .visibleSet(false),
         AAXAxis.new
@@ -825,10 +825,15 @@ static NSString * const AAChartTypeScatter3d = @"scatter3d";
                  .textSet(@"Click and drag the plot area to rotate in space"))
     .plotOptionsSet(AAPlotOptions.new
 //                    .scatterSet(AAScatter.new
-//                                .widthSet(@10)
-//                                .heightSet(@10)
-//                                .depthSet(@10)
+////                                .widthSet(@10)
+////                                .heightSet(@10)
+////                                .depthSet(@10)
 //                                )
+                    .scatterSet((id)@{
+                        @"width": @10,
+                        @"height": @10,
+                        @"depth": @10
+                    })
                     )
     .yAxisSet(AAYAxis.new
               .minSet(@0)
@@ -840,11 +845,11 @@ static NSString * const AAChartTypeScatter3d = @"scatter3d";
                 .maxSet(@10)
                 .gridLineWidthSet(@1)
                 )
-//    .zAxisSet(AAZAxis.new
-//                .minSet(@0)
-//                .maxSet(@10)
-//                .showFirstLabelSet(false)
-//                )
+    .zAxisSet(AAZAxis.new
+                .minSet(@0)
+                .maxSet(@10)
+                .showFirstLabelSet(false)
+                )
     .legendSet(AALegend.new
                 .enabledSet(false)
                 )
