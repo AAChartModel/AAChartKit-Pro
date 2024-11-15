@@ -115,6 +115,68 @@ static NSString * const AAChartTypeScatter3d = @"scatter3d";
     return AAOptions.new
     .chartSet(AAChart.new
               .typeSet(AAChartTypeColumn)
+              .eventsSet(AAChartEvents.new
+                         .loadSet(@AAJSFunc(function () {
+                             var chart = this;
+                             // Add mouse events for rotation
+                             chart.container.addEventListener('mousedown', function(eStart) {
+                                 eStart = chart.pointer.normalize(eStart);
+                                 var posX = eStart.pageX,
+                                     posY = eStart.pageY,
+                                     alpha = chart.options.chart.options3d.alpha,
+                                     beta = chart.options.chart.options3d.beta,
+                                     newAlpha,
+                                     newBeta,
+                                     sensitivity = 1; // lower is more sensitive
+
+                                 function onMouseMove(e) {
+                                     // Run beta
+                                     newBeta = beta + (posX - e.pageX) / sensitivity;
+                                     chart.options.chart.options3d.beta = newBeta;
+                                     // Run alpha
+                                     newAlpha = alpha + (e.pageY - posY) / sensitivity;
+                                     chart.options.chart.options3d.alpha = newAlpha;
+                                     chart.redraw(false);
+                                 }
+
+                                 function onMouseUp() {
+                                     document.removeEventListener('mousemove', onMouseMove);
+                                     document.removeEventListener('mouseup', onMouseUp);
+                                 }
+
+                                 document.addEventListener('mousemove', onMouseMove);
+                                 document.addEventListener('mouseup', onMouseUp);
+                             });
+
+                             chart.container.addEventListener('touchstart', function(eStart) {
+                                 eStart = chart.pointer.normalize(eStart);
+                                 var posX = eStart.pageX,
+                                     posY = eStart.pageY,
+                                     alpha = chart.options.chart.options3d.alpha,
+                                     beta = chart.options.chart.options3d.beta,
+                                     newAlpha,
+                                     newBeta,
+                                     sensitivity = 1; // lower is more sensitive
+
+                                 function onTouchMove(e) {
+                                     // Run beta
+                                     newBeta = beta + (posX - e.touches[0].pageX) / sensitivity;
+                                     chart.options.chart.options3d.beta = newBeta;
+                                     // Run alpha
+                                     newAlpha = alpha + (e.touches[0].pageY - posY) / sensitivity;
+                                     chart.options.chart.options3d.alpha = newAlpha;
+                                     chart.redraw(false);
+                                 }
+
+                                 function onTouchEnd() {
+                                     document.removeEventListener('touchmove', onTouchMove);
+                                     document.removeEventListener('touchend', onTouchEnd);
+                                 }
+
+                                 document.addEventListener('touchmove', onTouchMove);
+                                 document.addEventListener('touchend', onTouchEnd);
+                             });
+                         })))
               .options3dSet(AAOptions3D.new
                             .enabledSet(true)
                             .alphaSet(@20)
