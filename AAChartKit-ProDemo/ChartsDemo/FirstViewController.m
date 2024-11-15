@@ -426,8 +426,10 @@
             @[
                 @"columnChart---柱形图",
             ],
+            //+ (AAOptions *)_3DColumnWithStackingAndGrouping;
             //+ (AAOptions *)_3DScatterChart;
             @[
+                @"_3DColumnWithStackingAndGrouping---3D堆积柱形图",
                 @"_3DScatterChart---3D散点图",
             ],
             

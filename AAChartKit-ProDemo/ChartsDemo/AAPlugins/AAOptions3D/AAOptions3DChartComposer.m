@@ -15,6 +15,154 @@ static NSString * const AAChartTypeScatter3d = @"scatter3d";
 @implementation AAOptions3DChartComposer
 
 /**
+ // Data retrieved from https://yearbook.enerdata.net/electricity/world-electricity-production-statistics.html
+ Highcharts.chart('container', {
+     chart: {
+         type: 'column',
+         options3d: {
+             enabled: true,
+             alpha: 15,
+             beta: 15,
+             viewDistance: 25,
+             depth: 40
+         }
+     },
+
+     title: {
+         text: ' Electricity production in countries, grouped by continent',
+         align: 'left'
+     },
+
+     xAxis: {
+         labels: {
+             skew3d: true,
+             style: {
+                 fontSize: '16px'
+             }
+         }
+     },
+
+     yAxis: {
+         allowDecimals: false,
+         min: 0,
+         title: {
+             text: 'TWh',
+             skew3d: true,
+             style: {
+                 fontSize: '16px'
+             }
+         }
+     },
+
+     tooltip: {
+         headerFormat: '<b>{point.key}</b><br>',
+         pointFormat: '<span style="color:{series.color}">\u25CF</span> ' +
+             '{series.name}: {point.y} / {point.stackTotal}'
+     },
+
+     plotOptions: {
+         series: {
+             pointStart: 2018
+         },
+         column: {
+             stacking: 'normal',
+             depth: 40
+         }
+     },
+
+     series: [{
+         name: 'South Korea',
+         data: [590, 582, 571, 606, 625],
+         stack: 'Asia'
+     }, {
+         name: 'Germany',
+         data: [643, 612, 572, 588, 578],
+         stack: 'Europe'
+     }, {
+         name: 'Saudi Arabia',
+         data: [378, 367, 363, 408, 433],
+         stack: 'Asia'
+     }, {
+         name: 'France',
+         data: [582, 571, 533, 555, 473],
+         stack: 'Europe'
+     }]
+ });
+
+ */
+//3D column with stacking and grouping
++ (AAOptions *)_3DColumnWithStackingAndGrouping {
+    return AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(AAChartTypeColumn)
+              .options3dSet(AAOptions3D.new
+                            .enabledSet(true)
+                            .alphaSet(@15)
+                            .betaSet(@15)
+                            .viewDistanceSet(@25)
+                            .depthSet(@40)
+                            )
+              )
+    .titleSet(AATitle.new
+              .textSet(@"Electricity production in countries, grouped by continent")
+              .alignSet(@"left")
+              )
+    .xAxisSet(AAXAxis.new
+              .labelsSet(AALabels.new
+//                         .skew3dSet(true)
+                         .styleSet(AAStyle.new
+                                   .fontSizeSet(@"16px")
+                                   )
+                         )
+              )
+    .yAxisSet(AAYAxis.new
+              .allowDecimalsSet(false)
+              .minSet(@0)
+              .titleSet(AATitle.new
+                        .textSet(@"TWh")
+//                        .skew3dSet(true)
+                        .styleSet(AAStyle.new
+                                  .fontSizeSet(@"16px")
+                                  )
+                        )
+              )
+    .tooltipSet(AATooltip.new
+                .headerFormatSet(@"<b>{point.key}</b><br>")
+//                .pointFormatSet(@"<span style=\"color:{series.color}\">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}")
+                )
+    .plotOptionsSet(AAPlotOptions.new
+                    .seriesSet(AASeries.new
+//                               .pointStartSet(@2018)
+                               )
+                    .columnSet(AAColumn.new
+                               .stackingSet(AAChartStackingTypeNormal)
+//                               .depthSet(@40)
+                               )
+                    )
+    .seriesSet(@[
+        AASeriesElement.new
+        .nameSet(@"South Korea")
+        .dataSet(@[@590, @582, @571, @606, @625])
+        .stackSet(@"Asia"),
+        AASeriesElement.new
+        .nameSet(@"Germany")
+        .dataSet(@[@643, @612, @572, @588, @578])
+        .stackSet(@"Europe"),
+        AASeriesElement.new
+        .nameSet(@"Saudi Arabia")
+        .dataSet(@[@378, @367, @363, @408, @433])
+        .stackSet(@"Asia"),
+        AASeriesElement.new
+        .nameSet(@"France")
+        .dataSet(@[@582, @571, @533, @555, @473])
+        .stackSet(@"Europe"),
+    ]);
+}
+
+
+
+
+/**
  // Set up the chart
  const chart = new Highcharts.Chart({
      chart: {
@@ -172,7 +320,8 @@ static NSString * const AAChartTypeScatter3d = @"scatter3d";
         ])
         ])
     ;
-    
 }
+
+
 
 @end

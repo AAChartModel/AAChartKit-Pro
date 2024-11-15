@@ -44,8 +44,10 @@
 - (id)chartConfigurationWithSelectedIndex:(NSUInteger)selectedIndex {
     switch (self.selectedIndex) {
 
-
-        case 0: return [AAOptions3DChartComposer _3DScatterChart];
+//+ (AAOptions *)_3DColumnWithStackingAndGrouping;
+//+ (AAOptions *)_3DScatterChart;
+        case 0: return [AAOptions3DChartComposer _3DColumnWithStackingAndGrouping];
+        case 1: return [AAOptions3DChartComposer _3DScatterChart];
        
 
 
