@@ -104,6 +104,7 @@
 		84526DDE2CE72B5A00EB2563 /* AAOptions3DChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84526DDD2CE72B5A00EB2563 /* AAOptions3DChartVC.m */; };
 		84526DE12CE72B7E00EB2563 /* AAOptions3DChartComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84526DE02CE72B7E00EB2563 /* AAOptions3DChartComposer.m */; };
 		84526DE42CE72BF500EB2563 /* AAChart+Options3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 84526DE32CE72BF500EB2563 /* AAChart+Options3D.m */; };
+		84526DE82CE73D8100EB2563 /* AAOptions+ZAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 84526DE72CE73D8100EB2563 /* AAOptions+ZAxis.m */; };
 		8492D9A02C7499DC007EB8D0 /* calendarHeatmapData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8492D99F2C7499DC007EB8D0 /* calendarHeatmapData.json */; };
 		84A5690027FD48E900883553 /* organizationData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A568FF27FD48E900883553 /* organizationData.json */; };
 		84A5690227FD496600883553 /* organizationNodesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690127FD496600883553 /* organizationNodesData.json */; };
@@ -344,6 +345,8 @@
 		84526DE02CE72B7E00EB2563 /* AAOptions3DChartComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAOptions3DChartComposer.m; sourceTree = "<group>"; };
 		84526DE22CE72BF500EB2563 /* AAChart+Options3D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AAChart+Options3D.h"; sourceTree = "<group>"; };
 		84526DE32CE72BF500EB2563 /* AAChart+Options3D.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AAChart+Options3D.m"; sourceTree = "<group>"; };
+		84526DE62CE73D8100EB2563 /* AAOptions+ZAxis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AAOptions+ZAxis.h"; sourceTree = "<group>"; };
+		84526DE72CE73D8100EB2563 /* AAOptions+ZAxis.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AAOptions+ZAxis.m"; sourceTree = "<group>"; };
 		8492D99E2C7498B8007EB8D0 /* AAChartKit-ProDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "AAChartKit-ProDemo.entitlements"; sourceTree = "<group>"; };
 		8492D99F2C7499DC007EB8D0 /* calendarHeatmapData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = calendarHeatmapData.json; sourceTree = "<group>"; };
 		84A568FF27FD48E900883553 /* organizationData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = organizationData.json; sourceTree = "<group>"; };
@@ -782,6 +785,8 @@
 				84526DE02CE72B7E00EB2563 /* AAOptions3DChartComposer.m */,
 				84526DE22CE72BF500EB2563 /* AAChart+Options3D.h */,
 				84526DE32CE72BF500EB2563 /* AAChart+Options3D.m */,
+				84526DE62CE73D8100EB2563 /* AAOptions+ZAxis.h */,
+				84526DE72CE73D8100EB2563 /* AAOptions+ZAxis.m */,
 			);
 			path = AAOptions3D;
 			sourceTree = "<group>";
@@ -1176,6 +1181,7 @@
 				8441A70426C21E6C007EAAA7 /* AACredits.m in Sources */,
 				8441A6F926C21E6C007EAAA7 /* AAYAxis.m in Sources */,
 				8441A6FB26C21E6C007EAAA7 /* AAShadow.m in Sources */,
+				84526DE82CE73D8100EB2563 /* AAOptions+ZAxis.m in Sources */,
 				27EB89DF248BE1C9007E6A6B /* AAColorAxis.m in Sources */,
 				84B13F5128A0BA3A007356C6 /* AABubbleChartVC.m in Sources */,
 				84B13EE72897A090007356C6 /* AAItem.m in Sources */,

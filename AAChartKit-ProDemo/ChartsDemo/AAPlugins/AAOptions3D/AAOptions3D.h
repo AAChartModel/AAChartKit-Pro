@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class AAFrame;
+@class AAFrame, AALabels;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -45,6 +45,27 @@ AAPropStatementAndPropSetFuncStatement(strong, AAOptions3D, AAFrame  *, frame)
 AAPropStatementAndPropSetFuncStatement(strong, AAFrame, NSDictionary *, bottom)
 AAPropStatementAndPropSetFuncStatement(strong, AAFrame, NSDictionary *, back)
 AAPropStatementAndPropSetFuncStatement(strong, AAFrame, NSDictionary *, side)
+
+@end
+
+
+/**
+ zAxis: {
+     min: 0,
+     max: 3,
+     categories: ['A01', 'A02', 'A03', 'A04', 'A05', 'A06', 'A07', 'A08', 'A09', 'A10', 'A11', 'A12'],
+     labels: {
+         y: 5,
+         rotation: 18
+     }
+ },
+ */
+@interface AAZAxis : NSObject
+
+AAPropStatementAndPropSetFuncStatement(strong, AAZAxis, NSNumber *, min)
+AAPropStatementAndPropSetFuncStatement(strong, AAZAxis, NSNumber *, max)
+AAPropStatementAndPropSetFuncStatement(strong, AAZAxis, NSArray  *, categories)
+AAPropStatementAndPropSetFuncStatement(strong, AAZAxis, AALabels *, labels)
 
 @end
 

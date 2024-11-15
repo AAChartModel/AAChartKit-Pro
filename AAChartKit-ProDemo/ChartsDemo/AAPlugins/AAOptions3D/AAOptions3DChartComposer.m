@@ -9,6 +9,7 @@
 #import "AAOptions3DChartComposer.h"
 #import "AAChartKit-Pro.h"
 #import "AAChart+Options3D.h"
+#import "AAOptions+ZAxis.h"
 
 static NSString * const AAChartTypeScatter3d = @"scatter3d";
 
@@ -139,22 +140,28 @@ static NSString * const AAChartTypeScatter3d = @"scatter3d";
               .maxSet(@3)
               .gridLineWidthSet(@1)
               )
-//    .zAxisSet(AAZAxis.new
-//              .minSet(@0)
-//              .maxSet(@3)
-//              .categoriesSet(@[@"A01", @"A02", @"A03", @"A04", @"A05", @"A06", @"A07", @"A08", @"A09", @"A10", @"A11", @"A12"])
-//              .labelsSet(AALabels.new
-//                         .ySet(@5)
-//                         .rotationSet(@18)
-//                         )
-//              )
+    .zAxisSet(AAZAxis.new
+              .minSet(@0)
+              .maxSet(@3)
+              .categoriesSet(@[@"A01", @"A02", @"A03", @"A04", @"A05", @"A06", @"A07", @"A08", @"A09", @"A10", @"A11", @"A12"])
+              .labelsSet(AALabels.new
+                         .ySet(@5)
+                         .rotationSet(@18)
+                         )
+              )
     .plotOptionsSet(AAPlotOptions.new
-                    .seriesSet(AASeries.new
-//                               .groupZPaddingSet(@10)
-//                               .depthSet(@100)
-                               .groupPaddingSet(@0)
-//                               .groupingSet(false)
-                               )
+//                    .seriesSet(AASeries.new
+////                               .groupZPaddingSet(@10)
+////                               .depthSet(@100)
+////                               .groupPaddingSet(@0)
+////                               .groupingSet(false)
+//                               )
+                    .columnSet((id)@{
+                        @"groupZPadding": @10,
+                        @"depth": @100,
+                        @"groupPadding": @0,
+                        @"grouping": @false,
+                        })
                     )
     .seriesSet(@[
         AASeriesElement.new

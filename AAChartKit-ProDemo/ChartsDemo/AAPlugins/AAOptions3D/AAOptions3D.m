@@ -43,3 +43,25 @@ AAPropSetFuncImplementation(AAFrame, NSDictionary *, back)
 AAPropSetFuncImplementation(AAFrame, NSDictionary *, side)
 
 @end
+
+
+/**
+ zAxis: {
+     min: 0,
+     max: 3,
+     categories: ['A01', 'A02', 'A03', 'A04', 'A05', 'A06', 'A07', 'A08', 'A09', 'A10', 'A11', 'A12'],
+     labels: {
+         y: 5,
+         rotation: 18
+     }
+ },
+ */
+
+@implementation AAZAxis
+
+AAPropSetFuncImplementation(AAZAxis, NSNumber *, min)
+AAPropSetFuncImplementation(AAZAxis, NSNumber *, max)
+AAPropSetFuncImplementation(AAZAxis, NSArray  *, categories)
+AAPropSetFuncImplementation(AAZAxis, AALabels *, labels)
+
+@end
