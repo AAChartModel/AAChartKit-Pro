@@ -41,6 +41,7 @@
 #import "AATreegraphChartVC.h"
 #import "AABoostChartVC.h"
 #import "AADrilldownChartVC.h"
+#import "AAOptions3DChartVC.h"
 
 #define ColorWithRGB(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 #define AAGrayColor            [UIColor colorWithRed:245/255.0 green:246/255.0 blue:247/255.0 alpha:1.0]
@@ -213,6 +214,14 @@
             
         case 9 : {
             AADrilldownChartVC *vc = [[AADrilldownChartVC alloc]init];
+            vc.selectedIndex = indexPath.row;
+            vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        case 10 : {
+            AAOptions3DChartVC *vc = [[AAOptions3DChartVC alloc]init];
             vc.selectedIndex = indexPath.row;
             vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
             [self.navigationController pushViewController:vc animated:YES];
@@ -417,6 +426,10 @@
             @[
                 @"columnChart---柱形图",
             ],
+            //+ (AAOptions *)_3DScatterChart;
+            @[
+                @"_3DScatterChart---3D散点图",
+            ],
             
         ];
     }
@@ -436,6 +449,7 @@
             @"TreegraphChart | 树图",
             @"BoostChart | 加速图表",
             @"DrilldownChart | 下钻图表",
+            @"Options3DChart | 3D图表",
 
         ];
     }

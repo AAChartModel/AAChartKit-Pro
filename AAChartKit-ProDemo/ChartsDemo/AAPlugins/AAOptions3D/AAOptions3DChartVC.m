@@ -1,26 +1,25 @@
 //
-//  AADrilldownChartVC.m
+//  AAOptions3DChartVC.m
 //  AAChartKit-ProDemo
 //
 //  Created by AnAn on 2024/11/15.
 //  Copyright © 2024 An An. All rights reserved.
 //
 
-#import "AADrilldownChartVC.h"
-#import "AADrilldownChartComposer.h"
+#import "AAOptions3DChartVC.h"
+#import "AAOptions3DChartComposer.h"
 
-//static NSString * const kBoostPath = @"https://code.highcharts.com/modules/boost.js";
 
-@interface AADrilldownChartVC ()
+@interface AAOptions3DChartVC ()
 
 @end
 
-@implementation AADrilldownChartVC
+@implementation AAOptions3DChartVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSString *jsPath = [[NSBundle mainBundle] pathForResource:@"AADrilldown" ofType:@"js"];
+    NSString *jsPath = [[NSBundle mainBundle] pathForResource:@"AAHighcharts-3D" ofType:@"js"];
     self.aaChartView.pluginsArray = @[jsPath];
     
 //    AAOptions *aaOptions = [self configureChartOptions];
@@ -46,7 +45,7 @@
     switch (self.selectedIndex) {
 
 
-        case 0: return [AADrilldownChartComposer columnChart];
+        case 0: return [AAOptions3DChartComposer _3DScatterChart];
        
 
 
