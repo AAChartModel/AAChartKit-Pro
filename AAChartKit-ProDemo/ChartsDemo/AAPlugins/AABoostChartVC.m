@@ -34,6 +34,11 @@ static NSString * const kBoostPath = @"https://code.highcharts.com/modules/boost
     NSLog(@"🚀🚀🚀 查看 boost 属性是否正常: %@",boost.toDic);
 //    [self.aaChartView aa_drawChartWithOptions:aaOptions];
     
+    //https://code.highcharts.com/{version}/modules/boost.js
+    //https://code.highcharts.com/9.3.2/modules/boost.js
+    //<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
+    
 }
 
 - (id)chartConfigurationWithSelectedIndex:(NSUInteger)selectedIndex {
