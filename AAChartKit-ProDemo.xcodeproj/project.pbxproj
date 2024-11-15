@@ -710,6 +710,22 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		84526DC22CE71C2B00EB2563 /* AABoost */ = {
+			isa = PBXGroup;
+			children = (
+				84D904592CE1A0FF00F75AFF /* AABoost.js */,
+				84D9045B2CE1A33400F75AFF /* AABoost.h */,
+				84D9045C2CE1A33400F75AFF /* AABoost.m */,
+				84D9045E2CE1A44900F75AFF /* AABoostChartVC.h */,
+				84D9045F2CE1A44900F75AFF /* AABoostChartVC.m */,
+				84D904642CE1AEEA00F75AFF /* AABoostChartComposer.h */,
+				84D904652CE1AEEA00F75AFF /* AABoostChartComposer.m */,
+				84D9046A2CE1F86F00F75AFF /* AAOptions+boost.h */,
+				84D9046B2CE1F86F00F75AFF /* AAOptions+boost.m */,
+			);
+			path = AABoost;
+			sourceTree = "<group>";
+		};
 		84B13F4128A0B018007356C6 /* Composer */ = {
 			isa = PBXGroup;
 			children = (
@@ -779,15 +795,7 @@
 		84D904562CE1A08E00F75AFF /* AAPlugins */ = {
 			isa = PBXGroup;
 			children = (
-				84D904592CE1A0FF00F75AFF /* AABoost.js */,
-				84D9045B2CE1A33400F75AFF /* AABoost.h */,
-				84D9045C2CE1A33400F75AFF /* AABoost.m */,
-				84D9045E2CE1A44900F75AFF /* AABoostChartVC.h */,
-				84D9045F2CE1A44900F75AFF /* AABoostChartVC.m */,
-				84D904642CE1AEEA00F75AFF /* AABoostChartComposer.h */,
-				84D904652CE1AEEA00F75AFF /* AABoostChartComposer.m */,
-				84D9046A2CE1F86F00F75AFF /* AAOptions+boost.h */,
-				84D9046B2CE1F86F00F75AFF /* AAOptions+boost.m */,
+				84526DC22CE71C2B00EB2563 /* AABoost */,
 			);
 			path = AAPlugins;
 			sourceTree = "<group>";
