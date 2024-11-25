@@ -380,7 +380,7 @@
     ])
     .drilldownSet(AADrilldown.new
                   .breadcrumbsSet(AABreadcrumbs.new
-                                  .positionSet((id)AAPosition.new
+                                  .positionSet(AAPosition.new
                                                .alignSet(AAChartAlignTypeRight)))
                   .seriesSet(@[
                     AASeriesElement.new
