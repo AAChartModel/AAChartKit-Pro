@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class AABreadcrumbs;
+@class AABreadcrumbs, AAPosition;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -35,7 +35,7 @@ AAPropStatementAndPropSetFuncStatement(strong, AADrilldown, NSArray *, series)
 
 @interface AABreadcrumbs : NSObject
 
-AAPropStatementAndPropSetFuncStatement(strong, AABreadcrumbs, NSDictionary *, position)
+AAPropStatementAndPropSetFuncStatement(strong, AABreadcrumbs, AAPosition *, position)
 
 @end
 

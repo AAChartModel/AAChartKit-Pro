@@ -34,7 +34,7 @@ AAPropSetFuncImplementation(AADrilldown, NSArray *, series)
 
 @implementation AABreadcrumbs
 
-AAPropSetFuncImplementation(AABreadcrumbs, NSDictionary *, position)
+AAPropSetFuncImplementation(AABreadcrumbs, AAPosition *, position)
 
 @end
 
