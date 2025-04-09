@@ -159,12 +159,15 @@
     CGFloat canvasSize = 800; // 匹配容器尺寸
     
     // --- Carpet Parameters ---
-    NSInteger maxDepth = 2; // 控制递归深度和细节 (6-7 通常足够)
+    NSInteger maxDepth = 6; // 控制递归深度和细节 (6-7 通常足够)
     // const pointDensity = 1; // 1: 中心点, 2: 角点, >2: 更多点填充
     // --- End Carpet Parameters ---
     
     // --- 用于递归生成地毯的内部方法 ---
-    void (^generateCarpet)(CGFloat x, CGFloat y, CGFloat size, NSInteger depth) = ^(CGFloat x, CGFloat y, CGFloat size, NSInteger depth) {
+    // 首先声明block变量，使其可以在自身内部引用
+    __block void (^generateCarpet)(CGFloat x, CGFloat y, CGFloat size, NSInteger depth);
+    
+    generateCarpet = ^(CGFloat x, CGFloat y, CGFloat size, NSInteger depth) {
         // --- Vibrant Color Function (保持不变或微调) ---
         NSString* (^getColor)(NSInteger depth, NSInteger maxDepth, CGFloat x, CGFloat y, CGFloat size) = ^NSString*(NSInteger depth, NSInteger maxDepth, CGFloat x, CGFloat y, CGFloat size) {
             // 使用深度 t (0 到 1) 来驱动颜色变化
