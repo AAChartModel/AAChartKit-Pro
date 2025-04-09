@@ -94,6 +94,7 @@
 		8441A72026C21F02007EAAA7 /* AAGradientColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A71E26C21F02007EAAA7 /* AAGradientColor.m */; };
 		8441A72626C21F0A007EAAA7 /* NSArray+toJSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A72426C21F0A007EAAA7 /* NSArray+toJSArray.m */; };
 		8441A72726C21F0A007EAAA7 /* NSString+toPureJSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A72526C21F0A007EAAA7 /* NSString+toPureJSString.m */; };
+		844736062DA6266D0040CCCE /* AABoostFractalChartComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 844736052DA6266D0040CCCE /* AABoostFractalChartComposer.m */; };
 		84526DC62CE71D7100EB2563 /* AADrilldown.js in Resources */ = {isa = PBXBuildFile; fileRef = 84526DC52CE71D7100EB2563 /* AADrilldown.js */; };
 		84526DC92CE71DB900EB2563 /* AADrilldown.m in Sources */ = {isa = PBXBuildFile; fileRef = 84526DC82CE71DB900EB2563 /* AADrilldown.m */; };
 		84526DCC2CE71F5700EB2563 /* AADrilldownChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84526DCB2CE71F5700EB2563 /* AADrilldownChartVC.m */; };
@@ -328,6 +329,8 @@
 		8441A72326C21F0A007EAAA7 /* NSString+toPureJSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+toPureJSString.h"; sourceTree = "<group>"; };
 		8441A72426C21F0A007EAAA7 /* NSArray+toJSArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+toJSArray.m"; sourceTree = "<group>"; };
 		8441A72526C21F0A007EAAA7 /* NSString+toPureJSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+toPureJSString.m"; sourceTree = "<group>"; };
+		844736042DA6266D0040CCCE /* AABoostFractalChartComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AABoostFractalChartComposer.h; sourceTree = "<group>"; };
+		844736052DA6266D0040CCCE /* AABoostFractalChartComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AABoostFractalChartComposer.m; sourceTree = "<group>"; };
 		84526DC52CE71D7100EB2563 /* AADrilldown.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AADrilldown.js; sourceTree = "<group>"; };
 		84526DC72CE71DB900EB2563 /* AADrilldown.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AADrilldown.h; sourceTree = "<group>"; };
 		84526DC82CE71DB900EB2563 /* AADrilldown.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AADrilldown.m; sourceTree = "<group>"; };
@@ -754,6 +757,8 @@
 				84D9045F2CE1A44900F75AFF /* AABoostChartVC.m */,
 				84D904642CE1AEEA00F75AFF /* AABoostChartComposer.h */,
 				84D904652CE1AEEA00F75AFF /* AABoostChartComposer.m */,
+				844736042DA6266D0040CCCE /* AABoostFractalChartComposer.h */,
+				844736052DA6266D0040CCCE /* AABoostFractalChartComposer.m */,
 				84D9046A2CE1F86F00F75AFF /* AAOptions+boost.h */,
 				84D9046B2CE1F86F00F75AFF /* AAOptions+boost.m */,
 			);
@@ -1186,6 +1191,7 @@
 				8441A70426C21E6C007EAAA7 /* AACredits.m in Sources */,
 				8441A6F926C21E6C007EAAA7 /* AAYAxis.m in Sources */,
 				8441A6FB26C21E6C007EAAA7 /* AAShadow.m in Sources */,
+				844736062DA6266D0040CCCE /* AABoostFractalChartComposer.m in Sources */,
 				84526DE82CE73D8100EB2563 /* AAOptions+ZAxis.m in Sources */,
 				27EB89DF248BE1C9007E6A6B /* AAColorAxis.m in Sources */,
 				84B13F5128A0BA3A007356C6 /* AABubbleChartVC.m in Sources */,
