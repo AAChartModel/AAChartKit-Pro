@@ -4,10 +4,14 @@
 #import "AAChartKit.h" // 导入 AAChartKit 相关头文件
 
 static NSString * const kChartSampleCollectionViewCellIdentifier = @"ChartSampleCollectionViewCell";
+static NSString * const kGradientAnimationKey = @"gradientAnimation"; // 动画 Key
 
-@interface ChartListCollectionViewVC ()
+@interface ChartListCollectionViewVC () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CAAnimationDelegate> // 确保协议已声明
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray<AAOptions *> *chartExamples;
+@property (nonatomic, strong) CAGradientLayer *backgroundGradientLayer; // 添加渐变层属性
+@property (nonatomic, strong) NSArray *gradientColorSets; // 存储多组渐变颜色
+@property (nonatomic, assign) NSInteger currentGradientIndex; // 当前颜色组索引
 @end
 
 @implementation ChartListCollectionViewVC
@@ -18,9 +22,54 @@ static NSString * const kChartSampleCollectionViewCellIdentifier = @"ChartSample
     [self setupView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self startGradientAnimation]; // 视图出现时启动动画
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.backgroundGradientLayer removeAnimationForKey:kGradientAnimationKey]; // 视图消失时移除动画
+}
+
 - (void)setupView {
     self.title = @"AAChartView 示例 (CollectionView)";
-    self.view.backgroundColor = [UIColor whiteColor];
+
+    // --- 初始化渐变颜色组 ---
+    self.gradientColorSets = @[
+        @[ // Set 1: Blue -> Purple
+            (id)[UIColor colorWithRed:0.4 green:0.6 blue:1.0 alpha:1.0].CGColor,
+            (id)[UIColor colorWithRed:0.6 green:0.4 blue:1.0 alpha:1.0].CGColor,
+            (id)[UIColor colorWithRed:0.8 green:0.5 blue:0.9 alpha:1.0].CGColor
+        ],
+        @[ // Set 2: Green -> Yellow
+            (id)[UIColor colorWithRed:0.5 green:0.9 blue:0.6 alpha:1.0].CGColor,
+            (id)[UIColor colorWithRed:0.9 green:0.9 blue:0.5 alpha:1.0].CGColor,
+            (id)[UIColor colorWithRed:1.0 green:0.7 blue:0.4 alpha:1.0].CGColor
+        ],
+        @[ // Set 3: Orange -> Red
+            (id)[UIColor colorWithRed:1.0 green:0.7 blue:0.4 alpha:1.0].CGColor,
+            (id)[UIColor colorWithRed:1.0 green:0.5 blue:0.5 alpha:1.0].CGColor,
+            (id)[UIColor colorWithRed:0.9 green:0.3 blue:0.6 alpha:1.0].CGColor
+         ],
+        @[ // Set 4: Teal -> Blue (Back to similar to start for smoother loop)
+            (id)[UIColor colorWithRed:0.3 green:0.8 blue:0.8 alpha:1.0].CGColor,
+            (id)[UIColor colorWithRed:0.4 green:0.6 blue:1.0 alpha:1.0].CGColor,
+            (id)[UIColor colorWithRed:0.6 green:0.5 blue:0.9 alpha:1.0].CGColor
+        ]
+    ];
+    self.currentGradientIndex = 0;
+    // --- 渐变颜色组结束 ---
+
+    // --- 添加渐变背景层 ---
+    self.backgroundGradientLayer = [CAGradientLayer layer];
+    self.backgroundGradientLayer.colors = self.gradientColorSets[self.currentGradientIndex]; // 设置初始颜色
+    // 设置渐变方向 (从左上到右下)
+    self.backgroundGradientLayer.startPoint = CGPointMake(0, 0);
+    self.backgroundGradientLayer.endPoint = CGPointMake(1, 1);
+    // 将渐变层添加到视图层级的最底层
+    [self.view.layer insertSublayer:self.backgroundGradientLayer atIndex:0];
+    // --- 渐变背景层结束 ---
 
     // 初始化布局
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -34,12 +83,12 @@ static NSString * const kChartSampleCollectionViewCellIdentifier = @"ChartSample
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    self.collectionView.backgroundColor = [UIColor colorWithWhite:0.97 alpha:1.0]; // 设置背景色以匹配 Cell 背景
+    self.collectionView.backgroundColor = [UIColor clearColor]; // 设置 CollectionView 背景透明以显示渐变
 
     // 注册自定义单元格类
     [self.collectionView registerClass:[ChartExampleCollectionViewCell class] forCellWithReuseIdentifier:kChartSampleCollectionViewCellIdentifier];
 
-    [self.view addSubview:self.collectionView];
+    [self.view addSubview:self.collectionView]; // 确保 CollectionView 在渐变层之上
 
     // 设置 collectionView 约束
     self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -51,7 +100,63 @@ static NSString * const kChartSampleCollectionViewCellIdentifier = @"ChartSample
     ]];
 }
 
-// --- 动画禁用方法 (与 TableView 版本相同) ---
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    // 更新渐变层的 frame 以匹配视图边界
+    self.backgroundGradientLayer.frame = self.view.bounds;
+}
+
+- (void)startGradientAnimation {
+    // 如果动画已在运行，则先移除
+    [self.backgroundGradientLayer removeAnimationForKey:kGradientAnimationKey];
+
+    // 计算下一个颜色组的索引
+    NSInteger nextIndex = (self.currentGradientIndex + 1) % self.gradientColorSets.count;
+
+    // 创建颜色变化的 CABasicAnimation
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"colors"];
+    animation.duration = 5.0; // 每次渐变持续时间
+    animation.fromValue = self.gradientColorSets[self.currentGradientIndex];
+    animation.toValue = self.gradientColorSets[nextIndex];
+    animation.fillMode = kCAFillModeForwards; // 动画结束后保持最终状态
+    animation.removedOnCompletion = NO; // 动画结束后不自动移除
+    animation.delegate = self; // 设置代理以在动画结束后触发下一次动画
+
+    // 将动画添加到图层
+    [self.backgroundGradientLayer addAnimation:animation forKey:kGradientAnimationKey];
+
+    // 更新当前颜色索引
+    self.currentGradientIndex = nextIndex;
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    if (flag && [self.backgroundGradientLayer animationForKey:kGradientAnimationKey] == anim) {
+         // 确保是因为动画正常完成而不是被手动移除
+         // 从 presentationLayer 获取当前颜色值 (类型为 id)
+         id currentColors = [self.backgroundGradientLayer.presentationLayer valueForKeyPath:@"colors"];
+         // 检查类型是否为 NSArray
+         if ([currentColors isKindOfClass:[NSArray class]]) {
+             // 更新图层的实际 colors 属性为动画结束时的值
+             self.backgroundGradientLayer.colors = (NSArray *)currentColors;
+         } else {
+             // 如果类型不匹配，可以记录一个错误或使用默认值
+             NSLog(@"Warning: presentationLayer.colors was not an NSArray.");
+             // 可以选择恢复为目标值，以防万一
+             // self.backgroundGradientLayer.colors = self.gradientColorSets[self.currentGradientIndex];
+         }
+
+        // 移除旧动画（虽然设置了 removedOnCompletion = NO，但手动移除更清晰）
+        [self.backgroundGradientLayer removeAnimationForKey:kGradientAnimationKey];
+        // 延迟一小段时间后开始下一次动画，避免 CPU 占用过高
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+             // 检查视图是否仍然可见
+             if (self.view.window) {
+                 [self startGradientAnimation];
+             }
+        });
+    }
+}
+
 - (AAOptions *)optionsItemsWithoutAnimation:(AAOptions *)chartOptions {
     // 禁用图表动画
     if (chartOptions.chart) {
@@ -77,7 +182,6 @@ static NSString * const kChartSampleCollectionViewCellIdentifier = @"ChartSample
     aaOptions.plotOptions.series.animation = (id)kCFBooleanFalse; // 使用 (id)kCFBooleanFalse 禁用动画
     return aaOptions;
 }
-// --- 动画禁用方法结束 ---
 
 #pragma mark - Layout Invalidation on Size Change
 

@@ -52,7 +52,7 @@
         _shadowView.layer.shadowOffset = CGSizeMake(0, 2);
         _shadowView.layer.shadowRadius = 8;
         _shadowView.layer.cornerRadius = 6;
-        _shadowView.backgroundColor = [UIColor whiteColor];
+        _shadowView.backgroundColor = [UIColor clearColor]; // 设置为透明色
     }
     return _shadowView;
 }
