@@ -19,8 +19,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSString *jsPath = [[NSBundle mainBundle] pathForResource:@"AAHighcharts-3D" ofType:@"js"];
-    self.aaChartView.pluginsArray = @[jsPath];
+    //AAHighcharts-3D
+    NSString *_3DJSPath = [[NSBundle mainBundle] pathForResource:@"AAHighcharts-3D" ofType:@"js"];
+    //AAExporting
+//    NSString *exportingJSPath = [[NSBundle mainBundle] pathForResource:@"AAExporting" ofType:@"js"];
+//    //AAOffline-Exporting
+//    NSString *offlineExportingJSPath = [[NSBundle mainBundle] pathForResource:@"AAOffline-Exporting" ofType:@"js"];
+    //AANavigator
+//    NSString *navigatorJSPath = [[NSBundle mainBundle] pathForResource:@"AANavigator" ofType:@"js"];
+    
+    self.aaChartView.pluginsArray = @[
+        _3DJSPath,
+//        exportingJSPath,
+//        offlineExportingJSPath,
+//        navigatorJSPath,
+    ];
     
 //    AAOptions *aaOptions = [self configureChartOptions];
 //    NSDictionary *jsonDic = [AABoostChartComposer lineChartOptions];
@@ -38,6 +51,12 @@
     //https://code.highcharts.com/11.0.1/modules/drilldown.js
     //<script src="https://code.highcharts.com/highcharts-3d.js"></script>
     //https://code.highcharts.com/11.0.1/highcharts-3d.js
+    //<script src="https://code.highcharts.com/modules/exporting.js"></script>
+    //https://code.highcharts.com/11.0.1/modules/exporting.js
+    //<script src="https://code.highcharts.com/modules/offline-exporting.js"></script>
+    //https://code.highcharts.com/11.0.1/modules/offline-exporting.js
+    //<script src="https://code.highcharts.com/modules/navigator.js"></script>
+    //https://code.highcharts.com/11.0.1/modules/navigator.js
 
 }
 

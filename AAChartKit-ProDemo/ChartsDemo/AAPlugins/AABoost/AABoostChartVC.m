@@ -9,6 +9,7 @@
 #import "AABoostChartVC.h"
 #import "AABoostChartComposer.h"
 #import "AAOptions+boost.h"
+#import "AABoostFractalChartComposer.h"
 
 static NSString * const kBoostPath = @"https://code.highcharts.com/modules/boost.js";
 
@@ -35,9 +36,12 @@ static NSString * const kBoostPath = @"https://code.highcharts.com/modules/boost
 //    [self.aaChartView aa_drawChartWithOptions:aaOptions];
     
     //https://code.highcharts.com/{version}/modules/boost.js
-    //https://code.highcharts.com/9.3.2/modules/boost.js
+    //https://code.highcharts.com/10.0.0/modules/boost.js
     //<script src="https://code.highcharts.com/modules/drilldown.js"></script>
     //https://code.highcharts.com/11.0.1/modules/drilldown.js
+    
+    NSNumber *boolNumber = [[NSNumber alloc] initWithBool:true];
+    NSLog(@"🚀🚀🚀 查看 boolNumber 是否正常: %@",boolNumber);
     
 }
 
@@ -56,7 +60,7 @@ static NSString * const kBoostPath = @"https://code.highcharts.com/modules/boost
 //            + (NSDictionary *)stackingColumnChart;
 
 
-        case 0: return [AABoostChartComposer lineChart];
+        case 0: return [AABoostFractalChartComposer boostFractalChart];
         case 1: return [AABoostChartComposer areaChart];
         case 2: return [AABoostChartComposer columnChart];
         case 3: return [AABoostChartComposer lineChartWithHundredsOfSeries];

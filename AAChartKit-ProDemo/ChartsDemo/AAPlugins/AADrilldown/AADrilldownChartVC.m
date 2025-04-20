@@ -36,7 +36,7 @@
     //https://code.highcharts.com/{version}/modules/boost.js
     //https://code.highcharts.com/9.3.2/modules/boost.js
     //<script src="https://code.highcharts.com/modules/drilldown.js"></script>
-    //https://code.highcharts.com/11.0.1/modules/drilldown.js
+    //https://code.highcharts.com/10.0.0/modules/drilldown.js
     //<script src="https://code.highcharts.com/highcharts-3d.js"></script>
     //https://code.highcharts.com/11.0.1/highcharts-3d.js
 
