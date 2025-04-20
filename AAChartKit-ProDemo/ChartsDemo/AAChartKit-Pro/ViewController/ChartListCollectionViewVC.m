@@ -78,6 +78,23 @@ static NSString * const kChartSampleCollectionViewCellIdentifier = @"ChartSample
 }
 // --- 动画禁用方法结束 ---
 
+#pragma mark - Layout Invalidation on Size Change
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+
+    // 在过渡动画期间或之后使布局失效，以确保使用新的尺寸重新计算
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        // 可选：在动画期间执行的操作
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        // 确保在过渡完成后布局是最新的
+        [self.collectionView.collectionViewLayout invalidateLayout];
+        // 可选：如果数据也可能因尺寸变化而变化，则调用 [self.collectionView reloadData];
+    }];
+
+    // 如果不关心平滑过渡，或者需要在过渡开始时立即触发（可能导致跳跃），可以取消注释下面这行：
+    // [self.collectionView.collectionViewLayout invalidateLayout];
+}
 
 #pragma mark - UICollectionViewDataSource
 
@@ -109,30 +126,43 @@ static NSString * const kChartSampleCollectionViewCellIdentifier = @"ChartSample
     CGFloat minimumItemWidth = 400.0;
     CGFloat height = 420; // 保持之前设置的高度
 
-    // 获取布局对象以访问间距设置
+    // 获取布局对象以访问间距和内边距设置
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)collectionViewLayout;
     CGFloat sectionInsetHorizontal = flowLayout.sectionInset.left + flowLayout.sectionInset.right;
+    // 使用布局中定义的最小间距进行计算
     CGFloat interitemSpacing = flowLayout.minimumInteritemSpacing;
 
     // 计算 collectionView 的可用宽度
     CGFloat availableWidth = collectionView.bounds.size.width - sectionInsetHorizontal;
 
-    // 计算理论上可以放下的最大列数
-    // (availableWidth + interitemSpacing) / (minimumItemWidth + interitemSpacing)
-    // 加上一个 interitemSpacing 是因为 N 列之间有 N-1 个间距，可以看作每个 item 宽度加上一个间距
-    int maxColumns = floor((availableWidth + interitemSpacing) / (minimumItemWidth + interitemSpacing));
+    // --- 计算合适的列数 ---
+    // 我们希望找到最大列数 N，使得 N 个项目加上 (N-1) 个间距后，每个项目的宽度至少为 minimumItemWidth。
+    // N * itemWidth + (N-1) * spacing = availableWidth
+    // N * itemWidth >= N * minimumItemWidth
+    // availableWidth - (N-1) * spacing >= N * minimumItemWidth
+    // availableWidth + spacing >= N * (minimumItemWidth + spacing)
+    // N <= (availableWidth + spacing) / (minimumItemWidth + spacing)
+    // 取 floor 得到最大整数列数 N
+
+    int numberOfColumns = floor((availableWidth + interitemSpacing) / (minimumItemWidth + interitemSpacing));
 
     // 确保至少有一列
-    int numberOfColumns = MAX(1, maxColumns);
+    numberOfColumns = MAX(1, numberOfColumns);
 
-    // 计算实际的总间距
+    // --- 计算最终的项宽度 ---
+    // 基于确定的列数和最小间距，均分可用宽度
     CGFloat totalSpacing = (numberOfColumns - 1) * interitemSpacing;
+    CGFloat widthAvailableForItems = availableWidth - totalSpacing;
+    CGFloat itemWidth = floor(widthAvailableForItems / numberOfColumns);
 
-    // 计算最终的 item 宽度，均分可用宽度
-    CGFloat itemWidth = floor((availableWidth - totalSpacing) / numberOfColumns);
-
-    // 确保宽度不小于最小值 (虽然理论上按此计算不会小于，但可以加个保险)
-    itemWidth = MAX(minimumItemWidth, itemWidth);
+    // 在可用宽度不足以放下单个 minimumItemWidth 的极端情况下，itemWidth 会小于 minimumItemWidth。
+    // 在这种情况下，项目宽度就是全部可用宽度。
+    if (availableWidth < minimumItemWidth) {
+         itemWidth = availableWidth;
+    } else {
+        // 确保计算出的宽度不小于最小值（在有足够空间的情况下）
+        itemWidth = MAX(minimumItemWidth, itemWidth);
+    }
 
     return CGSizeMake(itemWidth, height);
 }
