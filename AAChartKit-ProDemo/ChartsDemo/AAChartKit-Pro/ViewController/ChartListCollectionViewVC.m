@@ -5,6 +5,10 @@
 
 static NSString * const kChartSampleCollectionViewCellIdentifier = @"ChartSampleCollectionViewCell";
 static NSString * const kGradientAnimationKey = @"gradientAnimation"; // 动画 Key
+static NSString * const kLightSourceAnimationKey = @"lightSourceAnimation"; // 光源动画 Key
+static NSString * const kLightSourceColorAnimationKey = @"lightSourceColorAnimation"; // 光源颜色动画 Key
+
+#define NUM_LIGHT_SOURCES 5 // 定义光源数量
 
 @interface ChartListCollectionViewVC () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CAAnimationDelegate> // 确保协议已声明
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -12,6 +16,8 @@ static NSString * const kGradientAnimationKey = @"gradientAnimation"; // 动画 
 @property (nonatomic, strong) CAGradientLayer *backgroundGradientLayer; // 添加渐变层属性
 @property (nonatomic, strong) NSArray *gradientColorSets; // 存储多组渐变颜色
 @property (nonatomic, assign) NSInteger currentGradientIndex; // 当前颜色组索引
+@property (nonatomic, strong) NSMutableArray<CALayer *> *lightSourceLayers; // 光源图层数组
+@property (nonatomic, strong) NSArray *lightSourceImages; // 预生成的光源图像 (CGImage)
 @end
 
 @implementation ChartListCollectionViewVC
@@ -24,13 +30,54 @@ static NSString * const kGradientAnimationKey = @"gradientAnimation"; // 动画 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self startGradientAnimation]; // 视图出现时启动动画
+    [self startGradientAnimation]; // 视图出现时启动渐变动画
+    // 确保布局完成后再启动光源动画，以获得正确的边界
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.view.window) { // 再次检查视图是否可见
+             [self startLightSourceAnimation]; // 启动光源动画
+        }
+    });
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.backgroundGradientLayer removeAnimationForKey:kGradientAnimationKey]; // 视图消失时移除动画
+    [self.backgroundGradientLayer removeAnimationForKey:kGradientAnimationKey]; // 视图消失时移除渐变动画
+    for (CALayer *layer in self.lightSourceLayers) { // 移除所有光源动画
+        [layer removeAnimationForKey:kLightSourceAnimationKey];
+        [layer removeAnimationForKey:kLightSourceColorAnimationKey]; // 移除颜色动画
+    }
 }
+
+// --- 辅助方法：创建径向渐变图像 ---
+- (UIImage *)createRadialGradientImageWithSize:(CGSize)size centerColor:(UIColor *)centerColor edgeColor:(UIColor *)edgeColor {
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+
+    CGFloat radius = MIN(size.width, size.height) / 2.0;
+    CGPoint center = CGPointMake(size.width / 2.0, size.height / 2.0);
+
+    // 定义渐变颜色和位置
+    NSArray *colors = @[(__bridge id)centerColor.CGColor, (__bridge id)edgeColor.CGColor];
+    CGFloat locations[] = { 0.0, 1.0 }; // 中心颜色在 0.0，边缘颜色在 1.0
+
+    // 创建渐变
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)colors, locations);
+
+    // 绘制径向渐变
+    CGContextDrawRadialGradient(context, gradient, center, 0, center, radius, kCGGradientDrawsAfterEndLocation);
+
+    // 清理
+    CGGradientRelease(gradient);
+    CGColorSpaceRelease(colorSpace);
+
+    UIImage *gradientImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    return gradientImage;
+}
+// --- 辅助方法结束 ---
+
 
 - (void)setupView {
     self.title = @"AAChartView 示例 (CollectionView)";
@@ -71,6 +118,56 @@ static NSString * const kGradientAnimationKey = @"gradientAnimation"; // 动画 
     [self.view.layer insertSublayer:self.backgroundGradientLayer atIndex:0];
     // --- 渐变背景层结束 ---
 
+    // --- 预生成光源图像 ---
+    CGFloat maxLightSourceSize = 500.0; // 定义一个统一的最大尺寸用于预生成图像
+    CGSize imageSize = CGSizeMake(maxLightSourceSize, maxLightSourceSize);
+    UIColor *transparentEdge = [UIColor colorWithWhite:1.0 alpha:0.0];
+    NSArray *centerColors = @[
+        [UIColor colorWithRed:1.0 green:0.85 blue:0.4 alpha:0.6], // 暖黄
+        [UIColor colorWithRed:1.0 green:0.7 blue:0.3 alpha:0.6], // 橙黄
+        [UIColor colorWithRed:1.0 green:0.5 blue:0.4 alpha:0.55] // 浅红橙
+    ];
+    NSMutableArray *images = [NSMutableArray array];
+    for (UIColor *centerColor in centerColors) {
+        UIImage *img = [self createRadialGradientImageWithSize:imageSize centerColor:centerColor edgeColor:transparentEdge];
+        if (img.CGImage) {
+            [images addObject:(__bridge id)img.CGImage]; // 直接存储 CGImage
+        }
+    }
+    self.lightSourceImages = [images copy];
+    // --- 预生成光源图像结束 ---
+
+
+    // --- 添加多个光源图层 ---
+    self.lightSourceLayers = [NSMutableArray arrayWithCapacity:NUM_LIGHT_SOURCES];
+    for (int i = 0; i < NUM_LIGHT_SOURCES; ++i) {
+        CALayer *lightLayer = [CALayer layer];
+        // 增大光源尺寸范围 (300-500)
+        CGFloat lightSourceSize = arc4random_uniform(200) + 300.0;
+        lightLayer.bounds = CGRectMake(0, 0, lightSourceSize, lightSourceSize); // 使用随机大小
+
+        // 设置随机初始位置
+        CGFloat initialX = arc4random_uniform((uint32_t)self.view.bounds.size.width);
+        CGFloat initialY = arc4random_uniform((uint32_t)self.view.bounds.size.height);
+        lightLayer.position = CGPointMake(initialX, initialY);
+
+        // 设置初始内容为第一个预生成的图像
+        if (self.lightSourceImages.count > 0) {
+            lightLayer.contents = self.lightSourceImages[0];
+        }
+        // 设置 contentsGravity 以便图像缩放适应图层大小
+        lightLayer.contentsGravity = kCAGravityResizeAspect;
+
+        // 设置混合模式以增强融合效果
+        lightLayer.compositingFilter = @"plusL"; // Lighter Color Dodge
+
+        // 将光源图层插入到背景渐变层之上，collectionView 之下
+        [self.view.layer insertSublayer:lightLayer above:self.backgroundGradientLayer];
+        [self.lightSourceLayers addObject:lightLayer];
+    }
+    // --- 光源图层结束 ---
+
+
     // 初始化布局
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     // 设置最小行间距（垂直）和最小项间距（水平）为 3
@@ -83,12 +180,12 @@ static NSString * const kGradientAnimationKey = @"gradientAnimation"; // 动画 
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    self.collectionView.backgroundColor = [UIColor clearColor]; // 设置 CollectionView 背景透明以显示渐变
+    self.collectionView.backgroundColor = [UIColor clearColor]; // 设置 CollectionView 背景透明以显示渐变和光源
 
     // 注册自定义单元格类
     [self.collectionView registerClass:[ChartExampleCollectionViewCell class] forCellWithReuseIdentifier:kChartSampleCollectionViewCellIdentifier];
 
-    [self.view addSubview:self.collectionView]; // 确保 CollectionView 在渐变层之上
+    [self.view addSubview:self.collectionView]; // 确保 CollectionView 在最上层
 
     // 设置 collectionView 约束
     self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -104,7 +201,82 @@ static NSString * const kGradientAnimationKey = @"gradientAnimation"; // 动画 
     [super viewDidLayoutSubviews];
     // 更新渐变层的 frame 以匹配视图边界
     self.backgroundGradientLayer.frame = self.view.bounds;
+
+    BOOL needsRestartAnimation = NO;
+    for (CALayer *layer in self.lightSourceLayers) {
+        // 检查位置或颜色动画是否存在
+        if ([layer animationForKey:kLightSourceAnimationKey] || [layer animationForKey:kLightSourceColorAnimationKey]) {
+            needsRestartAnimation = YES;
+            break;
+        }
+    }
+
+    if (needsRestartAnimation) {
+         // 简单的处理方式是重新启动所有光源动画
+        [self startLightSourceAnimation];
+    } else {
+         // 如果动画未运行，确保初始位置在视图变化后仍然合理（或随机重置）
+         for (CALayer *layer in self.lightSourceLayers) {
+             CGFloat randomX = arc4random_uniform((uint32_t)self.view.bounds.size.width);
+             CGFloat randomY = arc4random_uniform((uint32_t)self.view.bounds.size.height);
+             layer.position = CGPointMake(randomX, randomY);
+         }
+    }
 }
+
+// --- 修改光源动画方法以处理多个图层和颜色变化 ---
+- (void)startLightSourceAnimation {
+    // 确保视图边界有效
+    if (CGRectIsEmpty(self.view.bounds)) {
+        return;
+    }
+
+    CGFloat viewWidth = self.view.bounds.size.width;
+    CGFloat viewHeight = self.view.bounds.size.height;
+
+    // 确保有预生成的图像可供动画使用
+    if (self.lightSourceImages.count == 0) {
+        return;
+    }
+
+    for (CALayer *layer in self.lightSourceLayers) {
+        [layer removeAnimationForKey:kLightSourceAnimationKey]; // 移除旧位置动画
+        [layer removeAnimationForKey:kLightSourceColorAnimationKey]; // 移除旧颜色动画
+
+        // --- 位置动画 ---
+        int numPoints = arc4random_uniform(4) + 4; // 随机路径点数量 (4-7)
+        NSMutableArray *points = [NSMutableArray arrayWithCapacity:numPoints + 1];
+
+        // 使用当前位置作为起点
+        [points addObject:[NSValue valueWithCGPoint:layer.position]];
+
+        for (int i = 0; i < numPoints; ++i) {
+            CGFloat randomX = arc4random_uniform((uint32_t)viewWidth);
+            CGFloat randomY = arc4random_uniform((uint32_t)viewHeight);
+            [points addObject:[NSValue valueWithCGPoint:CGPointMake(randomX, randomY)]];
+        }
+
+        CAKeyframeAnimation *positionAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+        positionAnimation.values = points;
+        positionAnimation.duration = arc4random_uniform(15) + 20.0; // (20-35s)
+        positionAnimation.calculationMode = kCAAnimationPaced;
+        positionAnimation.repeatCount = HUGE_VALF;
+        [layer addAnimation:positionAnimation forKey:kLightSourceAnimationKey];
+
+
+        // --- 颜色 (contents) 动画 ---
+        CAKeyframeAnimation *colorAnimation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
+        // 使用预生成的 CGImage 数组
+        colorAnimation.values = self.lightSourceImages;
+        // 颜色变化的总时长，可以与位置动画不同步
+        colorAnimation.duration = arc4random_uniform(10) + 10.0; // (10-20s)
+        colorAnimation.calculationMode = kCAAnimationDiscrete; // 离散变化，颜色会跳变
+        colorAnimation.repeatCount = HUGE_VALF;
+        [layer addAnimation:colorAnimation forKey:kLightSourceColorAnimationKey];
+    }
+}
+// --- 光源动画方法结束 ---
+
 
 - (void)startGradientAnimation {
     // 如果动画已在运行，则先移除
@@ -130,6 +302,7 @@ static NSString * const kGradientAnimationKey = @"gradientAnimation"; // 动画 
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+     // --- 处理渐变动画结束 ---
     if (flag && [self.backgroundGradientLayer animationForKey:kGradientAnimationKey] == anim) {
          // 确保是因为动画正常完成而不是被手动移除
          // 从 presentationLayer 获取当前颜色值 (类型为 id)
@@ -141,8 +314,6 @@ static NSString * const kGradientAnimationKey = @"gradientAnimation"; // 动画 
          } else {
              // 如果类型不匹配，可以记录一个错误或使用默认值
              NSLog(@"Warning: presentationLayer.colors was not an NSArray.");
-             // 可以选择恢复为目标值，以防万一
-             // self.backgroundGradientLayer.colors = self.gradientColorSets[self.currentGradientIndex];
          }
 
         // 移除旧动画（虽然设置了 removedOnCompletion = NO，但手动移除更清晰）
@@ -151,10 +322,11 @@ static NSString * const kGradientAnimationKey = @"gradientAnimation"; // 动画 
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
              // 检查视图是否仍然可见
              if (self.view.window) {
-                 [self startGradientAnimation];
+                 [self startGradientAnimation]; // 只重新启动渐变动画
              }
         });
     }
+     // --- 渐变动画处理结束 ---
 }
 
 - (AAOptions *)optionsItemsWithoutAnimation:(AAOptions *)chartOptions {
@@ -194,11 +366,7 @@ static NSString * const kGradientAnimationKey = @"gradientAnimation"; // 动画 
     } completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
         // 确保在过渡完成后布局是最新的
         [self.collectionView.collectionViewLayout invalidateLayout];
-        // 可选：如果数据也可能因尺寸变化而变化，则调用 [self.collectionView reloadData];
     }];
-
-    // 如果不关心平滑过渡，或者需要在过渡开始时立即触发（可能导致跳跃），可以取消注释下面这行：
-    // [self.collectionView.collectionViewLayout invalidateLayout];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -233,40 +401,21 @@ static NSString * const kGradientAnimationKey = @"gradientAnimation"; // 动画 
 
     // 获取布局对象以访问间距和内边距设置
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)collectionViewLayout;
-    // 注意：这里 sectionInsetHorizontal 的计算现在使用更新后的 sectionInset
     CGFloat sectionInsetHorizontal = flowLayout.sectionInset.left + flowLayout.sectionInset.right;
-    // 使用布局中定义的最小间距进行计算
     CGFloat interitemSpacing = flowLayout.minimumInteritemSpacing;
 
-    // 计算 collectionView 的可用宽度
     CGFloat availableWidth = collectionView.bounds.size.width - sectionInsetHorizontal;
 
-    // --- 计算合适的列数 ---
-    // 我们希望找到最大列数 N，使得 N 个项目加上 (N-1) 个间距后，每个项目的宽度至少为 minimumItemWidth。
-    // N * itemWidth + (N-1) * spacing = availableWidth
-    // N * itemWidth >= N * minimumItemWidth
-    // availableWidth - (N-1) * spacing >= N * minimumItemWidth
-    // availableWidth + spacing >= N * (minimumItemWidth + spacing)
-    // N <= (availableWidth + spacing) / (minimumItemWidth + spacing)
-    // 取 floor 得到最大整数列数 N
-
     int numberOfColumns = floor((availableWidth + interitemSpacing) / (minimumItemWidth + interitemSpacing));
-
-    // 确保至少有一列
     numberOfColumns = MAX(1, numberOfColumns);
 
-    // --- 计算最终的项宽度 ---
-    // 基于确定的列数和最小间距，均分可用宽度
     CGFloat totalSpacing = (numberOfColumns - 1) * interitemSpacing;
     CGFloat widthAvailableForItems = availableWidth - totalSpacing;
     CGFloat itemWidth = floor(widthAvailableForItems / numberOfColumns);
 
-    // 在可用宽度不足以放下单个 minimumItemWidth 的极端情况下，itemWidth 会小于 minimumItemWidth。
-    // 在这种情况下，项目宽度就是全部可用宽度。
     if (availableWidth < minimumItemWidth) {
          itemWidth = availableWidth;
     } else {
-        // 确保计算出的宽度不小于最小值（在有足够空间的情况下）
         itemWidth = MAX(minimumItemWidth, itemWidth);
     }
 
