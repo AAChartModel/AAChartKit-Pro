@@ -35,27 +35,27 @@ static NSString * const kGradientAnimationKey = @"gradientAnimation"; // 动画 
 - (void)setupView {
     self.title = @"AAChartView 示例 (CollectionView)";
 
-    // --- 初始化渐变颜色组 ---
+    // --- 初始化渐变颜色组 (更新为暗色调、商业风格) ---
     self.gradientColorSets = @[
-        @[ // Set 1: Blue -> Purple
-            (id)[UIColor colorWithRed:0.4 green:0.6 blue:1.0 alpha:1.0].CGColor,
-            (id)[UIColor colorWithRed:0.6 green:0.4 blue:1.0 alpha:1.0].CGColor,
-            (id)[UIColor colorWithRed:0.8 green:0.5 blue:0.9 alpha:1.0].CGColor
+        @[ // Set 1: Deep Blue -> Dark Slate Gray
+            (id)[UIColor colorWithRed:0.1 green:0.2 blue:0.4 alpha:1.0].CGColor, // 深蓝
+            (id)[UIColor colorWithRed:0.15 green:0.25 blue:0.35 alpha:1.0].CGColor,
+            (id)[UIColor colorWithRed:0.2 green:0.3 blue:0.3 alpha:1.0].CGColor  // 暗灰蓝
         ],
-        @[ // Set 2: Green -> Yellow
-            (id)[UIColor colorWithRed:0.5 green:0.9 blue:0.6 alpha:1.0].CGColor,
-            (id)[UIColor colorWithRed:0.9 green:0.9 blue:0.5 alpha:1.0].CGColor,
-            (id)[UIColor colorWithRed:1.0 green:0.7 blue:0.4 alpha:1.0].CGColor
+        @[ // Set 2: Dark Slate Gray -> Dark Purple
+            (id)[UIColor colorWithRed:0.2 green:0.3 blue:0.3 alpha:1.0].CGColor, // 暗灰蓝
+            (id)[UIColor colorWithRed:0.25 green:0.2 blue:0.35 alpha:1.0].CGColor,
+            (id)[UIColor colorWithRed:0.3 green:0.15 blue:0.4 alpha:1.0].CGColor // 暗紫
         ],
-        @[ // Set 3: Orange -> Red
-            (id)[UIColor colorWithRed:1.0 green:0.7 blue:0.4 alpha:1.0].CGColor,
-            (id)[UIColor colorWithRed:1.0 green:0.5 blue:0.5 alpha:1.0].CGColor,
-            (id)[UIColor colorWithRed:0.9 green:0.3 blue:0.6 alpha:1.0].CGColor
+        @[ // Set 3: Dark Purple -> Deep Teal
+            (id)[UIColor colorWithRed:0.3 green:0.15 blue:0.4 alpha:1.0].CGColor, // 暗紫
+            (id)[UIColor colorWithRed:0.2 green:0.25 blue:0.4 alpha:1.0].CGColor,
+            (id)[UIColor colorWithRed:0.1 green:0.3 blue:0.35 alpha:1.0].CGColor // 深青色
          ],
-        @[ // Set 4: Teal -> Blue (Back to similar to start for smoother loop)
-            (id)[UIColor colorWithRed:0.3 green:0.8 blue:0.8 alpha:1.0].CGColor,
-            (id)[UIColor colorWithRed:0.4 green:0.6 blue:1.0 alpha:1.0].CGColor,
-            (id)[UIColor colorWithRed:0.6 green:0.5 blue:0.9 alpha:1.0].CGColor
+        @[ // Set 4: Deep Teal -> Back to Deep Blue
+            (id)[UIColor colorWithRed:0.1 green:0.3 blue:0.35 alpha:1.0].CGColor, // 深青色
+            (id)[UIColor colorWithRed:0.1 green:0.25 blue:0.4 alpha:1.0].CGColor,
+            (id)[UIColor colorWithRed:0.1 green:0.2 blue:0.4 alpha:1.0].CGColor  // 深蓝
         ]
     ];
     self.currentGradientIndex = 0;
