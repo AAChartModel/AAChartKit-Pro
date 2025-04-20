@@ -2,7 +2,7 @@
 #import <SpriteKit/SpriteKit.h>
 
 // 重新定义常量
-#define NUM_SEARCHLIGHTS 2
+#define NUM_SEARCHLIGHTS 4 // 修改为 4
 #define OVERLAP_ANGLE_THRESHOLD (M_PI / 12.0) // 光束角度小于这个阈值视为重叠 (可调整)
 #define FLASH_DURATION 0.5 // 碰撞闪烁的总持续时间
 
@@ -35,7 +35,7 @@
         [SKColor colorWithRed:0.2 green:0.8 blue:0.8 alpha:0.7]  // Cyan-ish
     ];
 
-    // 恢复初始化闪烁状态跟踪数组
+    // 恢复初始化闪烁状态跟踪数组 (容量改为 NUM_SEARCHLIGHTS)
     self.isFlashing = [NSMutableArray arrayWithCapacity:NUM_SEARCHLIGHTS];
     for (int i = 0; i < NUM_SEARCHLIGHTS; ++i) {
         [self.isFlashing addObject:@(NO)];
@@ -43,9 +43,9 @@
 
     // 恢复调用探照灯设置方法
     [self setupEffectNode];
-    [self setupSearchlights]; // 使用固定数量的设置方法
+    [self setupSearchlights];
     [self createCollisionFlashAction];
-    [self startSearchlightAnimation]; // 使用固定数量的动画方法
+    [self startSearchlightAnimation];
 }
 
 // 恢复：设置效果节点 (模糊和混合)
@@ -59,18 +59,33 @@
     [self addChild:self.effectNode];
 }
 
-// 恢复：设置固定数量的探照灯
+// 恢复：设置固定数量的探照灯 - 修改为支持多个角落
 - (void)setupSearchlights {
     self.searchlightNodes = [NSMutableArray array];
-    CGPoint origin = CGPointMake(0, 0);
     CGFloat beamLength = self.size.height * 1.8;
     CGFloat beamWidth = 150.0;
 
     for (int i = 0; i < NUM_SEARCHLIGHTS; ++i) {
         SKShapeNode *lightNode = [SKShapeNode node];
+        CGPoint origin;
+        CGFloat initialAngleMin, initialAngleMax;
 
+        // 根据索引确定光源位置和初始角度范围
+        if (i < NUM_SEARCHLIGHTS / 2) { // 左下角光源 (0, 1)
+            origin = CGPointMake(0, 0);
+            initialAngleMin = M_PI / 8.0; // 指向右上
+            initialAngleMax = 3 * M_PI / 8.0;
+        } else { // 右下角光源 (2, 3)
+            origin = CGPointMake(self.size.width, 0);
+            initialAngleMin = 5 * M_PI / 8.0; // 指向左上
+            initialAngleMax = 7 * M_PI / 8.0;
+        }
+
+        lightNode.position = origin;
+
+        // 创建三角形路径代表光束
         CGMutablePathRef path = CGPathCreateMutable();
-        CGPathMoveToPoint(path, NULL, origin.x, origin.y);
+        CGPathMoveToPoint(path, NULL, 0, 0);
         CGPathAddLineToPoint(path, NULL, beamLength, -beamWidth / 2.0);
         CGPathAddLineToPoint(path, NULL, beamLength, beamWidth / 2.0);
         CGPathCloseSubpath(path);
@@ -80,7 +95,8 @@
         lightNode.fillColor = self.lightColors[arc4random_uniform((uint32_t)self.lightColors.count)];
         lightNode.strokeColor = [SKColor clearColor];
 
-        CGFloat initialAngle = (M_PI / 8.0) + (arc4random_uniform(100) / 100.0) * (M_PI / 4.0);
+        // 设置初始旋转角度
+        CGFloat initialAngle = initialAngleMin + (arc4random_uniform(100) / 100.0) * (initialAngleMax - initialAngleMin);
         lightNode.zRotation = initialAngle;
 
         [self.effectNode addChild:lightNode];
@@ -97,41 +113,50 @@
     self.collisionFlashAction = [SKAction sequence:@[flashToWhite, revertColor]];
 }
 
-// 恢复：启动固定数量探照灯的动画 (使用之前的 runBlock 方式确保连续)
+// 恢复：启动固定数量探照灯的动画 - 修改目标角度
 - (void)startSearchlightAnimation {
     for (int i = 0; i < self.searchlightNodes.count; ++i) {
          SKShapeNode *lightNode = self.searchlightNodes[i];
-         // 使用弱引用避免 block 循环引用
          __weak SKShapeNode *weakLightNode = lightNode;
          __weak BackgroundEffectsScene *weakSelf = self;
+         BOOL isLeftOrigin = (i < NUM_SEARCHLIGHTS / 2);
 
-         [lightNode removeAllActions]; // 清除旧动画
+         [lightNode removeAllActions];
 
-        // 创建一个无限循环的动作块
         SKAction * (^createAnimationBlock)(void) = ^{
-            // 确保弱引用仍然有效
             SKShapeNode *strongLightNode = weakLightNode;
             BackgroundEffectsScene *strongSelf = weakSelf;
-            if (!strongLightNode || !strongSelf) return [SKAction waitForDuration:0.1]; // 如果节点或场景已释放，返回空动作
+            if (!strongLightNode || !strongSelf) return [SKAction waitForDuration:0.1];
 
-            // --- 旋转动作 ---
+            // 旋转动作
             CGFloat currentAngle = strongLightNode.zRotation;
-            CGFloat targetAngle = (M_PI / 8.0) + (arc4random_uniform(100) / 100.0) * (5.0 * M_PI / 16.0);
+            CGFloat targetAngleMin, targetAngleMax;
+
+            if (isLeftOrigin) { // 左下角光源 -> 指向右上
+                targetAngleMin = M_PI / 8.0;
+                targetAngleMax = 7.0 * M_PI / 16.0;
+            } else { // 右下角光源 -> 指向左上
+                targetAngleMin = 9.0 * M_PI / 16.0;
+                targetAngleMax = 7.0 * M_PI / 8.0;
+            }
+
+            CGFloat targetAngle = targetAngleMin + (arc4random_uniform(100) / 100.0) * (targetAngleMax - targetAngleMin);
+
             if (fabs(targetAngle - currentAngle) < M_PI / 16.0) {
-                 targetAngle += M_PI / 8.0 * (arc4random_uniform(2) ? 1 : -1);
-                 targetAngle = MAX(M_PI / 8.0, MIN(7.0 * M_PI / 16.0, targetAngle));
+                 targetAngle += (targetAngleMax - targetAngleMin) / 4.0 * (arc4random_uniform(2) ? 1 : -1);
+                 targetAngle = MAX(targetAngleMin, MIN(targetAngleMax, targetAngle));
             }
             SKAction *rotate = [SKAction rotateToAngle:targetAngle duration:(arc4random_uniform(20) + 30) / 10.0];
             rotate.timingMode = SKActionTimingEaseInEaseOut;
 
-            // --- 颜色动作 ---
+            // 颜色动作
             SKColor *nextColor = strongSelf.lightColors[arc4random_uniform((uint32_t)strongSelf.lightColors.count)];
             while ([nextColor isEqual:strongLightNode.fillColor] && strongSelf.lightColors.count > 1) {
                  nextColor = strongSelf.lightColors[arc4random_uniform((uint32_t)strongSelf.lightColors.count)];
             }
             SKAction *changeColor = [SKAction colorizeWithColor:nextColor colorBlendFactor:1.0 duration:1.5];
 
-            // --- 组合动作 ---
+            // 组合动作
             CGFloat maxDuration = MAX(rotate.duration, changeColor.duration + 0.5);
             SKAction *group = [SKAction group:@[rotate, changeColor]];
             SKAction *wait = [SKAction waitForDuration:maxDuration + (arc4random_uniform(10)/10.0)];
@@ -139,7 +164,6 @@
             return [SKAction sequence:@[group, wait]];
         };
 
-        // 创建一个无限重复执行上述动作块的动作
         SKAction *repeatBlock = [SKAction repeatActionForever:[SKAction sequence:@[
             [SKAction runBlock:^{
                 SKShapeNode *strongLightNode = weakLightNode;
@@ -157,38 +181,41 @@
 
 #pragma mark - Update Loop for Animation / Collision Check
 
-// 恢复 Update 循环 (只检查前两个)
+// 恢复 Update 循环 - 修改为检查所有对
 - (void)update:(NSTimeInterval)currentTime {
     [super update:currentTime];
 
-    // 恢复碰撞检查 (简化为只检查前两个)
-    if (self.searchlightNodes.count >= 2) {
-        SKShapeNode *light1 = self.searchlightNodes[0];
-        SKShapeNode *light2 = self.searchlightNodes[1];
-        // 确保 isFlashing 数组至少有两个元素
-        if (self.isFlashing.count < 2) return;
-
-        BOOL flashing1 = [self.isFlashing[0] boolValue];
-        BOOL flashing2 = [self.isFlashing[1] boolValue];
-
-        CGFloat angleDifference = fabs(light1.zRotation - light2.zRotation);
-        if (angleDifference > M_PI) {
-            angleDifference = 2 * M_PI - angleDifference;
-        }
-
-        if (angleDifference < OVERLAP_ANGLE_THRESHOLD) {
-            if (!flashing1) {
-                self.isFlashing[0] = @(YES);
-                [light1 runAction:self.collisionFlashAction completion:^{
-                    // 检查索引是否仍然有效
-                    if (self.isFlashing.count > 0) self.isFlashing[0] = @(NO);
-                }];
+    // 检查光束之间的角度差异
+    for (int i = 0; i < self.searchlightNodes.count; ++i) {
+        for (int j = i + 1; j < self.searchlightNodes.count; ++j) {
+            if (i >= self.searchlightNodes.count || j >= self.searchlightNodes.count ||
+                i >= self.isFlashing.count || j >= self.isFlashing.count) {
+                continue;
             }
-            if (!flashing2) {
-                self.isFlashing[1] = @(YES);
-                [light2 runAction:self.collisionFlashAction completion:^{
-                     if (self.isFlashing.count > 1) self.isFlashing[1] = @(NO);
-                }];
+
+            SKShapeNode *light1 = self.searchlightNodes[i];
+            SKShapeNode *light2 = self.searchlightNodes[j];
+            BOOL flashing1 = [self.isFlashing[i] boolValue];
+            BOOL flashing2 = [self.isFlashing[j] boolValue];
+
+            CGFloat angleDifference = fabs(light1.zRotation - light2.zRotation);
+            if (angleDifference > M_PI) {
+                angleDifference = 2 * M_PI - angleDifference;
+            }
+
+            if (angleDifference < OVERLAP_ANGLE_THRESHOLD) {
+                if (!flashing1) {
+                    self.isFlashing[i] = @(YES);
+                    [light1 runAction:self.collisionFlashAction completion:^{
+                        if (i < self.isFlashing.count) self.isFlashing[i] = @(NO);
+                    }];
+                }
+                if (!flashing2) {
+                    self.isFlashing[j] = @(YES);
+                    [light2 runAction:self.collisionFlashAction completion:^{
+                         if (j < self.isFlashing.count) self.isFlashing[j] = @(NO);
+                    }];
+                }
             }
         }
     }
@@ -197,10 +224,6 @@
 // 当场景尺寸变化时调整精灵节点尺寸
 - (void)didChangeSize:(CGSize)oldSize {
     [super didChangeSize:oldSize];
-
-    // 探照灯效果基于原点绘制，通常不需要在尺寸变化时调整，
-    // 但如果 effectNode 不是全屏或需要更精确控制，可以在此调整
-    // self.effectNode.position = CGPointMake(self.size.width / 2, self.size.height / 2);
 }
 
 @end
