@@ -75,7 +75,7 @@ static NSString * const kChartSampleTableViewCellIdentifier = @"ChartSampleTable
 #pragma mark - UITableViewDataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 300; // 设置单元格高度
+    return 420; // 设置单元格高度
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -1,4 +1,19 @@
 #import "ChartSampleProvider.h"
+
+#import "AARelationshipChartComposer.h"
+#import "AABubbleChartComposer.h"
+#import "AAColumnVariantChartComposer.h"
+#import "AAHeatmapChartComposer.h"
+#import "AATilemapChartComposer.h"
+#import "AATreemapChartComposer.h"
+#import "AAHeatmapChartComposer.h"
+#import "AATreegraphChartComposer.h"
+#import "AARelationshipChartComposer.h"
+#import "AAOrganizationChartComposer.h"
+#import "AASankeyChartComposer.h"
+#import "AABubbleChartComposer.h"
+#import "AAColumnVariantChartComposer.h"
+
 // 假设 ChartProVC 的方法在 Objective-C 中有等效实现
 // 例如，通过一个包装类或直接定义
 @interface ChartProVCWrapper : NSObject // 示例包装类
@@ -26,6 +41,39 @@
 
 + (NSArray<AAOptions *> *)allProTypeSamples {
     return @[
+         [AARelationshipChartComposer sankeyChart],
+         [AARelationshipChartComposer dependencywheelChart],
+         [AARelationshipChartComposer arcdiagramChart1],
+         [AARelationshipChartComposer arcdiagramChart2],
+         [AARelationshipChartComposer arcdiagramChart3],
+         [AARelationshipChartComposer organizationChart],
+         [AARelationshipChartComposer networkgraphChart],
+         [AARelationshipChartComposer simpleDependencyWheelChart],
+         [AARelationshipChartComposer neuralNetworkChart],
+         [AARelationshipChartComposer carnivoraPhylogenyOrganizationChart],
+         [AAOrganizationChartComposer germanicLanguageTreeChart],
+         [AASankeyChartComposer sankeyDiagramChart],
+         [AASankeyChartComposer verticalSankeyChart],
+         
+         
+          [AABubbleChartComposer packedbubbleChart],
+          [AABubbleChartComposer packedbubbleSplitChart],
+          [AABubbleChartComposer packedbubbleSpiralChart],
+          [AABubbleChartComposer eulerChart],
+          [AABubbleChartComposer vennChart],
+        
+         
+          [AAColumnVariantChartComposer variwideChart],
+          [AAColumnVariantChartComposer columnpyramidChart],
+          [AAColumnVariantChartComposer dumbbellChart],
+          [AAColumnVariantChartComposer lollipopChart],
+          [AAColumnVariantChartComposer xrangeChart],
+          [AAColumnVariantChartComposer histogramChart],
+          [AAColumnVariantChartComposer bellcurveChart],
+          [AAColumnVariantChartComposer bulletChart],
+          [AAColumnVariantChartComposer pictorial1Chart],
+          [AAColumnVariantChartComposer pictorial2Chart],
+        
          [AAHeatmapChartComposer heatmapChart],
          [AATreemapChartComposer treemapWithColorAxisData],
          [AATreemapChartComposer treemapWithLevelsData],
