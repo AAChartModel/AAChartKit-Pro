@@ -43,6 +43,7 @@
 #import "AADrilldownChartVC.h"
 #import "AAOptions3DChartVC.h"
 #import "ChartListTableViewVC.h"
+#import "ChartListCollectionViewVC.h"
 
 #define ColorWithRGB(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 #define AAGrayColor            [UIColor colorWithRed:245/255.0 green:246/255.0 blue:247/255.0 alpha:1.0]
@@ -229,10 +230,18 @@
         }
             break;
         case 11 : {
-            ChartListTableViewVC *vc = [[ChartListTableViewVC alloc]init];
-//            vc.selectedIndex = indexPath.row;
-//            vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
-            [self.navigationController pushViewController:vc animated:YES];
+            if (indexPath.row == 0) {
+                ChartListTableViewVC *vc = [[ChartListTableViewVC alloc]init];
+//                vc.selectedIndex = indexPath.row;
+//                vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
+                [self.navigationController pushViewController:vc animated:YES];
+            } else {
+                ChartListCollectionViewVC *vc = [[ChartListCollectionViewVC alloc]init];
+//                vc.selectedIndex = indexPath.row;
+//                vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+
         }
             break;
         
@@ -448,7 +457,8 @@
                 @"_3DScatterChart---3D散点图",
             ],
             @[
-                @"画廊",
+                @"UITableView 画廊",
+                @"UICollectionView 画廊",
              
             ],
             

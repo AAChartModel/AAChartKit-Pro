@@ -67,6 +67,8 @@
 		8437AE112DB4D161003D4D84 /* ChartSampleProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437AE102DB4D161003D4D84 /* ChartSampleProvider.m */; };
 		8437AE122DB4D161003D4D84 /* ChartExampleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437AE0C2DB4D161003D4D84 /* ChartExampleCell.m */; };
 		8437AE132DB4D161003D4D84 /* ChartListTableViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437AE0E2DB4D161003D4D84 /* ChartListTableViewVC.m */; };
+		8437AE182DB4D730003D4D84 /* ChartExampleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437AE152DB4D730003D4D84 /* ChartExampleCollectionViewCell.m */; };
+		8437AE192DB4D730003D4D84 /* ChartListCollectionViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437AE172DB4D730003D4D84 /* ChartListCollectionViewVC.m */; };
 		8441A6B226C21E53007EAAA7 /* AAOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6A826C21E52007EAAA7 /* AAOptions.m */; };
 		8441A6B326C21E53007EAAA7 /* AAChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6AA26C21E52007EAAA7 /* AAChartView.m */; };
 		8441A6B426C21E53007EAAA7 /* AAChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6AC26C21E52007EAAA7 /* AAChartModel.m */; };
@@ -274,6 +276,10 @@
 		8437AE0E2DB4D161003D4D84 /* ChartListTableViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartListTableViewVC.m; sourceTree = "<group>"; };
 		8437AE0F2DB4D161003D4D84 /* ChartSampleProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartSampleProvider.h; sourceTree = "<group>"; };
 		8437AE102DB4D161003D4D84 /* ChartSampleProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartSampleProvider.m; sourceTree = "<group>"; };
+		8437AE142DB4D730003D4D84 /* ChartExampleCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartExampleCollectionViewCell.h; sourceTree = "<group>"; };
+		8437AE152DB4D730003D4D84 /* ChartExampleCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartExampleCollectionViewCell.m; sourceTree = "<group>"; };
+		8437AE162DB4D730003D4D84 /* ChartListCollectionViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartListCollectionViewVC.h; sourceTree = "<group>"; };
+		8437AE172DB4D730003D4D84 /* ChartListCollectionViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartListCollectionViewVC.m; sourceTree = "<group>"; };
 		8441A6A826C21E52007EAAA7 /* AAOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAOptions.m; sourceTree = "<group>"; };
 		8441A6A926C21E52007EAAA7 /* AAGlobalMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAGlobalMacro.h; sourceTree = "<group>"; };
 		8441A6AA26C21E52007EAAA7 /* AAChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAChartView.m; sourceTree = "<group>"; };
@@ -863,6 +869,10 @@
 				8437AE0E2DB4D161003D4D84 /* ChartListTableViewVC.m */,
 				8437AE0F2DB4D161003D4D84 /* ChartSampleProvider.h */,
 				8437AE102DB4D161003D4D84 /* ChartSampleProvider.m */,
+				8437AE142DB4D730003D4D84 /* ChartExampleCollectionViewCell.h */,
+				8437AE152DB4D730003D4D84 /* ChartExampleCollectionViewCell.m */,
+				8437AE162DB4D730003D4D84 /* ChartListCollectionViewVC.h */,
+				8437AE172DB4D730003D4D84 /* ChartListCollectionViewVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1253,6 +1263,8 @@
 				84AA68A028A0E45D009067AE /* AAColumnVariantChartVC.m in Sources */,
 				84AA68B828A1FD61009067AE /* AAParallelAxes.m in Sources */,
 				84526DE12CE72B7E00EB2563 /* AAOptions3DChartComposer.m in Sources */,
+				8437AE182DB4D730003D4D84 /* ChartExampleCollectionViewCell.m in Sources */,
+				8437AE192DB4D730003D4D84 /* ChartListCollectionViewVC.m in Sources */,
 				8441A6B526C21E53007EAAA7 /* AASeriesElement.m in Sources */,
 				84526DDE2CE72B5A00EB2563 /* AAOptions3DChartVC.m in Sources */,
 				8441A70E26C21E6C007EAAA7 /* AAPlotBandsElement.m in Sources */,
