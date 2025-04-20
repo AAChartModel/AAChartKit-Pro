@@ -42,6 +42,7 @@
 #import "AABoostChartVC.h"
 #import "AADrilldownChartVC.h"
 #import "AAOptions3DChartVC.h"
+#import "ChartListTableViewVC.h"
 
 #define ColorWithRGB(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 #define AAGrayColor            [UIColor colorWithRed:245/255.0 green:246/255.0 blue:247/255.0 alpha:1.0]
@@ -227,7 +228,13 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-
+        case 11 : {
+            ChartListTableViewVC *vc = [[ChartListTableViewVC alloc]init];
+//            vc.selectedIndex = indexPath.row;
+//            vc.navigationItemTitleArr = self.chartTypeNameArr[indexPath.section];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
         
         default:
             break;
@@ -440,6 +447,10 @@
                 @"_3DAreaChart---3D区域填充图",
                 @"_3DScatterChart---3D散点图",
             ],
+            @[
+                @"画廊",
+             
+            ],
             
         ];
     }
@@ -460,6 +471,7 @@
             @"BoostChart | 加速图表",
             @"DrilldownChart | 下钻图表",
             @"Options3DChart | 3D图表",
+            @"Gallery | 画廊",
 
         ];
     }

@@ -64,6 +64,9 @@
 		8409E6B22CD4C8AD000EFCF2 /* AAHeatmapChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8409E6B12CD4C8AD000EFCF2 /* AAHeatmapChartVC.m */; };
 		8409E6B52CD4CB2F000EFCF2 /* AATreemapChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8409E6B42CD4CB2F000EFCF2 /* AATreemapChartVC.m */; };
 		8409E6B82CD4CCA2000EFCF2 /* AATreegraphChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8409E6B72CD4CCA2000EFCF2 /* AATreegraphChartVC.m */; };
+		8437AE112DB4D161003D4D84 /* ChartSampleProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437AE102DB4D161003D4D84 /* ChartSampleProvider.m */; };
+		8437AE122DB4D161003D4D84 /* ChartExampleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437AE0C2DB4D161003D4D84 /* ChartExampleCell.m */; };
+		8437AE132DB4D161003D4D84 /* ChartListTableViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437AE0E2DB4D161003D4D84 /* ChartListTableViewVC.m */; };
 		8441A6B226C21E53007EAAA7 /* AAOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6A826C21E52007EAAA7 /* AAOptions.m */; };
 		8441A6B326C21E53007EAAA7 /* AAChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6AA26C21E52007EAAA7 /* AAChartView.m */; };
 		8441A6B426C21E53007EAAA7 /* AAChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6AC26C21E52007EAAA7 /* AAChartModel.m */; };
@@ -265,6 +268,12 @@
 		8409E6B42CD4CB2F000EFCF2 /* AATreemapChartVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AATreemapChartVC.m; sourceTree = "<group>"; };
 		8409E6B62CD4CCA2000EFCF2 /* AATreegraphChartVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AATreegraphChartVC.h; sourceTree = "<group>"; };
 		8409E6B72CD4CCA2000EFCF2 /* AATreegraphChartVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AATreegraphChartVC.m; sourceTree = "<group>"; };
+		8437AE0B2DB4D161003D4D84 /* ChartExampleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartExampleCell.h; sourceTree = "<group>"; };
+		8437AE0C2DB4D161003D4D84 /* ChartExampleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartExampleCell.m; sourceTree = "<group>"; };
+		8437AE0D2DB4D161003D4D84 /* ChartListTableViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartListTableViewVC.h; sourceTree = "<group>"; };
+		8437AE0E2DB4D161003D4D84 /* ChartListTableViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartListTableViewVC.m; sourceTree = "<group>"; };
+		8437AE0F2DB4D161003D4D84 /* ChartSampleProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartSampleProvider.h; sourceTree = "<group>"; };
+		8437AE102DB4D161003D4D84 /* ChartSampleProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartSampleProvider.m; sourceTree = "<group>"; };
 		8441A6A826C21E52007EAAA7 /* AAOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAOptions.m; sourceTree = "<group>"; };
 		8441A6A926C21E52007EAAA7 /* AAGlobalMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAGlobalMacro.h; sourceTree = "<group>"; };
 		8441A6AA26C21E52007EAAA7 /* AAChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAChartView.m; sourceTree = "<group>"; };
@@ -848,6 +857,12 @@
 				84B13F4428A0B5CF007356C6 /* AATilemapChartVC.m */,
 				8409E6B62CD4CCA2000EFCF2 /* AATreegraphChartVC.h */,
 				8409E6B72CD4CCA2000EFCF2 /* AATreegraphChartVC.m */,
+				8437AE0B2DB4D161003D4D84 /* ChartExampleCell.h */,
+				8437AE0C2DB4D161003D4D84 /* ChartExampleCell.m */,
+				8437AE0D2DB4D161003D4D84 /* ChartListTableViewVC.h */,
+				8437AE0E2DB4D161003D4D84 /* ChartListTableViewVC.m */,
+				8437AE0F2DB4D161003D4D84 /* ChartSampleProvider.h */,
+				8437AE102DB4D161003D4D84 /* ChartSampleProvider.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1054,6 +1069,7 @@
 					7172A3D21E763EA6000D5B99 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = BPAYP34L8N;
+						LastSwiftMigration = 1620;
 						ProvisioningStyle = Automatic;
 					};
 					7172A3EB1E763EA6000D5B99 = {
@@ -1267,6 +1283,9 @@
 				27EB8A842497C03A007E6A6B /* ChartProVC.m in Sources */,
 				713F543D1E7B71C000D506C7 /* FirstViewController.m in Sources */,
 				84DFEABF2A2748A3004436BC /* AAPictorial.m in Sources */,
+				8437AE112DB4D161003D4D84 /* ChartSampleProvider.m in Sources */,
+				8437AE122DB4D161003D4D84 /* ChartExampleCell.m in Sources */,
+				8437AE132DB4D161003D4D84 /* ChartListTableViewVC.m in Sources */,
 				8409E6952CD47621000EFCF2 /* AAOrganizationChartComposer.m in Sources */,
 				8441A70F26C21E6C007EAAA7 /* AATitle.m in Sources */,
 			);
@@ -1435,6 +1454,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "AAChartKit-ProDemo/AAChartKit-ProDemo.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
@@ -1450,6 +1470,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1458,6 +1480,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "AAChartKit-ProDemo/AAChartKit-ProDemo.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
@@ -1473,6 +1496,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
