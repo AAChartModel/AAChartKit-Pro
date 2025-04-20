@@ -106,14 +106,36 @@ static NSString * const kChartSampleCollectionViewCellIdentifier = @"ChartSample
 
 // 设置每个 item 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat padding = 16 * 2; // 左右边距总和 (与 Cell 内部 shadowView 的边距一致)
-    CGFloat width = collectionView.bounds.size.width - padding;
-    CGFloat height = 420; // 设置单元格高度 (与原 TableViewCell 一致或按需调整)
-    return CGSizeMake(width, height);
-}
+    CGFloat minimumItemWidth = 400.0;
+    CGFloat height = 420; // 保持之前设置的高度
 
-// 可以根据需要实现其他 UICollectionViewDelegateFlowLayout 方法，例如 minimumLineSpacing, minimumInteritemSpacing, sectionInset 等，
-// 如果在初始化 layout 时未设置，或者需要动态调整。
+    // 获取布局对象以访问间距设置
+    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)collectionViewLayout;
+    CGFloat sectionInsetHorizontal = flowLayout.sectionInset.left + flowLayout.sectionInset.right;
+    CGFloat interitemSpacing = flowLayout.minimumInteritemSpacing;
+
+    // 计算 collectionView 的可用宽度
+    CGFloat availableWidth = collectionView.bounds.size.width - sectionInsetHorizontal;
+
+    // 计算理论上可以放下的最大列数
+    // (availableWidth + interitemSpacing) / (minimumItemWidth + interitemSpacing)
+    // 加上一个 interitemSpacing 是因为 N 列之间有 N-1 个间距，可以看作每个 item 宽度加上一个间距
+    int maxColumns = floor((availableWidth + interitemSpacing) / (minimumItemWidth + interitemSpacing));
+
+    // 确保至少有一列
+    int numberOfColumns = MAX(1, maxColumns);
+
+    // 计算实际的总间距
+    CGFloat totalSpacing = (numberOfColumns - 1) * interitemSpacing;
+
+    // 计算最终的 item 宽度，均分可用宽度
+    CGFloat itemWidth = floor((availableWidth - totalSpacing) / numberOfColumns);
+
+    // 确保宽度不小于最小值 (虽然理论上按此计算不会小于，但可以加个保险)
+    itemWidth = MAX(minimumItemWidth, itemWidth);
+
+    return CGSizeMake(itemWidth, height);
+}
 
 #pragma mark - UICollectionViewDelegate
 
