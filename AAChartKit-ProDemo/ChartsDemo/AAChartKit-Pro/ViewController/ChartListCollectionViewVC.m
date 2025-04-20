@@ -103,6 +103,85 @@ static NSString * const kChartSampleCollectionViewCellIdentifier = @"ChartSample
         chartOptions.chart.animation = (id)kCFBooleanFalse;
     }
 
+    // --- 设置文本颜色为白色 ---
+    // 标题颜色
+    if (!chartOptions.title) {
+        chartOptions.title = AATitle.new;
+    }
+    if (!chartOptions.title.style) {
+        chartOptions.title.style = AAStyle.new;
+    }
+    chartOptions.title.style.color = @"#FFFFFF"; // 白色
+
+    // 副标题颜色
+    if (!chartOptions.subtitle) {
+        chartOptions.subtitle = AASubtitle.new;
+    }
+    if (!chartOptions.subtitle.style) {
+        chartOptions.subtitle.style = AAStyle.new;
+    }
+    chartOptions.subtitle.style.color = @"#FFFFFF"; // 白色
+
+    // Y 轴标签颜色
+    if (!chartOptions.yAxis) {
+        chartOptions.yAxis = AAYAxis.new; // 如果 yAxis 不存在，创建一个新的
+    }
+   
+    // 如果有多个 Y 轴，需要遍历设置
+    if ([chartOptions.yAxis isKindOfClass:[NSArray class]]) {
+        NSArray *yAxes = (NSArray *)chartOptions.yAxis;
+        for (AAYAxis *axis in yAxes) {
+            if ([axis isKindOfClass:[AAYAxis class]]) {
+                if (!axis.labels) axis.labels = AALabels.new;
+                if (!axis.labels.style) axis.labels.style = AAStyle.new;
+                axis.labels.style.color = @"#FFFFFF";
+            }
+        }
+    } else {
+        if (!chartOptions.yAxis.labels) {
+            chartOptions.yAxis.labels = AALabels.new;
+        }
+        if (!chartOptions.yAxis.labels.style) {
+            chartOptions.yAxis.labels.style = AAStyle.new;
+        }
+        chartOptions.yAxis.labels.style.color = @"#FFFFFF"; // 白色
+    }
+
+    // X 轴标签颜色
+    if (!chartOptions.xAxis) {
+        chartOptions.xAxis = AAXAxis.new; // 如果 xAxis 不存在，创建一个新的
+    }
+  
+    // 如果有多个 X 轴，需要遍历设置 (虽然不常见)
+    if ([chartOptions.xAxis isKindOfClass:[NSArray class]]) {
+         NSArray *xAxes = (NSArray *)chartOptions.xAxis;
+         for (AAXAxis *axis in xAxes) {
+                if ([axis isKindOfClass:[AAXAxis class]]) {
+                    if (!axis.labels) axis.labels = AALabels.new;
+                    if (!axis.labels.style) axis.labels.style = AAStyle.new;
+                    axis.labels.style.color = @"#FFFFFF";
+                }
+         }
+    } else {
+        if (!chartOptions.xAxis.labels) {
+            chartOptions.xAxis.labels = AALabels.new;
+        }
+        if (!chartOptions.xAxis.labels.style) {
+            chartOptions.xAxis.labels.style = AAStyle.new;
+        }
+        chartOptions.xAxis.labels.style.color = @"#FFFFFF"; // 白色
+    }
+
+    // 图例标签颜色
+    if (!chartOptions.legend) {
+        chartOptions.legend = AALegend.new;
+    }
+    if (!chartOptions.legend.itemStyle) {
+        chartOptions.legend.itemStyle = AAItemStyle.new;
+    }
+    chartOptions.legend.itemStyle.color = @"#FFFFFF"; // 白色
+    // --- 文本颜色设置结束 ---
+
     AAOptions *options = [self configurePlotOptionsSeriesAnimation:chartOptions];
     return options;
 }
