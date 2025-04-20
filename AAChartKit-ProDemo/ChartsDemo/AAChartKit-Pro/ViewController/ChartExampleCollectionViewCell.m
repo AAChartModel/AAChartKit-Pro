@@ -5,7 +5,7 @@
 
 // 与 TableViewCell 相同的内部视图属性
 @property (nonatomic, strong) AAChartView *aaChartView;
-@property (nonatomic, strong) UIView *containerView;
+@property (nonatomic, strong) UIVisualEffectView *containerView; // 改为 UIVisualEffectView
 @property (nonatomic, strong) UIView *shadowView;
 
 @end
@@ -26,18 +26,19 @@
     if (!_aaChartView) {
         _aaChartView = [[AAChartView alloc] init];
         _aaChartView.translatesAutoresizingMaskIntoConstraints = NO;
-        _aaChartView.backgroundColor = [UIColor whiteColor];
+//        _aaChartView.backgroundColor = [UIColor clearColor]; // 设置图表背景透明(这种简单设置不足以使得图表背景透明, 因为 AAChartView 实际上是一个 WKWebView)
+        _aaChartView.isClearBackgroundColor = YES; // 设置图表背景透明
     }
     return _aaChartView;
 }
 
-- (UIView *)containerView {
+- (UIVisualEffectView *)containerView { // 返回类型改为 UIVisualEffectView
     if (!_containerView) {
-        _containerView = [[UIView alloc] init];
+        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleSystemMaterial]; // 使用系统材质模糊效果
+        _containerView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
         _containerView.translatesAutoresizingMaskIntoConstraints = NO;
-        _containerView.backgroundColor = [UIColor whiteColor];
         _containerView.layer.cornerRadius = 6;
-        _containerView.layer.masksToBounds = YES;
+        _containerView.layer.masksToBounds = YES; // 确保模糊效果也被裁剪
     }
     return _containerView;
 }
@@ -65,7 +66,8 @@
     // 将视图添加到 contentView
     [self.contentView addSubview:self.shadowView];
     [self.shadowView addSubview:self.containerView];
-    [self.containerView addSubview:self.aaChartView]; // 使用懒加载
+    // 将 aaChartView 添加到 UIVisualEffectView 的 contentView 中
+    [self.containerView.contentView addSubview:self.aaChartView]; // 注意是 contentView
 
     // 设置约束 - 再次减小常量值
     [NSLayoutConstraint activateConstraints:@[
@@ -81,11 +83,11 @@
         [self.containerView.topAnchor constraintEqualToAnchor:self.shadowView.topAnchor],
         [self.containerView.bottomAnchor constraintEqualToAnchor:self.shadowView.bottomAnchor],
 
-        // Chart view fills the container view
-        [self.aaChartView.leadingAnchor constraintEqualToAnchor:self.containerView.leadingAnchor constant:0],
-        [self.aaChartView.trailingAnchor constraintEqualToAnchor:self.containerView.trailingAnchor constant:0],
-        [self.aaChartView.topAnchor constraintEqualToAnchor:self.containerView.topAnchor constant:0],
-        [self.aaChartView.bottomAnchor constraintEqualToAnchor:self.containerView.bottomAnchor constant:0]
+        // Chart view fills the container view's contentView
+        [self.aaChartView.leadingAnchor constraintEqualToAnchor:self.containerView.contentView.leadingAnchor constant:0], // 约束到 contentView
+        [self.aaChartView.trailingAnchor constraintEqualToAnchor:self.containerView.contentView.trailingAnchor constant:0], // 约束到 contentView
+        [self.aaChartView.topAnchor constraintEqualToAnchor:self.containerView.contentView.topAnchor constant:0],       // 约束到 contentView
+        [self.aaChartView.bottomAnchor constraintEqualToAnchor:self.containerView.contentView.bottomAnchor constant:0]    // 约束到 contentView
     ]];
 }
 
