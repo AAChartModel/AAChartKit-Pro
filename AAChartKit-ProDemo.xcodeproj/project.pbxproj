@@ -69,6 +69,7 @@
 		8437AE132DB4D161003D4D84 /* ChartListTableViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437AE0E2DB4D161003D4D84 /* ChartListTableViewVC.m */; };
 		8437AE182DB4D730003D4D84 /* ChartExampleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437AE152DB4D730003D4D84 /* ChartExampleCollectionViewCell.m */; };
 		8437AE192DB4D730003D4D84 /* ChartListCollectionViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437AE172DB4D730003D4D84 /* ChartListCollectionViewVC.m */; };
+		8437AE1C2DB4E6F9003D4D84 /* BackgroundEffectsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8437AE1B2DB4E6F9003D4D84 /* BackgroundEffectsScene.m */; };
 		8441A6B226C21E53007EAAA7 /* AAOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6A826C21E52007EAAA7 /* AAOptions.m */; };
 		8441A6B326C21E53007EAAA7 /* AAChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6AA26C21E52007EAAA7 /* AAChartView.m */; };
 		8441A6B426C21E53007EAAA7 /* AAChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8441A6AC26C21E52007EAAA7 /* AAChartModel.m */; };
@@ -280,6 +281,8 @@
 		8437AE152DB4D730003D4D84 /* ChartExampleCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartExampleCollectionViewCell.m; sourceTree = "<group>"; };
 		8437AE162DB4D730003D4D84 /* ChartListCollectionViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartListCollectionViewVC.h; sourceTree = "<group>"; };
 		8437AE172DB4D730003D4D84 /* ChartListCollectionViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartListCollectionViewVC.m; sourceTree = "<group>"; };
+		8437AE1A2DB4E6F9003D4D84 /* BackgroundEffectsScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BackgroundEffectsScene.h; sourceTree = "<group>"; };
+		8437AE1B2DB4E6F9003D4D84 /* BackgroundEffectsScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BackgroundEffectsScene.m; sourceTree = "<group>"; };
 		8441A6A826C21E52007EAAA7 /* AAOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAOptions.m; sourceTree = "<group>"; };
 		8441A6A926C21E52007EAAA7 /* AAGlobalMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAGlobalMacro.h; sourceTree = "<group>"; };
 		8441A6AA26C21E52007EAAA7 /* AAChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAChartView.m; sourceTree = "<group>"; };
@@ -873,6 +876,8 @@
 				8437AE152DB4D730003D4D84 /* ChartExampleCollectionViewCell.m */,
 				8437AE162DB4D730003D4D84 /* ChartListCollectionViewVC.h */,
 				8437AE172DB4D730003D4D84 /* ChartListCollectionViewVC.m */,
+				8437AE1A2DB4E6F9003D4D84 /* BackgroundEffectsScene.h */,
+				8437AE1B2DB4E6F9003D4D84 /* BackgroundEffectsScene.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1222,6 +1227,7 @@
 				27EB89DF248BE1C9007E6A6B /* AAColorAxis.m in Sources */,
 				84B13F5128A0BA3A007356C6 /* AABubbleChartVC.m in Sources */,
 				84B13EE72897A090007356C6 /* AAItem.m in Sources */,
+				8437AE1C2DB4E6F9003D4D84 /* BackgroundEffectsScene.m in Sources */,
 				8441A6FE26C21E6C007EAAA7 /* AAMarker.m in Sources */,
 				8441A71426C21E6C007EAAA7 /* AADateTimeLabelFormats.m in Sources */,
 				84DFEB7F2A2882ED004436BC /* AAScatter.m in Sources */,
