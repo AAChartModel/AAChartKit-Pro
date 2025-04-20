@@ -24,10 +24,11 @@ static NSString * const kChartSampleCollectionViewCellIdentifier = @"ChartSample
 
     // 初始化布局
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    // 可以在这里设置滚动方向、item 大小、间距等，或者通过 delegate 方法设置
-    layout.minimumLineSpacing = 10; // 行间距
-    layout.minimumInteritemSpacing = 10; // 项间距 (单列时无效)
-    layout.sectionInset = UIEdgeInsetsMake(10, 0, 10, 0); // section 内边距
+    // 设置最小行间距（垂直）和最小项间距（水平）为 3
+    layout.minimumLineSpacing = 3; // 行间距
+    layout.minimumInteritemSpacing = 3; // 项间距
+    // 调整 section 内边距以匹配间距
+    layout.sectionInset = UIEdgeInsetsMake(3, 0, 3, 0); // section 内边距 (上下调整为 3)
 
     // 初始化并配置 collectionView
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
@@ -128,6 +129,7 @@ static NSString * const kChartSampleCollectionViewCellIdentifier = @"ChartSample
 
     // 获取布局对象以访问间距和内边距设置
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)collectionViewLayout;
+    // 注意：这里 sectionInsetHorizontal 的计算现在使用更新后的 sectionInset
     CGFloat sectionInsetHorizontal = flowLayout.sectionInset.left + flowLayout.sectionInset.right;
     // 使用布局中定义的最小间距进行计算
     CGFloat interitemSpacing = flowLayout.minimumInteritemSpacing;

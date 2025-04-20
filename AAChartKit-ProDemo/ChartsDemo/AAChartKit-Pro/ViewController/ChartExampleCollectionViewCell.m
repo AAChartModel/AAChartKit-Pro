@@ -67,13 +67,13 @@
     [self.shadowView addSubview:self.containerView];
     [self.containerView addSubview:self.aaChartView]; // 使用懒加载
 
-    // 设置约束 (与 TableViewCell 版本相同，因为约束是相对于 contentView 的)
+    // 设置约束 - 再次减小常量值
     [NSLayoutConstraint activateConstraints:@[
-        // Shadow view constraints (注意常量可能需要根据 CollectionView 布局调整，但这里保持一致)
-        [self.shadowView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:16],
-        [self.shadowView.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:-16],
-        [self.shadowView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:12],
-        [self.shadowView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor constant:-12],
+        // Shadow view constraints (再次减小常量)
+        [self.shadowView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:4], // 原为 8
+        [self.shadowView.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:-4], // 原为 -8
+        [self.shadowView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:3], // 原为 6
+        [self.shadowView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor constant:-3], // 原为 -6
 
         // Container view fills the shadow view
         [self.containerView.leadingAnchor constraintEqualToAnchor:self.shadowView.leadingAnchor],
