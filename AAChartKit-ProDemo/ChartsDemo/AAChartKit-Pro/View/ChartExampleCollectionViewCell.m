@@ -1,5 +1,4 @@
 #import "ChartExampleCollectionViewCell.h"
-#import "AAChartView.h" // <--- 添加这个导入
 
 @interface ChartExampleCollectionViewCell()
 @property (nonatomic, strong, readwrite) AAChartView *aaChartView;
@@ -31,7 +30,6 @@
     self.aaChartView.translatesAutoresizingMaskIntoConstraints = NO;
     self.aaChartView.scrollEnabled = NO; // 通常列表中的图表不需要滚动
     self.aaChartView.backgroundColor = [UIColor clearColor]; // 确保图表背景透明
-    self.aaChartView.isClearBackgroundColor = true; // 确保图表背景透明
     [self.contentView addSubview:self.aaChartView]; // 添加到 contentView (在毛玻璃之上)
 
     // --- 设置约束 ---
@@ -61,7 +59,7 @@
         // 可以添加其他夜间模式特定的 UI 调整
     } else {
         // 为日间模式选择一个合适的模糊效果，例如 SystemMaterialLight 或 ExtraLight
-        self.blurEffectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleSystemUltraThinMaterialLight];
+        self.blurEffectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleSystemMaterialLight];
         // 可以添加其他日间模式特定的 UI 调整
     }
 }

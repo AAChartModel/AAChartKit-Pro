@@ -15,14 +15,21 @@ static NSString * const kChartSampleCollectionViewCellIdentifier = @"ChartSample
 @property (nonatomic, strong) SKView *skView;
 @property (nonatomic, strong) BackgroundEffectsScene *backgroundScene;
 
+// 添加模式切换属性
+@property (nonatomic, assign) BOOL isNightMode;
+@property (nonatomic, strong) UISwitch *modeSwitch;
+
 @end
 
 @implementation ChartListCollectionViewVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isNightMode = YES; // 默认启动为夜间模式
     self.chartExamples = [ChartSampleProvider allProTypeSamples];
     [self setupView];
+    [self setupNavigationBar]; // 设置导航栏开关
+    [self applyCurrentMode]; // 应用初始模式
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -39,7 +46,7 @@ static NSString * const kChartSampleCollectionViewCellIdentifier = @"ChartSample
 
 - (void)setupView {
     self.title = @"AAChartView 示例 (CollectionView)";
-    self.view.backgroundColor = [UIColor blackColor]; // 设置一个基础背景色
+    // 背景色将在 applyCurrentMode 中设置
 
     // --- 设置 SpriteKit 背景 ---
     self.skView = [[SKView alloc] initWithFrame:self.view.bounds];
@@ -64,7 +71,6 @@ static NSString * const kChartSampleCollectionViewCellIdentifier = @"ChartSample
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    self.collectionView.backgroundColor = [UIColor clearColor]; // 确保 CollectionView 背景透明
 
     // 注册自定义单元格类
     [self.collectionView registerClass:[ChartExampleCollectionViewCell class] forCellWithReuseIdentifier:kChartSampleCollectionViewCellIdentifier];
@@ -88,6 +94,55 @@ static NSString * const kChartSampleCollectionViewCellIdentifier = @"ChartSample
     ]];
 }
 
+- (void)setupNavigationBar {
+    self.modeSwitch = [[UISwitch alloc] init];
+    [self.modeSwitch addTarget:self action:@selector(toggleMode:) forControlEvents:UIControlEventValueChanged];
+    self.modeSwitch.on = self.isNightMode; // 设置开关初始状态
+
+    UIBarButtonItem *switchItem = [[UIBarButtonItem alloc] initWithCustomView:self.modeSwitch];
+    self.navigationItem.rightBarButtonItem = switchItem;
+}
+
+- (void)toggleMode:(UISwitch *)sender {
+    self.isNightMode = sender.isOn;
+    [self applyCurrentMode];
+}
+
+- (void)applyCurrentMode {
+    NSLog(@"Applying mode: %@", self.isNightMode ? @"Night" : @"Day"); // 添加日志确认调用
+
+    // 1. 更新视图背景色
+    self.view.backgroundColor = self.isNightMode ? [UIColor blackColor] : [UIColor whiteColor];
+
+    // 2. 更新 CollectionView 背景色
+    self.collectionView.backgroundColor = self.isNightMode ? [UIColor clearColor] : [UIColor clearColor];
+
+    // 3. (可选) 更新 SKScene 外观
+    // 例如: [self.backgroundScene updateForNightMode:self.isNightMode];
+    // 这需要在 BackgroundEffectsScene 中实现相应的方法
+    // 如果 SKView 不透明且覆盖了 vc.view，这里的背景色变化可能看不到
+
+    // 4. 重新加载 CollectionView 以应用图表颜色和单元格外观更改
+    [self.collectionView reloadData];
+
+    // 5. (可选) 更新导航栏外观
+    UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
+    if (self.isNightMode) {
+        [appearance configureWithOpaqueBackground];
+        appearance.backgroundColor = [UIColor blackColor]; // 或者其他深色
+        appearance.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+        self.navigationController.navigationBar.barStyle = UIBarStyleBlack; // 状态栏文字变白
+    } else {
+        [appearance configureWithDefaultBackground]; // 或者 configureWithOpaqueBackground 并设置白色背景
+        appearance.backgroundColor = [UIColor whiteColor];
+        appearance.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor blackColor]};
+        self.navigationController.navigationBar.barStyle = UIBarStyleDefault; // 状态栏文字变黑
+    }
+    self.navigationController.navigationBar.standardAppearance = appearance;
+    self.navigationController.navigationBar.scrollEdgeAppearance = appearance;
+    self.navigationController.navigationBar.tintColor = self.isNightMode ? [UIColor whiteColor] : [UIColor blackColor]; // 按钮颜色
+}
+
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     // 更新 SKView 的大小时，场景会自动调整（因为 scaleMode 设置为 ResizeFill）
@@ -103,84 +158,64 @@ static NSString * const kChartSampleCollectionViewCellIdentifier = @"ChartSample
         chartOptions.chart.animation = (id)kCFBooleanFalse;
     }
 
-    // --- 设置文本颜色为白色 ---
+    // --- 根据模式设置文本颜色 ---
+    NSString *textColor = self.isNightMode ? @"#FFFFFF" : @"#333333"; // 白色或深灰色
+
     // 标题颜色
-    if (!chartOptions.title) {
-        chartOptions.title = AATitle.new;
-    }
-    if (!chartOptions.title.style) {
-        chartOptions.title.style = AAStyle.new;
-    }
-    chartOptions.title.style.color = @"#FFFFFF"; // 白色
+    if (!chartOptions.title) chartOptions.title = AATitle.new;
+    if (!chartOptions.title.style) chartOptions.title.style = AAStyle.new;
+    chartOptions.title.style.color = textColor;
 
     // 副标题颜色
-    if (!chartOptions.subtitle) {
-        chartOptions.subtitle = AASubtitle.new;
-    }
-    if (!chartOptions.subtitle.style) {
-        chartOptions.subtitle.style = AAStyle.new;
-    }
-    chartOptions.subtitle.style.color = @"#FFFFFF"; // 白色
+    if (!chartOptions.subtitle) chartOptions.subtitle = AASubtitle.new;
+    if (!chartOptions.subtitle.style) chartOptions.subtitle.style = AAStyle.new;
+    chartOptions.subtitle.style.color = textColor;
 
     // Y 轴标签颜色
-    if (!chartOptions.yAxis) {
-        chartOptions.yAxis = AAYAxis.new; // 如果 yAxis 不存在，创建一个新的
-    }
-   
-    // 如果有多个 Y 轴，需要遍历设置
+    if (!chartOptions.yAxis) chartOptions.yAxis = AAYAxis.new;
     if ([chartOptions.yAxis isKindOfClass:[NSArray class]]) {
         NSArray *yAxes = (NSArray *)chartOptions.yAxis;
         for (AAYAxis *axis in yAxes) {
             if ([axis isKindOfClass:[AAYAxis class]]) {
                 if (!axis.labels) axis.labels = AALabels.new;
                 if (!axis.labels.style) axis.labels.style = AAStyle.new;
-                axis.labels.style.color = @"#FFFFFF";
+                axis.labels.style.color = textColor;
             }
         }
     } else {
-        if (!chartOptions.yAxis.labels) {
-            chartOptions.yAxis.labels = AALabels.new;
-        }
-        if (!chartOptions.yAxis.labels.style) {
-            chartOptions.yAxis.labels.style = AAStyle.new;
-        }
-        chartOptions.yAxis.labels.style.color = @"#FFFFFF"; // 白色
+        if (!chartOptions.yAxis.labels) chartOptions.yAxis.labels = AALabels.new;
+        if (!chartOptions.yAxis.labels.style) chartOptions.yAxis.labels.style = AAStyle.new;
+        chartOptions.yAxis.labels.style.color = textColor;
     }
 
     // X 轴标签颜色
-    if (!chartOptions.xAxis) {
-        chartOptions.xAxis = AAXAxis.new; // 如果 xAxis 不存在，创建一个新的
-    }
-  
-    // 如果有多个 X 轴，需要遍历设置 (虽然不常见)
+    if (!chartOptions.xAxis) chartOptions.xAxis = AAXAxis.new;
     if ([chartOptions.xAxis isKindOfClass:[NSArray class]]) {
          NSArray *xAxes = (NSArray *)chartOptions.xAxis;
          for (AAXAxis *axis in xAxes) {
                 if ([axis isKindOfClass:[AAXAxis class]]) {
                     if (!axis.labels) axis.labels = AALabels.new;
                     if (!axis.labels.style) axis.labels.style = AAStyle.new;
-                    axis.labels.style.color = @"#FFFFFF";
+                    axis.labels.style.color = textColor;
                 }
          }
     } else {
-        if (!chartOptions.xAxis.labels) {
-            chartOptions.xAxis.labels = AALabels.new;
-        }
-        if (!chartOptions.xAxis.labels.style) {
-            chartOptions.xAxis.labels.style = AAStyle.new;
-        }
-        chartOptions.xAxis.labels.style.color = @"#FFFFFF"; // 白色
+        if (!chartOptions.xAxis.labels) chartOptions.xAxis.labels = AALabels.new;
+        if (!chartOptions.xAxis.labels.style) chartOptions.xAxis.labels.style = AAStyle.new;
+        chartOptions.xAxis.labels.style.color = textColor;
     }
 
     // 图例标签颜色
-    if (!chartOptions.legend) {
-        chartOptions.legend = AALegend.new;
-    }
-    if (!chartOptions.legend.itemStyle) {
-        chartOptions.legend.itemStyle = AAItemStyle.new;
-    }
-    chartOptions.legend.itemStyle.color = @"#FFFFFF"; // 白色
+    if (!chartOptions.legend) chartOptions.legend = AALegend.new;
+    if (!chartOptions.legend.itemStyle) chartOptions.legend.itemStyle = AAItemStyle.new;
+    chartOptions.legend.itemStyle.color = textColor;
     // --- 文本颜色设置结束 ---
+
+    // --- (可选) 设置图表背景色 ---
+    // 通常让图表背景透明以显示下层视图
+     if (!chartOptions.chart) chartOptions.chart = AAChart.new;
+     chartOptions.chart.backgroundColor = @"transparent"; // 明确设置透明
+    // --- 图表背景色设置结束 ---
 
     AAOptions *options = [self configurePlotOptionsSeriesAnimation:chartOptions];
     return options;
@@ -223,22 +258,33 @@ static NSString * const kChartSampleCollectionViewCellIdentifier = @"ChartSample
     // 使用自定义单元格标识符出列
     ChartExampleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kChartSampleCollectionViewCellIdentifier forIndexPath:indexPath];
 
-    // --- 确保 Cell 背景透明 ---
-    cell.backgroundColor = [UIColor clearColor];
-    cell.contentView.backgroundColor = [UIColor clearColor]; // 同时确保 contentView 也透明
-    // --- Cell 背景透明设置结束 ---
+    // --- 移除 Cell 背景硬编码 ---
+    // 由 Cell 内部根据模式处理
+    // --- Cell 背景设置结束 ---
+
+    // --- 通知 Cell 当前模式 ---
+    // **重要**: 调用 Cell 内部的方法来更新其外观。
+    // 你需要在 ChartExampleCollectionViewCell.h 中声明这个方法，并在 .m 中实现它。
+    if ([cell respondsToSelector:@selector(configureAppearanceForNightMode:)]) {
+              
+        [cell configureAppearanceForNightMode:self.isNightMode];
+    } else {
+        // 如果 Cell 没有实现该方法，可以给一个默认的简单背景色切换作为后备
+        cell.contentView.backgroundColor = self.isNightMode ? [UIColor colorWithWhite:0.1 alpha:0.7] : [UIColor colorWithWhite:0.95 alpha:0.8];
+        NSLog(@"Warning: ChartExampleCollectionViewCell does not respond to configureAppearanceForNightMode:");
+    }
+    // --- 模式通知结束 ---
 
     // 配置自定义单元格
     AAOptions *chartOptions = self.chartExamples[indexPath.row];
-    // 禁用动画
+    // 禁用动画并应用当前模式的颜色
     AAOptions *chartOptionsWithoutAnimation = [self optionsItemsWithoutAnimation:chartOptions];
 
     [cell setChartOptions:chartOptionsWithoutAnimation completion:^(AAChartView *aaChartView) {
         // 这里可以处理图表加载完成后的回调
         NSLog(@"Chart loaded successfully in cell: %ld", (long)indexPath.item);
         // --- 确保 AAChartView 背景也透明 ---
-        // 如果 AAChartView 默认背景不透明，也需要设置
-        aaChartView.backgroundColor = [UIColor clearColor];
+        // 这一步在 optionsItemsWithoutAnimation 中通过 chart.backgroundColor = @"transparent" 完成了
         // --- AAChartView 背景设置结束 ---
     }];
 

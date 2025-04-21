@@ -17,6 +17,8 @@ typedef void(^ChartCompletionBlock)(AAChartView *aaChartView);
 /// @param completion 完成回调
 - (void)setChartOptions:(AAOptions *)options completion:(nullable ChartCompletionBlock)completion;
 
+- (void)configureAppearanceForNightMode:(BOOL)isNightMode;
+
 @end
 
 NS_ASSUME_NONNULL_END
