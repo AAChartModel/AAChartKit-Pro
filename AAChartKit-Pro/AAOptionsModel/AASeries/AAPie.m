@@ -43,5 +43,6 @@ AAPropSetFuncImplementation(AAPie, NSNumber     *, startAngle)
 AAPropSetFuncImplementation(AAPie, NSNumber     *, endAngle) 
 AAPropSetFuncImplementation(AAPie, NSNumber     *, depth)
 AAPropSetFuncImplementation(AAPie, NSArray      *, center)
+AAPropSetFuncImplementation(AAPie, NSNumber     *, innerSize)
 
 @end

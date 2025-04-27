@@ -455,6 +455,7 @@
                 @"_3DBarWithStackingAndGrouping---3D堆积且分组条形图",
                 @"_3DAreaChart---3D区域填充图",
                 @"_3DScatterChart---3D散点图",
+                @"_3DPieChart---3D饼图🍪",
             ],
             @[
                 @"UITableView 画廊",

@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (AAOptions *)_3DBarWithStackingAndGrouping;
 + (AAOptions *)_3DAreaChart;
 + (AAOptions *)_3DScatterChart;
++ (AAOptions *)_3DPieChart;
 
 @end
 

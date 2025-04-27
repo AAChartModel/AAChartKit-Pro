@@ -45,5 +45,6 @@ AAPropStatementAndPropSetFuncStatement(strong, AAPie, NSNumber     *, startAngle
 AAPropStatementAndPropSetFuncStatement(strong, AAPie, NSNumber     *, endAngle)
 AAPropStatementAndPropSetFuncStatement(strong, AAPie, NSNumber     *, depth)
 AAPropStatementAndPropSetFuncStatement(strong, AAPie, NSArray      *, center)
+AAPropStatementAndPropSetFuncStatement(strong, AAPie, NSNumber     *, innerSize)
 
 @end

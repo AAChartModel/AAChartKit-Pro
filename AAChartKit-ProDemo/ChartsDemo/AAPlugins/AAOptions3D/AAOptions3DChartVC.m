@@ -74,7 +74,8 @@
         case 3: return [AAOptions3DChartComposer _3DBarWithStackingAndGrouping];
         case 4: return [AAOptions3DChartComposer _3DAreaChart];
         case 5: return [AAOptions3DChartComposer _3DScatterChart];
-       
+        case 6: return [AAOptions3DChartComposer _3DPieChart];
+        
 
 
     }
