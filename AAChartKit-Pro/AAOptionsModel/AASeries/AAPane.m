@@ -41,6 +41,8 @@ AAPropSetFuncImplementation(AAPane, NSArray  *, center)
 AAPropSetFuncImplementation(AAPane, NSNumber *, endAngle)
 AAPropSetFuncImplementation(AAPane, NSNumber *, size)
 AAPropSetFuncImplementation(AAPane, NSNumber *, startAngle)
+//innerSize
+AAPropSetFuncImplementation(AAPane, NSNumber *, innerSize)
 
 @end
 

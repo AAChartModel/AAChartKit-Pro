@@ -32,7 +32,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class AAMarker, AADataLabels, AATooltip, AAStates, AAShadow, AAZonesElement, AADataSorting, AALevelsElement;
+@class AAMarker, AADataLabels, AATooltip, AAStates, AAShadow, AAZonesElement, AADataSorting, AALevelsElement, AAPoint;
 
 @interface AASeriesElement : NSObject
 
@@ -91,6 +91,12 @@ AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, link
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, id        , centeredLinks) //The option to center links rather than position them one after another. Defaults to false.
 AAPropStatementAndPropSetFuncStatement(copy,   AASeriesElement, NSString *, id) //The offset of an arc diagram nodes column in relation to the plotArea. The offset equal to 50% places nodes in the center of a chart. By default the series is placed so that the biggest node is touching the bottom border of the plotArea. Defaults to '100%'.
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSString *, nullColor)
+//                .maxSizeSet(@14)
+//                .minSizeSet(@3)
+AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, minSize)
+AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, maxSize)
+//AAPropSetFuncImplementation(AASeriesElement, AAPoint *, point)
+AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, AAPoint *, point)
 
 @end
 

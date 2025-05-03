@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 AAPropStatementAndPropSetFuncStatement(copy,   AAData, NSString     *, csv)
 AAPropStatementAndPropSetFuncStatement(copy,   AAData, NSString     *, parsed)
+AAPropStatementAndPropSetFuncStatement(strong, AAData, NSArray      *, seriesMapping)
 
 @end
 

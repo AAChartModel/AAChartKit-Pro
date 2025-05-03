@@ -8,6 +8,7 @@
 
 #import "AABubbleChartVC.h"
 #import "AABubbleChartComposer.h"
+#import "AABubbleStellarChartComposer.h"
 
 @implementation AABubbleChartVC
 
@@ -22,7 +23,7 @@
         case  1: return [AABubbleChartComposer packedbubbleSplitChart];
         case  2: return [AABubbleChartComposer packedbubbleSpiralChart];
         case  3: return [AABubbleChartComposer eulerChart];
-        case  4: return [AABubbleChartComposer vennChart];
+        case  4: return [AABubbleStellarChartComposer bubbleStellarChart];
     }
     return nil;
 }

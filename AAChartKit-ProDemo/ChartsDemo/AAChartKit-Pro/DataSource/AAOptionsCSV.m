@@ -14,6 +14,11 @@
     return [self getJsonDataWithJsonFileName:@"bigHeatmapData"];
 }
 
++ (NSDictionary *)stellarChartData {
+    // Read the CSV file content as a string
+    return [self getJsonDataWithJsonFileName:@"stellarChartData"];
+}
+
 + (id)getJsonDataWithJsonFileName:(NSString *)jsonFileName
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:jsonFileName ofType:@"json"];

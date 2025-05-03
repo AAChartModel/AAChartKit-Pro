@@ -13,6 +13,8 @@
 
 AAPropSetFuncImplementation(AAData, NSString     *, csv)
 //AAPropSetFuncImplementation(AAData, NSString     *, parsed)
+AAPropSetFuncImplementation(AAData, NSArray      *, seriesMapping)
+
 
 AAJSFuncTypePropSetFuncImplementation(AAData, NSString     *, parsed)
 

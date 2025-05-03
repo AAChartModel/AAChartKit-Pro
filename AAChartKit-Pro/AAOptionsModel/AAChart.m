@@ -85,13 +85,29 @@ AAPropSetFuncImplementation(AAResetZoomButton, NSDictionary *, theme)
 @end
 
 
+//https://api.highcharts.com/highcharts/chart.events
 @implementation AAChartEvents : NSObject
 
+AAJSFuncTypePropSetFuncImplementation(AAChartEvents, NSString *, click)
 AAJSFuncTypePropSetFuncImplementation(AAChartEvents, NSString *, load)
+AAJSFuncTypePropSetFuncImplementation(AAChartEvents, NSString *, redraw)
+AAJSFuncTypePropSetFuncImplementation(AAChartEvents, NSString *, render)
 AAJSFuncTypePropSetFuncImplementation(AAChartEvents, NSString *, selection)
+
+- (void)setClick:(NSString *)click {
+    _click = [click aa_toPureJSString];
+}
 
 - (void)setLoad:(NSString *)load {
     _load = [load aa_toPureJSString];
+}
+
+- (void)setRedraw:(NSString *)redraw {
+    _redraw = [redraw aa_toPureJSString];
+}
+
+- (void)setRender:(NSString *)render {
+    _render = [render aa_toPureJSString];
 }
 
 - (void)setSelection:(NSString *)selection {

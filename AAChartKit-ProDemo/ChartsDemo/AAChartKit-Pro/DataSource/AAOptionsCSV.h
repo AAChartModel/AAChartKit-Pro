@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AAOptionsCSV : NSObject
 
 + (NSDictionary *)csvData;
++ (NSDictionary *)stellarChartData;
 
 @end
 

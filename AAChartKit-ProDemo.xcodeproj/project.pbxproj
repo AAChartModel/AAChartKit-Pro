@@ -113,6 +113,9 @@
 		84526DE42CE72BF500EB2563 /* AAChart+Options3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 84526DE32CE72BF500EB2563 /* AAChart+Options3D.m */; };
 		84526DE82CE73D8100EB2563 /* AAOptions+ZAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 84526DE72CE73D8100EB2563 /* AAOptions+ZAxis.m */; };
 		84526DEE2CE743C500EB2563 /* AASeries+Depth.m in Sources */ = {isa = PBXBuildFile; fileRef = 84526DED2CE743C500EB2563 /* AASeries+Depth.m */; };
+		84903D092DC644240029FE5A /* AABubbleStellarChartComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84903D082DC644240029FE5A /* AABubbleStellarChartComposer.m */; };
+		84903D112DC654740029FE5A /* sunburst2Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84903D102DC654740029FE5A /* sunburst2Data.json */; };
+		84903D132DC654880029FE5A /* stellarChartData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84903D122DC654880029FE5A /* stellarChartData.json */; };
 		8492D9A02C7499DC007EB8D0 /* calendarHeatmapData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8492D99F2C7499DC007EB8D0 /* calendarHeatmapData.json */; };
 		84A5690027FD48E900883553 /* organizationData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A568FF27FD48E900883553 /* organizationData.json */; };
 		84A5690227FD496600883553 /* organizationNodesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A5690127FD496600883553 /* organizationNodesData.json */; };
@@ -371,6 +374,10 @@
 		84526DE72CE73D8100EB2563 /* AAOptions+ZAxis.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AAOptions+ZAxis.m"; sourceTree = "<group>"; };
 		84526DEC2CE743C500EB2563 /* AASeries+Depth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AASeries+Depth.h"; sourceTree = "<group>"; };
 		84526DED2CE743C500EB2563 /* AASeries+Depth.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AASeries+Depth.m"; sourceTree = "<group>"; };
+		84903D072DC644240029FE5A /* AABubbleStellarChartComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AABubbleStellarChartComposer.h; sourceTree = "<group>"; };
+		84903D082DC644240029FE5A /* AABubbleStellarChartComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AABubbleStellarChartComposer.m; sourceTree = "<group>"; };
+		84903D102DC654740029FE5A /* sunburst2Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sunburst2Data.json; sourceTree = "<group>"; };
+		84903D122DC654880029FE5A /* stellarChartData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = stellarChartData.json; sourceTree = "<group>"; };
 		8492D99E2C7498B8007EB8D0 /* AAChartKit-ProDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "AAChartKit-ProDemo.entitlements"; sourceTree = "<group>"; };
 		8492D99F2C7499DC007EB8D0 /* calendarHeatmapData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = calendarHeatmapData.json; sourceTree = "<group>"; };
 		84A568FF27FD48E900883553 /* organizationData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = organizationData.json; sourceTree = "<group>"; };
@@ -632,6 +639,8 @@
 				84D2B65C2978F9FF005BBA80 /* simpleTilemapData.json */,
 				84D2B65B2978F9FF005BBA80 /* tilemapForAfricaData.json */,
 				8492D99F2C7499DC007EB8D0 /* calendarHeatmapData.json */,
+				84903D102DC654740029FE5A /* sunburst2Data.json */,
+				84903D122DC654880029FE5A /* stellarChartData.json */,
 			);
 			path = DataJsonFiles;
 			sourceTree = "<group>";
@@ -826,6 +835,8 @@
 				84B13F4728A0B66B007356C6 /* AARelationshipChartComposer.m */,
 				84B13F4928A0B869007356C6 /* AABubbleChartComposer.h */,
 				84B13F4A28A0B869007356C6 /* AABubbleChartComposer.m */,
+				84903D072DC644240029FE5A /* AABubbleStellarChartComposer.h */,
+				84903D082DC644240029FE5A /* AABubbleStellarChartComposer.m */,
 				84B13F5428A0E028007356C6 /* AAColumnVariantChartComposer.h */,
 				84B13F5528A0E028007356C6 /* AAColumnVariantChartComposer.m */,
 				84DFEAB32A274158004436BC /* AAPictorialPaths.h */,
@@ -1133,6 +1144,7 @@
 				84526DC62CE71D7100EB2563 /* AADrilldown.js in Resources */,
 				27EB8A8F249B804C007E6A6B /* bellcurveData.json in Resources */,
 				84A5690027FD48E900883553 /* organizationData.json in Resources */,
+				84903D132DC654880029FE5A /* stellarChartData.json in Resources */,
 				27EB8A722497C007007E6A6B /* treemapWithLevelsData.json in Resources */,
 				84AA68BA28A1FEC6009067AE /* marathonData.json in Resources */,
 				27EB8A782497C007007E6A6B /* vectorData.json in Resources */,
@@ -1167,6 +1179,7 @@
 				84DFEABC2A274784004436BC /* treegraphData.json in Resources */,
 				8409E6A12CD489C9000EFCF2 /* verticalSankeySeries.json in Resources */,
 				84D2B65E2978F9FF005BBA80 /* simpleTilemapData.json in Resources */,
+				84903D112DC654740029FE5A /* sunburst2Data.json in Resources */,
 				27EB8A7E2497C007007E6A6B /* bigHeatmapData.json in Resources */,
 				27EB8A7A2497C007007E6A6B /* sankeyData.json in Resources */,
 				7172A3E61E763EA6000D5B99 /* LaunchScreen.storyboard in Resources */,
@@ -1292,6 +1305,7 @@
 				84AA68A328A104B4009067AE /* AASolidgaugeDataElement.m in Sources */,
 				8441A72626C21F0A007EAAA7 /* NSArray+toJSArray.m in Sources */,
 				27EB89EF2491C3A0007E6A6B /* AAChartTypePro.m in Sources */,
+				84903D092DC644240029FE5A /* AABubbleStellarChartComposer.m in Sources */,
 				8441A6F826C21E6C007EAAA7 /* AACrosshair.m in Sources */,
 				84DFEB792A2882ED004436BC /* AABar.m in Sources */,
 				8409E6B52CD4CB2F000EFCF2 /* AATreemapChartVC.m in Sources */,
