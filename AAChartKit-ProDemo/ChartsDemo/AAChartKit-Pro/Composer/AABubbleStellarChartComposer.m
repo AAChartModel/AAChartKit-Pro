@@ -14,109 +14,6 @@
 @implementation AABubbleStellarChartComposer
 
 + (AAOptions *)bubbleStellarChart {
-    // Define the fillCenter function as a JavaScript string
-    NSString *fillCenterJSFunction = @"function fillCenter(percentage, decade, chart, customLabel) {"
-                                      @"    const labelText = `<div class=\"center-label\">"
-                                      @"        <p class=\"symbol\">☉</p>"
-                                      @"        <p class=\"uppercase\">${decade}<small>s</p>"
-                                      @"        <p class=\"label\">Planets discovered</p>"
-                                      @"        <p class=\"percentage\">"
-                                      @"            ${percentage.toFixed(2)}"
-                                      @"            <sup style='font-size: 0.5em;'>%</sup>"
-                                      @"        </p>"
-                                      @"    </div>`;"
-                                      @""
-                                      @"    if (!customLabel) {"
-                                      @"        customLabel = chart.renderer.label("
-                                      @"            labelText, 0, 0, void 0, void 0,"
-                                      @"            void 0, true"
-                                      @"        ).css({"
-                                      @"            color: '#000',"
-                                      @"            pointerEvents: 'none'"
-                                      @"        }).add();"
-                                      @"    } else {"
-                                      @"        customLabel.attr({"
-                                      @"            text: labelText"
-                                      @"        });"
-                                      @"    }"
-                                      @"    customLabel.attr({"
-                                      @"        x: (chart.pane[0].center[0] + chart.plotLeft) -"
-                                      @"            customLabel.attr('width') / 2,"
-                                      @"        y: (chart.pane[0].center[1] + chart.plotTop) -"
-                                      @"            customLabel.attr('height') / 2 - 10"
-                                      @"    });"
-                                      @"    return customLabel;"
-                                      @"}";
-
-    // Define the render event handler using the fillCenter function
-    NSString *chartRenderJSFunction = [NSString stringWithFormat:@"%@ function() {"
-                                       @"    const chart = this,"
-                                       @"        pieSeries = chart.series[1];"
-                                       @"    pieSeries.customLabel = fillCenter("
-                                       @"        100,"
-                                       @"        '1990-2020',"
-                                       @"        chart,"
-                                       @"        pieSeries.customLabel"
-                                       @"    );"
-                                       @"}", fillCenterJSFunction]; // Prepend fillCenter definition
-
-    // Define pie point mouseOver event handler
-    NSString *piePointMouseOverJSFunction = [NSString stringWithFormat:@"%@ function() {"
-                                             @"    const {"
-                                             @"            minDate,"
-                                             @"            maxDate"
-                                             @"        } = this.options.custom,"
-                                             @"        point = this,"
-                                             @"        series = this.series,"
-                                             @"        chart = series.chart,"
-                                             @"        bubbleSeries = chart.series[0];"
-                                             @""
-                                             @"    bubbleSeries.points.forEach(point => {"
-                                             @"        if ("
-                                             @"            point.options.custom.discoveryDate < minDate ||"
-                                             @"            point.options.custom.discoveryDate >= maxDate"
-                                             @"        ) {"
-                                             @"            point.graphic.attr({"
-                                             @"                opacity: 0.2"
-                                             @"            });"
-                                             @"        }"
-                                             @"    });"
-                                             @""
-                                             @"    series.customLabel = fillCenter("
-                                             @"        point.percentage,"
-                                             @"        point.options.custom.minDate,"
-                                             @"        chart,"
-                                             @"        series.customLabel"
-                                             @"    );"
-                                             @"}", fillCenterJSFunction]; // Prepend fillCenter definition
-
-    // Define pie point mouseOut event handler
-    NSString *piePointMouseOutJSFunction = [NSString stringWithFormat:@"%@ function() {"
-                                            @"    const chart = this.series.chart,"
-                                            @"        series = this.series,"
-                                            @"        bubbleSeries = chart.series[0];"
-                                            @""
-                                            @"    bubbleSeries.points.forEach(point => {"
-                                            @"        point.graphic.attr({"
-                                            @"            opacity: 1"
-                                            @"        });"
-                                            @"    });"
-                                            @"    series.customLabel = fillCenter("
-                                            @"        100,"
-                                            @"        '1990-2020',"
-                                            @"        chart,"
-                                            @"        series.customLabel"
-                                            @"    );"
-                                            @"}", fillCenterJSFunction]; // Prepend fillCenter definition
-
-    // Tooltip formatter function
-    NSString *tooltipFormatter = @"function (tooltip) {"
-                                 @"    if (this.series.options.type === 'pie') {" // Hide tooltip for pie series
-                                 @"        return false;"
-                                 @"    }"
-                                 @"    return tooltip.defaultFormatter.call(this, tooltip);" // If not null, use the default formatter
-                                 @"}";
-
     // CSV Data (Replace with your actual CSV data string)
     // Note: AAChartKit might require data to be pre-parsed or structured differently than direct CSV input in Highcharts JS.
     // This example assumes you have a mechanism to provide the CSV string.
@@ -205,7 +102,14 @@
 //            .outsideSet(true)
             .hideDelaySet(@20)
             .useHTMLSet(true)
-            .formatterSet(tooltipFormatter)) // Set tooltip formatter JS function
+            .formatterSet(@AAJSFunc(function (tooltip) {
+                // Hide tooltip for pie series
+                if (this.series.options.type === 'pie') {
+                    return false;
+                }
+                // If not null, use the default formatter
+                return tooltip.defaultFormatter.call(this, tooltip);
+            }))) // Set tooltip formatter JS function
         .plotOptionsSet(AAPlotOptions.new
             .seriesSet(AASeries.new
                 .statesSet(AAStates.new
@@ -220,12 +124,12 @@
                 .maxSizeSet(@14)
                 .minSizeSet(@3)
                 .tooltipSet(AATooltip.new
-//                    .pointFormatSet(@"<table>"
-//                                     "<tr><td style='padding:0'><span class=\"smallerLabel\">Name:</span> {point.name}</td></tr>"
-//                                     "<tr><td style='padding:0'><span class=\"smallerLabel\">Mass:</span> {point.custom.planetMass}</td></tr>"
-//                                     "<tr><td style='padding:0'><span class=\"smallerLabel\">Distance:</span> {point.custom.lightYears} Light Years</td></tr>"
-//                                     "<tr><td style='padding:0'><span class=\"smallerLabel\">Stellar Magnitude:</span> {point.custom.stellarMagnitude}</td></tr>"
-//                                     "</table>")
+                    .pointFormatSet(@"<table>"
+                                     "<tr><td style='padding:0'><span class=\"smallerLabel\">Name:</span> {point.name}</td></tr>"
+                                     "<tr><td style='padding:0'><span class=\"smallerLabel\">Mass:</span> {point.custom.planetMass}</td></tr>"
+                                     "<tr><td style='padding:0'><span class=\"smallerLabel\">Distance:</span> {point.custom.lightYears} Light Years</td></tr>"
+                                     "<tr><td style='padding:0'><span class=\"smallerLabel\">Stellar Magnitude:</span> {point.custom.stellarMagnitude}</td></tr>"
+            "</table>".aa_toPureHTMLString)
             ),
             AASeriesElement.new
                 .typeSet(AAChartTypePie)
@@ -235,8 +139,51 @@
                 .zIndexSet(@-1)
                 .pointSet(AAPoint.new
                     .eventsSet(AAPointEvents.new
-                        .mouseOverSet(piePointMouseOverJSFunction) // Set mouseOver JS function
-                        .mouseOutSet(piePointMouseOutJSFunction))) // Set mouseOut JS function
+                .mouseOverSet(@AAJSFunc((function() {
+                const {
+                    minDate,
+                    maxDate
+                } = this.options.custom,
+                point = this,
+                series = this.series,
+                chart = series.chart,
+                bubbleSeries = chart.series[0];
+                
+                bubbleSeries.points.forEach(point => {
+                    if (
+                        point.options.custom.discoveryDate < minDate ||
+                        point.options.custom.discoveryDate >= maxDate
+                        ) {
+                            point.graphic.attr({
+                                opacity: 0.2
+                            });
+                        }
+                });
+                
+                series.customLabel = fillCenter(
+                                                point.percentage,
+                                                point.options.custom.minDate,
+                                                chart,
+                                                series.customLabel
+                                                );
+            }))) // Set mouseOver JS function
+                .mouseOutSet(@AAJSFunc((function() {
+                const chart = this.series.chart,
+                series = this.series,
+                bubbleSeries = chart.series[0];
+                
+                bubbleSeries.points.forEach(point => {
+                    point.graphic.attr({
+                        opacity: 1
+                    });
+                });
+                series.customLabel = fillCenter(
+                                                100,
+                                                '1990-2020',
+                                                chart,
+                                                series.customLabel
+                                                );
+            }))))) // Set mouseOut JS function
                 .dataSet(@[
                     @{
                         @"y": @12,
