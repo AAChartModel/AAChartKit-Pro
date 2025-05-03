@@ -19,6 +19,7 @@
     // This example assumes you have a mechanism to provide the CSV string.
     // If direct CSV isn't supported as shown, you'll need to parse the CSV and build the series data array manually.
     NSString *csvStr = AAOptionsCSV.stellarChartData[@"csv"];
+    NSString *csvDataStr = csvStr.aa_toPureCSVString;
 
     NSArray *colors = @[@"#6CDDCA", @"#C771F3", @"#4D90DB", @"#FAB776"];
 
@@ -28,21 +29,21 @@
             .typeSet(AAChartTypeBubble)
             .polarSet(true)
 //            .heightSet(@600)
-            .eventsSet(AAChartEvents.new
-                       .renderSet(@AAJSFunc((function() {
-                           const chart = this,
-                           pieSeries = chart.series[1];
-                           pieSeries.customLabel = fillCenter(
-                                                              100,
-                                                              '1990-2020',
-                                                              chart,
-                                                              pieSeries.customLabel
-                                                              );
-                       })
-                                            )))
+//            .eventsSet(AAChartEvents.new
+//                       .renderSet(@AAJSFunc((function() {
+//                           const chart = this,
+//                           pieSeries = chart.series[1];
+//                           pieSeries.customLabel = fillCenter(
+//                                                              100,
+//                                                              '1990-2020',
+//                                                              chart,
+//                                                              pieSeries.customLabel
+//                                                              );
+//                       })
+//                                            )))
                   ) // Add render event with fillCenter
         .dataSet(AAData.new
-                 .csvSet(csvStr.aa_toPureCSVString) // Provide CSV data string
+                 .csvSet(csvDataStr) // Provide CSV data string
             .seriesMappingSet(@[@{
                                   @"name": @0,
                                   @"x": @1,

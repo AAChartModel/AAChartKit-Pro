@@ -69,6 +69,9 @@
 - (NSString *)aa_toPureCSVString {
     //https://stackoverflow.com/questions/34334232/why-does-function-not-work-but-function-does-chrome-devtools-node
     NSString *pureJSStr = [NSString stringWithFormat:@"(%@)",self];
+    //⚠️:这里替代单引号的方法有点缺陷, 当英文单词种类包含有单引号时,会导致替换错误
+    //比如: 'I'm a student' 这个字符串,替换后会变成: "I"m a student", 这样会导致最终的 Highcharts 渲染失败
+    //后续再想办法解决这个问题
     pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"'" withString:@"\""];
     pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\0" withString:@""];
 //    pureJSStr = [pureJSStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
