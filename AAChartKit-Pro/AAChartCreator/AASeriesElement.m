@@ -41,6 +41,7 @@
         _allowPointSelect = false;
         _showInLegend = true;
         _visible = true;
+        _clip = true;
     }
     return self;
 }
@@ -84,6 +85,7 @@ AAPropSetFuncImplementation(AASeriesElement, NSString *, stack)
 AAPropSetFuncImplementation(AASeriesElement, AATooltip*, tooltip)
 AAPropSetFuncImplementation(AASeriesElement, NSNumber *, zIndex) //层叠，series element 在图表中显示的层叠级别，值越大，显示越向前
 AAPropSetFuncImplementation(AASeriesElement, NSString *, pointPlacement)
+AAPropSetFuncImplementation(AASeriesElement, NSNumber *, pointWidth) 
 AAPropSetFuncImplementation(AASeriesElement, id        , enableMouseTracking)
 AAPropSetFuncImplementation(AASeriesElement, AADataSorting *, dataSorting)
 AAPropSetFuncImplementation(AASeriesElement, id        , reversed) //Only useful for pyramid chart and funnel chart
@@ -104,8 +106,9 @@ AAPropSetFuncImplementation(AASeriesElement, NSString *, nullColor)
 //                .minSizeSet(@3)
 AAPropSetFuncImplementation(AASeriesElement, NSNumber *, minSize)
 AAPropSetFuncImplementation(AASeriesElement, NSNumber *, maxSize)
-//point
-AAPropSetFuncImplementation(AASeriesElement, AAPoint *, point)
+AAPropSetFuncImplementation(AASeriesElement, AAPoint  *, point)
+AAPropSetFuncImplementation(AASeriesElement, BOOL      , clip)
+
 @end
 
 

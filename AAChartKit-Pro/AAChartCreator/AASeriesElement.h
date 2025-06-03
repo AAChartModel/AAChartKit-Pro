@@ -75,6 +75,7 @@ AAPropStatementAndPropSetFuncStatement(copy,   AASeriesElement, NSString *, stac
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, AATooltip*, tooltip)
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, zIndex) //层叠，series element 在图表中显示的层叠级别，值越大，显示越向前
 AAPropStatementAndPropSetFuncStatement(copy,   AASeriesElement, NSString *, pointPlacement)
+AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, pointWidth)
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, id        , enableMouseTracking)
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, AADataSorting *, dataSorting)
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, id        , reversed) //Only useful for pyramid chart and funnel chart
@@ -95,8 +96,8 @@ AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSString *, null
 //                .minSizeSet(@3)
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, minSize)
 AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, NSNumber *, maxSize)
-//AAPropSetFuncImplementation(AASeriesElement, AAPoint *, point)
-AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, AAPoint *, point)
+AAPropStatementAndPropSetFuncStatement(strong, AASeriesElement, AAPoint  *, point)
+AAPropStatementAndPropSetFuncStatement(assign, AASeriesElement, BOOL      , clip)
 
 @end
 

@@ -45,7 +45,7 @@
     }
 
     // 准备哑铃装饰线（顶部和底部）的数据
-    NSNumber *decorativeCapWidth = @0.20; // 装饰线沿值轴的“宽度/厚度”（视觉上像一条线）
+    NSNumber *decorativeCapWidth = @0.40; // 装饰线沿值轴的“宽度/厚度”（视觉上像一条线）
     NSMutableArray *topCapsData = [NSMutableArray array];
     NSMutableArray *bottomCapsData = [NSMutableArray array];
 
@@ -140,7 +140,7 @@
             @{ @"y": @18, @"color": @"#60CDF5", @"label": @"1小时49分钟（18%）" },
             @{ @"y": @2,  @"color": @"#FACC15", @"label": @"5分钟（2%）" }
         ])
-//        .pointWidthSet(mainBarPointWidth) // 设置与理想区间相同的“厚度”
+        .pointWidthSet(mainBarPointWidth) // 设置与理想区间相同的“厚度”
         .dataLabelsSet(AADataLabels.new
             .enabledSet(YES)
             .formatterSet(@"function () { return this.point.label; }")
@@ -160,7 +160,7 @@
         .typeSet(AAChartTypeColumnrange)
         .dataSet(idealRangeSeriesData)
         .colorSet((id)idealRangeSeriesPatternShape)
-//        .pointWidthSet(mainBarPointWidth) // 与实际睡眠条具有相同的“厚度”
+        .pointWidthSet(mainBarPointWidth) // 与实际睡眠条具有相同的“厚度”
         .zIndexSet(@1)                     // 绘制在实际睡眠数据上层, 这样视觉效果才能不被覆盖
         .showInLegendSet(YES);
 
@@ -169,11 +169,11 @@
         .nameSet(@"装饰线")
         .typeSet(AAChartTypeColumnrange)
         .dataSet(topCapsData)
-//        .pointWidthSet(decorativeCapHeight)     // 装饰线的“高度” (倒置图中的宽度)
+        .pointWidthSet(decorativeCapHeight)     // 装饰线的“高度” (倒置图中的宽度)
         .zIndexSet(@2)                     // 在主图案条和实际睡眠条之上绘制
         .showInLegendSet(NO)
         .enableMouseTrackingSet(@NO)
-//        .clipSet(NO)
+        .clipSet(NO)
     ;
 
     // 哑铃底部装饰线 - 最顶层
@@ -181,11 +181,11 @@
         .nameSet(@"装饰线")
         .typeSet(AAChartTypeColumnrange)
         .dataSet(bottomCapsData)
-//        .pointWidthSet(decorativeCapHeight)     // 装饰线的“高度” - 更宽
+        .pointWidthSet(decorativeCapHeight)     // 装饰线的“高度” - 更宽
         .zIndexSet(@2)
         .showInLegendSet(NO)
         .enableMouseTrackingSet(@NO)
-//        .clipSet(NO)
+        .clipSet(NO)
     ;
 
     aaOptions.series = @[
