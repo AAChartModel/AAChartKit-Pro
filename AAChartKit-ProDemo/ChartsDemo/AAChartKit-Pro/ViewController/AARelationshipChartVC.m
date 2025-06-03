@@ -10,6 +10,7 @@
 #import "AARelationshipChartComposer.h"
 #import "AAOrganizationChartComposer.h"
 #import "AASankeyChartComposer.h"
+#import "AAMixedChartComposer.h"
 
 @implementation AARelationshipChartVC
 
@@ -20,7 +21,7 @@
 
 - (id)chartConfigurationWithSelectedIndex:(NSUInteger)selectedIndex {
     switch (self.selectedIndex) {
-        case  0: return [AARelationshipChartComposer sankeyChart];
+        case  0: return [AAMixedChartComposer barMixedColumnrangeWithPatternFillChart];
         case  1: return [AARelationshipChartComposer dependencywheelChart];
         case  2: return [AARelationshipChartComposer arcdiagramChart1];
         case  3: return [AARelationshipChartComposer arcdiagramChart2];

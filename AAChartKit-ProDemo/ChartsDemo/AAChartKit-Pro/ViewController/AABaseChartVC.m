@@ -180,12 +180,12 @@
 
 - (void)configureChartOptions:(id)chartConfiguration {
     AAOptions *aaOptions = chartConfiguration;
-    if (aaOptions.chart) {
-        aaOptions.chart.backgroundColor = @"#000000";
-    } else {
-        aaOptions.chartSet(AAChart.new
-                           .backgroundColorSet(@"#000000"));
-    }
+//    if (aaOptions.chart) {
+//        aaOptions.chart.backgroundColor = @"#000000";
+//    } else {
+//        aaOptions.chartSet(AAChart.new
+//                           .backgroundColorSet(@"#000000"));
+//    }
     aaOptions.touchEventEnabled = true;
 }
 
