@@ -13,7 +13,8 @@
 
 + (AAOptions *)barMixedColumnrangeWithPatternFillChart {
     // 为理想睡眠区间定义深色（用于图案和装饰线）
-    NSArray *darkerColors = @[@"#603EAC", @"#7560B1", @"#4390AD", @"#AF8D0E"]; // 预先计算的深色
+    NSArray *darkerColors = @[@"#603EAC", @"#7560B1", @"#4390AD", @"#AF8D0E"]; // 预先计算的深色(比实际睡眠的棱柱颜色稍微深一些)
+    NSString *darkerColorsJsArr = [darkerColors aa_toJSArray]; // darkerColors 数组转换为 JavaScript 数组字符串
 
     // 理想区间原始数据
     NSArray *idealRangeRawData = @[
@@ -28,19 +29,14 @@
         [categories addObject:item[@"category"]];
     }
 
-    // 准备 Highcharts 系列数据：理想区间（带图案的条形）
+    // 准备 Highcharts 系列数据：理想区间（自定义 Pattern 带图案的条形）
     NSMutableArray *idealRangeSeriesData = [NSMutableArray array];
     for (NSDictionary *d in idealRangeRawData) {
         [idealRangeSeriesData addObject:@{
             @"low": d[@"low"],
             @"high": d[@"high"],
             @"x": d[@"x"],
-            @"color": @{
-                @"pattern": @{
-                    @"color": d[@"patternColor"], // 图案线的颜色
-                    // 图案形状在系列级别定义
-                }
-            }
+            @"color":[NSString stringWithFormat:@"url(#customPattern%@)", d[@"x"]], // 使用图案填充
         }];
     }
 
@@ -72,7 +68,30 @@
 
     aaOptions.chart = AAChart.new
         .typeSet(AAChartTypeColumnrange) // 默认类型，可被系列覆盖
-        .invertedSet(YES);       // 使图表水平显示
+        .invertedSet(YES) // 使图表水平显示
+        .eventsSet(AAChartEvents.new
+                   .loadSet([NSString stringWithFormat:@AAJSFunc(function () {
+                       const chart = this;
+                       const renderer = chart.renderer;
+                       let defs = renderer.defs;
+                       if (!defs) {
+                           defs = renderer.createElement('defs').add();
+                           renderer.defs = defs;
+                       }
+                       // 动态生成 pattern
+                       %@.forEach((c, i) => {
+                           defs.element.innerHTML += `
+                               <pattern id="customPattern${i}"
+                                        patternUnits="userSpaceOnUse"
+                                        width="6" height="6">
+                                 <path d="M 0 0 L 6 6"
+                                       stroke="${c}"
+                                       stroke-width="1.5"/>
+                               </pattern>`;
+                       });
+                   }), darkerColorsJsArr])
+                   )
+    ;
 
     aaOptions.title = AATitle.new
         .textSet(@"睡眠阶段 vs 理想区间");
@@ -84,7 +103,8 @@
     aaOptions.yAxis = AAYAxis.new
         .minSet(@0)             // 显式设置 Y 轴最小值
         .maxSet(@100)
-        .titleSet(AATitle.new.textSet(nil))
+        .titleSet(AAAxisTitle.new
+                  .textSet(nil))
         .gridLineWidthSet(@1)
         .tickIntervalSet(@10);    // 可选：设置 Y 轴刻度间隔
 
@@ -143,23 +163,16 @@
         .pointWidthSet(mainBarPointWidth) // 设置与理想区间相同的“厚度”
         .dataLabelsSet(AADataLabels.new
             .enabledSet(YES)
-            .formatterSet(@"function () { return this.point.label; }")
+            .formatterSet(@AAJSFunc(function () {
+                return this.point.label;
+            }))
         )
         .zIndexSet(@0); // 绘制在理想区间之下
 
-    // 理想区间（绘制为斜线背景柱） - 背景层
-    NSDictionary *idealRangeSeriesPatternShape = @{
-        @"pattern": @{
-            @"path": @{ @"d": @"M 0 0 L 6 6", @"strokeWidth": @1.5 },
-            @"width": @6,
-            @"height": @6,
-        }
-    };
     AASeriesElement *idealRangeSeries = AASeriesElement.new
         .nameSet(@"理想睡眠区间")
         .typeSet(AAChartTypeColumnrange)
         .dataSet(idealRangeSeriesData)
-        .colorSet((id)idealRangeSeriesPatternShape)
         .pointWidthSet(mainBarPointWidth) // 与实际睡眠条具有相同的“厚度”
         .zIndexSet(@1)                     // 绘制在实际睡眠数据上层, 这样视觉效果才能不被覆盖
         .showInLegendSet(YES);
