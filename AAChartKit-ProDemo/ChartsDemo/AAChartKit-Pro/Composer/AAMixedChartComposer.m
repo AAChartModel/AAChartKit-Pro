@@ -66,7 +66,8 @@
 
     AAOptions *aaOptions = AAOptions.new;
 
-    aaOptions.chart = AAChart.new
+    // 创建 chart 配置
+    AAChart *chart = AAChart.new
         .typeSet(AAChartTypeColumnrange) // 默认类型，可被系列覆盖
         .invertedSet(YES) // 使图表水平显示
         .eventsSet(AAChartEvents.new
@@ -90,25 +91,32 @@
                                </pattern>`;
                        });
                    }), darkerColorsJsArr])
-                   )
-    ;
+                   );
+    aaOptions.chart = chart;
 
-    aaOptions.title = AATitle.new
+    // 创建 title 配置
+    AATitle *title = AATitle.new
         .textSet(@"睡眠阶段 vs 理想区间");
+    aaOptions.title = title;
 
-    aaOptions.xAxis = AAXAxis.new
+    // 创建 xAxis 配置
+    AAXAxis *xAxis = AAXAxis.new
         .categoriesSet(categories);
         // 如果希望 '深睡' 在底部，则设置为 true (原 JS 中为 xAxis: { categories: categories, reversed: true })
+    aaOptions.xAxis = xAxis;
 
-    aaOptions.yAxis = AAYAxis.new
+    // 创建 yAxis 配置
+    AAYAxis *yAxis = AAYAxis.new
         .minSet(@0)             // 显式设置 Y 轴最小值
         .maxSet(@100)
         .titleSet(AAAxisTitle.new
                   .textSet(nil))
         .gridLineWidthSet(@1)
         .tickIntervalSet(@10);    // 可选：设置 Y 轴刻度间隔
+    aaOptions.yAxis = yAxis;
 
-    aaOptions.plotOptions = AAPlotOptions.new
+    // 创建 plotOptions 配置
+    AAPlotOptions *plotOptions = AAPlotOptions.new
         .seriesSet(AASeries.new // 新增：全局禁用所有系列的 hover 状态
             .statesSet(AAStates.new
                 .hoverSet(AAHover.new
@@ -129,11 +137,15 @@
             .groupingSet(NO)     // Also allow bar series to overlap
             .borderWidthSet(@0)
         );
+    aaOptions.plotOptions = plotOptions;
 
-    aaOptions.legend = AALegend.new
+    // 创建 legend 配置
+    AALegend *legend = AALegend.new
         .enabledSet(YES);
+    aaOptions.legend = legend;
 
-    aaOptions.tooltip = AATooltip.new
+    // 创建 tooltip 配置
+    AATooltip *tooltip = AATooltip.new
         .sharedSet(YES)
         .formatterSet(@AAJSFunc(function() {
             let s = `<b>${this.points[0].series.xAxis.categories[this.x]}</b>`; // 使用 category 名称
@@ -146,8 +158,8 @@
                 // 装饰线信息通常不在提示框中显示
             });
             return s;
-        }))
-    ;
+        }));
+    aaOptions.tooltip = tooltip;
     
     // 系列数据
     // 实际睡眠数据 - 中间层
