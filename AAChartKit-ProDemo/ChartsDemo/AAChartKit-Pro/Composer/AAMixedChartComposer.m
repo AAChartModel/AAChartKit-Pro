@@ -8,7 +8,7 @@
 
 #import "AAMixedChartComposer.h"
 #import "AAChartKit-Pro.h"
-//#import "AAOptionsData.h"
+
 @implementation AAMixedChartComposer
 
 + (AAOptions *)barMixedColumnrangeWithPatternFillChart {
@@ -92,18 +92,17 @@
                        });
                    }), darkerColorsJsArr])
                    );
-    aaOptions.chart = chart;
+
+
 
     // 创建 title 配置
     AATitle *title = AATitle.new
         .textSet(@"睡眠阶段 vs 理想区间");
-    aaOptions.title = title;
 
     // 创建 xAxis 配置
     AAXAxis *xAxis = AAXAxis.new
         .categoriesSet(categories);
         // 如果希望 '深睡' 在底部，则设置为 true (原 JS 中为 xAxis: { categories: categories, reversed: true })
-    aaOptions.xAxis = xAxis;
 
     // 创建 yAxis 配置
     AAYAxis *yAxis = AAYAxis.new
@@ -113,7 +112,6 @@
                   .textSet(nil))
         .gridLineWidthSet(@1)
         .tickIntervalSet(@10);    // 可选：设置 Y 轴刻度间隔
-    aaOptions.yAxis = yAxis;
 
     // 创建 plotOptions 配置
     AAPlotOptions *plotOptions = AAPlotOptions.new
@@ -137,12 +135,10 @@
             .groupingSet(NO)     // Also allow bar series to overlap
             .borderWidthSet(@0)
         );
-    aaOptions.plotOptions = plotOptions;
 
     // 创建 legend 配置
     AALegend *legend = AALegend.new
         .enabledSet(YES);
-    aaOptions.legend = legend;
 
     // 创建 tooltip 配置
     AATooltip *tooltip = AATooltip.new
@@ -159,7 +155,6 @@
             });
             return s;
         }));
-    aaOptions.tooltip = tooltip;
     
     // 系列数据
     // 实际睡眠数据 - 中间层
@@ -213,18 +208,22 @@
         .clipSet(NO)
     ;
 
-    aaOptions.series = @[
+    NSArray *seriesArr = @[
         actualSleepSeries,
         idealRangeSeries,
         topCapsSeries,
         bottomCapsSeries
     ];
-
-    // AAChartView *aaChartView = [[AAChartView alloc] init];
-    // aaChartView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    // [self.view addSubview:aaChartView];
-    // [aaChartView aa_drawChartWithOptions:aaOptions];
     
+    aaOptions.chart = chart;
+    aaOptions.title = title;
+    aaOptions.xAxis = xAxis;
+    aaOptions.yAxis = yAxis;
+    aaOptions.plotOptions = plotOptions;
+    aaOptions.legend = legend;
+    aaOptions.tooltip = tooltip;
+    aaOptions.series = seriesArr;
+
     return aaOptions;
 }
 
