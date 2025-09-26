@@ -60,6 +60,8 @@ AAPropSetFuncImplementation(AAOptions, AALang        *, defaultOptions)
 
 AAPropSetFuncImplementation(AAOptions, AAColorAxis   *, colorAxis)
 AAPropSetFuncImplementation(AAOptions, AAData        *, data)
+AAPropSetFuncImplementation(AAOptions, NSString      *, beforeDrawChartJavaScript)
+AAPropSetFuncImplementation(AAOptions, NSString      *, afterDrawChartJavaScript)
 
 @end
 

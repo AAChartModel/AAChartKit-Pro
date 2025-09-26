@@ -31,15 +31,6 @@
  */
 
 #import "AAChartView.h"
-#import "NSString+toPureJSString.h"
-
-@interface AAWeakProxy : NSProxy
-
-@property (nonatomic, weak, readonly, nullable) id target;
-
-+ (nonnull instancetype)proxyWithTarget:(nonnull id)target;
-
-@end
 
 @implementation AAWeakProxy
 
@@ -103,6 +94,8 @@ WKScriptMessageHandler
     BOOL _clickEventEnabled;
     BOOL _mouseOverEventEnabled;
     BOOL _customEventEnabled;
+    NSString *_beforeDrawChartJavaScript;
+    NSString *_afterDrawChartJavaScript;
 }
 
 @property (nonatomic, strong) AAWeakProxy *weakProxy;
@@ -419,8 +412,17 @@ WKScriptMessageHandler
 }
 
 - (void)configureTheOptionsJsonStringWithAAOptions:(AAOptions *)aaOptions {
+    if (aaOptions.beforeDrawChartJavaScript) {
+        _beforeDrawChartJavaScript = aaOptions.beforeDrawChartJavaScript;
+        aaOptions.beforeDrawChartJavaScript = nil;
+    }
+    if (aaOptions.afterDrawChartJavaScript) {
+        _afterDrawChartJavaScript = aaOptions.afterDrawChartJavaScript;
+        aaOptions.afterDrawChartJavaScript = nil;
+    }
+    
     if (_isClearBackgroundColor) {
-        aaOptions.chart.backgroundColor = @"rgba(0,0,0,0)";
+        aaOptions.chart.backgroundColor = AAColor.clearColor;
     }
     
     if (_clickEventEnabled == true) {
@@ -439,33 +441,57 @@ WKScriptMessageHandler
 
 #pragma mark - WKUIDelegate
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
-#if TARGET_OS_IPHONE
-    UIAlertController *alertController =
-    [UIAlertController alertControllerWithTitle:@"JS WARNING"
-                                        message:message
-                                 preferredStyle:UIAlertControllerStyleAlert];
+#if TARGET_OS_IOS
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"JS WARNING" 
+                                                                             message:message
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *alertAction =
-    [UIAlertAction actionWithTitle:@"Okay"
-                             style:UIAlertActionStyleDefault
-                           handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"Okay" 
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction *action) {
         completionHandler();
     }];
-    [alertController addAction:alertAction];
+    [alertController addAction:okayAction];
     
-    UIViewController *alertHelperController = [[UIViewController alloc]init];
-    [self addSubview:alertHelperController.view];
+    UIViewController *presentingViewController = [self nextUIViewController];
+    if (!presentingViewController) {
+        AADetailLog(@"Unable to present UIAlertController from AAChartView. Completing JavaScript alert handler.");
+        completionHandler();
+        return;
+    }
     
-    [alertHelperController presentViewController:alertController animated:YES completion:nil];
+    [presentingViewController presentViewController:alertController
+                                           animated:YES
+                                         completion:nil];
+    
 #elif TARGET_OS_MAC
     NSAlert *alert = [[NSAlert alloc] init];
     alert.alertStyle = NSAlertStyleWarning;
     alert.messageText = @"JS WARNING";
     alert.informativeText = message;
     [alert addButtonWithTitle:@"Okay"];
-    [alert beginSheetModalForWindow:[self window] completionHandler:nil];
+    
+    [alert beginSheetModalForWindow:[NSApplication sharedApplication].mainWindow 
+                  completionHandler:^(NSModalResponse response) {
+        if (response == NSModalResponseOK) {
+            completionHandler();
+        }
+    }];
 #endif
 }
+
+#if TARGET_OS_IOS
+- (UIViewController *)nextUIViewController {
+    UIResponder *responder = self;
+    while (responder != nil) {
+        if ([responder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)responder;
+        }
+        responder = [responder nextResponder];
+    }
+    return nil;
+}
+#endif
 
 #pragma mark - AAChartView Event Handler
 - (void)didFinishLoadHandler:(AADidFinishLoadBlock)handler {
@@ -492,6 +518,7 @@ WKScriptMessageHandler
         self.didFinishLoadBlock(self);
         return;
     }
+    
     if (self.delegate) {
         if ([self.delegate respondsToSelector:@selector(aaChartViewDidFinishLoad:)]) {
             [self.delegate aaChartViewDidFinishLoad:self];
@@ -544,11 +571,19 @@ WKScriptMessageHandler
 }
 
 - (void)drawChart {
+    if (_beforeDrawChartJavaScript) {
+        [self safeEvaluateJavaScriptString:_beforeDrawChartJavaScript];
+    }
+    
     NSString *jsStr = [NSString stringWithFormat:@"loadTheHighChartView('%@','%f','%f')",
                        _optionJson,
                        self.contentWidth,
                        self.contentHeight ];
     [self safeEvaluateJavaScriptString:jsStr];
+    
+    if (_afterDrawChartJavaScript) {
+        [self safeEvaluateJavaScriptString:_afterDrawChartJavaScript];
+    }
 }
 
 #pragma mark - WKScriptMessageHandler
@@ -607,11 +642,11 @@ WKScriptMessageHandler
         [errorDic setValue:error.userInfo forKey:@"userInfo"];
         
         NSString *basicErrorInfo = @"                                                     \n\
-☠️☠️💀☠️☠️WARNING!!!!!!!!!!!!!!!!!! JS ERROR WARNING !!!!!!!!!!!!!!!!!!WARNING☠️☠️💀☠️☠️ \
-⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩  \
+☠️☠️💀☠️☠️WARNING!!!!!!!!!!!!!!!!!! JS ERROR WARNING !!!!!!!!!!!!!!!!!!WARNING☠️☠️💀☠️☠️\n\
+⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩\n\
 ------------------------------------------------------------------------------------------\n\
-%@                                                                                          \
-------------------------------------------------------------------------------------------  \
+%@                                                                                         \n\
+------------------------------------------------------------------------------------------ \n\
 ⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧⇧\n\
 ☠️☠️💀☠️☠️WARNING!!!!!!!!!!!!!!!!!! JS ERROR WARNING !!!!!!!!!!!!!!!!!!WARNING☠️☠️💀☠️☠️";
         
@@ -726,16 +761,19 @@ WKScriptMessageHandler
 }
 
 - (void)addClickEventMessageHandler {
+    [self.configuration.userContentController removeScriptMessageHandlerForName:kUserContentMessageNameClick];
     [self.configuration.userContentController addScriptMessageHandler:(id<WKScriptMessageHandler>)self.weakProxy
                                                                  name:kUserContentMessageNameClick];
 }
 
 - (void)addMouseOverEventMessageHandler {
+    [self.configuration.userContentController removeScriptMessageHandlerForName:kUserContentMessageNameMouseOver];
     [self.configuration.userContentController addScriptMessageHandler:(id<WKScriptMessageHandler>)self.weakProxy
                                                                  name:kUserContentMessageNameMouseOver];
 }
 
 - (void)addCustomEventMessageHandler {
+    [self.configuration.userContentController removeScriptMessageHandlerForName:kUserContentMessageNameCustomEvent];
     [self.configuration.userContentController addScriptMessageHandler:(id<WKScriptMessageHandler>)self.weakProxy
                                                                  name:kUserContentMessageNameCustomEvent];
 }
@@ -751,7 +789,7 @@ WKScriptMessageHandler
 - (void)dealloc {
     [self.configuration.userContentController removeAllUserScripts];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    AADetailLog("👻👻👻 AAChartView was destroyed!!!");
+    AADetailLog("👻👻👻 AAChartView instance %p has been destroyed!", self);
 }
 
 @end
