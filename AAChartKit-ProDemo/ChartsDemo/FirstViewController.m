@@ -73,6 +73,9 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
 @property (nonatomic, strong) UILabel *headerTitleLabel;
 @property (nonatomic, strong) UILabel *headerSubtitleLabel;
 @property (nonatomic, strong) CAGradientLayer *headerCardGradientLayer;
+@property (nonatomic, strong) UIBarButtonItem *themeToggleButton;
+@property (nonatomic, assign) BOOL hasManualThemeOverride;
+@property (nonatomic, assign) BOOL manualDarkModeEnabled;
 
 @end
 
@@ -88,6 +91,8 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
     self.title = @"AAChartKit-Pro";
     self.view.backgroundColor = [UIColor whiteColor];
 
+    [self loadThemeSettings];
+    [self setupThemeToggleButton];
     [self setupBackgroundGradient];
     [self configTheTableView];
     [self applyTheme];
@@ -858,12 +863,21 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
     [super traitCollectionDidChange:previousTraitCollection];
     if (@available(iOS 13.0, *)) {
         if ([self.traitCollection hasDifferentColorAppearanceComparedToTraitCollection:previousTraitCollection]) {
-            [self applyTheme];
+            // Only apply system theme changes if user hasn't manually overridden
+            if (!self.hasManualThemeOverride) {
+                [self applyTheme];
+            }
         }
     }
 }
 
 - (BOOL)isDarkMode {
+    // If user has manually overridden the theme, use that preference
+    if (self.hasManualThemeOverride) {
+        return self.manualDarkModeEnabled;
+    }
+    
+    // Otherwise, follow system appearance
     if (@available(iOS 13.0, *)) {
         return self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark;
     }
@@ -899,6 +913,11 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
     // Update header view if available
     if (self.tableHeaderCardView) {
         [self updateHeaderViewTheme];
+    }
+    
+    // Update toggle button icon
+    if (self.themeToggleButton) {
+        self.themeToggleButton.image = [self themeToggleButtonImage];
     }
     
     // Reload visible cells to update their appearance
@@ -979,6 +998,180 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
 - (CGFloat)cardShadowBaseOpacity {
     BOOL isDarkMode = [self isDarkMode];
     return isDarkMode ? 0.35f : 0.18f;
+}
+
+#pragma mark - Theme Toggle
+
+- (void)loadThemeSettings {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.hasManualThemeOverride = [defaults boolForKey:@"AAChartKit_HasManualThemeOverride"];
+    self.manualDarkModeEnabled = [defaults boolForKey:@"AAChartKit_ManualDarkModeEnabled"];
+}
+
+- (void)saveThemeSettings {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:self.hasManualThemeOverride forKey:@"AAChartKit_HasManualThemeOverride"];
+    [defaults setBool:self.manualDarkModeEnabled forKey:@"AAChartKit_ManualDarkModeEnabled"];
+    [defaults synchronize];
+}
+
+- (void)setupThemeToggleButton {
+    // Create theme toggle button
+    UIImage *buttonImage = [self themeToggleButtonImage];
+    self.themeToggleButton = [[UIBarButtonItem alloc] initWithImage:buttonImage
+                                                              style:UIBarButtonItemStylePlain
+                                                             target:self
+                                                             action:@selector(toggleThemeMode)];
+    
+    // Add accessibility
+    self.themeToggleButton.accessibilityLabel = @"切换主题模式";
+    self.themeToggleButton.accessibilityHint = @"在浅色和深色主题之间切换";
+    
+    // Set navigation bar button
+    self.navigationItem.rightBarButtonItem = self.themeToggleButton;
+}
+
+- (UIImage *)themeToggleButtonImage {
+    BOOL isDarkMode = [self isDarkMode];
+    
+    // Create a custom icon based on current theme
+    CGSize size = CGSizeMake(24, 24);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    if (isDarkMode) {
+        // Sun icon for switching to light mode
+        UIColor *sunColor = [UIColor colorWithRed:1.0 green:0.85 blue:0.0 alpha:1.0];
+        [sunColor setFill];
+        [sunColor setStroke];
+        
+        // Draw sun circle
+        CGFloat centerX = size.width / 2.0;
+        CGFloat centerY = size.height / 2.0;
+        CGFloat radius = 6.0;
+        
+        CGContextFillEllipseInRect(context, CGRectMake(centerX - radius, centerY - radius, radius * 2, radius * 2));
+        
+        // Draw sun rays
+        CGContextSetLineWidth(context, 2.0);
+        CGContextSetLineCap(context, kCGLineCapRound);
+        
+        for (int i = 0; i < 8; i++) {
+            CGFloat angle = (M_PI * 2 / 8) * i;
+            CGFloat startX = centerX + cos(angle) * (radius + 2);
+            CGFloat startY = centerY + sin(angle) * (radius + 2);
+            CGFloat endX = centerX + cos(angle) * (radius + 5);
+            CGFloat endY = centerY + sin(angle) * (radius + 5);
+            
+            CGContextMoveToPoint(context, startX, startY);
+            CGContextAddLineToPoint(context, endX, endY);
+            CGContextStrokePath(context);
+        }
+    } else {
+        // Moon icon for switching to dark mode
+        UIColor *moonColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.6 alpha:1.0];
+        [moonColor setFill];
+        
+        // Draw crescent moon
+        CGFloat centerX = size.width / 2.0;
+        CGFloat centerY = size.height / 2.0;
+        CGFloat radius = 8.0;
+        
+        // Main circle
+        CGContextAddEllipseInRect(context, CGRectMake(centerX - radius, centerY - radius, radius * 2, radius * 2));
+        CGContextFillPath(context);
+        
+        // Subtract smaller circle to create crescent
+        [[UIColor clearColor] setFill];
+        CGContextSetBlendMode(context, kCGBlendModeDestinationOut);
+        CGFloat offsetX = 3.0;
+        CGFloat offsetY = -2.0;
+        CGContextAddEllipseInRect(context, CGRectMake(centerX - radius + offsetX, centerY - radius + offsetY, radius * 2, radius * 2));
+        CGContextFillPath(context);
+    }
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
+- (void)toggleThemeMode {
+    // Toggle manual override
+    if (self.hasManualThemeOverride) {
+        // If already overridden, toggle the preference
+        self.manualDarkModeEnabled = !self.manualDarkModeEnabled;
+    } else {
+        // First time toggling, set opposite of current system theme
+        self.hasManualThemeOverride = YES;
+        if (@available(iOS 13.0, *)) {
+            self.manualDarkModeEnabled = (self.traitCollection.userInterfaceStyle != UIUserInterfaceStyleDark);
+        } else {
+            self.manualDarkModeEnabled = YES; // Default to dark for older iOS
+        }
+    }
+    
+    // Save settings
+    [self saveThemeSettings];
+    
+    // Update button image
+    self.themeToggleButton.image = [self themeToggleButtonImage];
+    
+    // Apply new theme with animation
+    [UIView transitionWithView:self.view
+                      duration:0.35
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        [self applyTheme];
+                    }
+                    completion:nil];
+    
+    // Show brief feedback
+    [self showThemeToggleFeedback];
+}
+
+- (void)showThemeToggleFeedback {
+    NSString *message = [self isDarkMode] ? @"🌙 已切换到深色模式" : @"☀️ 已切换到浅色模式";
+    
+    // Create temporary feedback label
+    UILabel *feedbackLabel = [[UILabel alloc] init];
+    feedbackLabel.text = message;
+    feedbackLabel.textColor = [UIColor whiteColor];
+    feedbackLabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+    feedbackLabel.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightMedium];
+    feedbackLabel.textAlignment = NSTextAlignmentCenter;
+    feedbackLabel.layer.cornerRadius = 20.0;
+    feedbackLabel.layer.masksToBounds = YES;
+    feedbackLabel.alpha = 0.0;
+    
+    // Size and position
+    [feedbackLabel sizeToFit];
+    CGRect frame = feedbackLabel.frame;
+    frame.size.width += 32.0; // Add padding
+    frame.size.height = 40.0;
+    feedbackLabel.frame = frame;
+    feedbackLabel.center = CGPointMake(self.view.center.x, self.view.center.y - 100);
+    
+    [self.view addSubview:feedbackLabel];
+    
+    // Animate feedback
+    [UIView animateWithDuration:0.3 animations:^{
+        feedbackLabel.alpha = 1.0;
+        feedbackLabel.transform = CGAffineTransformMakeScale(1.1, 1.1);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.2 animations:^{
+            feedbackLabel.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished2) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [UIView animateWithDuration:0.3 animations:^{
+                    feedbackLabel.alpha = 0.0;
+                } completion:^(BOOL finished3) {
+                    [feedbackLabel removeFromSuperview];
+                }];
+            });
+        }];
+    }];
 }
 
 @end
