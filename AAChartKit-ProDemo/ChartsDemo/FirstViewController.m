@@ -50,6 +50,18 @@
 #define AAGrayColor            [UIColor colorWithRed:245/255.0 green:246/255.0 blue:247/255.0 alpha:1.0]
 #define AABlueColor            ColorWithRGB(63, 153,231,1)
 
+static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor) {
+    if (@available(iOS 13.0, *)) {
+        return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+            if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+                return darkColor ?: lightColor;
+            }
+            return lightColor;
+        }];
+    }
+    return lightColor;
+}
+
 @interface FirstViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) NSArray *chartTypeNameArr;
@@ -57,15 +69,18 @@
 @property (nonatomic, strong) NSArray <NSLayoutConstraint *>*constraintArr;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) CAGradientLayer *backgroundGradientLayer;
+@property (nonatomic, strong) UIView *tableHeaderCardView;
+@property (nonatomic, strong) UILabel *headerTitleLabel;
+@property (nonatomic, strong) UILabel *headerSubtitleLabel;
+@property (nonatomic, strong) CAGradientLayer *headerCardGradientLayer;
 
 @end
 
 @implementation FirstViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:YES];
-    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
-
+    [super viewWillAppear:animated];
+    [self applyTheme];
 }
 
 - (void)viewDidLoad {
@@ -75,6 +90,7 @@
 
     [self setupBackgroundGradient];
     [self configTheTableView];
+    [self applyTheme];
 }
 
 - (void)configTheTableView {
@@ -138,20 +154,24 @@
     UIView *containerView = [[UIView alloc] init];
     containerView.backgroundColor = [UIColor clearColor];
 
+    BOOL isDarkMode = [self isDarkMode];
+
     UIView *backdropView = [[UIView alloc] init];
     backdropView.translatesAutoresizingMaskIntoConstraints = NO;
-    backdropView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.32];
+    UIColor *lightHeaderBackground = [[UIColor whiteColor] colorWithAlphaComponent:0.32];
+    UIColor *darkHeaderBackground = [UIColor colorWithRed:40/255.0 green:45/255.0 blue:70/255.0 alpha:0.7];
+    backdropView.backgroundColor = AALightDarkColor(lightHeaderBackground, darkHeaderBackground);
     backdropView.layer.cornerRadius = 14.0;
     backdropView.layer.masksToBounds = NO;
-    backdropView.layer.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.14].CGColor;
-    backdropView.layer.shadowOpacity = 0.12;
+    backdropView.layer.shadowColor = (isDarkMode ? [[UIColor blackColor] colorWithAlphaComponent:0.7] : [[UIColor blackColor] colorWithAlphaComponent:0.14]).CGColor;
+    backdropView.layer.shadowOpacity = isDarkMode ? 0.22 : 0.12;
     backdropView.layer.shadowOffset = CGSizeMake(0, 6);
-    backdropView.layer.shadowRadius = 12.0;
+    backdropView.layer.shadowRadius = isDarkMode ? 18.0 : 12.0;
     [containerView addSubview:backdropView];
 
     UIView *accentView = [[UIView alloc] init];
     accentView.translatesAutoresizingMaskIntoConstraints = NO;
-    accentView.backgroundColor = ColorWithRGB(93, 112, 255, 1);
+    accentView.backgroundColor = AALightDarkColor(ColorWithRGB(93, 112, 255, 1), ColorWithRGB(132, 163, 255, 1));
     accentView.layer.cornerRadius = 3.0;
     [backdropView addSubview:accentView];
 
@@ -159,7 +179,7 @@
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.textAlignment = NSTextAlignmentLeft;
     label.font = [UIFont systemFontOfSize:15.0 weight:UIFontWeightSemibold];
-    label.textColor = [UIColor colorWithWhite:0.1 alpha:0.92];
+    label.textColor = AALightDarkColor([UIColor colorWithWhite:0.1 alpha:0.92], [UIColor colorWithWhite:0.92 alpha:0.95]);
     label.text = self.sectionTypeArr[section];
     [backdropView addSubview:label];
 
@@ -224,9 +244,9 @@
         cardView = [[UIView alloc] init];
         cardView.tag = 1001;
         cardView.translatesAutoresizingMaskIntoConstraints = NO;
-        cardView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.82];
+        cardView.backgroundColor = [UIColor clearColor];
         cardView.layer.cornerRadius = 18.0;
-        cardView.layer.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.25].CGColor;
+        cardView.layer.shadowColor = [UIColor blackColor].CGColor;
         cardView.layer.shadowOpacity = 0.18;
         cardView.layer.shadowOffset = CGSizeMake(0, 10);
         cardView.layer.shadowRadius = 16.0;
@@ -246,13 +266,16 @@
         } else {
             blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
         }
-        UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    blurView.tag = 1006;
         blurView.frame = cardView.bounds;
         blurView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         blurView.userInteractionEnabled = NO;
         blurView.layer.cornerRadius = cardView.layer.cornerRadius;
         blurView.layer.masksToBounds = YES;
         [cardView addSubview:blurView];
+
+    [self updateBlurEffectView:blurView];
 
         UIView *contentContainer = [[UIView alloc] init];
         contentContainer.translatesAutoresizingMaskIntoConstraints = NO;
@@ -271,8 +294,8 @@
         badgeLabel.translatesAutoresizingMaskIntoConstraints = NO;
         badgeLabel.textAlignment = NSTextAlignmentCenter;
         badgeLabel.font = [UIFont systemFontOfSize:13.0 weight:UIFontWeightSemibold];
-        badgeLabel.textColor = [UIColor whiteColor];
-        badgeLabel.backgroundColor = ColorWithRGB(93, 112, 255, 1);
+        badgeLabel.textColor = AALightDarkColor([UIColor whiteColor], [UIColor whiteColor]);
+        badgeLabel.backgroundColor = AALightDarkColor(ColorWithRGB(93, 112, 255, 1), ColorWithRGB(120, 148, 255, 1));
         badgeLabel.layer.cornerRadius = 15.0;
         badgeLabel.layer.masksToBounds = YES;
         [contentContainer addSubview:badgeLabel];
@@ -281,7 +304,7 @@
         titleLabel.tag = 1003;
         titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         titleLabel.font = [UIFont systemFontOfSize:17.0 weight:UIFontWeightSemibold];
-        titleLabel.textColor = [UIColor colorWithWhite:0.06 alpha:1.0];
+        titleLabel.textColor = AALightDarkColor([UIColor colorWithWhite:0.06 alpha:1.0], [UIColor colorWithWhite:0.95 alpha:1.0]);
         titleLabel.numberOfLines = 1;
         [contentContainer addSubview:titleLabel];
 
@@ -289,7 +312,7 @@
         subtitleLabel.tag = 1004;
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         subtitleLabel.font = [UIFont systemFontOfSize:13.0 weight:UIFontWeightRegular];
-        subtitleLabel.textColor = [UIColor colorWithWhite:0.22 alpha:0.9];
+        subtitleLabel.textColor = AALightDarkColor([UIColor colorWithWhite:0.22 alpha:0.9], [UIColor colorWithWhite:0.78 alpha:0.92]);
         subtitleLabel.numberOfLines = 0;
         [contentContainer addSubview:subtitleLabel];
 
@@ -297,7 +320,7 @@
         chevronImageView.tag = 1005;
         chevronImageView.translatesAutoresizingMaskIntoConstraints = NO;
         chevronImageView.contentMode = UIViewContentModeScaleAspectFit;
-        chevronImageView.tintColor = [UIColor colorWithWhite:0.25 alpha:0.9];
+        chevronImageView.tintColor = AALightDarkColor([UIColor colorWithWhite:0.25 alpha:0.9], [UIColor colorWithWhite:0.8 alpha:0.95]);
         chevronImageView.image = [UIImage imageNamed:@"icon_arrow_right"];
         if (!chevronImageView.image) {
             chevronImageView.image = [self fallbackChevronImage];
@@ -329,6 +352,10 @@
         titleLabel = [cardView viewWithTag:1003];
         subtitleLabel = [cardView viewWithTag:1004];
         chevronImageView = [cardView viewWithTag:1005];
+        UIVisualEffectView *blurView = [cardView viewWithTag:1006];
+        if (blurView) {
+            [self updateBlurEffectView:blurView];
+        }
     }
 
     NSString *fullTitle = self.chartTypeNameArr[indexPath.section][indexPath.row];
@@ -341,6 +368,8 @@
     titleLabel.text = primaryTitle;
     subtitleLabel.text = secondaryTitle;
     chevronImageView.alpha = 0.8;
+
+    [self applyThemeToCardView:cardView];
 
     return cell;
 }
@@ -463,9 +492,10 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     UIView *cardView = [cell.contentView viewWithTag:1001];
     if (!cardView) { return; }
+    CGFloat baseOpacity = [self cardShadowBaseOpacity];
     [UIView animateWithDuration:0.18 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         cardView.transform = CGAffineTransformMakeScale(0.97, 0.97);
-        cardView.layer.shadowOpacity = 0.1;
+        cardView.layer.shadowOpacity = MAX(baseOpacity * 0.55, 0.08f);
     } completion:nil];
 }
 
@@ -473,9 +503,10 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     UIView *cardView = [cell.contentView viewWithTag:1001];
     if (!cardView) { return; }
+    CGFloat baseOpacity = [self cardShadowBaseOpacity];
     [UIView animateWithDuration:0.22 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         cardView.transform = CGAffineTransformIdentity;
-        cardView.layer.shadowOpacity = 0.18;
+        cardView.layer.shadowOpacity = baseOpacity;
     } completion:nil];
 }
 
@@ -746,6 +777,9 @@
     cardView.layer.shadowOffset = CGSizeMake(0, 12);
     cardView.layer.shadowRadius = 24.0;
     [headerView addSubview:cardView];
+    
+    // Store reference for theming
+    self.tableHeaderCardView = cardView;
 
     CAGradientLayer *cardGradient = [CAGradientLayer layer];
     cardGradient.colors = @[(__bridge id)ColorWithRGB(109, 129, 255, 1).CGColor,
@@ -756,6 +790,9 @@
     cardGradient.cornerRadius = cardView.layer.cornerRadius;
     cardGradient.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
     [cardView.layer insertSublayer:cardGradient atIndex:0];
+    
+    // Store reference for theming
+    self.headerCardGradientLayer = cardGradient;
 
     CGRect cardBounds = cardView.bounds;
     CGFloat horizontalPadding = 24.0;
@@ -772,6 +809,9 @@
     titleLabel.font = [UIFont systemFontOfSize:26.0 weight:UIFontWeightBold];
     titleLabel.text = @"探索更丰富的高级图表示例";
     [cardView addSubview:titleLabel];
+    
+    // Store reference for theming
+    self.headerTitleLabel = titleLabel;
 
     CGFloat subtitleTop = CGRectGetMaxY(titleFrame) + 10.0;
     CGRect subtitleFrame = CGRectMake(horizontalPadding,
@@ -786,6 +826,9 @@
     subtitleLabel.font = [UIFont systemFontOfSize:15.0 weight:UIFontWeightRegular];
     subtitleLabel.text = @"精选多类图表，助你快速找到灵感。轻触任意卡片即可查看详细演示。";
     [cardView addSubview:subtitleLabel];
+    
+    // Store reference for theming
+    self.headerSubtitleLabel = subtitleLabel;
 
     return headerView;
 }
@@ -797,7 +840,9 @@
     [path moveToPoint:CGPointMake(4, 2)];
     [path addLineToPoint:CGPointMake(12, 8)];
     [path addLineToPoint:CGPointMake(4, 14)];
-    [[UIColor colorWithWhite:0.25 alpha:0.9] setStroke];
+    BOOL isDarkMode = [self isDarkMode];
+    UIColor *strokeColor = isDarkMode ? [UIColor colorWithWhite:0.8 alpha:0.95] : [UIColor colorWithWhite:0.25 alpha:0.9];
+    [strokeColor setStroke];
     path.lineWidth = 2.0;
     path.lineCapStyle = kCGLineCapRound;
     path.lineJoinStyle = kCGLineJoinRound;
@@ -805,6 +850,135 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
+#pragma mark - Theme Support
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+    if (@available(iOS 13.0, *)) {
+        if ([self.traitCollection hasDifferentColorAppearanceComparedToTraitCollection:previousTraitCollection]) {
+            [self applyTheme];
+        }
+    }
+}
+
+- (BOOL)isDarkMode {
+    if (@available(iOS 13.0, *)) {
+        return self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark;
+    }
+    return NO;
+}
+
+- (void)applyTheme {
+    BOOL isDarkMode = [self isDarkMode];
+    
+    // Update navigation bar appearance
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
+        if (isDarkMode) {
+            [appearance configureWithOpaqueBackground];
+            appearance.backgroundColor = [UIColor colorWithRed:18/255.0 green:20/255.0 blue:28/255.0 alpha:1.0];
+            appearance.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+        } else {
+            [appearance configureWithOpaqueBackground];
+            appearance.backgroundColor = [UIColor whiteColor];
+            appearance.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor blackColor]};
+        }
+        appearance.shadowColor = [UIColor clearColor];
+        self.navigationController.navigationBar.standardAppearance = appearance;
+        self.navigationController.navigationBar.scrollEdgeAppearance = appearance;
+    } else {
+        self.navigationController.navigationBar.barTintColor = isDarkMode ? [UIColor colorWithRed:18/255.0 green:20/255.0 blue:28/255.0 alpha:1.0] : [UIColor whiteColor];
+        self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: isDarkMode ? [UIColor whiteColor] : [UIColor blackColor]};
+    }
+    
+    // Update background gradient
+    [self updateBackgroundGradient];
+    
+    // Update header view if available
+    if (self.tableHeaderCardView) {
+        [self updateHeaderViewTheme];
+    }
+    
+    // Reload visible cells to update their appearance
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+}
+
+- (void)updateBackgroundGradient {
+    if (!self.backgroundGradientLayer) return;
+    
+    BOOL isDarkMode = [self isDarkMode];
+    if (isDarkMode) {
+        self.backgroundGradientLayer.colors = @[
+            (__bridge id)[UIColor colorWithRed:18/255.0 green:20/255.0 blue:28/255.0 alpha:1.0].CGColor,
+            (__bridge id)[UIColor colorWithRed:28/255.0 green:32/255.0 blue:45/255.0 alpha:1.0].CGColor,
+            (__bridge id)[UIColor colorWithRed:35/255.0 green:25/255.0 blue:45/255.0 alpha:1.0].CGColor
+        ];
+    } else {
+        self.backgroundGradientLayer.colors = @[
+            (__bridge id)ColorWithRGB(238, 243, 255, 1).CGColor,
+            (__bridge id)ColorWithRGB(222, 238, 255, 1).CGColor,
+            (__bridge id)ColorWithRGB(247, 233, 255, 1).CGColor
+        ];
+    }
+}
+
+- (void)updateHeaderViewTheme {
+    if (!self.headerCardGradientLayer) return;
+    
+    BOOL isDarkMode = [self isDarkMode];
+    if (isDarkMode) {
+        self.headerCardGradientLayer.colors = @[
+            (__bridge id)ColorWithRGB(75, 85, 155, 1).CGColor,
+            (__bridge id)ColorWithRGB(125, 95, 185, 1).CGColor
+        ];
+    } else {
+        self.headerCardGradientLayer.colors = @[
+            (__bridge id)ColorWithRGB(109, 129, 255, 1).CGColor,
+            (__bridge id)ColorWithRGB(172, 132, 255, 1).CGColor
+        ];
+    }
+}
+
+- (void)applyThemeToCardView:(UIView *)cardView {
+    if (!cardView) return;
+    
+    BOOL isDarkMode = [self isDarkMode];
+    CGFloat shadowOpacity = [self cardShadowBaseOpacity];
+    
+    cardView.layer.shadowOpacity = shadowOpacity;
+    
+    if (isDarkMode) {
+        cardView.layer.shadowColor = [UIColor blackColor].CGColor;
+    } else {
+        cardView.layer.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.25].CGColor;
+    }
+}
+
+- (void)updateBlurEffectView:(UIVisualEffectView *)blurView {
+    if (!blurView) return;
+    
+    UIVisualEffect *newEffect = nil;
+    if (@available(iOS 13.0, *)) {
+        BOOL isDarkMode = [self isDarkMode];
+        if (isDarkMode) {
+            newEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleSystemThickMaterialDark];
+        } else {
+            newEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleSystemThickMaterialLight];
+        }
+    } else {
+        newEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    }
+    
+    blurView.effect = newEffect;
+}
+
+- (CGFloat)cardShadowBaseOpacity {
+    BOOL isDarkMode = [self isDarkMode];
+    return isDarkMode ? 0.35f : 0.18f;
 }
 
 @end
