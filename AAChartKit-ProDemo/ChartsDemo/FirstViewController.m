@@ -44,6 +44,7 @@
 #import "AAOptions3DChartVC.h"
 #import "ChartListTableViewVC.h"
 #import "ChartListCollectionViewVC.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define ColorWithRGB(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 #define AAGrayColor            [UIColor colorWithRed:245/255.0 green:246/255.0 blue:247/255.0 alpha:1.0]
@@ -54,6 +55,8 @@
 @property (nonatomic, strong) NSArray *chartTypeNameArr;
 @property (nonatomic, strong) NSArray *sectionTypeArr;
 @property (nonatomic, strong) NSArray <NSLayoutConstraint *>*constraintArr;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) CAGradientLayer *backgroundGradientLayer;
 
 @end
 
@@ -70,18 +73,53 @@
     self.title = @"AAChartKit-Pro";
     self.view.backgroundColor = [UIColor whiteColor];
 
+    [self setupBackgroundGradient];
     [self configTheTableView];
 }
 
 - (void)configTheTableView {
-    UITableView *tableView = [[UITableView alloc]init];
-    tableView.delegate =self;
-    tableView.dataSource =self;
-    [self.view addSubview:tableView];
-    
+    UITableViewStyle style = UITableViewStyleGrouped;
+    if (@available(iOS 13.0, *)) {
+        style = UITableViewStyleInsetGrouped;
+    }
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:style];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    tableView.backgroundColor = [UIColor clearColor];
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableView.showsVerticalScrollIndicator = NO;
+    tableView.contentInset = UIEdgeInsetsMake(24, 0, 40, 0);
+    tableView.rowHeight = UITableViewAutomaticDimension;
+    tableView.estimatedRowHeight = 64;
+    tableView.tableFooterView = [UIView new];
     tableView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addConstraints:[self configureTheConstraintArrayWithItem:tableView toItem:self.view]];
     
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+    backgroundView.backgroundColor = [UIColor clearColor];
+    tableView.backgroundView = backgroundView;
+    
+    [self.view addSubview:tableView];
+    [self.view addConstraints:[self configureTheConstraintArrayWithItem:tableView toItem:self.view]];
+
+    tableView.tableHeaderView = [self buildTableHeaderView];
+    self.tableView = tableView;
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    if (self.backgroundGradientLayer) {
+        self.backgroundGradientLayer.frame = self.view.bounds;
+    }
+    if (self.tableView.tableHeaderView) {
+        UIView *headerView = self.tableView.tableHeaderView;
+        CGFloat requiredWidth = CGRectGetWidth(self.view.bounds);
+        if (fabs(headerView.frame.size.width - requiredWidth) > 0.5) {
+            CGRect frame = headerView.frame;
+            frame.size.width = requiredWidth;
+            headerView.frame = frame;
+            self.tableView.tableHeaderView = headerView;
+        }
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -93,24 +131,63 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 50;
+    return 58;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc]init];
-//    view.backgroundColor = AAGrayColor;
-    
-    UILabel *label = [[UILabel alloc]init];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont boldSystemFontOfSize:16.0f];
-    label.backgroundColor = AAGrayColor;
-    label.textColor = [UIColor purpleColor];
-    label.text = self.sectionTypeArr[section];
-    [view addSubview:label];
-    
+    UIView *containerView = [[UIView alloc] init];
+    containerView.backgroundColor = [UIColor clearColor];
+
+    UIView *backdropView = [[UIView alloc] init];
+    backdropView.translatesAutoresizingMaskIntoConstraints = NO;
+    backdropView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.32];
+    backdropView.layer.cornerRadius = 14.0;
+    backdropView.layer.masksToBounds = NO;
+    backdropView.layer.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.14].CGColor;
+    backdropView.layer.shadowOpacity = 0.12;
+    backdropView.layer.shadowOffset = CGSizeMake(0, 6);
+    backdropView.layer.shadowRadius = 12.0;
+    [containerView addSubview:backdropView];
+
+    UIView *accentView = [[UIView alloc] init];
+    accentView.translatesAutoresizingMaskIntoConstraints = NO;
+    accentView.backgroundColor = ColorWithRGB(93, 112, 255, 1);
+    accentView.layer.cornerRadius = 3.0;
+    [backdropView addSubview:accentView];
+
+    UILabel *label = [[UILabel alloc] init];
     label.translatesAutoresizingMaskIntoConstraints = NO;
-    [view addConstraints:[self configureTheConstraintArrayWithItem:label toItem:view]];
-    return view;
+    label.textAlignment = NSTextAlignmentLeft;
+    label.font = [UIFont systemFontOfSize:15.0 weight:UIFontWeightSemibold];
+    label.textColor = [UIColor colorWithWhite:0.1 alpha:0.92];
+    label.text = self.sectionTypeArr[section];
+    [backdropView addSubview:label];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [backdropView.leadingAnchor constraintEqualToAnchor:containerView.leadingAnchor constant:18.0],
+        [backdropView.trailingAnchor constraintEqualToAnchor:containerView.trailingAnchor constant:-18.0],
+        [backdropView.topAnchor constraintEqualToAnchor:containerView.topAnchor constant:6.0],
+        [backdropView.bottomAnchor constraintEqualToAnchor:containerView.bottomAnchor constant:-6.0],
+
+        [accentView.widthAnchor constraintEqualToConstant:6.0],
+        [accentView.heightAnchor constraintEqualToConstant:24.0],
+        [accentView.leadingAnchor constraintEqualToAnchor:backdropView.leadingAnchor constant:16.0],
+        [accentView.centerYAnchor constraintEqualToAnchor:backdropView.centerYAnchor],
+
+        [label.leadingAnchor constraintEqualToAnchor:accentView.trailingAnchor constant:12.0],
+        [label.trailingAnchor constraintEqualToAnchor:backdropView.trailingAnchor constant:-16.0],
+        [label.centerYAnchor constraintEqualToAnchor:backdropView.centerYAnchor],
+    ]];
+
+    return containerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return section == self.sectionTypeArr.count - 1 ? 32.0 : 16.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (NSArray *)sectionIndexTitlesForTableView: (UITableView *)tableView {
@@ -132,15 +209,146 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
-    cell.textLabel.text = self.chartTypeNameArr[indexPath.section][indexPath.row];
-    cell.textLabel.numberOfLines = 0;
-    cell.textLabel.textAlignment = NSTextAlignmentLeft;
-    cell.textLabel.font = [UIFont systemFontOfSize:15];
+    cell.backgroundColor = [UIColor clearColor];
+    cell.contentView.backgroundColor = [UIColor clearColor];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.textLabel.hidden = YES;
+
+    UIView *cardView = [cell.contentView viewWithTag:1001];
+    UILabel *titleLabel = nil;
+    UILabel *subtitleLabel = nil;
+    UILabel *badgeLabel = nil;
+    UIImageView *chevronImageView = nil;
+
+    if (!cardView) {
+        cardView = [[UIView alloc] init];
+        cardView.tag = 1001;
+        cardView.translatesAutoresizingMaskIntoConstraints = NO;
+        cardView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.82];
+        cardView.layer.cornerRadius = 18.0;
+        cardView.layer.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.25].CGColor;
+        cardView.layer.shadowOpacity = 0.18;
+        cardView.layer.shadowOffset = CGSizeMake(0, 10);
+        cardView.layer.shadowRadius = 16.0;
+        cardView.layer.masksToBounds = NO;
+        [cell.contentView addSubview:cardView];
+
+        [NSLayoutConstraint activateConstraints:@[
+            [cardView.leadingAnchor constraintEqualToAnchor:cell.contentView.leadingAnchor constant:18.0],
+            [cardView.trailingAnchor constraintEqualToAnchor:cell.contentView.trailingAnchor constant:-18.0],
+            [cardView.topAnchor constraintEqualToAnchor:cell.contentView.topAnchor constant:8.0],
+            [cardView.bottomAnchor constraintEqualToAnchor:cell.contentView.bottomAnchor constant:-8.0],
+        ]];
+
+        UIVisualEffect *blurEffect = nil;
+        if (@available(iOS 13.0, *)) {
+            blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleSystemThickMaterial];
+        } else {
+            blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        }
+        UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+        blurView.frame = cardView.bounds;
+        blurView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        blurView.userInteractionEnabled = NO;
+        blurView.layer.cornerRadius = cardView.layer.cornerRadius;
+        blurView.layer.masksToBounds = YES;
+        [cardView addSubview:blurView];
+
+        UIView *contentContainer = [[UIView alloc] init];
+        contentContainer.translatesAutoresizingMaskIntoConstraints = NO;
+        contentContainer.backgroundColor = [UIColor clearColor];
+        [cardView addSubview:contentContainer];
+
+        [NSLayoutConstraint activateConstraints:@[
+            [contentContainer.leadingAnchor constraintEqualToAnchor:cardView.leadingAnchor constant:20.0],
+            [contentContainer.trailingAnchor constraintEqualToAnchor:cardView.trailingAnchor constant:-20.0],
+            [contentContainer.topAnchor constraintEqualToAnchor:cardView.topAnchor constant:14.0],
+            [contentContainer.bottomAnchor constraintEqualToAnchor:cardView.bottomAnchor constant:-14.0],
+        ]];
+
+        badgeLabel = [[UILabel alloc] init];
+        badgeLabel.tag = 1002;
+        badgeLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        badgeLabel.textAlignment = NSTextAlignmentCenter;
+        badgeLabel.font = [UIFont systemFontOfSize:13.0 weight:UIFontWeightSemibold];
+        badgeLabel.textColor = [UIColor whiteColor];
+        badgeLabel.backgroundColor = ColorWithRGB(93, 112, 255, 1);
+        badgeLabel.layer.cornerRadius = 15.0;
+        badgeLabel.layer.masksToBounds = YES;
+        [contentContainer addSubview:badgeLabel];
+
+        titleLabel = [[UILabel alloc] init];
+        titleLabel.tag = 1003;
+        titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        titleLabel.font = [UIFont systemFontOfSize:17.0 weight:UIFontWeightSemibold];
+        titleLabel.textColor = [UIColor colorWithWhite:0.06 alpha:1.0];
+        titleLabel.numberOfLines = 1;
+        [contentContainer addSubview:titleLabel];
+
+        subtitleLabel = [[UILabel alloc] init];
+        subtitleLabel.tag = 1004;
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        subtitleLabel.font = [UIFont systemFontOfSize:13.0 weight:UIFontWeightRegular];
+        subtitleLabel.textColor = [UIColor colorWithWhite:0.22 alpha:0.9];
+        subtitleLabel.numberOfLines = 0;
+        [contentContainer addSubview:subtitleLabel];
+
+        chevronImageView = [[UIImageView alloc] init];
+        chevronImageView.tag = 1005;
+        chevronImageView.translatesAutoresizingMaskIntoConstraints = NO;
+        chevronImageView.contentMode = UIViewContentModeScaleAspectFit;
+        chevronImageView.tintColor = [UIColor colorWithWhite:0.25 alpha:0.9];
+        chevronImageView.image = [UIImage imageNamed:@"icon_arrow_right"];
+        if (!chevronImageView.image) {
+            chevronImageView.image = [self fallbackChevronImage];
+        }
+        [contentContainer addSubview:chevronImageView];
+
+        [NSLayoutConstraint activateConstraints:@[
+            [badgeLabel.widthAnchor constraintEqualToConstant:30.0],
+            [badgeLabel.heightAnchor constraintEqualToConstant:30.0],
+            [badgeLabel.leadingAnchor constraintEqualToAnchor:contentContainer.leadingAnchor],
+            [badgeLabel.centerYAnchor constraintEqualToAnchor:contentContainer.centerYAnchor],
+
+            [chevronImageView.widthAnchor constraintEqualToConstant:16.0],
+            [chevronImageView.heightAnchor constraintEqualToConstant:16.0],
+            [chevronImageView.trailingAnchor constraintEqualToAnchor:contentContainer.trailingAnchor],
+            [chevronImageView.centerYAnchor constraintEqualToAnchor:contentContainer.centerYAnchor],
+
+            [titleLabel.leadingAnchor constraintEqualToAnchor:badgeLabel.trailingAnchor constant:14.0],
+            [titleLabel.trailingAnchor constraintEqualToAnchor:chevronImageView.leadingAnchor constant:-14.0],
+            [titleLabel.topAnchor constraintEqualToAnchor:contentContainer.topAnchor],
+
+            [subtitleLabel.leadingAnchor constraintEqualToAnchor:titleLabel.leadingAnchor],
+            [subtitleLabel.trailingAnchor constraintEqualToAnchor:titleLabel.trailingAnchor],
+            [subtitleLabel.topAnchor constraintEqualToAnchor:titleLabel.bottomAnchor constant:6.0],
+            [subtitleLabel.bottomAnchor constraintLessThanOrEqualToAnchor:contentContainer.bottomAnchor],
+        ]];
+    } else {
+        badgeLabel = [cardView viewWithTag:1002];
+        titleLabel = [cardView viewWithTag:1003];
+        subtitleLabel = [cardView viewWithTag:1004];
+        chevronImageView = [cardView viewWithTag:1005];
+    }
+
+    NSString *fullTitle = self.chartTypeNameArr[indexPath.section][indexPath.row];
+    NSArray<NSString *> *components = [fullTitle componentsSeparatedByString:@"---"];
+    NSString *primaryTitle = components.firstObject ?: fullTitle;
+    NSMutableArray<NSString *> *secondaryParts = components.count > 1 ? [[components subarrayWithRange:NSMakeRange(1, components.count - 1)] mutableCopy] : nil;
+    NSString *secondaryTitle = secondaryParts.count ? [secondaryParts componentsJoinedByString:@" · "] : @"探索这个图表";
+
+    badgeLabel.text = [NSString stringWithFormat:@"%02ld", (long)indexPath.row + 1];
+    titleLabel.text = primaryTitle;
+    subtitleLabel.text = secondaryTitle;
+    chevronImageView.alpha = 0.8;
+
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     switch (indexPath.section) {
         case 0 : {
             AARelationshipChartVC *vc = [[AARelationshipChartVC alloc]init];
@@ -249,6 +457,26 @@
             break;
     }
     
+}
+
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    UIView *cardView = [cell.contentView viewWithTag:1001];
+    if (!cardView) { return; }
+    [UIView animateWithDuration:0.18 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        cardView.transform = CGAffineTransformMakeScale(0.97, 0.97);
+        cardView.layer.shadowOpacity = 0.1;
+    } completion:nil];
+}
+
+- (void)tableView:(UITableView *)tableView didUnhighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    UIView *cardView = [cell.contentView viewWithTag:1001];
+    if (!cardView) { return; }
+    [UIView animateWithDuration:0.22 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        cardView.transform = CGAffineTransformIdentity;
+        cardView.layer.shadowOpacity = 0.18;
+    } completion:nil];
 }
 
 - (NSArray *)configureTheConstraintArrayWithItem:(UIView *)view1 toItem:(UIView *)view2 {
@@ -487,6 +715,96 @@
         ];
     }
     return _sectionTypeArr;
+}
+
+- (void)setupBackgroundGradient {
+    if (self.backgroundGradientLayer) { return; }
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.colors = @[(__bridge id)ColorWithRGB(238, 243, 255, 1).CGColor,
+                             (__bridge id)ColorWithRGB(222, 238, 255, 1).CGColor,
+                             (__bridge id)ColorWithRGB(247, 233, 255, 1).CGColor];
+    gradientLayer.startPoint = CGPointMake(0.0, 0.0);
+    gradientLayer.endPoint = CGPointMake(1.0, 1.0);
+    gradientLayer.locations = @[@0.0, @0.5, @1.0];
+    [self.view.layer insertSublayer:gradientLayer atIndex:0];
+    self.backgroundGradientLayer = gradientLayer;
+}
+
+- (UIView *)buildTableHeaderView {
+    CGFloat width = CGRectGetWidth(self.view.bounds);
+    CGFloat headerHeight = 160.0;
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, headerHeight)];
+    headerView.backgroundColor = [UIColor clearColor];
+
+    UIView *cardView = [[UIView alloc] initWithFrame:CGRectInset(headerView.bounds, 20.0, 32.0)];
+    cardView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    cardView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.28];
+    cardView.layer.cornerRadius = 24.0;
+    cardView.layer.masksToBounds = NO;
+    cardView.layer.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.18].CGColor;
+    cardView.layer.shadowOpacity = 0.12;
+    cardView.layer.shadowOffset = CGSizeMake(0, 12);
+    cardView.layer.shadowRadius = 24.0;
+    [headerView addSubview:cardView];
+
+    CAGradientLayer *cardGradient = [CAGradientLayer layer];
+    cardGradient.colors = @[(__bridge id)ColorWithRGB(109, 129, 255, 1).CGColor,
+                            (__bridge id)ColorWithRGB(172, 132, 255, 1).CGColor];
+    cardGradient.startPoint = CGPointMake(0, 0);
+    cardGradient.endPoint = CGPointMake(1, 1);
+    cardGradient.frame = cardView.bounds;
+    cardGradient.cornerRadius = cardView.layer.cornerRadius;
+    cardGradient.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
+    [cardView.layer insertSublayer:cardGradient atIndex:0];
+
+    CGRect cardBounds = cardView.bounds;
+    CGFloat horizontalPadding = 24.0;
+    CGFloat verticalPadding = 24.0;
+    CGRect titleFrame = CGRectMake(horizontalPadding,
+                                   verticalPadding,
+                                   cardBounds.size.width - horizontalPadding * 2,
+                                   32.0);
+
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
+    titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+    titleLabel.numberOfLines = 2;
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.font = [UIFont systemFontOfSize:26.0 weight:UIFontWeightBold];
+    titleLabel.text = @"探索更丰富的高级图表示例";
+    [cardView addSubview:titleLabel];
+
+    CGFloat subtitleTop = CGRectGetMaxY(titleFrame) + 10.0;
+    CGRect subtitleFrame = CGRectMake(horizontalPadding,
+                                      subtitleTop,
+                                      cardBounds.size.width - horizontalPadding * 2,
+                                      cardBounds.size.height - subtitleTop - verticalPadding);
+
+    UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:subtitleFrame];
+    subtitleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    subtitleLabel.numberOfLines = 2;
+    subtitleLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.82];
+    subtitleLabel.font = [UIFont systemFontOfSize:15.0 weight:UIFontWeightRegular];
+    subtitleLabel.text = @"精选多类图表，助你快速找到灵感。轻触任意卡片即可查看详细演示。";
+    [cardView addSubview:subtitleLabel];
+
+    return headerView;
+}
+
+- (UIImage *)fallbackChevronImage {
+    CGSize size = CGSizeMake(16, 16);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:CGPointMake(4, 2)];
+    [path addLineToPoint:CGPointMake(12, 8)];
+    [path addLineToPoint:CGPointMake(4, 14)];
+    [[UIColor colorWithWhite:0.25 alpha:0.9] setStroke];
+    path.lineWidth = 2.0;
+    path.lineCapStyle = kCGLineCapRound;
+    path.lineJoinStyle = kCGLineJoinRound;
+    [path stroke];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 @end
