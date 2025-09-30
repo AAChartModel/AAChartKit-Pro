@@ -163,38 +163,48 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
 
     UIView *backdropView = [[UIView alloc] init];
     backdropView.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    // Enhanced background colors for better contrast
-    UIColor *lightHeaderBackground = [[UIColor whiteColor] colorWithAlphaComponent:0.85];
-    UIColor *darkHeaderBackground = [UIColor colorWithRed:45/255.0 green:52/255.0 blue:70/255.0 alpha:0.92];
-    backdropView.backgroundColor = AALightDarkColor(lightHeaderBackground, darkHeaderBackground);
     backdropView.layer.cornerRadius = 16.0;
     backdropView.layer.masksToBounds = NO;
-    
-    // Improved shadow effects
+
     if (isDarkMode) {
+        backdropView.backgroundColor = [UIColor colorWithRed:45/255.0 green:52/255.0 blue:70/255.0 alpha:0.92];
         backdropView.layer.shadowColor = [UIColor blackColor].CGColor;
         backdropView.layer.shadowOpacity = 0.45;
         backdropView.layer.shadowOffset = CGSizeMake(0, 8);
         backdropView.layer.shadowRadius = 20.0;
-        // Add subtle border for dark mode
         backdropView.layer.borderWidth = 0.5;
         backdropView.layer.borderColor = [[UIColor whiteColor] colorWithAlphaComponent:0.15].CGColor;
     } else {
-        backdropView.layer.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.2].CGColor;
-        backdropView.layer.shadowOpacity = 0.15;
-        backdropView.layer.shadowOffset = CGSizeMake(0, 4);
-        backdropView.layer.shadowRadius = 12.0;
-        backdropView.layer.borderWidth = 0;
+        // Create a gentle pastel gradient for light mode
+        UIColor *gradientTopColor = ColorWithRGB(248, 251, 255, 1);
+        UIColor *gradientBottomColor = ColorWithRGB(232, 239, 255, 1);
+        CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+        gradientLayer.colors = @[(__bridge id)gradientTopColor.CGColor,
+                                 (__bridge id)gradientBottomColor.CGColor];
+        gradientLayer.startPoint = CGPointMake(0.0, 0.0);
+        gradientLayer.endPoint = CGPointMake(1.0, 1.0);
+        gradientLayer.frame = backdropView.bounds;
+        gradientLayer.cornerRadius = backdropView.layer.cornerRadius;
+        gradientLayer.masksToBounds = YES;
+        gradientLayer.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
+        [backdropView.layer insertSublayer:gradientLayer atIndex:0];
+
+        backdropView.layer.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.12].CGColor;
+        backdropView.layer.shadowOpacity = 0.18;
+        backdropView.layer.shadowOffset = CGSizeMake(0, 6);
+        backdropView.layer.shadowRadius = 14.0;
+        backdropView.layer.borderWidth = 1.0;
+        backdropView.layer.borderColor = ColorWithRGB(220, 231, 255, 1).CGColor;
+        backdropView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.85];
     }
     [containerView addSubview:backdropView];
 
     UIView *accentView = [[UIView alloc] init];
     accentView.translatesAutoresizingMaskIntoConstraints = NO;
     // Enhanced accent colors with better visibility
-    UIColor *lightAccent = ColorWithRGB(93, 112, 255, 1);
+    UIColor *lightAccent = ColorWithRGB(88, 116, 255, 1);
     UIColor *darkAccent = ColorWithRGB(120, 140, 255, 1);
-    accentView.backgroundColor = AALightDarkColor(lightAccent, darkAccent);
+    accentView.backgroundColor = isDarkMode ? darkAccent : lightAccent;
     accentView.layer.cornerRadius = 3.0;
     // Add glow effect for dark mode
     if (isDarkMode) {
@@ -202,6 +212,11 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
         accentView.layer.shadowOpacity = 0.6;
         accentView.layer.shadowOffset = CGSizeMake(0, 0);
         accentView.layer.shadowRadius = 4.0;
+    } else {
+        accentView.layer.shadowColor = lightAccent.CGColor;
+        accentView.layer.shadowOpacity = 0.35;
+        accentView.layer.shadowOffset = CGSizeMake(0, 2);
+        accentView.layer.shadowRadius = 5.0;
     }
     [backdropView addSubview:accentView];
 
@@ -213,7 +228,7 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
     if (isDarkMode) {
         label.textColor = [UIColor colorWithWhite:0.95 alpha:1.0];
     } else {
-        label.textColor = [UIColor colorWithWhite:0.15 alpha:1.0];
+        label.textColor = ColorWithRGB(60, 75, 120, 1);
     }
     label.text = self.sectionTypeArr[section];
     [backdropView addSubview:label];
