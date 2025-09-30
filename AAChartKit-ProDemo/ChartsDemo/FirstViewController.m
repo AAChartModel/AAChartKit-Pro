@@ -167,13 +167,24 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
     backdropView.layer.masksToBounds = NO;
 
     if (isDarkMode) {
-        backdropView.backgroundColor = [UIColor colorWithRed:45/255.0 green:52/255.0 blue:70/255.0 alpha:0.92];
+        CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+        gradientLayer.colors = @[(__bridge id)ColorWithRGB(44, 46, 68, 1).CGColor,
+                                 (__bridge id)ColorWithRGB(58, 66, 96, 1).CGColor,
+                                 (__bridge id)ColorWithRGB(38, 50, 96, 1).CGColor];
+        gradientLayer.startPoint = CGPointMake(0.0, 0.0);
+        gradientLayer.endPoint = CGPointMake(1.0, 1.0);
+        gradientLayer.frame = backdropView.bounds;
+        gradientLayer.cornerRadius = backdropView.layer.cornerRadius;
+        gradientLayer.masksToBounds = YES;
+        gradientLayer.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
+        [backdropView.layer insertSublayer:gradientLayer atIndex:0];
+
         backdropView.layer.shadowColor = [UIColor blackColor].CGColor;
         backdropView.layer.shadowOpacity = 0.45;
-        backdropView.layer.shadowOffset = CGSizeMake(0, 8);
-        backdropView.layer.shadowRadius = 20.0;
-        backdropView.layer.borderWidth = 0.5;
-        backdropView.layer.borderColor = [[UIColor whiteColor] colorWithAlphaComponent:0.15].CGColor;
+        backdropView.layer.shadowOffset = CGSizeMake(0, 10);
+        backdropView.layer.shadowRadius = 22.0;
+        backdropView.layer.borderWidth = 0.6;
+        backdropView.layer.borderColor = [[UIColor whiteColor] colorWithAlphaComponent:0.12].CGColor;
     } else {
         // Create a gentle pastel gradient for light mode
         UIColor *gradientTopColor = ColorWithRGB(248, 251, 255, 1);
@@ -214,16 +225,18 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
         accentView.layer.shadowRadius = 4.0;
     } else {
         accentView.layer.shadowColor = lightAccent.CGColor;
-        accentView.layer.shadowOpacity = 0.35;
-        accentView.layer.shadowOffset = CGSizeMake(0, 2);
-        accentView.layer.shadowRadius = 5.0;
+        accentView.layer.shadowOpacity = 0.28;
+        accentView.layer.shadowOffset = CGSizeMake(0, 3);
+        accentView.layer.shadowRadius = 6.0;
     }
     [backdropView addSubview:accentView];
 
     UILabel *label = [[UILabel alloc] init];
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.textAlignment = NSTextAlignmentLeft;
-    label.font = [UIFont systemFontOfSize:15.0 weight:UIFontWeightSemibold];
+    label.font = [UIFont systemFontOfSize:16.0 weight:UIFontWeightSemibold];
+    label.adjustsFontSizeToFitWidth = YES;
+    label.minimumScaleFactor = 0.9;
     // Simple and reliable text colors
     if (isDarkMode) {
         label.textColor = [UIColor colorWithWhite:0.95 alpha:1.0];
@@ -245,7 +258,7 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
         [accentView.centerYAnchor constraintEqualToAnchor:backdropView.centerYAnchor],
 
         [label.leadingAnchor constraintEqualToAnchor:accentView.trailingAnchor constant:12.0],
-        [label.trailingAnchor constraintEqualToAnchor:backdropView.trailingAnchor constant:-16.0],
+        [label.trailingAnchor constraintEqualToAnchor:backdropView.trailingAnchor constant:-20.0],
         [label.centerYAnchor constraintEqualToAnchor:backdropView.centerYAnchor],
     ]];
 
@@ -334,6 +347,21 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
         [cardView addSubview:blurView];
 
         [self updateBlurEffectView:blurView];
+
+        UIView *backgroundOverlay = [[UIView alloc] init];
+        backgroundOverlay.tag = 1007;
+        backgroundOverlay.translatesAutoresizingMaskIntoConstraints = NO;
+        backgroundOverlay.layer.cornerRadius = cardView.layer.cornerRadius;
+        backgroundOverlay.layer.masksToBounds = YES;
+        backgroundOverlay.backgroundColor = [self cardOverlayBackgroundColor];
+        [cardView addSubview:backgroundOverlay];
+
+        [NSLayoutConstraint activateConstraints:@[
+            [backgroundOverlay.leadingAnchor constraintEqualToAnchor:cardView.leadingAnchor],
+            [backgroundOverlay.trailingAnchor constraintEqualToAnchor:cardView.trailingAnchor],
+            [backgroundOverlay.topAnchor constraintEqualToAnchor:cardView.topAnchor],
+            [backgroundOverlay.bottomAnchor constraintEqualToAnchor:cardView.bottomAnchor],
+        ]];
 
         UIView *contentContainer = [[UIView alloc] init];
         contentContainer.translatesAutoresizingMaskIntoConstraints = NO;
@@ -444,6 +472,10 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
         UIVisualEffectView *blurView = [cardView viewWithTag:1006];
         if (blurView) {
             [self updateBlurEffectView:blurView];
+        }
+        UIView *backgroundOverlay = [cardView viewWithTag:1007];
+        if (backgroundOverlay) {
+            backgroundOverlay.backgroundColor = [self cardOverlayBackgroundColor];
         }
         
         // Update colors for reused cells
@@ -1092,6 +1124,11 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
         cardView.layer.borderWidth = 0;
         cardView.layer.borderColor = [UIColor clearColor].CGColor;
     }
+
+    UIView *overlayView = [cardView viewWithTag:1007];
+    if (overlayView) {
+        overlayView.backgroundColor = [self cardOverlayBackgroundColor];
+    }
 }
 
 - (void)updateBlurEffectView:(UIVisualEffectView *)blurView {
@@ -1121,6 +1158,14 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
 - (CGFloat)cardShadowBaseOpacity {
     BOOL isDarkMode = [self isDarkMode];
     return isDarkMode ? 0.45f : 0.20f;
+}
+
+- (UIColor *)cardOverlayBackgroundColor {
+    BOOL isDarkMode = [self isDarkMode];
+    if (isDarkMode) {
+        return [UIColor colorWithWhite:0.12 alpha:0.72];
+    }
+    return [UIColor colorWithWhite:1.0 alpha:0.88];
 }
 
 #pragma mark - Theme Toggle
