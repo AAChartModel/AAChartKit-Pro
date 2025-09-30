@@ -148,7 +148,7 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 40;
+    return 76;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -163,28 +163,58 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
 
     UIView *backdropView = [[UIView alloc] init];
     backdropView.translatesAutoresizingMaskIntoConstraints = NO;
-    UIColor *lightHeaderBackground = [[UIColor whiteColor] colorWithAlphaComponent:0.32];
-    UIColor *darkHeaderBackground = [UIColor colorWithRed:40/255.0 green:45/255.0 blue:70/255.0 alpha:0.7];
+    
+    // Enhanced background colors for better contrast
+    UIColor *lightHeaderBackground = [[UIColor whiteColor] colorWithAlphaComponent:0.85];
+    UIColor *darkHeaderBackground = [UIColor colorWithRed:45/255.0 green:52/255.0 blue:70/255.0 alpha:0.92];
     backdropView.backgroundColor = AALightDarkColor(lightHeaderBackground, darkHeaderBackground);
-    backdropView.layer.cornerRadius = 14.0;
+    backdropView.layer.cornerRadius = 16.0;
     backdropView.layer.masksToBounds = NO;
-    backdropView.layer.shadowColor = (isDarkMode ? [[UIColor blackColor] colorWithAlphaComponent:0.7] : [[UIColor blackColor] colorWithAlphaComponent:0.14]).CGColor;
-    backdropView.layer.shadowOpacity = isDarkMode ? 0.22 : 0.12;
-    backdropView.layer.shadowOffset = CGSizeMake(0, 6);
-    backdropView.layer.shadowRadius = isDarkMode ? 18.0 : 12.0;
+    
+    // Improved shadow effects
+    if (isDarkMode) {
+        backdropView.layer.shadowColor = [UIColor blackColor].CGColor;
+        backdropView.layer.shadowOpacity = 0.45;
+        backdropView.layer.shadowOffset = CGSizeMake(0, 8);
+        backdropView.layer.shadowRadius = 20.0;
+        // Add subtle border for dark mode
+        backdropView.layer.borderWidth = 0.5;
+        backdropView.layer.borderColor = [[UIColor whiteColor] colorWithAlphaComponent:0.15].CGColor;
+    } else {
+        backdropView.layer.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.2].CGColor;
+        backdropView.layer.shadowOpacity = 0.15;
+        backdropView.layer.shadowOffset = CGSizeMake(0, 4);
+        backdropView.layer.shadowRadius = 12.0;
+        backdropView.layer.borderWidth = 0;
+    }
     [containerView addSubview:backdropView];
 
     UIView *accentView = [[UIView alloc] init];
     accentView.translatesAutoresizingMaskIntoConstraints = NO;
-    accentView.backgroundColor = AALightDarkColor(ColorWithRGB(93, 112, 255, 1), ColorWithRGB(132, 163, 255, 1));
+    // Enhanced accent colors with better visibility
+    UIColor *lightAccent = ColorWithRGB(93, 112, 255, 1);
+    UIColor *darkAccent = ColorWithRGB(120, 140, 255, 1);
+    accentView.backgroundColor = AALightDarkColor(lightAccent, darkAccent);
     accentView.layer.cornerRadius = 3.0;
+    // Add glow effect for dark mode
+    if (isDarkMode) {
+        accentView.layer.shadowColor = darkAccent.CGColor;
+        accentView.layer.shadowOpacity = 0.6;
+        accentView.layer.shadowOffset = CGSizeMake(0, 0);
+        accentView.layer.shadowRadius = 4.0;
+    }
     [backdropView addSubview:accentView];
 
     UILabel *label = [[UILabel alloc] init];
     label.translatesAutoresizingMaskIntoConstraints = NO;
     label.textAlignment = NSTextAlignmentLeft;
     label.font = [UIFont systemFontOfSize:15.0 weight:UIFontWeightSemibold];
-    label.textColor = AALightDarkColor([UIColor colorWithWhite:0.1 alpha:0.92], [UIColor colorWithWhite:0.92 alpha:0.95]);
+    // Simple and reliable text colors
+    if (isDarkMode) {
+        label.textColor = [UIColor colorWithWhite:0.95 alpha:1.0];
+    } else {
+        label.textColor = [UIColor colorWithWhite:0.15 alpha:1.0];
+    }
     label.text = self.sectionTypeArr[section];
     [backdropView addSubview:label];
 
@@ -265,14 +295,22 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
             [cardView.bottomAnchor constraintEqualToAnchor:cell.contentView.bottomAnchor constant:-8.0],
         ]];
 
+        // Enhanced blur effects based on current theme
         UIVisualEffect *blurEffect = nil;
+        BOOL isDarkMode = [self isDarkMode];
+        
         if (@available(iOS 13.0, *)) {
-            blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleSystemThickMaterial];
+            if (isDarkMode) {
+                blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleSystemThinMaterialDark];
+            } else {
+                blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleSystemThinMaterialLight];
+            }
         } else {
-            blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+            blurEffect = [UIBlurEffect effectWithStyle:isDarkMode ? UIBlurEffectStyleDark : UIBlurEffectStyleExtraLight];
         }
-    UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    blurView.tag = 1006;
+        
+        UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+        blurView.tag = 1006;
         blurView.frame = cardView.bounds;
         blurView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         blurView.userInteractionEnabled = NO;
@@ -280,7 +318,7 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
         blurView.layer.masksToBounds = YES;
         [cardView addSubview:blurView];
 
-    [self updateBlurEffectView:blurView];
+        [self updateBlurEffectView:blurView];
 
         UIView *contentContainer = [[UIView alloc] init];
         contentContainer.translatesAutoresizingMaskIntoConstraints = NO;
@@ -299,17 +337,38 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
         badgeLabel.translatesAutoresizingMaskIntoConstraints = NO;
         badgeLabel.textAlignment = NSTextAlignmentCenter;
         badgeLabel.font = [UIFont systemFontOfSize:13.0 weight:UIFontWeightSemibold];
-        badgeLabel.textColor = AALightDarkColor([UIColor whiteColor], [UIColor whiteColor]);
-        badgeLabel.backgroundColor = AALightDarkColor(ColorWithRGB(93, 112, 255, 1), ColorWithRGB(120, 148, 255, 1));
+        // Simple and reliable badge styling
+        badgeLabel.textColor = [UIColor whiteColor];
+         isDarkMode = [self isDarkMode];
+        if (isDarkMode) {
+            badgeLabel.backgroundColor = ColorWithRGB(110, 130, 255, 1);
+        } else {
+            badgeLabel.backgroundColor = ColorWithRGB(93, 112, 255, 1);
+        }
         badgeLabel.layer.cornerRadius = 15.0;
-        badgeLabel.layer.masksToBounds = YES;
+        badgeLabel.layer.masksToBounds = NO;
+        
+        // Add subtle glow for dark mode
+        if (isDarkMode) {
+            badgeLabel.layer.shadowColor = ColorWithRGB(110, 130, 255, 1).CGColor;
+            badgeLabel.layer.shadowOpacity = 0.4;
+            badgeLabel.layer.shadowOffset = CGSizeMake(0, 0);
+            badgeLabel.layer.shadowRadius = 6.0;
+        } else {
+            badgeLabel.layer.shadowOpacity = 0.0;
+        }
         [contentContainer addSubview:badgeLabel];
 
         titleLabel = [[UILabel alloc] init];
         titleLabel.tag = 1003;
         titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         titleLabel.font = [UIFont systemFontOfSize:17.0 weight:UIFontWeightSemibold];
-        titleLabel.textColor = AALightDarkColor([UIColor colorWithWhite:0.06 alpha:1.0], [UIColor colorWithWhite:0.95 alpha:1.0]);
+        // Simple and reliable title colors
+        if (isDarkMode) {
+            titleLabel.textColor = [UIColor colorWithWhite:0.95 alpha:1.0];
+        } else {
+            titleLabel.textColor = [UIColor colorWithWhite:0.1 alpha:1.0];
+        }
         titleLabel.numberOfLines = 1;
         [contentContainer addSubview:titleLabel];
 
@@ -317,7 +376,12 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
         subtitleLabel.tag = 1004;
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         subtitleLabel.font = [UIFont systemFontOfSize:13.0 weight:UIFontWeightRegular];
-        subtitleLabel.textColor = AALightDarkColor([UIColor colorWithWhite:0.22 alpha:0.9], [UIColor colorWithWhite:0.78 alpha:0.92]);
+        // Simple and reliable subtitle colors
+        if (isDarkMode) {
+            subtitleLabel.textColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+        } else {
+            subtitleLabel.textColor = [UIColor colorWithWhite:0.4 alpha:1.0];
+        }
         subtitleLabel.numberOfLines = 0;
         [contentContainer addSubview:subtitleLabel];
 
@@ -325,7 +389,12 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
         chevronImageView.tag = 1005;
         chevronImageView.translatesAutoresizingMaskIntoConstraints = NO;
         chevronImageView.contentMode = UIViewContentModeScaleAspectFit;
-        chevronImageView.tintColor = AALightDarkColor([UIColor colorWithWhite:0.25 alpha:0.9], [UIColor colorWithWhite:0.8 alpha:0.95]);
+        // Simple and reliable chevron colors
+        if (isDarkMode) {
+            chevronImageView.tintColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+        } else {
+            chevronImageView.tintColor = [UIColor colorWithWhite:0.4 alpha:1.0];
+        }
         chevronImageView.image = [UIImage imageNamed:@"icon_arrow_right"];
         if (!chevronImageView.image) {
             chevronImageView.image = [self fallbackChevronImage];
@@ -360,6 +429,30 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
         UIVisualEffectView *blurView = [cardView viewWithTag:1006];
         if (blurView) {
             [self updateBlurEffectView:blurView];
+        }
+        
+        // Update colors for reused cells
+        BOOL isDarkMode = [self isDarkMode];
+        
+        // Update badge colors
+        if (isDarkMode) {
+            badgeLabel.backgroundColor = ColorWithRGB(110, 130, 255, 1);
+            badgeLabel.layer.shadowColor = ColorWithRGB(110, 130, 255, 1).CGColor;
+            badgeLabel.layer.shadowOpacity = 0.4;
+        } else {
+            badgeLabel.backgroundColor = ColorWithRGB(93, 112, 255, 1);
+            badgeLabel.layer.shadowOpacity = 0.0;
+        }
+        
+        // Update text colors
+        if (isDarkMode) {
+            titleLabel.textColor = [UIColor colorWithWhite:0.95 alpha:1.0];
+            subtitleLabel.textColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+            chevronImageView.tintColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+        } else {
+            titleLabel.textColor = [UIColor colorWithWhite:0.1 alpha:1.0];
+            subtitleLabel.textColor = [UIColor colorWithWhite:0.4 alpha:1.0];
+            chevronImageView.tintColor = [UIColor colorWithWhite:0.4 alpha:1.0];
         }
     }
 
@@ -972,24 +1065,39 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
     
     if (isDarkMode) {
         cardView.layer.shadowColor = [UIColor blackColor].CGColor;
+        cardView.layer.shadowRadius = 18.0;
+        cardView.layer.shadowOffset = CGSizeMake(0, 12);
+        // Add subtle border for dark mode
+        cardView.layer.borderWidth = 0.5;
+        cardView.layer.borderColor = [[UIColor whiteColor] colorWithAlphaComponent:0.12].CGColor;
     } else {
         cardView.layer.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.25].CGColor;
+        cardView.layer.shadowRadius = 16.0;
+        cardView.layer.shadowOffset = CGSizeMake(0, 10);
+        cardView.layer.borderWidth = 0;
+        cardView.layer.borderColor = [UIColor clearColor].CGColor;
     }
 }
 
 - (void)updateBlurEffectView:(UIVisualEffectView *)blurView {
     if (!blurView) return;
     
+    BOOL isDarkMode = [self isDarkMode];
     UIVisualEffect *newEffect = nil;
+    
     if (@available(iOS 13.0, *)) {
-        BOOL isDarkMode = [self isDarkMode];
         if (isDarkMode) {
-            newEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleSystemThickMaterialDark];
+            newEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleSystemThinMaterialDark];
         } else {
-            newEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleSystemThickMaterialLight];
+            newEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleSystemThinMaterialLight];
         }
     } else {
-        newEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        // Fallback for older iOS versions
+        if (isDarkMode) {
+            newEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        } else {
+            newEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+        }
     }
     
     blurView.effect = newEffect;
@@ -997,7 +1105,7 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
 
 - (CGFloat)cardShadowBaseOpacity {
     BOOL isDarkMode = [self isDarkMode];
-    return isDarkMode ? 0.35f : 0.18f;
+    return isDarkMode ? 0.45f : 0.20f;
 }
 
 #pragma mark - Theme Toggle
