@@ -1,6 +1,6 @@
 //
 //  FirstViewController.m
-//  AAChartKit
+//  AAChartKit-Pro
 //
 //  Created by An An on 17/3/14.
 //  Copyright © 2017年 An An. All rights reserved.
@@ -46,10 +46,27 @@
 #import "ChartListCollectionViewVC.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define ColorWithRGB(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
-#define AAGrayColor            [UIColor colorWithRed:245/255.0 green:246/255.0 blue:247/255.0 alpha:1.0]
-#define AABlueColor            ColorWithRGB(63, 153,231,1)
+// MARK: - Color System
 
+#define ColorWithRGB(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
+
+// Modern Color Palette
+#define AABackgroundLightStart     ColorWithRGB(240, 246, 255, 1)    // Soft blue-white
+#define AABackgroundLightMid       ColorWithRGB(230, 241, 255, 1)    // Light sky blue
+#define AABackgroundLightEnd       ColorWithRGB(248, 237, 255, 1)    // Lavender touch
+
+#define AABackgroundDarkStart      ColorWithRGB(15, 17, 26, 1)       // Deep navy
+#define AABackgroundDarkMid        ColorWithRGB(25, 30, 42, 1)       // Midnight blue
+#define AABackgroundDarkEnd        ColorWithRGB(32, 22, 42, 1)       // Dark purple
+
+#define AAAccentBlueLight          ColorWithRGB(88, 116, 255, 1)     // Vibrant blue
+#define AAAccentBlueDark           ColorWithRGB(120, 140, 255, 1)    // Lighter blue for dark mode
+#define AAAccentPurple             ColorWithRGB(155, 81, 224, 1)     // Purple accent
+
+#define AACardShadowLight          [[UIColor blackColor] colorWithAlphaComponent:0.08]
+#define AACardShadowDark           [UIColor blackColor]
+
+// Dynamic Color Helper
 static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor) {
     if (@available(iOS 13.0, *)) {
         return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
@@ -61,6 +78,15 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
     }
     return lightColor;
 }
+
+// MARK: - Animation Constants
+
+static const CGFloat kCardPressScale = 0.96;
+static const CGFloat kAnimationDurationFast = 0.2;
+static const CGFloat kAnimationDurationMedium = 0.3;
+static const CGFloat kCardCornerRadius = 18.0;
+static const CGFloat kSectionHeaderCornerRadius = 16.0;
+static const CGFloat kBadgeCornerRadius = 15.0;
 
 @interface FirstViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -79,7 +105,11 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
 
 @end
 
+#pragma mark - Implementation
+
 @implementation FirstViewController
+
+#pragma mark - Lifecycle Methods
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -88,57 +118,95 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Configure basic setup
     self.title = @"AAChartKit-Pro";
     self.view.backgroundColor = [UIColor whiteColor];
-
+    
+    // Initialize theme system
     [self loadThemeSettings];
-    [self setupThemeToggleButton];
+    
+    // Setup UI components in order
+    [self setupNavigationBar];
     [self setupBackgroundGradient];
     [self configTheTableView];
+    
+    // Apply initial theme
     [self applyTheme];
 }
 
+#pragma mark - Setup Methods
+
+- (void)setupNavigationBar {
+    // Configure navigation bar style
+    self.navigationController.navigationBar.prefersLargeTitles = NO;
+    
+    // Add theme toggle button
+    [self setupThemeToggleButton];
+}
+
 - (void)configTheTableView {
+    // Use modern grouped style
     UITableViewStyle style = UITableViewStyleGrouped;
     if (@available(iOS 13.0, *)) {
         style = UITableViewStyleInsetGrouped;
     }
+    
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:style];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.backgroundColor = [UIColor clearColor];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.showsVerticalScrollIndicator = NO;
-    tableView.contentInset = UIEdgeInsetsMake(24, 0, 40, 0);
+    
+    // Modern spacing
+    tableView.contentInset = UIEdgeInsetsMake(20, 0, 40, 0);
     tableView.rowHeight = UITableViewAutomaticDimension;
-    tableView.estimatedRowHeight = 76;
-    tableView.tableFooterView = [UIView new];
+    tableView.estimatedRowHeight = 80;
+    tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+    tableView.estimatedSectionHeaderHeight = 58;
+    tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 1)];
     tableView.translatesAutoresizingMaskIntoConstraints = NO;
     
+    // Transparent background
     UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
     backgroundView.backgroundColor = [UIColor clearColor];
     tableView.backgroundView = backgroundView;
     
+    // Add smooth bounce effect
+    if (@available(iOS 11.0, *)) {
+        tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
+    }
+    
     [self.view addSubview:tableView];
     [self.view addConstraints:[self configureTheConstraintArrayWithItem:tableView toItem:self.view]];
 
+    // Setup header view
     tableView.tableHeaderView = [self buildTableHeaderView];
+    
     self.tableView = tableView;
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
+    
+    // Update background gradient frame to match view bounds
     if (self.backgroundGradientLayer) {
+        [CATransaction begin];
+        [CATransaction setDisableActions:YES];
         self.backgroundGradientLayer.frame = self.view.bounds;
+        [CATransaction commit];
     }
+    
+    // Dynamically resize table header view based on content
     if (self.tableView.tableHeaderView) {
         UIView *headerView = self.tableView.tableHeaderView;
-        // Use Auto Layout to determine the required height
         [headerView setNeedsLayout];
         [headerView layoutIfNeeded];
-        CGFloat height = [headerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
         
+        CGFloat height = [headerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
         CGRect headerFrame = headerView.frame;
+        
         if (headerFrame.size.height != height) {
             headerFrame.size.height = height;
             headerView.frame = headerFrame;
@@ -146,6 +214,8 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
         }
     }
 }
+
+#pragma mark - UITableViewDataSource & UITableViewDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.chartTypeNameArr.count;
@@ -156,83 +226,81 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 58;
+    return 58; // Modern section header height
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    // Create container for the section header
     UIView *containerView = [[UIView alloc] init];
     containerView.backgroundColor = [UIColor clearColor];
 
     BOOL isDarkMode = [self isDarkMode];
 
+    // Create backdrop view with gradient and shadow
     UIView *backdropView = [[UIView alloc] init];
     backdropView.translatesAutoresizingMaskIntoConstraints = NO;
-    backdropView.layer.cornerRadius = 16.0;
+    backdropView.layer.cornerRadius = kSectionHeaderCornerRadius;
     backdropView.layer.masksToBounds = NO;
 
+    // Create sophisticated gradient background
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     if (isDarkMode) {
-        CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-        gradientLayer.colors = @[(__bridge id)ColorWithRGB(44, 46, 68, 1).CGColor,
-                                 (__bridge id)ColorWithRGB(58, 66, 96, 1).CGColor,
-                                 (__bridge id)ColorWithRGB(38, 50, 96, 1).CGColor];
-        gradientLayer.startPoint = CGPointMake(0.0, 0.0);
-        gradientLayer.endPoint = CGPointMake(1.0, 1.0);
-        gradientLayer.frame = backdropView.bounds;
-        gradientLayer.cornerRadius = backdropView.layer.cornerRadius;
-        gradientLayer.masksToBounds = YES;
-        gradientLayer.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
-        [backdropView.layer insertSublayer:gradientLayer atIndex:0];
-
+        gradientLayer.colors = @[
+            (__bridge id)ColorWithRGB(42, 45, 65, 1).CGColor,
+            (__bridge id)ColorWithRGB(55, 63, 90, 1).CGColor,
+            (__bridge id)ColorWithRGB(36, 48, 88, 1).CGColor
+        ];
         backdropView.layer.shadowColor = [UIColor blackColor].CGColor;
-        backdropView.layer.shadowOpacity = 0.45;
-        backdropView.layer.shadowOffset = CGSizeMake(0, 10);
-        backdropView.layer.shadowRadius = 22.0;
-        backdropView.layer.borderWidth = 0.6;
-        backdropView.layer.borderColor = [[UIColor whiteColor] colorWithAlphaComponent:0.12].CGColor;
+        backdropView.layer.shadowOpacity = 0.50;
+        backdropView.layer.shadowOffset = CGSizeMake(0, 8);
+        backdropView.layer.shadowRadius = 20.0;
+        backdropView.layer.borderWidth = 0.5;
+        backdropView.layer.borderColor = [[UIColor whiteColor] colorWithAlphaComponent:0.15].CGColor;
     } else {
-        // Create a gentle pastel gradient for light mode
-        UIColor *gradientTopColor = ColorWithRGB(248, 251, 255, 1);
-        UIColor *gradientBottomColor = ColorWithRGB(232, 239, 255, 1);
-        CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-        gradientLayer.colors = @[(__bridge id)gradientTopColor.CGColor,
-                                 (__bridge id)gradientBottomColor.CGColor];
-        gradientLayer.startPoint = CGPointMake(0.0, 0.0);
-        gradientLayer.endPoint = CGPointMake(1.0, 1.0);
-        gradientLayer.frame = backdropView.bounds;
-        gradientLayer.cornerRadius = backdropView.layer.cornerRadius;
-        gradientLayer.masksToBounds = YES;
-        gradientLayer.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
-        [backdropView.layer insertSublayer:gradientLayer atIndex:0];
-
-        backdropView.layer.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.12].CGColor;
-        backdropView.layer.shadowOpacity = 0.18;
-        backdropView.layer.shadowOffset = CGSizeMake(0, 6);
-        backdropView.layer.shadowRadius = 14.0;
-        backdropView.layer.borderWidth = 1.0;
-        backdropView.layer.borderColor = ColorWithRGB(220, 231, 255, 1).CGColor;
-        backdropView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.85];
+        gradientLayer.colors = @[
+            (__bridge id)ColorWithRGB(250, 252, 255, 1).CGColor,
+            (__bridge id)ColorWithRGB(235, 243, 255, 1).CGColor
+        ];
+        backdropView.layer.shadowColor = ColorWithRGB(100, 120, 180, 0.3).CGColor;
+        backdropView.layer.shadowOpacity = 0.25;
+        backdropView.layer.shadowOffset = CGSizeMake(0, 4);
+        backdropView.layer.shadowRadius = 12.0;
+        backdropView.layer.borderWidth = 0.8;
+        backdropView.layer.borderColor = ColorWithRGB(215, 228, 252, 1).CGColor;
+        backdropView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.90];
     }
+    
+    gradientLayer.startPoint = CGPointMake(0.0, 0.0);
+    gradientLayer.endPoint = CGPointMake(1.0, 1.0);
+    gradientLayer.frame = backdropView.bounds;
+    gradientLayer.cornerRadius = backdropView.layer.cornerRadius;
+    gradientLayer.masksToBounds = YES;
+    gradientLayer.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
+    [backdropView.layer insertSublayer:gradientLayer atIndex:0];
     [containerView addSubview:backdropView];
 
+    // Create elegant accent indicator
     UIView *accentView = [[UIView alloc] init];
     accentView.translatesAutoresizingMaskIntoConstraints = NO;
-    // Enhanced accent colors with better visibility
-    UIColor *lightAccent = ColorWithRGB(88, 116, 255, 1);
-    UIColor *darkAccent = ColorWithRGB(120, 140, 255, 1);
-    accentView.backgroundColor = isDarkMode ? darkAccent : lightAccent;
-    accentView.layer.cornerRadius = 3.0;
-    // Add glow effect for dark mode
+    
     if (isDarkMode) {
-        accentView.layer.shadowColor = darkAccent.CGColor;
-        accentView.layer.shadowOpacity = 0.6;
+        // Glowing accent for dark mode
+        accentView.backgroundColor = AAAccentBlueDark;
+        accentView.layer.shadowColor = AAAccentBlueDark.CGColor;
+        accentView.layer.shadowOpacity = 0.8;
         accentView.layer.shadowOffset = CGSizeMake(0, 0);
-        accentView.layer.shadowRadius = 4.0;
-    } else {
-        accentView.layer.shadowColor = lightAccent.CGColor;
-        accentView.layer.shadowOpacity = 0.28;
-        accentView.layer.shadowOffset = CGSizeMake(0, 3);
         accentView.layer.shadowRadius = 6.0;
+    } else {
+        // Subtle shadow for light mode
+        accentView.backgroundColor = AAAccentBlueLight;
+        accentView.layer.shadowColor = AAAccentBlueLight.CGColor;
+        accentView.layer.shadowOpacity = 0.35;
+        accentView.layer.shadowOffset = CGSizeMake(0, 2);
+        accentView.layer.shadowRadius = 5.0;
     }
+    
+    accentView.layer.cornerRadius = 3.0;
+    accentView.layer.masksToBounds = NO;
     [backdropView addSubview:accentView];
 
     UILabel *label = [[UILabel alloc] init];
@@ -308,11 +376,12 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
     UIImageView *chevronImageView = nil;
 
     if (!cardView) {
+        // Create modern card container
         cardView = [[UIView alloc] init];
         cardView.tag = 1001;
         cardView.translatesAutoresizingMaskIntoConstraints = NO;
         cardView.backgroundColor = [UIColor clearColor];
-        cardView.layer.cornerRadius = 18.0;
+        cardView.layer.cornerRadius = kCardCornerRadius;
         cardView.layer.shadowColor = [UIColor blackColor].CGColor;
         cardView.layer.shadowOpacity = 0.18;
         cardView.layer.shadowOffset = CGSizeMake(0, 10);
@@ -383,27 +452,29 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
         badgeLabel.tag = 1002;
         badgeLabel.translatesAutoresizingMaskIntoConstraints = NO;
         badgeLabel.textAlignment = NSTextAlignmentCenter;
-        badgeLabel.font = [UIFont systemFontOfSize:13.0 weight:UIFontWeightSemibold];
-        // Simple and reliable badge styling
+        badgeLabel.font = [UIFont monospacedDigitSystemFontOfSize:13.0 weight:UIFontWeightBold];
         badgeLabel.textColor = [UIColor whiteColor];
-         isDarkMode = [self isDarkMode];
-        if (isDarkMode) {
-            badgeLabel.backgroundColor = ColorWithRGB(110, 130, 255, 1);
-        } else {
-            badgeLabel.backgroundColor = ColorWithRGB(93, 112, 255, 1);
-        }
-        badgeLabel.layer.cornerRadius = 15.0;
+        badgeLabel.layer.cornerRadius = kBadgeCornerRadius;
         badgeLabel.layer.masksToBounds = NO;
         
-        // Add subtle glow for dark mode
+        // Modern badge styling
+        isDarkMode = [self isDarkMode];
         if (isDarkMode) {
-            badgeLabel.layer.shadowColor = ColorWithRGB(110, 130, 255, 1).CGColor;
-            badgeLabel.layer.shadowOpacity = 0.4;
+            // Vibrant glow for dark mode
+            badgeLabel.backgroundColor = ColorWithRGB(100, 120, 255, 1);
+            badgeLabel.layer.shadowColor = ColorWithRGB(100, 120, 255, 1).CGColor;
+            badgeLabel.layer.shadowOpacity = 0.6;
             badgeLabel.layer.shadowOffset = CGSizeMake(0, 0);
-            badgeLabel.layer.shadowRadius = 6.0;
+            badgeLabel.layer.shadowRadius = 8.0;
         } else {
-            badgeLabel.layer.shadowOpacity = 0.0;
+            // Clean look for light mode
+            badgeLabel.backgroundColor = ColorWithRGB(85, 105, 255, 1);
+            badgeLabel.layer.shadowColor = ColorWithRGB(85, 105, 255, 0.4).CGColor;
+            badgeLabel.layer.shadowOpacity = 0.3;
+            badgeLabel.layer.shadowOffset = CGSizeMake(0, 3);
+            badgeLabel.layer.shadowRadius = 6.0;
         }
+        
         [contentContainer addSubview:badgeLabel];
 
         titleLabel = [[UILabel alloc] init];
@@ -641,10 +712,19 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     UIView *cardView = [cell.contentView viewWithTag:1001];
     if (!cardView) { return; }
+    
     CGFloat baseOpacity = [self cardShadowBaseOpacity];
-    [UIView animateWithDuration:0.18 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        cardView.transform = CGAffineTransformMakeScale(0.97, 0.97);
-        cardView.layer.shadowOpacity = MAX(baseOpacity * 0.55, 0.08f);
+    
+    // Smooth spring animation for press effect
+    [UIView animateWithDuration:kAnimationDurationFast
+                          delay:0
+         usingSpringWithDamping:0.8
+          initialSpringVelocity:0.5
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+        cardView.transform = CGAffineTransformMakeScale(kCardPressScale, kCardPressScale);
+        cardView.layer.shadowOpacity = MAX(baseOpacity * 0.5, 0.05f);
+        cardView.alpha = 0.92;
     } completion:nil];
 }
 
@@ -652,10 +732,19 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     UIView *cardView = [cell.contentView viewWithTag:1001];
     if (!cardView) { return; }
+    
     CGFloat baseOpacity = [self cardShadowBaseOpacity];
-    [UIView animateWithDuration:0.22 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    
+    // Bouncy spring animation for release effect
+    [UIView animateWithDuration:0.4
+                          delay:0
+         usingSpringWithDamping:0.6
+          initialSpringVelocity:0.8
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
         cardView.transform = CGAffineTransformIdentity;
         cardView.layer.shadowOpacity = baseOpacity;
+        cardView.alpha = 1.0;
     } completion:nil];
 }
 
@@ -899,13 +988,18 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
 
 - (void)setupBackgroundGradient {
     if (self.backgroundGradientLayer) { return; }
+    
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.colors = @[(__bridge id)ColorWithRGB(238, 243, 255, 1).CGColor,
-                             (__bridge id)ColorWithRGB(222, 238, 255, 1).CGColor,
-                             (__bridge id)ColorWithRGB(247, 233, 255, 1).CGColor];
+    gradientLayer.colors = @[
+        (__bridge id)AABackgroundLightStart.CGColor,
+        (__bridge id)AABackgroundLightMid.CGColor,
+        (__bridge id)AABackgroundLightEnd.CGColor
+    ];
     gradientLayer.startPoint = CGPointMake(0.0, 0.0);
     gradientLayer.endPoint = CGPointMake(1.0, 1.0);
     gradientLayer.locations = @[@0.0, @0.5, @1.0];
+    gradientLayer.frame = self.view.bounds;
+    
     [self.view.layer insertSublayer:gradientLayer atIndex:0];
     self.backgroundGradientLayer = gradientLayer;
 }
@@ -1076,36 +1170,64 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
     if (!self.backgroundGradientLayer) return;
     
     BOOL isDarkMode = [self isDarkMode];
+    
+    NSArray *colors;
     if (isDarkMode) {
-        self.backgroundGradientLayer.colors = @[
-            (__bridge id)[UIColor colorWithRed:18/255.0 green:20/255.0 blue:28/255.0 alpha:1.0].CGColor,
-            (__bridge id)[UIColor colorWithRed:28/255.0 green:32/255.0 blue:45/255.0 alpha:1.0].CGColor,
-            (__bridge id)[UIColor colorWithRed:35/255.0 green:25/255.0 blue:45/255.0 alpha:1.0].CGColor
+        // Deep, rich gradient for dark mode
+        colors = @[
+            (__bridge id)AABackgroundDarkStart.CGColor,
+            (__bridge id)AABackgroundDarkMid.CGColor,
+            (__bridge id)AABackgroundDarkEnd.CGColor
         ];
     } else {
-        self.backgroundGradientLayer.colors = @[
-            (__bridge id)ColorWithRGB(238, 243, 255, 1).CGColor,
-            (__bridge id)ColorWithRGB(222, 238, 255, 1).CGColor,
-            (__bridge id)ColorWithRGB(247, 233, 255, 1).CGColor
+        // Light, airy gradient for light mode
+        colors = @[
+            (__bridge id)AABackgroundLightStart.CGColor,
+            (__bridge id)AABackgroundLightMid.CGColor,
+            (__bridge id)AABackgroundLightEnd.CGColor
         ];
     }
+    
+    // Animate color transition
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"colors"];
+    animation.fromValue = self.backgroundGradientLayer.colors;
+    animation.toValue = colors;
+    animation.duration = 0.4;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    [self.backgroundGradientLayer addAnimation:animation forKey:@"colorsChange"];
+    
+    self.backgroundGradientLayer.colors = colors;
 }
 
 - (void)updateHeaderViewTheme {
     if (!self.headerCardGradientLayer) return;
     
     BOOL isDarkMode = [self isDarkMode];
+    
+    NSArray *colors;
     if (isDarkMode) {
-        self.headerCardGradientLayer.colors = @[
-            (__bridge id)ColorWithRGB(28, 28, 30, 1).CGColor,
-            (__bridge id)ColorWithRGB(58, 58, 60, 1).CGColor
+        // Sophisticated dark gradient
+        colors = @[
+            (__bridge id)ColorWithRGB(30, 32, 38, 1).CGColor,
+            (__bridge id)ColorWithRGB(55, 60, 72, 1).CGColor
         ];
     } else {
-        self.headerCardGradientLayer.colors = @[
+        // Vibrant light gradient
+        colors = @[
             (__bridge id)ColorWithRGB(0, 122, 255, 1).CGColor,
-            (__bridge id)ColorWithRGB(85, 185, 255, 1).CGColor
+            (__bridge id)ColorWithRGB(75, 175, 255, 1).CGColor
         ];
     }
+    
+    // Animate gradient transition
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"colors"];
+    animation.fromValue = self.headerCardGradientLayer.colors;
+    animation.toValue = colors;
+    animation.duration = 0.4;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    [self.headerCardGradientLayer addAnimation:animation forKey:@"headerColorsChange"];
+    
+    self.headerCardGradientLayer.colors = colors;
 }
 
 - (void)applyThemeToCardView:(UIView *)cardView {
@@ -1306,45 +1428,73 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
 }
 
 - (void)showThemeToggleFeedback {
-    NSString *message = [self isDarkMode] ? @"🌙 已切换到深色模式" : @"☀️ 已切换到浅色模式";
+    BOOL isDark = [self isDarkMode];
+    NSString *message = isDark ? @"🌙 已切换到深色模式" : @"☀️ 已切换到浅色模式";
     
-    // Create temporary feedback label
+    // Create stylish feedback toast
+    UIView *toastContainer = [[UIView alloc] init];
+    toastContainer.backgroundColor = [UIColor clearColor];
+    toastContainer.alpha = 0.0;
+    
+    // Add blur effect
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:isDark ? UIBlurEffectStyleDark : UIBlurEffectStyleLight];
+    UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    blurView.layer.cornerRadius = 24.0;
+    blurView.layer.masksToBounds = YES;
+    
     UILabel *feedbackLabel = [[UILabel alloc] init];
     feedbackLabel.text = message;
-    feedbackLabel.textColor = [UIColor whiteColor];
-    feedbackLabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
-    feedbackLabel.font = [UIFont systemFontOfSize:14.0 weight:UIFontWeightMedium];
+    feedbackLabel.textColor = isDark ? [UIColor whiteColor] : ColorWithRGB(40, 40, 40, 1);
+    feedbackLabel.backgroundColor = [UIColor clearColor];
+    feedbackLabel.font = [UIFont systemFontOfSize:15.0 weight:UIFontWeightSemibold];
     feedbackLabel.textAlignment = NSTextAlignmentCenter;
-    feedbackLabel.layer.cornerRadius = 20.0;
-    feedbackLabel.layer.masksToBounds = YES;
-    feedbackLabel.alpha = 0.0;
     
-    // Size and position
+    // Layout
     [feedbackLabel sizeToFit];
-    CGRect frame = feedbackLabel.frame;
-    frame.size.width += 32.0; // Add padding
-    frame.size.height = 40.0;
-    feedbackLabel.frame = frame;
-    feedbackLabel.center = CGPointMake(self.view.center.x, self.view.center.y - 100);
+    CGRect labelFrame = feedbackLabel.frame;
+    labelFrame.size.width += 40.0;
+    labelFrame.size.height = 48.0;
+    feedbackLabel.frame = labelFrame;
     
-    [self.view addSubview:feedbackLabel];
+    blurView.frame = labelFrame;
+    toastContainer.frame = labelFrame;
+    toastContainer.center = CGPointMake(self.view.center.x, self.view.center.y - 120);
     
-    // Animate feedback
-    [UIView animateWithDuration:0.3 animations:^{
-        feedbackLabel.alpha = 1.0;
-        feedbackLabel.transform = CGAffineTransformMakeScale(1.1, 1.1);
+    [toastContainer addSubview:blurView];
+    [blurView.contentView addSubview:feedbackLabel];
+    feedbackLabel.center = CGPointMake(blurView.bounds.size.width / 2, blurView.bounds.size.height / 2);
+    
+    // Add subtle shadow
+    toastContainer.layer.shadowColor = [UIColor blackColor].CGColor;
+    toastContainer.layer.shadowOpacity = isDark ? 0.5 : 0.15;
+    toastContainer.layer.shadowOffset = CGSizeMake(0, 8);
+    toastContainer.layer.shadowRadius = 16.0;
+    
+    [self.view addSubview:toastContainer];
+    
+    // Elegant entrance animation
+    toastContainer.transform = CGAffineTransformMakeTranslation(0, -20);
+    [UIView animateWithDuration:0.5
+                          delay:0
+         usingSpringWithDamping:0.7
+          initialSpringVelocity:0.5
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+        toastContainer.alpha = 1.0;
+        toastContainer.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.2 animations:^{
-            feedbackLabel.transform = CGAffineTransformIdentity;
-        } completion:^(BOOL finished2) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [UIView animateWithDuration:0.3 animations:^{
-                    feedbackLabel.alpha = 0.0;
-                } completion:^(BOOL finished3) {
-                    [feedbackLabel removeFromSuperview];
-                }];
-            });
-        }];
+        // Auto dismiss after delay
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.4
+                                  delay:0
+                                options:UIViewAnimationOptionCurveEaseIn
+                             animations:^{
+                toastContainer.alpha = 0.0;
+                toastContainer.transform = CGAffineTransformMakeTranslation(0, -15);
+            } completion:^(BOOL finished2) {
+                [toastContainer removeFromSuperview];
+            }];
+        });
     }];
 }
 
