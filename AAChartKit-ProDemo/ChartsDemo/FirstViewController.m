@@ -51,17 +51,17 @@
 #define ColorWithRGB(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
 
 // Modern Color Palette
-#define AABackgroundLightStart     ColorWithRGB(240, 246, 255, 1)    // Soft blue-white
-#define AABackgroundLightMid       ColorWithRGB(230, 241, 255, 1)    // Light sky blue
-#define AABackgroundLightEnd       ColorWithRGB(248, 237, 255, 1)    // Lavender touch
+#define AABackgroundLightStart     ColorWithRGB(255, 248, 240, 1)    // Warm sunrise peach
+#define AABackgroundLightMid       ColorWithRGB(255, 236, 224, 1)    // Soft apricot haze
+#define AABackgroundLightEnd       ColorWithRGB(255, 229, 233, 1)    // Gentle blush veil
 
-#define AABackgroundDarkStart      ColorWithRGB(15, 17, 26, 1)       // Deep navy
-#define AABackgroundDarkMid        ColorWithRGB(25, 30, 42, 1)       // Midnight blue
-#define AABackgroundDarkEnd        ColorWithRGB(32, 22, 42, 1)       // Dark purple
+#define AABackgroundDarkStart      ColorWithRGB(28, 22, 30, 1)       // Deep espresso dusk
+#define AABackgroundDarkMid        ColorWithRGB(42, 30, 32, 1)       // Smoky umber glow
+#define AABackgroundDarkEnd        ColorWithRGB(58, 36, 29, 1)       // Ember-streaked night
 
-#define AAAccentBlueLight          ColorWithRGB(88, 116, 255, 1)     // Vibrant blue
-#define AAAccentBlueDark           ColorWithRGB(120, 140, 255, 1)    // Lighter blue for dark mode
-#define AAAccentPurple             ColorWithRGB(155, 81, 224, 1)     // Purple accent
+#define AAAccentBlueLight          ColorWithRGB(255, 138, 101, 1)    // Lively coral
+#define AAAccentBlueDark           ColorWithRGB(255, 171, 145, 1)    // Soft ember coral
+#define AAAccentPurple             ColorWithRGB(255, 199, 95, 1)     // Honeyed amber accent
 
 #define AACardShadowLight          [[UIColor blackColor] colorWithAlphaComponent:0.08]
 #define AACardShadowDark           [UIColor blackColor]
@@ -99,6 +99,12 @@ static const CGFloat kBadgeCornerRadius = 15.0;
 @property (nonatomic, strong) UILabel *headerTitleLabel;
 @property (nonatomic, strong) UILabel *headerSubtitleLabel;
 @property (nonatomic, strong) CAGradientLayer *headerCardGradientLayer;
+@property (nonatomic, strong) UIVisualEffectView *headerGlassEffectView;
+@property (nonatomic, strong) UIView *headerInnerBackgroundView;
+@property (nonatomic, strong) NSArray<UIView *> *headerChipViews;
+@property (nonatomic, strong) NSArray<UILabel *> *headerChipLabels;
+@property (nonatomic, strong) UIView *headerFloatingOrbView;
+@property (nonatomic, strong) CAShapeLayer *headerHaloLayer;
 @property (nonatomic, strong) UIBarButtonItem *themeToggleButton;
 @property (nonatomic, assign) BOOL hasManualThemeOverride;
 @property (nonatomic, assign) BOOL manualDarkModeEnabled;
@@ -213,6 +219,16 @@ static const CGFloat kBadgeCornerRadius = 15.0;
             self.tableView.tableHeaderView = headerView;
         }
     }
+
+    if (self.headerHaloLayer && self.tableHeaderCardView) {
+        CGRect haloBounds = CGRectInset(self.tableHeaderCardView.bounds, 16.0, 16.0);
+        UIBezierPath *haloPath = [UIBezierPath bezierPathWithRoundedRect:haloBounds cornerRadius:MAX(self.tableHeaderCardView.layer.cornerRadius - 16.0, 8.0)];
+        [CATransaction begin];
+        [CATransaction setDisableActions:YES];
+        self.headerHaloLayer.frame = self.tableHeaderCardView.bounds;
+        self.headerHaloLayer.path = haloPath.CGPath;
+        [CATransaction commit];
+    }
 }
 
 #pragma mark - UITableViewDataSource & UITableViewDelegate
@@ -246,27 +262,27 @@ static const CGFloat kBadgeCornerRadius = 15.0;
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     if (isDarkMode) {
         gradientLayer.colors = @[
-            (__bridge id)ColorWithRGB(42, 45, 65, 1).CGColor,
-            (__bridge id)ColorWithRGB(55, 63, 90, 1).CGColor,
-            (__bridge id)ColorWithRGB(36, 48, 88, 1).CGColor
+            (__bridge id)ColorWithRGB(66, 44, 48, 1).CGColor,
+            (__bridge id)ColorWithRGB(80, 52, 40, 1).CGColor,
+            (__bridge id)ColorWithRGB(58, 38, 33, 1).CGColor
         ];
         backdropView.layer.shadowColor = [UIColor blackColor].CGColor;
-        backdropView.layer.shadowOpacity = 0.50;
+        backdropView.layer.shadowOpacity = 0.48;
         backdropView.layer.shadowOffset = CGSizeMake(0, 8);
         backdropView.layer.shadowRadius = 20.0;
         backdropView.layer.borderWidth = 0.5;
-        backdropView.layer.borderColor = [[UIColor whiteColor] colorWithAlphaComponent:0.15].CGColor;
+        backdropView.layer.borderColor = [[UIColor whiteColor] colorWithAlphaComponent:0.18].CGColor;
     } else {
         gradientLayer.colors = @[
-            (__bridge id)ColorWithRGB(250, 252, 255, 1).CGColor,
-            (__bridge id)ColorWithRGB(235, 243, 255, 1).CGColor
+            (__bridge id)ColorWithRGB(255, 247, 239, 1).CGColor,
+            (__bridge id)ColorWithRGB(255, 235, 222, 1).CGColor
         ];
-        backdropView.layer.shadowColor = ColorWithRGB(100, 120, 180, 0.3).CGColor;
-        backdropView.layer.shadowOpacity = 0.25;
+        backdropView.layer.shadowColor = ColorWithRGB(205, 170, 130, 0.34).CGColor;
+        backdropView.layer.shadowOpacity = 0.28;
         backdropView.layer.shadowOffset = CGSizeMake(0, 4);
         backdropView.layer.shadowRadius = 12.0;
         backdropView.layer.borderWidth = 0.8;
-        backdropView.layer.borderColor = ColorWithRGB(215, 228, 252, 1).CGColor;
+        backdropView.layer.borderColor = ColorWithRGB(248, 216, 190, 1).CGColor;
         backdropView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.90];
     }
     
@@ -313,7 +329,7 @@ static const CGFloat kBadgeCornerRadius = 15.0;
     if (isDarkMode) {
         label.textColor = [UIColor colorWithWhite:0.95 alpha:1.0];
     } else {
-        label.textColor = ColorWithRGB(60, 75, 120, 1);
+        label.textColor = ColorWithRGB(118, 82, 62, 1);
     }
     label.text = self.sectionTypeArr[section];
     [backdropView addSubview:label];
@@ -426,7 +442,7 @@ static const CGFloat kBadgeCornerRadius = 15.0;
         backgroundOverlay.translatesAutoresizingMaskIntoConstraints = NO;
         backgroundOverlay.layer.cornerRadius = cardView.layer.cornerRadius;
         backgroundOverlay.layer.masksToBounds = YES;
-        backgroundOverlay.backgroundColor = [self cardOverlayBackgroundColor];
+        backgroundOverlay.backgroundColor = [UIColor clearColor];
         [cardView addSubview:backgroundOverlay];
 
         [NSLayoutConstraint activateConstraints:@[
@@ -435,6 +451,8 @@ static const CGFloat kBadgeCornerRadius = 15.0;
             [backgroundOverlay.topAnchor constraintEqualToAnchor:cardView.topAnchor],
             [backgroundOverlay.bottomAnchor constraintEqualToAnchor:cardView.bottomAnchor],
         ]];
+
+        [self updateCardGradientInView:backgroundOverlay];
 
         UIView *contentContainer = [[UIView alloc] init];
         contentContainer.translatesAutoresizingMaskIntoConstraints = NO;
@@ -461,15 +479,15 @@ static const CGFloat kBadgeCornerRadius = 15.0;
         isDarkMode = [self isDarkMode];
         if (isDarkMode) {
             // Vibrant glow for dark mode
-            badgeLabel.backgroundColor = ColorWithRGB(100, 120, 255, 1);
-            badgeLabel.layer.shadowColor = ColorWithRGB(100, 120, 255, 1).CGColor;
+            badgeLabel.backgroundColor = ColorWithRGB(213, 128, 82, 1);
+            badgeLabel.layer.shadowColor = ColorWithRGB(213, 128, 82, 1).CGColor;
             badgeLabel.layer.shadowOpacity = 0.6;
             badgeLabel.layer.shadowOffset = CGSizeMake(0, 0);
             badgeLabel.layer.shadowRadius = 8.0;
         } else {
             // Clean look for light mode
-            badgeLabel.backgroundColor = ColorWithRGB(85, 105, 255, 1);
-            badgeLabel.layer.shadowColor = ColorWithRGB(85, 105, 255, 0.4).CGColor;
+            badgeLabel.backgroundColor = ColorWithRGB(255, 149, 94, 1);
+            badgeLabel.layer.shadowColor = ColorWithRGB(255, 149, 94, 0.4).CGColor;
             badgeLabel.layer.shadowOpacity = 0.3;
             badgeLabel.layer.shadowOffset = CGSizeMake(0, 3);
             badgeLabel.layer.shadowRadius = 6.0;
@@ -498,7 +516,7 @@ static const CGFloat kBadgeCornerRadius = 15.0;
         if (isDarkMode) {
             subtitleLabel.textColor = [UIColor colorWithWhite:0.7 alpha:1.0];
         } else {
-            subtitleLabel.textColor = [UIColor colorWithWhite:0.4 alpha:1.0];
+            subtitleLabel.textColor = ColorWithRGB(156, 113, 95, 1);
         }
         subtitleLabel.numberOfLines = 0;
         [contentContainer addSubview:subtitleLabel];
@@ -511,7 +529,7 @@ static const CGFloat kBadgeCornerRadius = 15.0;
         if (isDarkMode) {
             chevronImageView.tintColor = [UIColor colorWithWhite:0.7 alpha:1.0];
         } else {
-            chevronImageView.tintColor = [UIColor colorWithWhite:0.4 alpha:1.0];
+            chevronImageView.tintColor = ColorWithRGB(173, 131, 113, 1);
         }
         chevronImageView.image = [UIImage imageNamed:@"icon_arrow_right"];
         if (!chevronImageView.image) {
@@ -550,7 +568,7 @@ static const CGFloat kBadgeCornerRadius = 15.0;
         }
         UIView *backgroundOverlay = [cardView viewWithTag:1007];
         if (backgroundOverlay) {
-            backgroundOverlay.backgroundColor = [self cardOverlayBackgroundColor];
+            [self updateCardGradientInView:backgroundOverlay];
         }
         
         // Update colors for reused cells
@@ -558,11 +576,11 @@ static const CGFloat kBadgeCornerRadius = 15.0;
         
         // Update badge colors
         if (isDarkMode) {
-            badgeLabel.backgroundColor = ColorWithRGB(110, 130, 255, 1);
-            badgeLabel.layer.shadowColor = ColorWithRGB(110, 130, 255, 1).CGColor;
+            badgeLabel.backgroundColor = ColorWithRGB(222, 136, 92, 1);
+            badgeLabel.layer.shadowColor = ColorWithRGB(222, 136, 92, 1).CGColor;
             badgeLabel.layer.shadowOpacity = 0.4;
         } else {
-            badgeLabel.backgroundColor = ColorWithRGB(93, 112, 255, 1);
+            badgeLabel.backgroundColor = ColorWithRGB(255, 158, 108, 1);
             badgeLabel.layer.shadowOpacity = 0.0;
         }
         
@@ -573,8 +591,8 @@ static const CGFloat kBadgeCornerRadius = 15.0;
             chevronImageView.tintColor = [UIColor colorWithWhite:0.7 alpha:1.0];
         } else {
             titleLabel.textColor = [UIColor colorWithWhite:0.1 alpha:1.0];
-            subtitleLabel.textColor = [UIColor colorWithWhite:0.4 alpha:1.0];
-            chevronImageView.tintColor = [UIColor colorWithWhite:0.4 alpha:1.0];
+            subtitleLabel.textColor = ColorWithRGB(156, 113, 95, 1);
+            chevronImageView.tintColor = ColorWithRGB(173, 131, 113, 1);
         }
     }
 
@@ -999,80 +1017,206 @@ static const CGFloat kBadgeCornerRadius = 15.0;
     gradientLayer.endPoint = CGPointMake(1.0, 1.0);
     gradientLayer.locations = @[@0.0, @0.5, @1.0];
     gradientLayer.frame = self.view.bounds;
+    gradientLayer.needsDisplayOnBoundsChange = YES;
     
     [self.view.layer insertSublayer:gradientLayer atIndex:0];
     self.backgroundGradientLayer = gradientLayer;
+
+    CABasicAnimation *startAnimation = [CABasicAnimation animationWithKeyPath:@"startPoint"];
+    startAnimation.fromValue = [NSValue valueWithCGPoint:CGPointMake(0.0, 0.0)];
+    startAnimation.toValue = [NSValue valueWithCGPoint:CGPointMake(0.25, -0.15)];
+    startAnimation.duration = 18.0;
+    startAnimation.autoreverses = YES;
+    startAnimation.repeatCount = HUGE_VALF;
+    startAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    startAnimation.removedOnCompletion = NO;
+    [gradientLayer addAnimation:startAnimation forKey:@"aa.background.startPoint"];
+
+    CABasicAnimation *endAnimation = [CABasicAnimation animationWithKeyPath:@"endPoint"];
+    endAnimation.fromValue = [NSValue valueWithCGPoint:CGPointMake(1.0, 1.0)];
+    endAnimation.toValue = [NSValue valueWithCGPoint:CGPointMake(0.8, 1.2)];
+    endAnimation.duration = 18.0;
+    endAnimation.autoreverses = YES;
+    endAnimation.repeatCount = HUGE_VALF;
+    endAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    endAnimation.removedOnCompletion = NO;
+    [gradientLayer addAnimation:endAnimation forKey:@"aa.background.endPoint"];
 }
 
 - (UIView *)buildTableHeaderView {
     UIView *headerView = [[UIView alloc] init];
     headerView.translatesAutoresizingMaskIntoConstraints = NO;
     headerView.backgroundColor = [UIColor clearColor];
+    BOOL isDarkMode = [self isDarkMode];
 
     UIView *cardView = [[UIView alloc] init];
     cardView.translatesAutoresizingMaskIntoConstraints = NO;
-    cardView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.28];
-    cardView.layer.cornerRadius = 24.0;
+    cardView.backgroundColor = AALightDarkColor([[UIColor whiteColor] colorWithAlphaComponent:0.18], [[UIColor blackColor] colorWithAlphaComponent:0.28]);
+    cardView.layer.cornerRadius = 26.0;
     cardView.layer.masksToBounds = NO;
-    cardView.layer.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.18].CGColor;
-    cardView.layer.shadowOpacity = 0.12;
-    cardView.layer.shadowOffset = CGSizeMake(0, 12);
-    cardView.layer.shadowRadius = 24.0;
+    cardView.layer.shadowColor = (isDarkMode ? [UIColor blackColor] : ColorWithRGB(90, 120, 180, 1)).CGColor;
+    cardView.layer.shadowOpacity = isDarkMode ? 0.35 : 0.22;
+    cardView.layer.shadowOffset = CGSizeMake(0, 18);
+    cardView.layer.shadowRadius = 28.0;
     [headerView addSubview:cardView];
-    
-    // Store reference for theming
+
     self.tableHeaderCardView = cardView;
 
     CAGradientLayer *cardGradient = [CAGradientLayer layer];
+    cardGradient.name = @"header.card.gradient";
     cardGradient.colors = @[
-        (__bridge id)AALightDarkColor(ColorWithRGB(0, 122, 255, 1), ColorWithRGB(28, 28, 30, 1)).CGColor,
-        (__bridge id)AALightDarkColor(ColorWithRGB(85, 185, 255, 1), ColorWithRGB(58, 58, 60, 1)).CGColor
+        (__bridge id)AALightDarkColor(ColorWithRGB(255, 179, 120, 1), ColorWithRGB(104, 62, 48, 1)).CGColor,
+        (__bridge id)AALightDarkColor(ColorWithRGB(255, 204, 143, 1), ColorWithRGB(129, 72, 55, 1)).CGColor,
+        (__bridge id)AALightDarkColor(ColorWithRGB(255, 188, 170, 1), ColorWithRGB(140, 76, 82, 1)).CGColor
     ];
-    cardGradient.startPoint = CGPointMake(0, 0);
-    cardGradient.endPoint = CGPointMake(1, 1);
+    cardGradient.locations = @[@0.0, @0.55, @1.0];
+    cardGradient.startPoint = CGPointMake(0.0, 0.0);
+    cardGradient.endPoint = CGPointMake(1.0, 1.0);
     cardGradient.cornerRadius = cardView.layer.cornerRadius;
+    cardGradient.frame = cardView.bounds;
+    cardGradient.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
+    cardGradient.masksToBounds = YES;
     [cardView.layer insertSublayer:cardGradient atIndex:0];
-    
-    // Store reference for theming
     self.headerCardGradientLayer = cardGradient;
+
+    UIVisualEffect *glassEffect = nil;
+    if (@available(iOS 13.0, *)) {
+        glassEffect = [UIBlurEffect effectWithStyle:isDarkMode ? UIBlurEffectStyleSystemThinMaterialDark : UIBlurEffectStyleSystemThinMaterialLight];
+    } else {
+        glassEffect = [UIBlurEffect effectWithStyle:isDarkMode ? UIBlurEffectStyleDark : UIBlurEffectStyleExtraLight];
+    }
+
+    UIVisualEffectView *glassView = [[UIVisualEffectView alloc] initWithEffect:glassEffect];
+    glassView.translatesAutoresizingMaskIntoConstraints = NO;
+    glassView.userInteractionEnabled = NO;
+    glassView.layer.cornerRadius = cardView.layer.cornerRadius;
+    glassView.layer.masksToBounds = YES;
+    [cardView addSubview:glassView];
+    self.headerGlassEffectView = glassView;
+
+    UIView *contentContainer = [[UIView alloc] init];
+    contentContainer.translatesAutoresizingMaskIntoConstraints = NO;
+    contentContainer.backgroundColor = [UIColor clearColor];
+    contentContainer.layer.cornerRadius = cardView.layer.cornerRadius;
+    contentContainer.layer.masksToBounds = NO;
+    [glassView.contentView addSubview:contentContainer];
+
+    UIView *innerBackground = [[UIView alloc] init];
+    innerBackground.translatesAutoresizingMaskIntoConstraints = NO;
+    innerBackground.backgroundColor = AALightDarkColor(ColorWithRGB(255, 255, 255, 0.18), ColorWithRGB(60, 40, 36, 0.28));
+    innerBackground.layer.cornerRadius = cardView.layer.cornerRadius;
+    innerBackground.layer.masksToBounds = YES;
+    innerBackground.userInteractionEnabled = NO;
+    [contentContainer addSubview:innerBackground];
+    [contentContainer sendSubviewToBack:innerBackground];
+    self.headerInnerBackgroundView = innerBackground;
 
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    titleLabel.numberOfLines = 0; // Allow multiple lines
+    titleLabel.numberOfLines = 0;
     titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.font = [UIFont systemFontOfSize:26.0 weight:UIFontWeightBold];
+    titleLabel.font = [UIFont systemFontOfSize:27.0 weight:UIFontWeightBold];
     titleLabel.text = @"探索更丰富的高级图表示例";
-    [cardView addSubview:titleLabel];
-    
-    // Store reference for theming
+    [contentContainer addSubview:titleLabel];
     self.headerTitleLabel = titleLabel;
 
     UILabel *subtitleLabel = [[UILabel alloc] init];
     subtitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    subtitleLabel.numberOfLines = 0; // Allow multiple lines
-    subtitleLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.82];
-    subtitleLabel.font = [UIFont systemFontOfSize:15.0 weight:UIFontWeightRegular];
+    subtitleLabel.numberOfLines = 0;
+    subtitleLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.80];
+    subtitleLabel.font = [UIFont systemFontOfSize:15.5 weight:UIFontWeightMedium];
     subtitleLabel.text = @"精选多类图表，助你快速找到灵感。轻触任意卡片即可查看详细演示。";
-    [cardView addSubview:subtitleLabel];
-    
-    // Store reference for theming
+    [contentContainer addSubview:subtitleLabel];
     self.headerSubtitleLabel = subtitleLabel;
 
-    // Apply Auto Layout constraints
+    UIStackView *chipStack = [[UIStackView alloc] init];
+    chipStack.translatesAutoresizingMaskIntoConstraints = NO;
+    chipStack.axis = UILayoutConstraintAxisHorizontal;
+    chipStack.alignment = UIStackViewAlignmentCenter;
+    chipStack.spacing = 14.0;
+    chipStack.distribution = UIStackViewDistributionFillProportionally;
+    [contentContainer addSubview:chipStack];
+
+    NSArray<NSString *> *chipTitles = @[@"✨ 交互体验", @"📊 数据探索", @"⚡️ 高性能渲染"];
+    NSMutableArray<UIView *> *chipViews = [NSMutableArray array];
+    NSMutableArray<UILabel *> *chipLabels = [NSMutableArray array];
+    [chipTitles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIView *chip = [self buildHeaderChipViewWithText:obj index:idx];
+        UILabel *label = chip.subviews.firstObject;
+        if (label) {
+            [chipLabels addObject:label];
+        }
+        [chipStack addArrangedSubview:chip];
+        [chipViews addObject:chip];
+    }];
+    self.headerChipViews = [chipViews copy];
+    self.headerChipLabels = [chipLabels copy];
+
+    UIView *floatingOrb = [[UIView alloc] init];
+    floatingOrb.translatesAutoresizingMaskIntoConstraints = NO;
+    floatingOrb.backgroundColor = AALightDarkColor(ColorWithRGB(255, 213, 153, 0.42), ColorWithRGB(148, 90, 60, 0.52));
+    floatingOrb.layer.cornerRadius = 36.0;
+    floatingOrb.layer.shadowColor = AALightDarkColor(ColorWithRGB(255, 191, 140, 1), ColorWithRGB(200, 120, 78, 1)).CGColor;
+    floatingOrb.layer.shadowOpacity = 0.48;
+    floatingOrb.layer.shadowOffset = CGSizeZero;
+    floatingOrb.layer.shadowRadius = 20.0;
+    floatingOrb.userInteractionEnabled = NO;
+    [cardView insertSubview:floatingOrb belowSubview:glassView];
+    [self applyFloatingAnimationToView:floatingOrb amplitude:9.0 duration:5.0];
+    self.headerFloatingOrbView = floatingOrb;
+
+    CAShapeLayer *haloLayer = [CAShapeLayer layer];
+    haloLayer.name = @"header.halo.layer";
+    haloLayer.fillColor = [UIColor clearColor].CGColor;
+    haloLayer.strokeColor = ColorWithRGB(255, 255, 255, isDarkMode ? 0.16 : 0.28).CGColor;
+    haloLayer.lineWidth = 1.4;
+    haloLayer.lineDashPattern = @[@6, @8];
+    haloLayer.shadowColor = ColorWithRGB(255, 182, 135, 1).CGColor;
+    haloLayer.shadowOpacity = isDarkMode ? 0.58 : 0.32;
+    haloLayer.shadowOffset = CGSizeZero;
+    haloLayer.shadowRadius = 18.0;
+    [cardView.layer addSublayer:haloLayer];
+    [self applyBreathingAnimationToLayer:haloLayer from:0.25 to:0.55 duration:3.6];
+    self.headerHaloLayer = haloLayer;
+
     [NSLayoutConstraint activateConstraints:@[
-        [cardView.topAnchor constraintEqualToAnchor:headerView.topAnchor constant:32.0],
-        [cardView.bottomAnchor constraintEqualToAnchor:headerView.bottomAnchor constant:-8.0],
+        [cardView.topAnchor constraintEqualToAnchor:headerView.topAnchor constant:28.0],
+        [cardView.bottomAnchor constraintEqualToAnchor:headerView.bottomAnchor constant:-12.0],
         [cardView.leadingAnchor constraintEqualToAnchor:headerView.leadingAnchor constant:20.0],
         [cardView.trailingAnchor constraintEqualToAnchor:headerView.trailingAnchor constant:-20.0],
 
-        [titleLabel.topAnchor constraintEqualToAnchor:cardView.topAnchor constant:24.0],
-        [titleLabel.leadingAnchor constraintEqualToAnchor:cardView.leadingAnchor constant:24.0],
-        [titleLabel.trailingAnchor constraintEqualToAnchor:cardView.trailingAnchor constant:-24.0],
+    [glassView.leadingAnchor constraintEqualToAnchor:cardView.leadingAnchor],
+    [glassView.trailingAnchor constraintEqualToAnchor:cardView.trailingAnchor],
+    [glassView.topAnchor constraintEqualToAnchor:cardView.topAnchor],
+    [glassView.bottomAnchor constraintEqualToAnchor:cardView.bottomAnchor],
 
-        [subtitleLabel.topAnchor constraintEqualToAnchor:titleLabel.bottomAnchor constant:10.0],
+    [contentContainer.leadingAnchor constraintEqualToAnchor:glassView.contentView.leadingAnchor],
+    [contentContainer.trailingAnchor constraintEqualToAnchor:glassView.contentView.trailingAnchor],
+    [contentContainer.topAnchor constraintEqualToAnchor:glassView.contentView.topAnchor],
+    [contentContainer.bottomAnchor constraintEqualToAnchor:glassView.contentView.bottomAnchor],
+
+        [innerBackground.leadingAnchor constraintEqualToAnchor:contentContainer.leadingAnchor],
+        [innerBackground.trailingAnchor constraintEqualToAnchor:contentContainer.trailingAnchor],
+        [innerBackground.topAnchor constraintEqualToAnchor:contentContainer.topAnchor],
+        [innerBackground.bottomAnchor constraintEqualToAnchor:contentContainer.bottomAnchor],
+
+        [titleLabel.topAnchor constraintEqualToAnchor:contentContainer.topAnchor constant:28.0],
+        [titleLabel.leadingAnchor constraintEqualToAnchor:contentContainer.leadingAnchor constant:28.0],
+        [titleLabel.trailingAnchor constraintEqualToAnchor:contentContainer.trailingAnchor constant:-28.0],
+
+        [subtitleLabel.topAnchor constraintEqualToAnchor:titleLabel.bottomAnchor constant:12.0],
         [subtitleLabel.leadingAnchor constraintEqualToAnchor:titleLabel.leadingAnchor],
         [subtitleLabel.trailingAnchor constraintEqualToAnchor:titleLabel.trailingAnchor],
-        [subtitleLabel.bottomAnchor constraintEqualToAnchor:cardView.bottomAnchor constant:-24.0]
+
+        [chipStack.topAnchor constraintEqualToAnchor:subtitleLabel.bottomAnchor constant:18.0],
+        [chipStack.leadingAnchor constraintEqualToAnchor:titleLabel.leadingAnchor],
+        [chipStack.trailingAnchor constraintLessThanOrEqualToAnchor:contentContainer.trailingAnchor constant:-28.0],
+        [chipStack.bottomAnchor constraintEqualToAnchor:contentContainer.bottomAnchor constant:-26.0],
+
+        [floatingOrb.widthAnchor constraintEqualToConstant:72.0],
+        [floatingOrb.heightAnchor constraintEqualToConstant:72.0],
+        [floatingOrb.trailingAnchor constraintEqualToAnchor:cardView.trailingAnchor constant:-22.0],
+        [floatingOrb.topAnchor constraintEqualToAnchor:cardView.topAnchor constant:12.0],
     ]];
 
     return headerView;
@@ -1086,7 +1230,7 @@ static const CGFloat kBadgeCornerRadius = 15.0;
     [path addLineToPoint:CGPointMake(12, 8)];
     [path addLineToPoint:CGPointMake(4, 14)];
     BOOL isDarkMode = [self isDarkMode];
-    UIColor *strokeColor = isDarkMode ? [UIColor colorWithWhite:0.8 alpha:0.95] : [UIColor colorWithWhite:0.25 alpha:0.9];
+    UIColor *strokeColor = isDarkMode ? [UIColor colorWithWhite:0.82 alpha:0.95] : ColorWithRGB(173, 131, 113, 0.95);
     [strokeColor setStroke];
     path.lineWidth = 2.0;
     path.lineCapStyle = kCGLineCapRound;
@@ -1206,20 +1350,19 @@ static const CGFloat kBadgeCornerRadius = 15.0;
     
     NSArray *colors;
     if (isDarkMode) {
-        // Sophisticated dark gradient
         colors = @[
-            (__bridge id)ColorWithRGB(30, 32, 38, 1).CGColor,
-            (__bridge id)ColorWithRGB(55, 60, 72, 1).CGColor
+            (__bridge id)ColorWithRGB(120, 76, 60, 1).CGColor,
+            (__bridge id)ColorWithRGB(138, 86, 70, 1).CGColor,
+            (__bridge id)ColorWithRGB(162, 98, 92, 1).CGColor
         ];
     } else {
-        // Vibrant light gradient
         colors = @[
-            (__bridge id)ColorWithRGB(0, 122, 255, 1).CGColor,
-            (__bridge id)ColorWithRGB(75, 175, 255, 1).CGColor
+            (__bridge id)ColorWithRGB(255, 188, 145, 1).CGColor,
+            (__bridge id)ColorWithRGB(255, 209, 162, 1).CGColor,
+            (__bridge id)ColorWithRGB(255, 195, 183, 1).CGColor
         ];
     }
-    
-    // Animate gradient transition
+
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"colors"];
     animation.fromValue = self.headerCardGradientLayer.colors;
     animation.toValue = colors;
@@ -1228,6 +1371,65 @@ static const CGFloat kBadgeCornerRadius = 15.0;
     [self.headerCardGradientLayer addAnimation:animation forKey:@"headerColorsChange"];
     
     self.headerCardGradientLayer.colors = colors;
+
+    if (self.tableHeaderCardView) {
+        self.tableHeaderCardView.backgroundColor = AALightDarkColor([[UIColor whiteColor] colorWithAlphaComponent:0.18], [[UIColor blackColor] colorWithAlphaComponent:0.28]);
+        self.tableHeaderCardView.layer.shadowColor = (isDarkMode ? [UIColor blackColor] : ColorWithRGB(210, 170, 120, 1)).CGColor;
+        self.tableHeaderCardView.layer.shadowOpacity = isDarkMode ? 0.36 : 0.24;
+        self.tableHeaderCardView.layer.shadowRadius = isDarkMode ? 34.0 : 28.0;
+        self.tableHeaderCardView.layer.shadowOffset = CGSizeMake(0, isDarkMode ? 20.0 : 16.0);
+    self.tableHeaderCardView.layer.borderWidth = isDarkMode ? 0.6 : 0.0;
+    self.tableHeaderCardView.layer.borderColor = isDarkMode ? ColorWithRGB(255, 200, 160, 0.20).CGColor : [UIColor clearColor].CGColor;
+    }
+
+    if (self.headerGlassEffectView) {
+        UIVisualEffect *newEffect = nil;
+        if (@available(iOS 13.0, *)) {
+            newEffect = [UIBlurEffect effectWithStyle:isDarkMode ? UIBlurEffectStyleSystemThinMaterialDark : UIBlurEffectStyleSystemThinMaterialLight];
+        } else {
+            newEffect = [UIBlurEffect effectWithStyle:isDarkMode ? UIBlurEffectStyleDark : UIBlurEffectStyleExtraLight];
+        }
+        self.headerGlassEffectView.effect = newEffect;
+    }
+
+    if (self.headerInnerBackgroundView) {
+        self.headerInnerBackgroundView.backgroundColor = AALightDarkColor(ColorWithRGB(255, 255, 255, 0.18), ColorWithRGB(60, 40, 36, 0.28));
+    }
+
+    if (self.headerTitleLabel) {
+        self.headerTitleLabel.textColor = isDarkMode ? [UIColor colorWithWhite:0.96 alpha:1.0] : [UIColor colorWithWhite:1.0 alpha:0.98];
+    }
+
+    if (self.headerSubtitleLabel) {
+        self.headerSubtitleLabel.textColor = isDarkMode ? [[UIColor whiteColor] colorWithAlphaComponent:0.74] : [[UIColor whiteColor] colorWithAlphaComponent:0.90];
+    }
+
+    [self.headerChipViews enumerateObjectsUsingBlock:^(UIView * _Nonnull chipView, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSArray *chipColors = [self chipGradientColorsForIndex:idx darkMode:isDarkMode];
+        [self updateGradientLayerInView:chipView named:@"chip.gradient" colors:chipColors];
+    chipView.layer.borderColor = isDarkMode ? ColorWithRGB(242, 184, 150, 0.26).CGColor : ColorWithRGB(255, 215, 190, 0.7).CGColor;
+        chipView.layer.borderWidth = isDarkMode ? 0.8 : 0.6;
+        chipView.layer.shadowColor = isDarkMode ? ColorWithRGB(206, 132, 96, 1).CGColor : ColorWithRGB(255, 186, 140, 1).CGColor;
+        chipView.layer.shadowOpacity = isDarkMode ? 0.42 : 0.30;
+        chipView.layer.shadowOffset = CGSizeZero;
+        chipView.layer.shadowRadius = 8.0;
+    }];
+
+    [self.headerChipLabels enumerateObjectsUsingBlock:^(UILabel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.textColor = isDarkMode ? [UIColor colorWithWhite:0.94 alpha:1.0] : [UIColor colorWithWhite:1.0 alpha:0.95];
+    }];
+
+    if (self.headerFloatingOrbView) {
+        self.headerFloatingOrbView.backgroundColor = AALightDarkColor(ColorWithRGB(255, 213, 153, 0.42), ColorWithRGB(148, 90, 60, 0.52));
+        self.headerFloatingOrbView.layer.shadowColor = (isDarkMode ? ColorWithRGB(210, 130, 88, 1) : ColorWithRGB(255, 191, 140, 1)).CGColor;
+        self.headerFloatingOrbView.layer.shadowOpacity = isDarkMode ? 0.64 : 0.48;
+    }
+
+    if (self.headerHaloLayer) {
+        self.headerHaloLayer.strokeColor = isDarkMode ? ColorWithRGB(255, 204, 170, 0.20).CGColor : ColorWithRGB(255, 255, 255, 0.28).CGColor;
+        self.headerHaloLayer.shadowColor = (isDarkMode ? ColorWithRGB(218, 140, 98, 1) : ColorWithRGB(255, 186, 135, 1)).CGColor;
+        self.headerHaloLayer.shadowOpacity = isDarkMode ? 0.58 : 0.34;
+    }
 }
 
 - (void)applyThemeToCardView:(UIView *)cardView {
@@ -1244,9 +1446,9 @@ static const CGFloat kBadgeCornerRadius = 15.0;
         cardView.layer.shadowOffset = CGSizeMake(0, 12);
         // Add subtle border for dark mode
         cardView.layer.borderWidth = 0.5;
-        cardView.layer.borderColor = [[UIColor whiteColor] colorWithAlphaComponent:0.12].CGColor;
+        cardView.layer.borderColor = ColorWithRGB(255, 200, 160, 0.20).CGColor;
     } else {
-        cardView.layer.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.25].CGColor;
+        cardView.layer.shadowColor = ColorWithRGB(210, 170, 130, 0.4).CGColor;
         cardView.layer.shadowRadius = 16.0;
         cardView.layer.shadowOffset = CGSizeMake(0, 10);
         cardView.layer.borderWidth = 0;
@@ -1255,7 +1457,7 @@ static const CGFloat kBadgeCornerRadius = 15.0;
 
     UIView *overlayView = [cardView viewWithTag:1007];
     if (overlayView) {
-        overlayView.backgroundColor = [self cardOverlayBackgroundColor];
+        [self updateCardGradientInView:overlayView];
     }
 }
 
@@ -1288,12 +1490,141 @@ static const CGFloat kBadgeCornerRadius = 15.0;
     return isDarkMode ? 0.45f : 0.20f;
 }
 
-- (UIColor *)cardOverlayBackgroundColor {
-    BOOL isDarkMode = [self isDarkMode];
+#pragma mark - Design Helpers
+
+- (NSArray<id> *)cardGradientColorsForDarkMode:(BOOL)isDarkMode {
     if (isDarkMode) {
-        return [UIColor colorWithWhite:0.12 alpha:0.72];
+        return @[(__bridge id)ColorWithRGB(70, 47, 41, 0.90).CGColor,
+                 (__bridge id)ColorWithRGB(58, 36, 32, 0.92).CGColor,
+                 (__bridge id)ColorWithRGB(82, 52, 44, 0.88).CGColor];
     }
-    return [UIColor colorWithWhite:1.0 alpha:0.88];
+    return @[(__bridge id)ColorWithRGB(255, 245, 232, 0.94).CGColor,
+             (__bridge id)ColorWithRGB(255, 235, 215, 0.92).CGColor,
+             (__bridge id)ColorWithRGB(255, 228, 214, 0.92).CGColor];
+}
+
+- (NSArray<id> *)chipGradientColorsForIndex:(NSUInteger)index darkMode:(BOOL)isDarkMode {
+    NSUInteger styleIndex = index % 3;
+    switch (styleIndex) {
+        case 0:
+            if (isDarkMode) {
+                return @[(__bridge id)ColorWithRGB(196, 108, 70, 0.90).CGColor,
+                         (__bridge id)ColorWithRGB(176, 86, 66, 0.92).CGColor];
+            }
+            return @[(__bridge id)ColorWithRGB(255, 170, 116, 0.96).CGColor,
+                     (__bridge id)ColorWithRGB(255, 143, 96, 0.94).CGColor];
+        case 1:
+            if (isDarkMode) {
+                return @[(__bridge id)ColorWithRGB(194, 132, 68, 0.88).CGColor,
+                         (__bridge id)ColorWithRGB(170, 112, 60, 0.90).CGColor];
+            }
+            return @[(__bridge id)ColorWithRGB(255, 193, 120, 0.92).CGColor,
+                     (__bridge id)ColorWithRGB(255, 210, 150, 0.96).CGColor];
+        default:
+            if (isDarkMode) {
+                return @[(__bridge id)ColorWithRGB(170, 88, 94, 0.82).CGColor,
+                         (__bridge id)ColorWithRGB(148, 72, 86, 0.86).CGColor];
+            }
+            return @[(__bridge id)ColorWithRGB(255, 186, 180, 0.90).CGColor,
+                     (__bridge id)ColorWithRGB(255, 210, 204, 0.95).CGColor];
+    }
+}
+
+- (void)updateCardGradientInView:(UIView *)overlayView {
+    if (!overlayView) { return; }
+    BOOL isDarkMode = [self isDarkMode];
+    NSArray *colors = [self cardGradientColorsForDarkMode:isDarkMode];
+    [self updateGradientLayerInView:overlayView named:@"card.overlay.gradient" colors:colors];
+    overlayView.layer.borderWidth = isDarkMode ? 0.6 : 0.8;
+    overlayView.layer.borderColor = isDarkMode ? ColorWithRGB(210, 150, 120, 0.22).CGColor : ColorWithRGB(255, 213, 190, 0.55).CGColor;
+}
+
+- (void)updateGradientLayerInView:(UIView *)view named:(NSString *)name colors:(NSArray<id> *)colors {
+    if (!view || colors.count == 0) { return; }
+    CAGradientLayer *targetLayer = nil;
+    for (CALayer *layer in view.layer.sublayers) {
+        if ([layer.name isEqualToString:name] && [layer isKindOfClass:[CAGradientLayer class]]) {
+            targetLayer = (CAGradientLayer *)layer;
+            break;
+        }
+    }
+    if (!targetLayer) {
+        targetLayer = [CAGradientLayer layer];
+        targetLayer.name = name;
+        targetLayer.frame = view.bounds;
+        targetLayer.cornerRadius = view.layer.cornerRadius;
+        targetLayer.startPoint = CGPointMake(0.0, 0.0);
+        targetLayer.endPoint = CGPointMake(1.0, 1.0);
+        targetLayer.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
+        targetLayer.needsDisplayOnBoundsChange = YES;
+        targetLayer.masksToBounds = YES;
+        [view.layer insertSublayer:targetLayer atIndex:0];
+    }
+    targetLayer.colors = colors;
+    targetLayer.locations = nil;
+}
+
+- (UIView *)buildHeaderChipViewWithText:(NSString *)text index:(NSUInteger)index {
+    UIView *chipView = [[UIView alloc] init];
+    chipView.translatesAutoresizingMaskIntoConstraints = NO;
+    chipView.backgroundColor = [UIColor clearColor];
+    chipView.layer.cornerRadius = 18.0;
+    chipView.layer.masksToBounds = NO;
+    chipView.layer.borderWidth = 0.0;
+
+    UILabel *label = [[UILabel alloc] init];
+    label.translatesAutoresizingMaskIntoConstraints = NO;
+    label.font = [UIFont systemFontOfSize:13.5 weight:UIFontWeightSemibold];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.text = text;
+    label.textColor = [UIColor whiteColor];
+    [chipView addSubview:label];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [label.leadingAnchor constraintEqualToAnchor:chipView.leadingAnchor constant:16.0],
+        [label.trailingAnchor constraintEqualToAnchor:chipView.trailingAnchor constant:-16.0],
+        [label.topAnchor constraintEqualToAnchor:chipView.topAnchor constant:8.0],
+        [label.bottomAnchor constraintEqualToAnchor:chipView.bottomAnchor constant:-8.0]
+    ]];
+
+    [label setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+    [label setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+
+    NSArray *colors = [self chipGradientColorsForIndex:index darkMode:[self isDarkMode]];
+    [self updateGradientLayerInView:chipView named:@"chip.gradient" colors:colors];
+
+    return chipView;
+}
+
+- (void)applyFloatingAnimationToView:(UIView *)view amplitude:(CGFloat)amplitude duration:(CFTimeInterval)duration {
+    if (!view) { return; }
+    CAKeyframeAnimation *vertical = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.y"];
+    vertical.values = @[@0, @(amplitude), @0, @(-amplitude * 0.6), @0];
+    vertical.duration = MAX(duration, 3.0);
+    vertical.repeatCount = HUGE_VALF;
+    vertical.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+
+    CAKeyframeAnimation *horizontal = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.x"];
+    horizontal.values = @[@0, @(amplitude * 0.3), @0, @(-amplitude * 0.2), @0];
+    horizontal.duration = vertical.duration * 1.2;
+    horizontal.repeatCount = HUGE_VALF;
+    horizontal.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+
+    [view.layer addAnimation:vertical forKey:@"aa.floatingY"];
+    [view.layer addAnimation:horizontal forKey:@"aa.floatingX"];
+}
+
+- (void)applyBreathingAnimationToLayer:(CALayer *)layer from:(CGFloat)fromOpacity to:(CGFloat)toOpacity duration:(CFTimeInterval)duration {
+    if (!layer) { return; }
+    layer.opacity = fromOpacity;
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    animation.fromValue = @(fromOpacity);
+    animation.toValue = @(toOpacity);
+    animation.duration = MAX(duration, 2.4);
+    animation.autoreverses = YES;
+    animation.repeatCount = HUGE_VALF;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    [layer addAnimation:animation forKey:@"aa.breathing"];
 }
 
 #pragma mark - Theme Toggle
