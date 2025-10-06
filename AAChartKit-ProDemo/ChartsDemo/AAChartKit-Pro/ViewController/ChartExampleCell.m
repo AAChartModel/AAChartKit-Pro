@@ -65,7 +65,7 @@
 
 
 - (void)setupUI {
-    self.contentView.backgroundColor = [UIColor colorWithWhite:0.97 alpha:1.0];
+    self.contentView.backgroundColor = [UIColor clearColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
     // 先添加阴影视图，再添加容器视图，最后添加图表视图

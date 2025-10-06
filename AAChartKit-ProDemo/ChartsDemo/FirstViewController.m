@@ -111,7 +111,7 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
     tableView.showsVerticalScrollIndicator = NO;
     tableView.contentInset = UIEdgeInsetsMake(24, 0, 40, 0);
     tableView.rowHeight = UITableViewAutomaticDimension;
-    tableView.estimatedRowHeight = 64;
+    tableView.estimatedRowHeight = 76;
     tableView.tableFooterView = [UIView new];
     tableView.translatesAutoresizingMaskIntoConstraints = NO;
     
@@ -133,11 +133,15 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
     }
     if (self.tableView.tableHeaderView) {
         UIView *headerView = self.tableView.tableHeaderView;
-        CGFloat requiredWidth = CGRectGetWidth(self.view.bounds);
-        if (fabs(headerView.frame.size.width - requiredWidth) > 0.5) {
-            CGRect frame = headerView.frame;
-            frame.size.width = requiredWidth;
-            headerView.frame = frame;
+        // Use Auto Layout to determine the required height
+        [headerView setNeedsLayout];
+        [headerView layoutIfNeeded];
+        CGFloat height = [headerView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+        
+        CGRect headerFrame = headerView.frame;
+        if (headerFrame.size.height != height) {
+            headerFrame.size.height = height;
+            headerView.frame = headerFrame;
             self.tableView.tableHeaderView = headerView;
         }
     }
@@ -148,7 +152,7 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 76;
+    return UITableViewAutomaticDimension;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -907,13 +911,12 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
 }
 
 - (UIView *)buildTableHeaderView {
-    CGFloat width = CGRectGetWidth(self.view.bounds);
-    CGFloat headerHeight = 160.0;
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, headerHeight)];
+    UIView *headerView = [[UIView alloc] init];
+    headerView.translatesAutoresizingMaskIntoConstraints = NO;
     headerView.backgroundColor = [UIColor clearColor];
 
-    UIView *cardView = [[UIView alloc] initWithFrame:CGRectInset(headerView.bounds, 20.0, 32.0)];
-    cardView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    UIView *cardView = [[UIView alloc] init];
+    cardView.translatesAutoresizingMaskIntoConstraints = NO;
     cardView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.28];
     cardView.layer.cornerRadius = 24.0;
     cardView.layer.masksToBounds = NO;
@@ -927,29 +930,21 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
     self.tableHeaderCardView = cardView;
 
     CAGradientLayer *cardGradient = [CAGradientLayer layer];
-    cardGradient.colors = @[(__bridge id)ColorWithRGB(109, 129, 255, 1).CGColor,
-                            (__bridge id)ColorWithRGB(172, 132, 255, 1).CGColor];
+    cardGradient.colors = @[
+        (__bridge id)AALightDarkColor(ColorWithRGB(0, 122, 255, 1), ColorWithRGB(28, 28, 30, 1)).CGColor,
+        (__bridge id)AALightDarkColor(ColorWithRGB(85, 185, 255, 1), ColorWithRGB(58, 58, 60, 1)).CGColor
+    ];
     cardGradient.startPoint = CGPointMake(0, 0);
     cardGradient.endPoint = CGPointMake(1, 1);
-    cardGradient.frame = cardView.bounds;
     cardGradient.cornerRadius = cardView.layer.cornerRadius;
-    cardGradient.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
     [cardView.layer insertSublayer:cardGradient atIndex:0];
     
     // Store reference for theming
     self.headerCardGradientLayer = cardGradient;
 
-    CGRect cardBounds = cardView.bounds;
-    CGFloat horizontalPadding = 24.0;
-    CGFloat verticalPadding = 24.0;
-    CGRect titleFrame = CGRectMake(horizontalPadding,
-                                   verticalPadding,
-                                   cardBounds.size.width - horizontalPadding * 2,
-                                   32.0);
-
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
-    titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-    titleLabel.numberOfLines = 2;
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    titleLabel.numberOfLines = 0; // Allow multiple lines
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.font = [UIFont systemFontOfSize:26.0 weight:UIFontWeightBold];
     titleLabel.text = @"探索更丰富的高级图表示例";
@@ -958,15 +953,9 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
     // Store reference for theming
     self.headerTitleLabel = titleLabel;
 
-    CGFloat subtitleTop = CGRectGetMaxY(titleFrame) + 10.0;
-    CGRect subtitleFrame = CGRectMake(horizontalPadding,
-                                      subtitleTop,
-                                      cardBounds.size.width - horizontalPadding * 2,
-                                      cardBounds.size.height - subtitleTop - verticalPadding);
-
-    UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:subtitleFrame];
-    subtitleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-    subtitleLabel.numberOfLines = 2;
+    UILabel *subtitleLabel = [[UILabel alloc] init];
+    subtitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    subtitleLabel.numberOfLines = 0; // Allow multiple lines
     subtitleLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.82];
     subtitleLabel.font = [UIFont systemFontOfSize:15.0 weight:UIFontWeightRegular];
     subtitleLabel.text = @"精选多类图表，助你快速找到灵感。轻触任意卡片即可查看详细演示。";
@@ -974,6 +963,23 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
     
     // Store reference for theming
     self.headerSubtitleLabel = subtitleLabel;
+
+    // Apply Auto Layout constraints
+    [NSLayoutConstraint activateConstraints:@[
+        [cardView.topAnchor constraintEqualToAnchor:headerView.topAnchor constant:32.0],
+        [cardView.bottomAnchor constraintEqualToAnchor:headerView.bottomAnchor constant:-8.0],
+        [cardView.leadingAnchor constraintEqualToAnchor:headerView.leadingAnchor constant:20.0],
+        [cardView.trailingAnchor constraintEqualToAnchor:headerView.trailingAnchor constant:-20.0],
+
+        [titleLabel.topAnchor constraintEqualToAnchor:cardView.topAnchor constant:24.0],
+        [titleLabel.leadingAnchor constraintEqualToAnchor:cardView.leadingAnchor constant:24.0],
+        [titleLabel.trailingAnchor constraintEqualToAnchor:cardView.trailingAnchor constant:-24.0],
+
+        [subtitleLabel.topAnchor constraintEqualToAnchor:titleLabel.bottomAnchor constant:10.0],
+        [subtitleLabel.leadingAnchor constraintEqualToAnchor:titleLabel.leadingAnchor],
+        [subtitleLabel.trailingAnchor constraintEqualToAnchor:titleLabel.trailingAnchor],
+        [subtitleLabel.bottomAnchor constraintEqualToAnchor:cardView.bottomAnchor constant:-24.0]
+    ]];
 
     return headerView;
 }
@@ -1091,13 +1097,13 @@ static inline UIColor *AALightDarkColor(UIColor *lightColor, UIColor *darkColor)
     BOOL isDarkMode = [self isDarkMode];
     if (isDarkMode) {
         self.headerCardGradientLayer.colors = @[
-            (__bridge id)ColorWithRGB(75, 85, 155, 1).CGColor,
-            (__bridge id)ColorWithRGB(125, 95, 185, 1).CGColor
+            (__bridge id)ColorWithRGB(28, 28, 30, 1).CGColor,
+            (__bridge id)ColorWithRGB(58, 58, 60, 1).CGColor
         ];
     } else {
         self.headerCardGradientLayer.colors = @[
-            (__bridge id)ColorWithRGB(109, 129, 255, 1).CGColor,
-            (__bridge id)ColorWithRGB(172, 132, 255, 1).CGColor
+            (__bridge id)ColorWithRGB(0, 122, 255, 1).CGColor,
+            (__bridge id)ColorWithRGB(85, 185, 255, 1).CGColor
         ];
     }
 }
