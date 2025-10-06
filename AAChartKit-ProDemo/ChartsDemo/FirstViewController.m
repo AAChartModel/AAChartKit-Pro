@@ -291,7 +291,6 @@ static const CGFloat kBadgeCornerRadius = 15.0;
     gradientLayer.frame = backdropView.bounds;
     gradientLayer.cornerRadius = backdropView.layer.cornerRadius;
     gradientLayer.masksToBounds = YES;
-    gradientLayer.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
     [backdropView.layer insertSublayer:gradientLayer atIndex:0];
     [containerView addSubview:backdropView];
 
@@ -299,17 +298,37 @@ static const CGFloat kBadgeCornerRadius = 15.0;
     UIView *accentView = [[UIView alloc] init];
     accentView.translatesAutoresizingMaskIntoConstraints = NO;
     
+    // Define accent colors for different sections
+    NSArray<UIColor *> *accentColorsLight = @[
+        ColorWithRGB(255, 138, 101, 1), // coral
+        ColorWithRGB(255, 199, 95, 1),  // amber
+        ColorWithRGB(255, 163, 190, 1), // pink
+        ColorWithRGB(116, 205, 255, 1), // light blue
+        ColorWithRGB(178, 130, 255, 1), // purple
+        ColorWithRGB(163, 255, 120, 1), // green
+    ];
+    NSArray<UIColor *> *accentColorsDark = @[
+        ColorWithRGB(255, 171, 145, 1), // soft coral
+        ColorWithRGB(255, 204, 143, 1), // soft amber
+        ColorWithRGB(255, 186, 180, 1), // soft pink
+        ColorWithRGB(148, 235, 255, 1), // soft blue
+        ColorWithRGB(255, 207, 235, 1), // soft purple
+        ColorWithRGB(186, 255, 163, 1), // soft green
+    ];
+    
+    UIColor *accentColor = isDarkMode ? accentColorsDark[section % accentColorsDark.count] : accentColorsLight[section % accentColorsLight.count];
+    
     if (isDarkMode) {
         // Glowing accent for dark mode
-        accentView.backgroundColor = AAAccentBlueDark;
-        accentView.layer.shadowColor = AAAccentBlueDark.CGColor;
+        accentView.backgroundColor = accentColor;
+        accentView.layer.shadowColor = accentColor.CGColor;
         accentView.layer.shadowOpacity = 0.8;
         accentView.layer.shadowOffset = CGSizeMake(0, 0);
         accentView.layer.shadowRadius = 6.0;
     } else {
         // Subtle shadow for light mode
-        accentView.backgroundColor = AAAccentBlueLight;
-        accentView.layer.shadowColor = AAAccentBlueLight.CGColor;
+        accentView.backgroundColor = accentColor;
+        accentView.layer.shadowColor = accentColor.CGColor;
         accentView.layer.shadowOpacity = 0.35;
         accentView.layer.shadowOffset = CGSizeMake(0, 2);
         accentView.layer.shadowRadius = 5.0;
@@ -392,6 +411,27 @@ static const CGFloat kBadgeCornerRadius = 15.0;
     UIImageView *chevronImageView = nil;
 
     if (!cardView) {
+        // Define accent colors for different sections
+        NSArray<UIColor *> *accentColorsLight = @[
+            ColorWithRGB(255, 138, 101, 1), // coral
+            ColorWithRGB(255, 199, 95, 1),  // amber
+            ColorWithRGB(255, 163, 190, 1), // pink
+            ColorWithRGB(116, 205, 255, 1), // light blue
+            ColorWithRGB(178, 130, 255, 1), // purple
+            ColorWithRGB(163, 255, 120, 1), // green
+        ];
+        NSArray<UIColor *> *accentColorsDark = @[
+            ColorWithRGB(255, 171, 145, 1), // soft coral
+            ColorWithRGB(255, 204, 143, 1), // soft amber
+            ColorWithRGB(255, 186, 180, 1), // soft pink
+            ColorWithRGB(148, 235, 255, 1), // soft blue
+            ColorWithRGB(255, 207, 235, 1), // soft purple
+            ColorWithRGB(186, 255, 163, 1), // soft green
+        ];
+        
+        NSUInteger colorIndex = indexPath.section % accentColorsLight.count;
+        BOOL isDarkMode = [self isDarkMode];
+        UIColor *badgeColor = isDarkMode ? accentColorsDark[colorIndex] : accentColorsLight[colorIndex];
         // Create modern card container
         cardView = [[UIView alloc] init];
         cardView.tag = 1001;
@@ -414,7 +454,6 @@ static const CGFloat kBadgeCornerRadius = 15.0;
 
         // Enhanced blur effects based on current theme
         UIVisualEffect *blurEffect = nil;
-        BOOL isDarkMode = [self isDarkMode];
         
         if (@available(iOS 13.0, *)) {
             if (isDarkMode) {
@@ -429,7 +468,6 @@ static const CGFloat kBadgeCornerRadius = 15.0;
         UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
         blurView.tag = 1006;
         blurView.frame = cardView.bounds;
-        blurView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         blurView.userInteractionEnabled = NO;
         blurView.layer.cornerRadius = cardView.layer.cornerRadius;
         blurView.layer.masksToBounds = YES;
@@ -473,25 +511,14 @@ static const CGFloat kBadgeCornerRadius = 15.0;
         badgeLabel.font = [UIFont monospacedDigitSystemFontOfSize:13.0 weight:UIFontWeightBold];
         badgeLabel.textColor = [UIColor whiteColor];
         badgeLabel.layer.cornerRadius = kBadgeCornerRadius;
-        badgeLabel.layer.masksToBounds = NO;
+        badgeLabel.layer.masksToBounds = YES;
         
-        // Modern badge styling
-        isDarkMode = [self isDarkMode];
-        if (isDarkMode) {
-            // Vibrant glow for dark mode
-            badgeLabel.backgroundColor = ColorWithRGB(213, 128, 82, 1);
-            badgeLabel.layer.shadowColor = ColorWithRGB(213, 128, 82, 1).CGColor;
-            badgeLabel.layer.shadowOpacity = 0.6;
-            badgeLabel.layer.shadowOffset = CGSizeMake(0, 0);
-            badgeLabel.layer.shadowRadius = 8.0;
-        } else {
-            // Clean look for light mode
-            badgeLabel.backgroundColor = ColorWithRGB(255, 149, 94, 1);
-            badgeLabel.layer.shadowColor = ColorWithRGB(255, 149, 94, 0.4).CGColor;
-            badgeLabel.layer.shadowOpacity = 0.3;
-            badgeLabel.layer.shadowOffset = CGSizeMake(0, 3);
-            badgeLabel.layer.shadowRadius = 6.0;
-        }
+        // Modern badge styling with section-specific colors
+        badgeLabel.backgroundColor = badgeColor;
+        badgeLabel.layer.shadowColor = badgeColor.CGColor;
+        badgeLabel.layer.shadowOpacity = 0.4;
+        badgeLabel.layer.shadowOffset = CGSizeMake(0, 2);
+        badgeLabel.layer.shadowRadius = 6.0;
         
         [contentContainer addSubview:badgeLabel];
 
@@ -572,17 +599,34 @@ static const CGFloat kBadgeCornerRadius = 15.0;
         }
         
         // Update colors for reused cells
-        BOOL isDarkMode = [self isDarkMode];
+        // Define accent colors for different sections
+        NSArray<UIColor *> *accentColorsLight = @[
+            ColorWithRGB(255, 138, 101, 1), // coral
+            ColorWithRGB(255, 199, 95, 1),  // amber
+            ColorWithRGB(255, 163, 190, 1), // pink
+            ColorWithRGB(116, 205, 255, 1), // light blue
+            ColorWithRGB(178, 130, 255, 1), // purple
+            ColorWithRGB(163, 255, 120, 1), // green
+        ];
+        NSArray<UIColor *> *accentColorsDark = @[
+            ColorWithRGB(255, 171, 145, 1), // soft coral
+            ColorWithRGB(255, 204, 143, 1), // soft amber
+            ColorWithRGB(255, 186, 180, 1), // soft pink
+            ColorWithRGB(148, 235, 255, 1), // soft blue
+            ColorWithRGB(255, 207, 235, 1), // soft purple
+            ColorWithRGB(186, 255, 163, 1), // soft green
+        ];
         
-        // Update badge colors
-        if (isDarkMode) {
-            badgeLabel.backgroundColor = ColorWithRGB(222, 136, 92, 1);
-            badgeLabel.layer.shadowColor = ColorWithRGB(222, 136, 92, 1).CGColor;
-            badgeLabel.layer.shadowOpacity = 0.4;
-        } else {
-            badgeLabel.backgroundColor = ColorWithRGB(255, 158, 108, 1);
-            badgeLabel.layer.shadowOpacity = 0.0;
-        }
+        NSUInteger colorIndex = indexPath.section % accentColorsLight.count;
+        BOOL isDarkMode = [self isDarkMode];
+        UIColor *badgeColor = isDarkMode ? accentColorsDark[colorIndex] : accentColorsLight[colorIndex];
+        
+        // Update badge colors with section-specific colors
+        badgeLabel.backgroundColor = badgeColor;
+        badgeLabel.layer.shadowColor = badgeColor.CGColor;
+        badgeLabel.layer.shadowOpacity = 0.4;
+        badgeLabel.layer.shadowOffset = CGSizeMake(0, 2);
+        badgeLabel.layer.shadowRadius = 6.0;
         
         // Update text colors
         if (isDarkMode) {
@@ -1074,7 +1118,6 @@ static const CGFloat kBadgeCornerRadius = 15.0;
     cardGradient.endPoint = CGPointMake(1.0, 1.0);
     cardGradient.cornerRadius = cardView.layer.cornerRadius;
     cardGradient.frame = cardView.bounds;
-    cardGradient.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
     cardGradient.masksToBounds = YES;
     [cardView.layer insertSublayer:cardGradient atIndex:0];
     self.headerCardGradientLayer = cardGradient;
@@ -1555,7 +1598,6 @@ static const CGFloat kBadgeCornerRadius = 15.0;
         targetLayer.cornerRadius = view.layer.cornerRadius;
         targetLayer.startPoint = CGPointMake(0.0, 0.0);
         targetLayer.endPoint = CGPointMake(1.0, 1.0);
-        targetLayer.autoresizingMask = kCALayerWidthSizable | kCALayerHeightSizable;
         targetLayer.needsDisplayOnBoundsChange = YES;
         targetLayer.masksToBounds = YES;
         [view.layer insertSublayer:targetLayer atIndex:0];
