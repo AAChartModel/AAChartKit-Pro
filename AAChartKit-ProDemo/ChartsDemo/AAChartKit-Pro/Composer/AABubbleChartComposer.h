@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (AAOptions *)packedbubbleSpiralChart;
 + (AAOptions *)eulerChart;
 + (AAOptions *)vennChart;
++ (AAOptions *)vennChart2;
 
 @end
 

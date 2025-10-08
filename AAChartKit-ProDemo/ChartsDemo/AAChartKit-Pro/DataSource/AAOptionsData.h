@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)sunburstData;
 + (NSArray *)dumbbellData;
 + (NSArray *)vennData;
++ (NSArray *)vennData2;
 + (NSArray *)lollipopData;
 + (NSArray *)tilemapData;
 + (NSArray *)treemapWithLevelsData;

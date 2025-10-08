@@ -57,6 +57,10 @@
     return [self getJsonDataWithJsonFileName:@"vennData"];
 }
 
++ (NSArray *)vennData2 {
+    return [self getJsonDataWithJsonFileName:@"vennData2"];
+}
+
 + (NSArray *)lollipopData {
     return [self getJsonDataWithJsonFileName:@"lollipopData"];
 }

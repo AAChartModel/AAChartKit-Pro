@@ -132,4 +132,42 @@
         .dataSet(AAOptionsData.vennData)]);
 }
 
+/**
+ Highcharts.chart('container', {
+     series: [{
+         type: 'venn',
+         data:
+     }],
+     tooltip: {
+         headerFormat:
+             '<span style="color:{point.color}">\u2022</span> ' +
+             '<span style="font-size: 14px"> {point.point.name}</span><br/>',
+         pointFormat: '{point.longDescription}<br><span style="font-size: ' +
+             '10px">Source: Wikipedia</span>'
+     },
+     title: {
+         text: 'Relationship between Euler and Venn diagrams',
+         align: 'left'
+     }
+ });*/
++ (AAOptions *)vennChart2 {
+    return AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(AAChartTypeVenn))
+    .titleSet(AATitle.new
+              .textSet(@"Relationship between Euler and Venn diagrams")
+              .alignSet(AAChartAlignTypeLeft)
+              )
+    .tooltipSet(AATooltip.new
+                .enabledSet(true)
+                .headerFormatSet([NSString stringWithFormat:@"%@%@",
+                                  @"<span style=""color:{point.color}"">\u2022</span>",
+                                  @"<span style=""font-size: 14px""> {point.point.name}</span><br/>"])
+                .pointFormatSet(@"{point.longDescription}<br><span style=""font-size: 10px"">Source: Wikipedia</span>"))
+                .seriesSet(@[
+                    AASeriesElement.new
+                    .dataSet(AAOptionsData.vennData2)
+                    ]);
+}
+
 @end

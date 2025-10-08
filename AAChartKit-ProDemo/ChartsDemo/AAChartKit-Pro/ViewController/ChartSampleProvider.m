@@ -41,7 +41,8 @@
         [AABubbleChartComposer packedbubbleSplitChart],
         [AABubbleChartComposer packedbubbleSpiralChart],
         [AABubbleChartComposer eulerChart],
-        [AABubbleChartComposer vennChart]
+        [AABubbleChartComposer vennChart],
+        [AABubbleChartComposer vennChart2],
     ];
 }
 
