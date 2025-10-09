@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)networkgraphData;
 + (NSArray *)wordcloudData;
 + (NSArray *)eulerData;
++ (NSArray *)eulerData2;
 
 + (NSArray *)organizationData;
 + (NSArray *)organizationNodesData;

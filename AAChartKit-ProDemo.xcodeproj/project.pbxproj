@@ -115,6 +115,7 @@
 		84526DE82CE73D8100EB2563 /* AAOptions+ZAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = 84526DE72CE73D8100EB2563 /* AAOptions+ZAxis.m */; };
 		84526DEE2CE743C500EB2563 /* AASeries+Depth.m in Sources */ = {isa = PBXBuildFile; fileRef = 84526DED2CE743C500EB2563 /* AASeries+Depth.m */; };
 		845F42B52E9650A000CE65AB /* vennData2.json in Resources */ = {isa = PBXBuildFile; fileRef = 845F42B42E9650A000CE65AB /* vennData2.json */; };
+		845F42B72E96986500CE65AB /* eulerData2.json in Resources */ = {isa = PBXBuildFile; fileRef = 845F42B62E96986500CE65AB /* eulerData2.json */; };
 		84903D092DC644240029FE5A /* AABubbleStellarChartComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84903D082DC644240029FE5A /* AABubbleStellarChartComposer.m */; };
 		84903D112DC654740029FE5A /* sunburst2Data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84903D102DC654740029FE5A /* sunburst2Data.json */; };
 		84903D132DC654880029FE5A /* stellarChartData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84903D122DC654880029FE5A /* stellarChartData.json */; };
@@ -379,6 +380,7 @@
 		84526DEC2CE743C500EB2563 /* AASeries+Depth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AASeries+Depth.h"; sourceTree = "<group>"; };
 		84526DED2CE743C500EB2563 /* AASeries+Depth.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AASeries+Depth.m"; sourceTree = "<group>"; };
 		845F42B42E9650A000CE65AB /* vennData2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = vennData2.json; sourceTree = "<group>"; };
+		845F42B62E96986500CE65AB /* eulerData2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = eulerData2.json; sourceTree = "<group>"; };
 		84903D072DC644240029FE5A /* AABubbleStellarChartComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AABubbleStellarChartComposer.h; sourceTree = "<group>"; };
 		84903D082DC644240029FE5A /* AABubbleStellarChartComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AABubbleStellarChartComposer.m; sourceTree = "<group>"; };
 		84903D102DC654740029FE5A /* sunburst2Data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sunburst2Data.json; sourceTree = "<group>"; };
@@ -615,6 +617,7 @@
 				27EB8A6C2497C007007E6A6B /* drilldownTreemapData.json */,
 				27EB8A672497C006007E6A6B /* dumbbellData.json */,
 				27EB8AD8249C8FFB007E6A6B /* eulerData.json */,
+				845F42B62E96986500CE65AB /* eulerData2.json */,
 				84A5690B27FD6EB300883553 /* flameData.json */,
 				27EB8A642497C006007E6A6B /* heatmapData.json */,
 				27EB8A90249B82F9007E6A6B /* itemData.json */,
@@ -1181,6 +1184,7 @@
 				27EB8A7B2497C007007E6A6B /* tilemapData.json in Resources */,
 				27EB8A95249B8AA3007E6A6B /* windbarbData.json in Resources */,
 				1E66D1FB210AF4ED007EAB8C /* AAJSFiles.bundle in Resources */,
+				845F42B72E96986500CE65AB /* eulerData2.json in Resources */,
 				84D9045A2CE1A0FF00F75AFF /* AABoost.js in Resources */,
 				27EB8A702497C007007E6A6B /* columnpyramidData.json in Resources */,
 				84A5690827FD664F00883553 /* arcdiagram2Data.json in Resources */,

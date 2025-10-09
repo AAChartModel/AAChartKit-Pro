@@ -105,7 +105,9 @@
     return [self getJsonDataWithJsonFileName:@"eulerData"];
 }
 
-
++ (NSArray *)eulerData2 {
+    return [self getJsonDataWithJsonFileName:@"eulerData2"];
+}
 
 + (NSArray *)organizationData {
     return [self getJsonDataWithJsonFileName:@"organizationData"];

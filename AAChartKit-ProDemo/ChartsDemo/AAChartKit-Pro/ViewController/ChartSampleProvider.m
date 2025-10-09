@@ -43,6 +43,7 @@
         [AABubbleChartComposer eulerChart],
         [AABubbleChartComposer vennChart],
         [AABubbleChartComposer vennChart2],
+        [AABubbleChartComposer eulerChart2],
     ];
 }
 

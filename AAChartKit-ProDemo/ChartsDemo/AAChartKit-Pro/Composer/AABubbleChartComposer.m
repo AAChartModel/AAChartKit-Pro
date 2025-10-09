@@ -122,6 +122,90 @@
                ]);
 }
 
+/**
+ Highcharts.chart('container', {
+     tooltip: {
+         headerFormat: '',
+         pointFormat: '' +
+             '{#if (eq 1 point.sets.length)}' +
+                 'Product:<br><b>Highcharts {point.sets.0}</b>' +
+             '{else}' +
+                 'Products:<br>' +
+                 '{#each point.sets}' +
+                     'Highcharts <b>{this}</b>{#unless @last} and {/unless}' +
+                 '{/each}<br><br>' +
+                 'Shared components:<br>' +
+                 '<b>{point.name}</b><br>' +
+             '{/if}'
+     },
+     series: [{
+         type: 'venn',
+         colors: [
+             'rgb(180, 210, 255)',
+             'rgb(180, 255, 210)',
+             'rgb(180, 235, 235)',
+             'rgb(200, 200, 200)',
+             'rgb(170, 230, 250)',
+             'rgb(170, 250, 230)',
+             'rgb(170, 240, 240)',
+             'rgb(190, 190, 190)',
+             'rgb(160, 220, 245)',
+             'rgb(160, 245, 220)'
+         ],
+         data:
+     }],
+     title: {
+         text: 'Highsoft products relationships'
+     },
+     subtitle: {
+         text: 'Highcharts Core, Stock, Maps, Gantt, and Dashboards'
+     },
+
+ });
+
+ */
++ (AAOptions *)eulerChart2 {
+    return AAOptions.new
+    .chartSet(AAChart.new
+              .typeSet(AAChartTypeVenn))
+    .titleSet(AATitle.new
+                .textSet(@"Highsoft products relationships"))
+    .subtitleSet(AASubtitle.new
+                    .textSet(@"Highcharts Core, Stock, Maps, Gantt, and Dashboards"))
+    .tooltipSet(AATooltip.new
+                .enabledSet(true)
+                .headerFormatSet(@"")
+                .pointFormatSet(@"{#if (eq 1 point.sets.length}"
+                                 "Product:<br><b>Highcharts {point.sets.0}</b>"
+                                 "{else}"
+                                 "Products:<br>"
+                                 "{#each point.sets}"
+                                 "Highcharts <b>{this}</b>{#unless @last} and {/unless}"
+                                 "{/each}<br><br>"
+                                 "Shared components:<br>"
+                                 "<b>{point.name}</b><br>"
+                                 "{/if}")
+                )
+    
+    .seriesSet(@[
+        AASeriesElement.new
+        .typeSet(AAChartTypeVenn)
+        .colorsSet(@[
+            @"rgb(180, 210, 255)",
+            @"rgb(180, 255, 210)",
+            @"rgb(180, 235, 235)",
+            @"rgb(200, 200, 200)",
+            @"rgb(170, 230, 250)",
+            @"rgb(170, 250, 230)",
+            @"rgb(170, 240, 240)",
+            @"rgb(190, 190, 190)",
+            @"rgb(160, 220, 245)",
+            @"rgb(160, 245, 220)"
+        ])
+        .dataSet(AAOptionsData.eulerData2),
+               ]);
+}
+
 + (AAOptions *)vennChart {
     return AAOptions.new
     .titleSet(AATitle.new
