@@ -30,9 +30,9 @@
  
  */
 
-#import <UIKit/UIKit.h>
+#import "AAListViewController.h"
 
-@interface FirstViewController : UIViewController
+@interface FirstViewController : AAListViewController
 
 @end
 

@@ -172,6 +172,7 @@
 		84DFEB802A2882ED004436BC /* AAColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEB722A2882ED004436BC /* AAColumn.m */; };
 		84DFEB812A2882ED004436BC /* AAColumnrange.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEB742A2882ED004436BC /* AAColumnrange.m */; };
 		84DFEB822A2882ED004436BC /* AABoxplot.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEB762A2882ED004436BC /* AABoxplot.m */; };
+		84F998052EAA173D00D41382 /* AAListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F998042EAA173D00D41382 /* AAListViewController.m */; };
 		84FE7BB726AED3D000B68A56 /* AABaseChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */; };
 /* End PBXBuildFile section */
 
@@ -477,6 +478,8 @@
 		84DFEB742A2882ED004436BC /* AAColumnrange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAColumnrange.m; sourceTree = "<group>"; };
 		84DFEB752A2882ED004436BC /* AABar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABar.h; sourceTree = "<group>"; };
 		84DFEB762A2882ED004436BC /* AABoxplot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABoxplot.m; sourceTree = "<group>"; };
+		84F998032EAA173D00D41382 /* AAListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAListViewController.h; sourceTree = "<group>"; };
+		84F998042EAA173D00D41382 /* AAListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAListViewController.m; sourceTree = "<group>"; };
 		84FE7B9F26AED3D000B68A56 /* AABaseChartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABaseChartVC.h; sourceTree = "<group>"; };
 		84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABaseChartVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -682,6 +685,8 @@
 			children = (
 				713F54371E7B71C000D506C7 /* FirstViewController.h */,
 				713F54381E7B71C000D506C7 /* FirstViewController.m */,
+				84F998032EAA173D00D41382 /* AAListViewController.h */,
+				84F998042EAA173D00D41382 /* AAListViewController.m */,
 				27EB8A222495C1F2007E6A6B /* AAChartKit-Pro */,
 				84D904562CE1A08E00F75AFF /* AAPlugins */,
 			);
@@ -1311,6 +1316,7 @@
 				84526DEE2CE743C500EB2563 /* AASeries+Depth.m in Sources */,
 				8409E6A62CD4BF1A000EFCF2 /* AATreemapChartComposer.m in Sources */,
 				8441A70226C21E6C007EAAA7 /* AADataLabels.m in Sources */,
+				84F998052EAA173D00D41382 /* AAListViewController.m in Sources */,
 				8441A6B326C21E53007EAAA7 /* AAChartView.m in Sources */,
 				8409E69A2CD47FE2000EFCF2 /* AAOrganization.m in Sources */,
 				84AA68B528A120F9009067AE /* AAOptionsCSV.m in Sources */,
