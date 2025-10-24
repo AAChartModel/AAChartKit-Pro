@@ -32,6 +32,8 @@ static const NSTimeInterval kThemeToastDuration = 1.5;
 @property (nonatomic, copy) NSArray<NSString *> *cachedSectionTitles;
 @property (nonatomic, copy) NSArray<NSArray<NSString *> *> *cachedDataArray;
 
+- (void)applyDefaultConfiguration;
+
 @end
 
 @implementation AAListViewController
@@ -43,10 +45,23 @@ static const NSTimeInterval kThemeToastDuration = 1.5;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _enableThemeToggle = YES;
-        _showHeaderCard = YES;
-        _cachedSectionTitles = @[];
-        _cachedDataArray = @[];
+        [self applyDefaultConfiguration];
+    }
+    return self;
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        [self applyDefaultConfiguration];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self applyDefaultConfiguration];
     }
     return self;
 }
@@ -78,6 +93,25 @@ static const NSTimeInterval kThemeToastDuration = 1.5;
     [super viewDidLayoutSubviews];
     [self updateGradientFrame];
     [self updateTableHeaderLayout];
+}
+
+#pragma mark - Configuration
+
+- (void)applyDefaultConfiguration {
+    _enableThemeToggle = YES;
+    _showHeaderCard = YES;
+    if (_headerTitle.length == 0) {
+        _headerTitle = @"探索更丰富的高级图表示例";
+    }
+    if (_headerSubtitle.length == 0) {
+        _headerSubtitle = @"精选多类图表，助你快速找到灵感。轻触任意卡片即可查看详细演示。";
+    }
+    if (_cachedSectionTitles == nil) {
+        _cachedSectionTitles = @[];
+    }
+    if (_cachedDataArray == nil) {
+        _cachedDataArray = @[];
+    }
 }
 
 #pragma mark - Property Overrides
