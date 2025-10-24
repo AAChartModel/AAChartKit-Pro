@@ -10,9 +10,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import <math.h>
 
-#import "Support/AAListColorPalette.h"
-#import "Views/AAListCardCell.h"
-#import "Views/AAListHeaderCardView.h"
+#import "AAListColorPalette.h"
+#import "AAListCardCell.h"
+#import "AAListHeaderCardView.h"
 
 static const CGFloat kCardPressScale = 0.96f;
 static const CGFloat kAnimationDurationFast = 0.2f;

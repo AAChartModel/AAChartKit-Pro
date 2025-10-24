@@ -173,12 +173,12 @@
 		84DFEB812A2882ED004436BC /* AAColumnrange.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEB742A2882ED004436BC /* AAColumnrange.m */; };
 		84DFEB822A2882ED004436BC /* AABoxplot.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFEB762A2882ED004436BC /* AABoxplot.m */; };
 		84F998052EAA173D00D41382 /* AAListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F998042EAA173D00D41382 /* AAListViewController.m */; };
+		84F998112EAA173D00D41382 /* AAListCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F9980B2EAA173D00D41382 /* AAListCardCell.m */; };
+		84F998122EAA173D00D41382 /* AAListHeaderCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F9980D2EAA173D00D41382 /* AAListHeaderCardView.m */; };
 		84FE7BB726AED3D000B68A56 /* AABaseChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */; };
 /* End PBXBuildFile section */
 
-		84F998052EAA173D00D41382 /* AAListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F998042EAA173D00D41382 /* AAListViewController.m */; };
-		84F998112EAA173D00D41382 /* AAListCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F9980B2EAA173D00D41382 /* AAListCardCell.m */; };
-		84F998122EAA173D00D41382 /* AAListHeaderCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F9980D2EAA173D00D41382 /* AAListHeaderCardView.m */; };
+/* Begin PBXContainerItemProxy section */
 		7172A3ED1E763EA6000D5B99 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7172A3CB1E763EA6000D5B99 /* Project object */;
@@ -690,35 +690,13 @@
 		713F54341E7B71C000D506C7 /* ChartsDemo */ = {
 			isa = PBXGroup;
 			children = (
+				84F998072EAB1FDF00D41382 /* AAListView */,
 				713F54371E7B71C000D506C7 /* FirstViewController.h */,
 				713F54381E7B71C000D506C7 /* FirstViewController.m */,
-				84F998132EAA173D00D41382 /* Views */,
-				84F998142EAA173D00D41382 /* Support */,
-				84F998032EAA173D00D41382 /* AAListViewController.h */,
-				84F998042EAA173D00D41382 /* AAListViewController.m */,
 				27EB8A222495C1F2007E6A6B /* AAChartKit-Pro */,
 				84D904562CE1A08E00F75AFF /* AAPlugins */,
 			);
 			path = ChartsDemo;
-			sourceTree = "<group>";
-		};
-		84F998132EAA173D00D41382 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				84F9980A2EAA173D00D41382 /* AAListCardCell.h */,
-				84F9980B2EAA173D00D41382 /* AAListCardCell.m */,
-				84F9980C2EAA173D00D41382 /* AAListHeaderCardView.h */,
-				84F9980D2EAA173D00D41382 /* AAListHeaderCardView.m */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		84F998142EAA173D00D41382 /* Support */ = {
-			isa = PBXGroup;
-			children = (
-				84F9980E2EAA173D00D41382 /* AAListColorPalette.h */,
-			);
-			path = Support;
 			sourceTree = "<group>";
 		};
 		7172A3CA1E763EA6000D5B99 = {
@@ -1069,6 +1047,44 @@
 				84AA68B728A1FD61009067AE /* AAParallelAxes.m */,
 			);
 			path = AAAxis;
+			sourceTree = "<group>";
+		};
+		84F998072EAB1FDF00D41382 /* AAListView */ = {
+			isa = PBXGroup;
+			children = (
+				84F998082EAB201F00D41382 /* ViewController */,
+				84F998132EAA173D00D41382 /* View */,
+				84F998142EAA173D00D41382 /* Support */,
+			);
+			path = AAListView;
+			sourceTree = "<group>";
+		};
+		84F998082EAB201F00D41382 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84F998032EAA173D00D41382 /* AAListViewController.h */,
+				84F998042EAA173D00D41382 /* AAListViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		84F998132EAA173D00D41382 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				84F9980A2EAA173D00D41382 /* AAListCardCell.h */,
+				84F9980B2EAA173D00D41382 /* AAListCardCell.m */,
+				84F9980C2EAA173D00D41382 /* AAListHeaderCardView.h */,
+				84F9980D2EAA173D00D41382 /* AAListHeaderCardView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		84F998142EAA173D00D41382 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				84F9980E2EAA173D00D41382 /* AAListColorPalette.h */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
