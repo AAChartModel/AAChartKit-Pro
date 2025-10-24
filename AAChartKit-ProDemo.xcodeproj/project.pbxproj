@@ -176,7 +176,9 @@
 		84FE7BB726AED3D000B68A56 /* AABaseChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
+		84F998052EAA173D00D41382 /* AAListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F998042EAA173D00D41382 /* AAListViewController.m */; };
+		84F998112EAA173D00D41382 /* AAListCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F9980B2EAA173D00D41382 /* AAListCardCell.m */; };
+		84F998122EAA173D00D41382 /* AAListHeaderCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F9980D2EAA173D00D41382 /* AAListHeaderCardView.m */; };
 		7172A3ED1E763EA6000D5B99 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7172A3CB1E763EA6000D5B99 /* Project object */;
@@ -480,6 +482,11 @@
 		84DFEB762A2882ED004436BC /* AABoxplot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABoxplot.m; sourceTree = "<group>"; };
 		84F998032EAA173D00D41382 /* AAListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAListViewController.h; sourceTree = "<group>"; };
 		84F998042EAA173D00D41382 /* AAListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAListViewController.m; sourceTree = "<group>"; };
+		84F9980A2EAA173D00D41382 /* AAListCardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAListCardCell.h; sourceTree = "<group>"; };
+		84F9980B2EAA173D00D41382 /* AAListCardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAListCardCell.m; sourceTree = "<group>"; };
+		84F9980C2EAA173D00D41382 /* AAListHeaderCardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAListHeaderCardView.h; sourceTree = "<group>"; };
+		84F9980D2EAA173D00D41382 /* AAListHeaderCardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAListHeaderCardView.m; sourceTree = "<group>"; };
+		84F9980E2EAA173D00D41382 /* AAListColorPalette.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAListColorPalette.h; sourceTree = "<group>"; };
 		84FE7B9F26AED3D000B68A56 /* AABaseChartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AABaseChartVC.h; sourceTree = "<group>"; };
 		84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AABaseChartVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -685,12 +692,33 @@
 			children = (
 				713F54371E7B71C000D506C7 /* FirstViewController.h */,
 				713F54381E7B71C000D506C7 /* FirstViewController.m */,
+				84F998132EAA173D00D41382 /* Views */,
+				84F998142EAA173D00D41382 /* Support */,
 				84F998032EAA173D00D41382 /* AAListViewController.h */,
 				84F998042EAA173D00D41382 /* AAListViewController.m */,
 				27EB8A222495C1F2007E6A6B /* AAChartKit-Pro */,
 				84D904562CE1A08E00F75AFF /* AAPlugins */,
 			);
 			path = ChartsDemo;
+			sourceTree = "<group>";
+		};
+		84F998132EAA173D00D41382 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				84F9980A2EAA173D00D41382 /* AAListCardCell.h */,
+				84F9980B2EAA173D00D41382 /* AAListCardCell.m */,
+				84F9980C2EAA173D00D41382 /* AAListHeaderCardView.h */,
+				84F9980D2EAA173D00D41382 /* AAListHeaderCardView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		84F998142EAA173D00D41382 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				84F9980E2EAA173D00D41382 /* AAListColorPalette.h */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 		7172A3CA1E763EA6000D5B99 = {
@@ -1316,6 +1344,8 @@
 				84526DEE2CE743C500EB2563 /* AASeries+Depth.m in Sources */,
 				8409E6A62CD4BF1A000EFCF2 /* AATreemapChartComposer.m in Sources */,
 				8441A70226C21E6C007EAAA7 /* AADataLabels.m in Sources */,
+				84F998112EAA173D00D41382 /* AAListCardCell.m in Sources */,
+				84F998122EAA173D00D41382 /* AAListHeaderCardView.m in Sources */,
 				84F998052EAA173D00D41382 /* AAListViewController.m in Sources */,
 				8441A6B326C21E53007EAAA7 /* AAChartView.m in Sources */,
 				8409E69A2CD47FE2000EFCF2 /* AAOrganization.m in Sources */,
