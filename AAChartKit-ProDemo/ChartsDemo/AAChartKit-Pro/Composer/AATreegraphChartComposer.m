@@ -238,6 +238,122 @@
         ].join(' ');
         document.head.appendChild(style);
     })());
+    
+    NSString *injectLinkTypeButtonsJS =
+    @AAJSFunc((function () {
+        const chart = aaGlobalChart;
+        if (!chart || chart.__aaDendrogramLinkTypeControls) {
+            return;
+        }
+        
+        const items = [
+            { label: 'Orthogonal', type: 'default' },
+            { label: 'Straight', type: 'straight' },
+            { label: 'Curved', type: 'curved' }
+        ];
+        
+        const group = chart.renderer.g('aa-dendrogram-link-type-group').add();
+        const title = chart.renderer
+            .text('Link type', 0, 0)
+            .css({
+                color: '#666666',
+                fontSize: '12px'
+            })
+            .add(group);
+        
+        const inactiveTheme = {
+            fill: '#f2f2f2',
+            stroke: '#d9d9d9',
+            'stroke-width': 1,
+            r: 4,
+            padding: 6,
+            style: {
+                color: '#111111',
+                fontSize: '12px'
+            }
+        };
+        
+        const controls = items.map(item => {
+            const button = chart.renderer
+                .button(
+                    item.label,
+                    0,
+                    0,
+                    function () {
+                        chart.series[0].update({
+                            link: {
+                                type: item.type
+                            }
+                        });
+                        setActive(item.type);
+                    },
+                    inactiveTheme
+                )
+                .add(group);
+            
+            return {
+                type: item.type,
+                button
+            };
+        });
+        
+        function setActive(activeType) {
+            controls.forEach(control => {
+                const isActive = control.type === activeType;
+                control.button.attr({
+                    fill: isActive ? '#e6e6e6' : '#f2f2f2',
+                    stroke: isActive ? '#c7c7c7' : '#d9d9d9'
+                });
+                
+                if (control.button.text) {
+                    control.button.text.css({
+                        fontWeight: isActive ? 'bold' : 'normal'
+                    });
+                }
+            });
+        }
+        
+        function layoutControls() {
+            const titleBBox = title.getBBox();
+            const buttonSpacing = 10;
+            let totalButtonWidth = 0;
+            
+            controls.forEach((control, index) => {
+                totalButtonWidth += control.button.getBBox().width;
+                if (index < controls.length - 1) {
+                    totalButtonWidth += buttonSpacing;
+                }
+            });
+            
+            const baseX = chart.plotLeft + (chart.plotWidth - totalButtonWidth) / 2;
+            const titleX = chart.plotLeft + (chart.plotWidth - titleBBox.width) / 2;
+            const titleY = chart.plotTop + chart.plotHeight + 54;
+            const buttonY = titleY + 14;
+            
+            title.attr({
+                x: titleX,
+                y: titleY
+            });
+            
+            let currentX = baseX;
+            controls.forEach(control => {
+                control.button.attr({
+                    x: currentX,
+                    y: buttonY
+                });
+                currentX += control.button.getBBox().width + buttonSpacing;
+            });
+        }
+        
+        Highcharts.addEvent(chart, 'redraw', layoutControls);
+        layoutControls();
+        setActive('default');
+        
+        chart.__aaDendrogramLinkTypeControls = {
+            group,
+            controls
+        };
+    })());
 
     NSDictionary *series = @{
         @"type": AAChartTypeTreegraph,
@@ -290,6 +406,7 @@
 
     return AAOptions.new
     .beforeDrawChartJavaScriptSet(injectIconStyleJS)
+    .afterDrawChartJavaScriptSet(injectLinkTypeButtonsJS)
     .chartSet(AAChart.new
               .invertedSet(true)
               .marginRightSet(@40)
