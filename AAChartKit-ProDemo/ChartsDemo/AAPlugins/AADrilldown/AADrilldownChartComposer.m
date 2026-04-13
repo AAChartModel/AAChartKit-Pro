@@ -332,10 +332,10 @@
  });
 
  */
-+ (AAOptions *)columnChart {
++ (AAOptions *)browserDrilldownChartWithType:(AAChartType)chartType {
     return AAOptions.new
     .chartSet(AAChart.new
-              .typeSet(AAChartTypeColumn))
+              .typeSet(chartType))
     .titleSet(AATitle.new
               .alignSet(AAChartAlignTypeLeft)
               .textSet(@"Browser market shares. January, 2022"))
@@ -460,6 +460,14 @@
                         ])
                   ]))
                   ;
+}
+
++ (AAOptions *)columnChart {
+    return [self browserDrilldownChartWithType:AAChartTypeColumn];
+}
+
++ (AAOptions *)barChart {
+    return [self browserDrilldownChartWithType:AAChartTypeBar];
 }
 
 @end

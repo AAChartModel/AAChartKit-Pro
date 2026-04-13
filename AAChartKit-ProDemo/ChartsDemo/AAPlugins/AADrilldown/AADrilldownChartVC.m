@@ -44,12 +44,8 @@
 
 - (id)chartConfigurationWithSelectedIndex:(NSUInteger)selectedIndex {
     switch (self.selectedIndex) {
-
-
         case 0: return [AADrilldownChartComposer columnChart];
-       
-
-
+        case 1: return [AADrilldownChartComposer barChart];
     }
     return nil;
 }

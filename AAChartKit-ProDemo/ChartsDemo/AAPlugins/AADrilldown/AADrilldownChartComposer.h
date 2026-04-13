@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AADrilldownChartComposer : NSObject
 
 + (AAOptions *)columnChart;
++ (AAOptions *)barChart;
 
 @end
 

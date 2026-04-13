@@ -299,6 +299,7 @@
             ],
             @[
                 @"columnChart---柱形图",
+                @"barChart---条形图",
             ],
             @[
                 @"_3DColumnWithStackingRandomData---3D堆积随机柱形图",
