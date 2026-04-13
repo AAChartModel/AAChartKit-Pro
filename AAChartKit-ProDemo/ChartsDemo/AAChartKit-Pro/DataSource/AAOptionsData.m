@@ -201,6 +201,28 @@
     return [self getJsonDataWithJsonFileName:@"treegraphData"];
 }
 
++ (NSArray *)evolutionDendrogramData {
+    NSArray *rawData = [self getJsonDataWithJsonFileName:@"evolutionDendrogram"];
+    NSMutableArray *sanitizedData = [NSMutableArray arrayWithCapacity:rawData.count];
+    
+    for (NSArray *row in rawData) {
+        NSMutableArray *mutableRow = [row mutableCopy];
+        if (mutableRow.count > 5 && [mutableRow[5] isKindOfClass:[NSString class]]) {
+            NSString *iconSVG = mutableRow[5];
+            // AAChartView passes options JSON through a JS string literal in demo builds.
+            // Encode quotes in the inline SVG so this sample survives that bridge unchanged.
+            iconSVG = [iconSVG stringByReplacingOccurrencesOfString:@"\\"
+                                                         withString:@"\\u005C"];
+            iconSVG = [iconSVG stringByReplacingOccurrencesOfString:@"\""
+                                                         withString:@"\\u0022"];
+            mutableRow[5] = iconSVG;
+        }
+        [sanitizedData addObject:[mutableRow copy]];
+    }
+    
+    return [sanitizedData copy];
+}
+
 + (NSArray *)germanicLanguageTreeData {
     return [self getJsonDataWithJsonFileName:@"germanicLanguageTreeData"];
 }

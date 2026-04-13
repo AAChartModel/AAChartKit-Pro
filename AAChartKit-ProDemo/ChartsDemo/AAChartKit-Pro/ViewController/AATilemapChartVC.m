@@ -79,8 +79,9 @@
         case 17: return [AATreegraphChartComposer treegraph];
         case 18: return [AATreegraphChartComposer invertedTreegraph];
         case 19: return [AATreegraphChartComposer treegraphWithBoxLayout];
-        case 20: return [AAHeatmapChartComposer calendarHeatmap];
-        case 21: return [AATreemapChartComposer treemapWithLevelsData2];
+        case 20: return [AATreegraphChartComposer evolutionDendrogramChart];
+        case 21: return [AAHeatmapChartComposer calendarHeatmap];
+        case 22: return [AATreemapChartComposer treemapWithLevelsData2];
 
 
         default: return nil;

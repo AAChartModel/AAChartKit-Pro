@@ -223,6 +223,7 @@
                 @"treegraphChart---树图",
                 @"invertedTreegraphChart---倒置树图",
                 @"treegraphWithBoxLayoutChart---树图(盒子布局)",
+                @"evolutionDendrogramChart---进化树状图",
                 @"calendarHeatmap---日历热力图",
                 @"treemapWithLevelsData2---包含等级的矩形树图2🌲",
             ],
@@ -281,6 +282,7 @@
                 @"treegraphChart---树图",
                 @"invertedTreegraphChart---倒置树图",
                 @"treegraphWithBoxLayoutChart---树图(盒子布局)",
+                @"evolutionDendrogramChart---进化树状图",
             ],
             @[
                 @"lineChart---折线图",

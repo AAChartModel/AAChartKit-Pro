@@ -222,4 +222,89 @@
     ]);
 }
 
++ (AAOptions *)evolutionDendrogramChart {
+    NSString *injectIconStyleJS =
+    @AAJSFunc((function () {
+        const styleId = 'aa-evolution-dendrogram-style';
+        if (document.getElementById(styleId)) {
+            return;
+        }
+        const style = document.createElement('style');
+        style.id = styleId;
+        style.textContent = [
+            '.icon { width: 48px; height: auto; margin: -5px 0; }',
+            '.icon-light { fill: #ffffff; stroke-width: 20px; stroke: #141414; }',
+            '.icon-dark { fill: #141414; }'
+        ].join(' ');
+        document.head.appendChild(style);
+    })());
+
+    NSDictionary *series = @{
+        @"type": AAChartTypeTreegraph,
+        @"keys": @[@"parent", @"id", @"name", @"x", @"level", @"custom.iconSVG"],
+        @"data": [AAOptionsData evolutionDendrogramData],
+        @"reversed": @YES,
+        @"marker": @{
+            @"radius": @0
+        },
+        @"link": @{
+            @"type": @"default",
+            @"lineWidth": @2,
+            @"radius": @6
+        },
+        @"dataLabels": @[
+            @{
+                @"pointFormat": @"{#unless point.node.isLeaf}~{point.x} Mya{/unless}",
+                @"align": @"left",
+                @"verticalAlign": @"bottom",
+                @"style": @{
+                    @"color": @"#8A8F98",
+                    @"fontWeight": @"normal",
+                    @"textOutline": @"3px contrast",
+                    @"whiteSpace": @"nowrap"
+                }
+            },
+            @{
+                @"pointFormat": @"{#if point.node.isLeaf}{point.custom.iconSVG}<br>{point.name}{/if}",
+                @"padding": @0,
+                @"crop": @NO,
+                @"align": @"center",
+                @"verticalAlign": @"top",
+                @"overflow": @"allow",
+                @"rotation": @0,
+                @"useHTML": @YES,
+                @"y": @10,
+                @"style": @{
+                    @"color": @"#111111",
+                    @"fontSize": @"0.9em",
+                    @"fontWeight": @"bold",
+                    @"textAlign": @"center",
+                    @"whiteSpace": @"nowrap"
+                }
+            }
+        ],
+        @"collapseButton": @{
+            @"enabled": @NO
+        }
+    };
+
+    return AAOptions.new
+    .beforeDrawChartJavaScriptSet(injectIconStyleJS)
+    .chartSet(AAChart.new
+              .invertedSet(true)
+              .marginRightSet(@40)
+              .marginBottomSet(@140))
+    .titleSet(AATitle.new
+              .textSet(@"Evolution dendrogram"))
+    .xAxisSet(AAXAxis.new
+              .offsetSet(@40)
+              .titleSet(AAAxisTitle.new
+                        .textSet(@"Million years ago"))
+              .reversedSet(false)
+              .visibleSet(true))
+    .tooltipSet(AATooltip.new
+                .enabledSet(false))
+    .seriesSet(@[series]);
+}
+
 @end

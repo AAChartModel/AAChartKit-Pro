@@ -96,7 +96,8 @@
     return @[
         [AATreegraphChartComposer treegraph],
         [AATreegraphChartComposer invertedTreegraph],
-        [AATreegraphChartComposer treegraphWithBoxLayout]
+        [AATreegraphChartComposer treegraphWithBoxLayout],
+        [AATreegraphChartComposer evolutionDendrogramChart]
     ];
 }
 

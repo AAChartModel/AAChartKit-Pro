@@ -21,6 +21,7 @@
         case 0: return [AATreegraphChartComposer treegraph];
         case 1: return [AATreegraphChartComposer invertedTreegraph];
         case 2: return [AATreegraphChartComposer treegraphWithBoxLayout];
+        case 3: return [AATreegraphChartComposer evolutionDendrogramChart];
 
         default: return nil;
     }

@@ -144,6 +144,7 @@
 		84B13F4E28A0BA26007356C6 /* AARelationshipChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13F4D28A0BA26007356C6 /* AARelationshipChartVC.m */; };
 		84B13F5128A0BA3A007356C6 /* AABubbleChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13F5028A0BA3A007356C6 /* AABubbleChartVC.m */; };
 		84B13F5628A0E028007356C6 /* AAColumnVariantChartComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B13F5528A0E028007356C6 /* AAColumnVariantChartComposer.m */; };
+		84C95A832F8CC89400E4A41A /* evolutionDendrogram.json in Resources */ = {isa = PBXBuildFile; fileRef = 84C95A822F8CC89400E4A41A /* evolutionDendrogram.json */; };
 		84D2B65D2978F9FF005BBA80 /* tilemapForAfricaData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84D2B65B2978F9FF005BBA80 /* tilemapForAfricaData.json */; };
 		84D2B65E2978F9FF005BBA80 /* simpleTilemapData.json in Resources */ = {isa = PBXBuildFile; fileRef = 84D2B65C2978F9FF005BBA80 /* simpleTilemapData.json */; };
 		84D9045A2CE1A0FF00F75AFF /* AABoost.js in Resources */ = {isa = PBXBuildFile; fileRef = 84D904592CE1A0FF00F75AFF /* AABoost.js */; };
@@ -432,6 +433,7 @@
 		84B13F5228A0DA32007356C6 /* AAChartKit-Pro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AAChartKit-Pro.h"; sourceTree = "<group>"; };
 		84B13F5428A0E028007356C6 /* AAColumnVariantChartComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAColumnVariantChartComposer.h; sourceTree = "<group>"; };
 		84B13F5528A0E028007356C6 /* AAColumnVariantChartComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAColumnVariantChartComposer.m; sourceTree = "<group>"; };
+		84C95A822F8CC89400E4A41A /* evolutionDendrogram.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = evolutionDendrogram.json; sourceTree = "<group>"; };
 		84D2B65B2978F9FF005BBA80 /* tilemapForAfricaData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tilemapForAfricaData.json; sourceTree = "<group>"; };
 		84D2B65C2978F9FF005BBA80 /* simpleTilemapData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = simpleTilemapData.json; sourceTree = "<group>"; };
 		84D904592CE1A0FF00F75AFF /* AABoost.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = AABoost.js; sourceTree = "<group>"; };
@@ -660,6 +662,7 @@
 				8492D99F2C7499DC007EB8D0 /* calendarHeatmapData.json */,
 				84903D102DC654740029FE5A /* sunburst2Data.json */,
 				84903D122DC654880029FE5A /* stellarChartData.json */,
+				84C95A822F8CC89400E4A41A /* evolutionDendrogram.json */,
 			);
 			path = DataJsonFiles;
 			sourceTree = "<group>";
@@ -1235,6 +1238,7 @@
 				1E66D1FB210AF4ED007EAB8C /* AAJSFiles.bundle in Resources */,
 				845F42B72E96986500CE65AB /* eulerData2.json in Resources */,
 				84D9045A2CE1A0FF00F75AFF /* AABoost.js in Resources */,
+				84C95A832F8CC89400E4A41A /* evolutionDendrogram.json in Resources */,
 				27EB8A702497C007007E6A6B /* columnpyramidData.json in Resources */,
 				84A5690827FD664F00883553 /* arcdiagram2Data.json in Resources */,
 				84DEB8B128FADE1600BF9423 /* simpleDependencyWheelData.json in Resources */,
