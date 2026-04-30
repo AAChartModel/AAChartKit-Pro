@@ -176,8 +176,14 @@
 		84F998052EAA173D00D41382 /* AAListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F998042EAA173D00D41382 /* AAListViewController.m */; };
 		84F998112EAA173D00D41382 /* AAListCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F9980B2EAA173D00D41382 /* AAListCardCell.m */; };
 		84F998122EAA173D00D41382 /* AAListHeaderCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F9980D2EAA173D00D41382 /* AAListHeaderCardView.m */; };
+		AA000001AABB00CC00DD0001 /* AAThemeTransitionOrbView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAThemeTransitionOrbView.h; sourceTree = "<group>"; };
+		AA000002AABB00CC00DD0002 /* AAThemeTransitionOrbView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAThemeTransitionOrbView.m; sourceTree = "<group>"; };
+		AA000003AABB00CC00DD0003 /* AAThemeTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAThemeTransitionAnimator.h; sourceTree = "<group>"; };
+		AA000004AABB00CC00DD0004 /* AAThemeTransitionAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAThemeTransitionAnimator.m; sourceTree = "<group>"; };
 		84FE7BB726AED3D000B68A56 /* AABaseChartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FE7BA226AED3D000B68A56 /* AABaseChartVC.m */; };
-/* End PBXBuildFile section */
+		AA000005AABB00CC00DD0005 /* AAThemeTransitionOrbView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA000002AABB00CC00DD0002 /* AAThemeTransitionOrbView.m */; };
+		AA000006AABB00CC00DD0006 /* AAThemeTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = AA000004AABB00CC00DD0004 /* AAThemeTransitionAnimator.m */; };
+		/* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		7172A3ED1E763EA6000D5B99 /* PBXContainerItemProxy */ = {
@@ -1086,6 +1092,10 @@
 			isa = PBXGroup;
 			children = (
 				84F9980E2EAA173D00D41382 /* AAListColorPalette.h */,
+				AA000001AABB00CC00DD0001 /* AAThemeTransitionOrbView.h */,
+				AA000002AABB00CC00DD0002 /* AAThemeTransitionOrbView.m */,
+				AA000003AABB00CC00DD0003 /* AAThemeTransitionAnimator.h */,
+				AA000004AABB00CC00DD0004 /* AAThemeTransitionAnimator.m */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -1367,6 +1377,8 @@
 				84F998112EAA173D00D41382 /* AAListCardCell.m in Sources */,
 				84F998122EAA173D00D41382 /* AAListHeaderCardView.m in Sources */,
 				84F998052EAA173D00D41382 /* AAListViewController.m in Sources */,
+				AA000005AABB00CC00DD0005 /* AAThemeTransitionOrbView.m in Sources */,
+				AA000006AABB00CC00DD0006 /* AAThemeTransitionAnimator.m in Sources */,
 				8441A6B326C21E53007EAAA7 /* AAChartView.m in Sources */,
 				8409E69A2CD47FE2000EFCF2 /* AAOrganization.m in Sources */,
 				84AA68B528A120F9009067AE /* AAOptionsCSV.m in Sources */,

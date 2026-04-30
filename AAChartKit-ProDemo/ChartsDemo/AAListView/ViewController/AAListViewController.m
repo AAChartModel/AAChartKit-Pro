@@ -13,18 +13,24 @@
 #import "AAListColorPalette.h"
 #import "AAListCardCell.h"
 #import "AAListHeaderCardView.h"
+#import "AAThemeTransitionAnimator.h"
 
 static const CGFloat kCardPressScale = 0.96f;
 static const CGFloat kAnimationDurationFast = 0.2f;
 static const CGFloat kSectionHeaderCornerRadius = 16.0f;
-static const NSTimeInterval kThemeToastDuration = 1.5;
 
 @interface AAListViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) CAGradientLayer *backgroundGradientLayer;
 @property (nonatomic, strong) AAListHeaderCardView *headerCardView;
-@property (nonatomic, strong) UIBarButtonItem *themeToggleButton;
+
+/// The floating glass button overlaid on the navigation controller's view.
+@property (nonatomic, strong) UIView *floatingThemeButton;
+/// The image view inside the floating button, updated when the theme changes.
+@property (nonatomic, strong) UIImageView *floatingThemeSymbolView;
+/// YES while an orb transition animation is in progress (reentrancy guard).
+@property (nonatomic, assign) BOOL isThemeTransitionInProgress;
 
 @property (nonatomic, assign) BOOL hasManualThemeOverride;
 @property (nonatomic, assign) BOOL manualDarkModeEnabled;
@@ -74,24 +80,38 @@ static const NSTimeInterval kThemeToastDuration = 1.5;
     [self loadThemeSettings];
     [self setupTableView];
     [self setupBackgroundGradient];
-
-    if (self.enableThemeToggle) {
-        [self setupThemeToggleButton];
-    }
-
     [self configureTableHeaderViewIfNeeded];
     [self reloadData];
     [self applyTheme];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self updateTableHeaderLayout];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (self.enableThemeToggle) {
+        [self installFloatingButtonIfNeeded];
+        self.floatingThemeButton.hidden = NO;
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.isMovingFromParentViewController || self.isBeingDismissed) {
+        [self.floatingThemeButton removeFromSuperview];
+        self.floatingThemeButton = nil;
+        self.floatingThemeSymbolView = nil;
+    } else {
+        self.floatingThemeButton.hidden = YES;
+    }
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     [self updateGradientFrame];
+    [self updateTableHeaderLayout];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self updateTableHeaderLayout];
 }
 
@@ -127,10 +147,12 @@ static const NSTimeInterval kThemeToastDuration = 1.5;
     }
 
     if (enableThemeToggle) {
-        [self setupThemeToggleButton];
+        [self installFloatingButtonIfNeeded];
+        self.floatingThemeButton.hidden = NO;
     } else {
-        self.navigationItem.rightBarButtonItem = nil;
-        self.themeToggleButton = nil;
+        [self.floatingThemeButton removeFromSuperview];
+        self.floatingThemeButton = nil;
+        self.floatingThemeSymbolView = nil;
         self.hasManualThemeOverride = NO;
     }
 }
@@ -255,15 +277,177 @@ static const NSTimeInterval kThemeToastDuration = 1.5;
     [gradientLayer addAnimation:endAnimation forKey:@"aa.background.endPoint"];
 }
 
-- (void)setupThemeToggleButton {
-    UIImage *buttonImage = [self themeToggleButtonImage];
-    self.themeToggleButton = [[UIBarButtonItem alloc] initWithImage:buttonImage
-                                                              style:UIBarButtonItemStylePlain
-                                                             target:self
-                                                             action:@selector(toggleThemeMode)];
-    self.themeToggleButton.accessibilityLabel = @"Toggle theme";
-    self.themeToggleButton.accessibilityHint = @"Switch between light and dark appearance";
-    self.navigationItem.rightBarButtonItem = self.themeToggleButton;
+- (void)installFloatingButtonIfNeeded {
+    if (!self.enableThemeToggle) return;
+    if (!self.navigationController) return;
+
+    UIView *navView = self.navigationController.view;
+
+    // Idempotent: already installed on the correct superview
+    if (self.floatingThemeButton && self.floatingThemeButton.superview == navView) return;
+
+    // Remove from stale superview (e.g. a previously presented nav controller)
+    [self.floatingThemeButton removeFromSuperview];
+
+    if (!self.floatingThemeButton) {
+        self.floatingThemeButton = [self buildFloatingThemeButton];
+    }
+
+    self.floatingThemeButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [navView addSubview:self.floatingThemeButton];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [self.floatingThemeButton.widthAnchor  constraintEqualToConstant:52],
+        [self.floatingThemeButton.heightAnchor constraintEqualToConstant:52],
+        [self.floatingThemeButton.topAnchor
+             constraintEqualToAnchor:navView.topAnchor constant:46],
+        [self.floatingThemeButton.trailingAnchor
+             constraintEqualToAnchor:navView.trailingAnchor constant:-70],
+    ]];
+
+    [self refreshFloatingButtonAppearance];
+}
+
+- (UIView *)buildFloatingThemeButton {
+    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 52, 52)];
+    container.layer.cornerRadius = 26;
+    container.layer.shadowColor  = UIColor.blackColor.CGColor;
+    container.layer.shadowOffset = CGSizeMake(0, 5);
+    container.layer.shadowRadius = 10;
+    container.layer.shadowOpacity = 0.25;
+
+    // Blur background (clips to the circle)
+    UIBlurEffect *blur;
+    if (@available(iOS 13.0, *)) {
+        blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleSystemThickMaterial];
+    } else {
+        blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    }
+    UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blur];
+    blurView.frame = container.bounds;
+    blurView.layer.cornerRadius = 26;
+    blurView.clipsToBounds = YES;
+    [container addSubview:blurView];
+
+    // Glass gradient overlay (drawn over the blur)
+    UIView *gradientView = [[UIView alloc] initWithFrame:blurView.bounds];
+    gradientView.userInteractionEnabled = NO;
+    CAGradientLayer *gl = [CAGradientLayer layer];
+    gl.frame        = gradientView.bounds;
+    gl.startPoint   = CGPointMake(0, 0);
+    gl.endPoint     = CGPointMake(1, 1);
+    gl.colors       = @[ (__bridge id)[[UIColor whiteColor] colorWithAlphaComponent:0.38].CGColor,
+                         (__bridge id)[[UIColor whiteColor] colorWithAlphaComponent:0.18].CGColor ];
+    gl.cornerRadius = 26;
+    [gradientView.layer addSublayer:gl];
+    [blurView.contentView addSubview:gradientView];
+
+    // Border
+    blurView.layer.borderWidth = 1;
+    blurView.layer.borderColor = [[UIColor whiteColor] colorWithAlphaComponent:0.55].CGColor;
+
+    // Symbol image view
+    UIImageView *symbolView = [[UIImageView alloc] init];
+    symbolView.frame = CGRectMake(16, 16, 20, 20);
+    symbolView.contentMode = UIViewContentModeScaleAspectFit;
+    [blurView.contentView addSubview:symbolView];
+    self.floatingThemeSymbolView = symbolView;
+
+    // Tap recogniser (UIButton on top)
+    UIButton *tapButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    tapButton.frame = container.bounds;
+    tapButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    tapButton.backgroundColor = UIColor.clearColor;
+    tapButton.accessibilityLabel = @"Toggle theme";
+    tapButton.accessibilityHint  = @"Switch between light and dark appearance";
+    [tapButton addTarget:self action:@selector(toggleThemeMode) forControlEvents:UIControlEventTouchUpInside];
+    [container addSubview:tapButton];
+
+    return container;
+}
+
+- (void)refreshFloatingButtonAppearance {
+    if (!self.floatingThemeButton) return;
+
+    BOOL isDark = [self isDarkMode];
+
+    // Update gradient direction for dark/light
+    UIView *gradientView = [self.floatingThemeButton.subviews.firstObject.subviews firstObject];
+    CAGradientLayer *gl = (CAGradientLayer *)gradientView.layer.sublayers.firstObject;
+    if ([gl isKindOfClass:[CAGradientLayer class]]) {
+        if (isDark) {
+            gl.colors = @[ (__bridge id)[[UIColor whiteColor] colorWithAlphaComponent:0.16].CGColor,
+                           (__bridge id)[[UIColor whiteColor] colorWithAlphaComponent:0.08].CGColor ];
+        } else {
+            gl.colors = @[ (__bridge id)[[UIColor whiteColor] colorWithAlphaComponent:0.38].CGColor,
+                           (__bridge id)[[UIColor whiteColor] colorWithAlphaComponent:0.18].CGColor ];
+        }
+    }
+
+    // Update border
+    UIVisualEffectView *blurView = self.floatingThemeButton.subviews.firstObject;
+    if ([blurView isKindOfClass:[UIVisualEffectView class]]) {
+        blurView.layer.borderColor = [[UIColor whiteColor]
+                                      colorWithAlphaComponent:isDark ? 0.26 : 0.55].CGColor;
+    }
+
+    // Update shadow
+    self.floatingThemeButton.layer.shadowOpacity = isDark ? 0.45 : 0.20;
+
+    // Update symbol
+    [self updateFloatingButtonSymbol:isDark];
+}
+
+- (void)updateFloatingButtonSymbol:(BOOL)isDark {
+    if (!self.floatingThemeSymbolView) return;
+
+    if (@available(iOS 13.0, *)) {
+        NSString *name  = isDark ? @"sun.max.fill" : @"moon.stars.fill";
+        UIColor *tint   = isDark ? [UIColor colorWithRed:0.992 green:0.906 blue:0.541 alpha:1]  // #FDE68A
+                                 : [UIColor colorWithRed:0.263 green:0.220 blue:0.792 alpha:1]; // #4338CA
+        UIImage *img = [UIImage systemImageNamed:name
+                              withConfiguration:[UIImageSymbolConfiguration
+                                                 configurationWithPointSize:20
+                                                                     weight:UIImageSymbolWeightMedium]];
+        self.floatingThemeSymbolView.image     = img;
+        self.floatingThemeSymbolView.tintColor = tint;
+    } else {
+        // Fallback: drawn icon for iOS < 13
+        self.floatingThemeSymbolView.image = [self _legacyThemeIconForDark:isDark];
+        self.floatingThemeSymbolView.tintColor = nil;
+    }
+}
+
+- (UIImage *)_legacyThemeIconForDark:(BOOL)isDark {
+    CGSize size = CGSizeMake(20, 20);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGFloat cx = size.width / 2, cy = size.height / 2;
+
+    if (isDark) {
+        [[UIColor colorWithRed:1 green:0.85 blue:0 alpha:1] setFill];
+        [[UIColor colorWithRed:1 green:0.85 blue:0 alpha:1] setStroke];
+        CGContextFillEllipseInRect(ctx, CGRectMake(cx-5, cy-5, 10, 10));
+        CGContextSetLineWidth(ctx, 1.5);
+        for (int i = 0; i < 8; i++) {
+            CGFloat a = (CGFloat)(M_PI * 2.0 / 8 * i);
+            CGContextMoveToPoint(ctx, cx + cos(a)*7, cy + sin(a)*7);
+            CGContextAddLineToPoint(ctx, cx + cos(a)*9.5, cy + sin(a)*9.5);
+            CGContextStrokePath(ctx);
+        }
+    } else {
+        [[UIColor colorWithRed:0.4 green:0.4 blue:0.6 alpha:1] setFill];
+        CGContextAddEllipseInRect(ctx, CGRectMake(cx-7, cy-7, 14, 14));
+        CGContextFillPath(ctx);
+        CGContextSetBlendMode(ctx, kCGBlendModeDestinationOut);
+        [[UIColor clearColor] setFill];
+        CGContextAddEllipseInRect(ctx, CGRectMake(cx-7+3, cy-7-2, 14, 14));
+        CGContextFillPath(ctx);
+    }
+
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
 }
 
 #pragma mark - Header Handling
@@ -638,7 +822,16 @@ static const NSTimeInterval kThemeToastDuration = 1.5;
     BOOL isDarkMode = [self isDarkMode];
 
     if (self.navigationController) {
+        // Propagate the style override to the navigation controller so all
+        // pushed chart view controllers adapt automatically.
         if (@available(iOS 13.0, *)) {
+            if (self.hasManualThemeOverride) {
+                self.navigationController.overrideUserInterfaceStyle =
+                    isDarkMode ? UIUserInterfaceStyleDark : UIUserInterfaceStyleLight;
+            } else {
+                self.navigationController.overrideUserInterfaceStyle = UIUserInterfaceStyleUnspecified;
+            }
+
             UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
             [appearance configureWithOpaqueBackground];
             appearance.backgroundColor = isDarkMode ? [UIColor colorWithRed:18.0/255.0f green:20.0/255.0f blue:28.0/255.0f alpha:1.0f]
@@ -663,9 +856,7 @@ static const NSTimeInterval kThemeToastDuration = 1.5;
         [self updateTableHeaderLayout];
     }
 
-    if (self.themeToggleButton) {
-        self.themeToggleButton.image = [self themeToggleButtonImage];
-    }
+    [self refreshFloatingButtonAppearance];
 
     [self.tableView reloadData];
 }
@@ -756,67 +947,9 @@ static const NSTimeInterval kThemeToastDuration = 1.5;
     [defaults synchronize];
 }
 
-- (UIImage *)themeToggleButtonImage {
-    BOOL isDarkMode = [self isDarkMode];
-
-    CGSize size = CGSizeMake(24.0f, 24.0f);
-    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0f);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-
-    if (isDarkMode) {
-        UIColor *sunColor = [UIColor colorWithRed:1.0f green:0.85f blue:0.0f alpha:1.0f];
-        [sunColor setFill];
-        [sunColor setStroke];
-
-        CGFloat centerX = size.width / 2.0f;
-        CGFloat centerY = size.height / 2.0f;
-        CGFloat radius = 6.0f;
-
-        CGContextFillEllipseInRect(context, CGRectMake(centerX - radius, centerY - radius, radius * 2.0f, radius * 2.0f));
-
-        CGContextSetLineWidth(context, 2.0f);
-        CGContextSetLineCap(context, kCGLineCapRound);
-
-        for (NSInteger i = 0; i < 8; i++) {
-            CGFloat angle = (CGFloat)((M_PI * 2.0) / 8.0 * i);
-            CGFloat startX = centerX + cos(angle) * (radius + 2.0f);
-            CGFloat startY = centerY + sin(angle) * (radius + 2.0f);
-            CGFloat endX = centerX + cos(angle) * (radius + 5.0f);
-            CGFloat endY = centerY + sin(angle) * (radius + 5.0f);
-
-            CGContextMoveToPoint(context, startX, startY);
-            CGContextAddLineToPoint(context, endX, endY);
-            CGContextStrokePath(context);
-        }
-    } else {
-        UIColor *moonColor = [UIColor colorWithRed:0.4f green:0.4f blue:0.6f alpha:1.0f];
-        [moonColor setFill];
-
-        CGFloat centerX = size.width / 2.0f;
-        CGFloat centerY = size.height / 2.0f;
-        CGFloat radius = 8.0f;
-
-        CGContextAddEllipseInRect(context, CGRectMake(centerX - radius, centerY - radius, radius * 2.0f, radius * 2.0f));
-        CGContextFillPath(context);
-
-        [[UIColor clearColor] setFill];
-        CGContextSetBlendMode(context, kCGBlendModeDestinationOut);
-        CGFloat offsetX = 3.0f;
-        CGFloat offsetY = -2.0f;
-        CGContextAddEllipseInRect(context, CGRectMake(centerX - radius + offsetX, centerY - radius + offsetY, radius * 2.0f, radius * 2.0f));
-        CGContextFillPath(context);
-    }
-
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-
-    return image;
-}
-
 - (void)toggleThemeMode {
-    if (!self.enableThemeToggle) {
-        return;
-    }
+    if (!self.enableThemeToggle) return;
+    if (self.isThemeTransitionInProgress) return;
 
     if (self.hasManualThemeOverride) {
         self.manualDarkModeEnabled = !self.manualDarkModeEnabled;
@@ -831,84 +964,50 @@ static const NSTimeInterval kThemeToastDuration = 1.5;
 
     [self saveThemeSettings];
 
-    self.themeToggleButton.image = [self themeToggleButtonImage];
+    self.isThemeTransitionInProgress = YES;
 
-    [UIView transitionWithView:self.view
-                      duration:0.35
-                       options:UIViewAnimationOptionTransitionCrossDissolve
-                    animations:^{
-        [self applyTheme];
+    // Disable the tap button during the animation to prevent double-taps
+    UIButton *tapButton = self.floatingThemeButton.subviews.lastObject;
+    if ([tapButton isKindOfClass:[UIButton class]]) {
+        tapButton.userInteractionEnabled = NO;
     }
-                    completion:nil];
 
-    [self showThemeToggleFeedback];
-}
+    BOOL isDark = self.manualDarkModeEnabled;
 
-- (void)showThemeToggleFeedback {
-    BOOL isDark = [self isDarkMode];
-    NSString *message = isDark ? @"Dark mode enabled" : @"Light mode enabled";
+    // Compute orb origin in window coordinates from the floating button's center
+    UIWindow *window = self.view.window;
+    CGPoint orbOrigin = self.floatingThemeButton
+        ? [self.floatingThemeButton convertPoint:CGPointMake(26, 26) toView:window]
+        : CGPointMake(window.bounds.size.width - 42,
+                      window.safeAreaInsets.top + 24);
 
-    UIView *toastContainer = [[UIView alloc] init];
-    toastContainer.backgroundColor = UIColor.clearColor;
-    toastContainer.alpha = 0.0f;
+    __weak typeof(self) weakSelf = self;
 
-    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:isDark ? UIBlurEffectStyleDark : UIBlurEffectStyleLight];
-    UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    blurView.layer.cornerRadius = 24.0f;
-    blurView.layer.masksToBounds = YES;
+    if (window) {
+        [AAThemeTransitionAnimator animateToIsDark:isDark
+                                         onWindow:window
+                                       fromOrigin:orbOrigin
+                                       applyBlock:^{
+            [weakSelf applyTheme];
+        }];
 
-    UILabel *feedbackLabel = [[UILabel alloc] init];
-    feedbackLabel.text = message;
-    feedbackLabel.textColor = isDark ? UIColor.whiteColor : ColorWithRGB(40, 40, 40, 1);
-    feedbackLabel.backgroundColor = UIColor.clearColor;
-    feedbackLabel.font = [UIFont systemFontOfSize:15.0f weight:UIFontWeightSemibold];
-    feedbackLabel.textAlignment = NSTextAlignmentCenter;
-
-    [feedbackLabel sizeToFit];
-    CGRect labelFrame = feedbackLabel.frame;
-    labelFrame.size.width += 40.0f;
-    labelFrame.size.height = 48.0f;
-    feedbackLabel.frame = labelFrame;
-
-    blurView.frame = labelFrame;
-    toastContainer.frame = labelFrame;
-    toastContainer.center = CGPointMake(self.view.center.x, self.view.center.y - 120.0f);
-
-    [toastContainer addSubview:blurView];
-    [blurView.contentView addSubview:feedbackLabel];
-    feedbackLabel.center = CGPointMake(CGRectGetWidth(blurView.bounds) / 2.0f, CGRectGetHeight(blurView.bounds) / 2.0f);
-
-    toastContainer.layer.shadowColor = UIColor.blackColor.CGColor;
-    toastContainer.layer.shadowOpacity = isDark ? 0.5f : 0.15f;
-    toastContainer.layer.shadowOffset = CGSizeMake(0.0f, 8.0f);
-    toastContainer.layer.shadowRadius = 16.0f;
-
-    [self.view addSubview:toastContainer];
-
-    toastContainer.transform = CGAffineTransformMakeTranslation(0.0f, -20.0f);
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-         usingSpringWithDamping:0.7
-          initialSpringVelocity:0.5
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-        toastContainer.alpha = 1.0f;
-        toastContainer.transform = CGAffineTransformIdentity;
-    }
-                     completion:^(BOOL finished) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kThemeToastDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:0.4
-                                  delay:0.0
-                                options:UIViewAnimationOptionCurveEaseIn
-                             animations:^{
-                toastContainer.alpha = 0.0f;
-                toastContainer.transform = CGAffineTransformMakeTranslation(0.0f, -15.0f);
+        // Re-enable the button after the animation finishes (0.92 s total)
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)),
+                       dispatch_get_main_queue(), ^{
+            weakSelf.isThemeTransitionInProgress = NO;
+            UIButton *btn = weakSelf.floatingThemeButton.subviews.lastObject;
+            if ([btn isKindOfClass:[UIButton class]]) {
+                btn.userInteractionEnabled = YES;
             }
-                             completion:^(BOOL finished2) {
-                [toastContainer removeFromSuperview];
-            }];
         });
-    }];
+    } else {
+        // No window (shouldn't happen in practice); apply immediately
+        [self applyTheme];
+        self.isThemeTransitionInProgress = NO;
+        if ([tapButton isKindOfClass:[UIButton class]]) {
+            tapButton.userInteractionEnabled = YES;
+        }
+    }
 }
 
 @end
