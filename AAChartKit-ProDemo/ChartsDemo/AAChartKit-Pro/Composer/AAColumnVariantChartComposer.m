@@ -203,6 +203,25 @@
                ]);
 }
 
++ (AAOptions *)invertedXrangeChart {
+    AAOptions *aaOptions = [self xrangeChart];
+    aaOptions.colors = @[];
+    aaOptions.chart.inverted = YES;
+    aaOptions.yAxis.categories = @[
+        @"离", @"离", @"原", @"上", @"草",
+        @"一", @"岁", @"一", @"枯", @"荣",
+        @"野", @"火", @"烧", @"不", @"尽",
+        @"春", @"风", @"吹", @"又", @"生"
+    ];
+    aaOptions.plotOptions.series.groupPadding = @0.1;
+    aaOptions.series = @[
+        AASeriesElement.new
+        .borderRadiusSet(@2)
+        .dataSet(AAOptionsData.xrange2Data)
+    ];
+    return aaOptions;
+}
+
 + (AAOptions *)histogramChart {
     return AAOptions.new
         .titleSet(AATitle.new

@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)treemapWithLevelsData;
 + (NSArray *)treemapWithLevels2Data;
 + (NSArray *)xrangeData;
++ (NSArray *)xrange2Data;
 + (NSArray *)vectorData;
 + (NSArray *)bellcurveData;
 + (NSArray *)timelineData;

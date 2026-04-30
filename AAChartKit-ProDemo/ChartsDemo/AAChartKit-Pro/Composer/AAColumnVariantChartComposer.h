@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (AAOptions *)dumbbellChart;
 + (AAOptions *)lollipopChart;
 + (AAOptions *)xrangeChart;
++ (AAOptions *)invertedXrangeChart;
 + (AAOptions *)histogramChart;
 + (AAOptions *)bellcurveChart;
 + (AAOptions *)bulletChart;

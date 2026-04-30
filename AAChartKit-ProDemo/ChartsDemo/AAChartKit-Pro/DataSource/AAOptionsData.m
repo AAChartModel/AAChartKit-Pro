@@ -163,6 +163,32 @@
     return dataArr;
 }
 
++ (NSArray *)xrange2Data {
+    NSMutableArray *dataArr = [NSMutableArray array];
+    
+    for (int y = 0; y < 20; y++) {
+        int x = 0;
+        int x2 = x + arc4random() % 10;
+        for (int i = 0; i < 50; i++) {
+            NSMutableDictionary *dataElementDic = [NSMutableDictionary dictionary];
+            dataElementDic[@"x"] = @(x);
+            dataElementDic[@"x2"] = @(x2);
+            dataElementDic[@"y"] = @(y);
+            
+            int R = arc4random_uniform(256);
+            int G = arc4random_uniform(256);
+            int B = arc4random_uniform(256);
+            dataElementDic[@"color"] = [NSString stringWithFormat:@"rgba(%d,%d,%d,0.9)", R, G, B];
+            
+            [dataArr addObject:dataElementDic];
+            x = x2 + arc4random() % 1000;
+            x2 = x + arc4random() % 2000;
+        }
+    }
+    
+    return dataArr;
+}
+
 + (NSArray *)vectorData {
     return [self getJsonDataWithJsonFileName:@"vectorData"];
 }

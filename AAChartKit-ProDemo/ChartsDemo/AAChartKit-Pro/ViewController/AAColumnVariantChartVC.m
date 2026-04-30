@@ -23,11 +23,12 @@
         case  2: return [AAColumnVariantChartComposer dumbbellChart];
         case  3: return [AAColumnVariantChartComposer lollipopChart];
         case  4: return [AAColumnVariantChartComposer xrangeChart];
-        case  5: return [AAColumnVariantChartComposer histogramChart];
-        case  6: return [AAColumnVariantChartComposer bellcurveChart];
-        case  7: return [AAColumnVariantChartComposer bulletChart];
-        case  8: return [AAColumnVariantChartComposer pictorial1Chart];
-        case  9: return [AAColumnVariantChartComposer pictorial2Chart];
+        case  5: return [AAColumnVariantChartComposer invertedXrangeChart];
+        case  6: return [AAColumnVariantChartComposer histogramChart];
+        case  7: return [AAColumnVariantChartComposer bellcurveChart];
+        case  8: return [AAColumnVariantChartComposer bulletChart];
+        case  9: return [AAColumnVariantChartComposer pictorial1Chart];
+        case 10: return [AAColumnVariantChartComposer pictorial2Chart];
 
     }
     return nil;

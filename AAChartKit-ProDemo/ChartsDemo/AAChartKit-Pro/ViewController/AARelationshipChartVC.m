@@ -34,6 +34,7 @@
         case 10: return [AAOrganizationChartComposer germanicLanguageTreeChart];
         case 11: return [AASankeyChartComposer sankeyDiagramChart];
         case 12: return [AASankeyChartComposer verticalSankeyChart];
+        case 13: return [AARelationshipChartComposer sankeyChart];
 
 
     }
